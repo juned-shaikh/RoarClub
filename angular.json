@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Roar-club"
+    }
+  },
+  "defaultProject": "Roar-club",
+  "cli": {
+    "analytics": "703bf791-858c-4630-b046-e13017df5c53"
+  }
 }

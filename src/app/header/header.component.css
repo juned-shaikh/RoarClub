@@ -1,0 +1,185 @@
+.navbar {
+    font-size: 18px;
+  
+    color: green;
+    padding-bottom: 10px;
+  }
+  
+  
+  
+  .main-nav {
+    list-style-type: none;
+    display: none;
+    text-decoration:none;
+   
+  }
+  
+  .nav-links,
+  .logo {
+    text-decoration: none;
+    color: #777;
+  }
+  
+  .main-nav li {
+    text-align: center;
+    margin: 15px auto;
+    color: black;
+  }
+  
+  .logo {
+    display: inline-block;
+    font-size: 22px;
+    margin-top: 10px;
+    margin-left: 20px;
+  }
+  
+  .navbar-toggle {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 24px;
+  
+  }
+  
+  #chkToggle {
+    display: none;
+  }
+  
+  #chkToggle:checked + ul.main-nav {
+    display: block;
+  }
+  
+  @media screen and (min-width: 768px) {
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 0;
+      height: 70px;
+      align-items: center;
+       background:#202328;
+  text-decoration:none;
+    }
+  
+    #chkToggle:checked + ul.main-nav {
+      display: flex;
+    }
+  
+    .main-nav {
+      display: flex;
+      margin-left: 5px ;
+      margin-top: 15px;
+      flex-direction: row;
+      justify-content: flex-end;
+  text-decoration:none;
+    }
+  
+    .main-nav li {
+     
+      outline: none;
+    }
+  
+    .nav-links {
+      margin-left: 30px;
+  
+      }
+  
+  
+    .logo {
+      margin-top: 0;
+    }
+  
+    .navbar-toggle {
+      display: none;
+  
+    }
+    #searchInput{
+        outline: none;
+        text-decoration: none;
+        border-radius: 15px;
+        
+    }
+  
+    .logo:hover,
+    .nav-links:hover {
+      color: #64E619;
+    }
+  }
+  
+  
+  /*start---------*/
+  @import url('https://fonts.googleapis.com/css?family=Sarabun');
+  
+  *,
+  *::after,
+  *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+  }
+  
+  html {
+    font-size: 62.5%;
+  }
+  
+  body {
+    box-sizing: border-box;
+    background-color:   rgba(229,229,229, .3);
+    font-family: 'Sarabun', sans-serif;
+  }
+  
+  .container {
+    width: 25rem;
+    height: 100%;
+    margin: 0 1rem;
+    position: relative;
+  }
+  
+  h1 {
+    margin: 2rem;  
+  }
+  
+  .searchbar {
+    font-size: 2.4rem;
+    width: 25rem;
+    height: 5rem;
+    border: none;
+    outline: none;
+    border-radius: 10rem;
+    box-shadow: 0 1rem 2rem rgba(black, .1);
+    padding: 2rem;
+    position: relative;
+    transition: all .2s;
+    transition-delay: .1s;
+  }
+  
+  /*.searchbar:hover {
+    width: 27rem;
+    height: 6rem;
+  }
+  */
+  .button {
+    height: 2rem;
+    position: absolute;
+    top: 1.5rem;
+    right: 1rem;
+    transition: all .2s;
+    transition-delay: .1s;
+  }
+  
+  .button:hover {
+    cursor: pointer;
+  }
+  
+  /*.searchbar:hover + .button {
+    height: 2.5rem;
+    top: 1.8rem;
+    right: 0;
+  }
+  */
+  .searchbar::placeholder {
+    opacity: .5;
+  }
+  
+  
