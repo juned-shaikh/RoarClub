@@ -12,4 +12,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  gotoPage= function(pagename:string){
+  this.router.navigateByUrl('/category-page');
+  }
 }
