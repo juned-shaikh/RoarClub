@@ -142,8 +142,8 @@
   }
   
   .searchbar {
-    font-size: 2.4rem;
-    width: 25rem;
+    font-size: 1rem;
+    width: 15rem;
     height: 1rem;
     border: none;
     outline: none;
@@ -162,9 +162,11 @@
   */
   .button {
     height: 2rem;
+    
     position: absolute;
     /* top: 1.5rem; */
-    right: 1rem;
+    /* right: 1rem; */
+    margin-left: 12rem;
     transition: all .2s;
     transition-delay: .1s;
   }
