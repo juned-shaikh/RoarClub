@@ -13,34 +13,30 @@ import { ProductViewComponent } from './product-view/product-view.component';
 
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-// import { AuthGuard } from './_guards';
-// import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
-// import { JwtInterceptor, ErrorInterceptor } from './_helpers';
-// import { AlertComponent } from './_directives';
+import { AuthGuard } from './_guards';
+import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
+ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+ import { AlertComponent } from './_directives';
 import { ReactiveFormsModule, FormsModule }    from '@angular/forms';
-// import { AlertService, AuthenticationService, UserService} from './_services';
+import { AlertService, AuthenticationService, UserService} from './_services';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import { FlexLayoutModule } from "@angular/flex-layout";
-// import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-// import { MatSnackBarModule, MatButtonModule,
-//     MatTabsModule, MatToolbarModule, 
-//     MatGridListModule, MatSidenavModule, 
-//    MatListModule, MatProgressSpinnerModule, MatTableModule,  
-//    MatOptionModule, MatSelectModule,  MatCheckboxModule, MatMenuModule,  
-//    MatRadioModule, 
-//    } from "@angular/material";
-//    import { MatInputModule } from '@angular/material/input';
-// import { MatFormFieldModule } from "@angular/material/form-field";
-// import {MatIconModule} from '@angular/material/icon';
-//    import {MatTooltipModule} from '@angular/material/tooltip';
-//    import { NgOtpInputModule } from  'ng-otp-input';
-//    import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
-//    import {MatSortModule} from '@angular/material/sort';
+//import { FlexLayoutModule } from '@angular/flex-layout';
+ 
+ import { MatSnackBarModule, MatButtonModule,
+  MatTabsModule, MatToolbarModule,      MatGridListModule, MatSidenavModule,    MatListModule, MatProgressSpinnerModule, MatTableModule,     MatOptionModule, MatSelectModule,  MatCheckboxModule, MatMenuModule,   MatRadioModule,   } from "@angular/material";
+   import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from "@angular/material/form-field";
+import {MatIconModule} from '@angular/material/icon';
+   import {MatTooltipModule} from '@angular/material/tooltip';
+  //  import { NgOtpInputModule } from  'ng-otp-input';
+  //  import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+   import {MatSortModule} from '@angular/material/sort';
 //    import { 
 //   MatCardModule,   MatStepperModule,      MatDialogModule,   MatRippleModule, MatDatepickerModule, MatNativeDateModule, MatChipsModule ,MatPaginatorModule
 // } from '@angular/material';
-// import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 // import {MatExpansionModule} from '@angular/material/expansion';
@@ -79,7 +75,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 // import { AngularFireAuthModule } from '@angular/fire/auth';
 // import { AngularFireModule } from '@angular/fire';
 // import { MessagingService } from './messaging.service';
-// import { environment } from '../environments/environment'; 
+import { environment } from '../environments/environment'; 
 // import { AsyncPipe } from '../../node_modules/@angular/common';
 // import { AmazingTimePickerModule } from "amazing-time-picker";
 // import { NinetoysAdminComponent } from './ninetoys-admin/ninetoys-admin.component';
@@ -151,7 +147,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
   // GallerizeModule,
   // AmazingTimePickerModule,
   // NgxMaterialTimepickerModule,
-  //   MatSnackBarModule,
+   MatSnackBarModule,
    // MatRippleModule,
     BrowserModule,
     //MatTooltipModule,
@@ -197,33 +193,34 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
     // MatNativeDateModule,
     HttpClientModule,
     AppRoutingModule,
+    NgbModule,
     // MatTabsModule,
     // MatListModule,
     // MatRadioModule,
     // MatChipsModule,
     // MatPaginatorModule,
     // ChartsModule,
-    // NgbModule,
+    NgbModule,
     // PDFExportModule,
     // AngularFireDatabaseModule,
     // AngularFireAuthModule,
     // AngularFireMessagingModule,
     // AngularFireModule.initializeApp(environment.firebase),
-    // RecaptchaModule,  
-    // RecaptchaFormsModule, 
+    RecaptchaModule,  
+    RecaptchaFormsModule, 
 
   ],
   providers: [
-    // AlertService,
-    // AuthGuard,
-    // AuthenticationService,
+    AlertService,
+    AuthGuard,
+    AuthenticationService,
 
-    // UserService,
-    // MessagingService,
-    // AsyncPipe,
-    // { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-   // { provide: LocationStrategy,  useClass: PathLocationStrategy},
+    UserService,
+    MessagingService,
+    AsyncPipe,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+   { provide: LocationStrategy,  useClass: PathLocationStrategy},
   ],
   bootstrap: [AppComponent]
 })

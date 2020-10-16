@@ -1,6 +1,6 @@
 import { Component, OnInit, HostListener, ElementRef } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
-// import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
+ import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 import {
   FormBuilder,
   FormGroup,
@@ -9,7 +9,7 @@ import {
 } from "@angular/forms";
 import { first } from "rxjs/operators";
 import { RoarclubserviceService } from "../roarclubservice.service";
-// import { MatSnackBar } from "@angular/material";
+import {MatSnackBar} from  '@angular/material/snack-bar'
  import { CookieService } from "ngx-cookie-service";
 import { Location } from "@angular/common";
 // import { SwiperOptions } from "swiper";
@@ -85,12 +85,13 @@ export class HomeComponent implements OnInit {
   constructor(
     private adminservice: RoarclubserviceService,
     private router: Router,
-  //  public snackbar: MatSnackBar,
+    public snackbar: MatSnackBar,
 
     public location: Location,
-    private cookie: CookieService,
+  private cookie: CookieService,
     private formBuilder: FormBuilder,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+
   ) {}
 
   open(content) {
