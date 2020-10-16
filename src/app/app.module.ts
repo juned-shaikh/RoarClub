@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { CategoryPageComponent } from './category-page/category-page.component';
 import { ProductViewComponent } from './product-view/product-view.component';
  //import { MatSnackBarModule} from "@angular/material";
+ import {MatSnackBarModule} from '@angular/material/snack-bar';
  import { from } from 'rxjs';
 
 
@@ -22,8 +23,8 @@ import { AlertService, AuthenticationService, UserService} from './_services';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //import { FlexLayoutModule } from '@angular/flex-layout';
  
- import { MatSnackBarModule, MatButtonModule,
-  MatTabsModule, MatToolbarModule,      MatGridListModule, MatSidenavModule,    MatListModule, MatProgressSpinnerModule, MatTableModule,     MatOptionModule, MatSelectModule,  MatCheckboxModule, MatMenuModule,   MatRadioModule,   } from "@angular/material";
+//  import { MatSnackBarModule, MatButtonModule,
+//   MatTabsModule, MatToolbarModule,      MatGridListModule, MatSidenavModule,    MatListModule, MatProgressSpinnerModule,} from "@angular/material";
    import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import {MatIconModule} from '@angular/material/icon';
@@ -87,6 +88,9 @@ import { environment } from '../environments/environment';
 // import { TestingZoomComponent } from './testing-zoom/testing-zoom.component';
 // import { ReturnOrderComponent } from './return-order/return-order.component';
 // import { HomeProfileComponent } from './home-profile/home-profile.component';
+import { AsyncPipe } from '../../node_modules/@angular/common';
+
+import { HashLocationStrategy, LocationStrategy , PathLocationStrategy} from '@angular/common';
 
 
 @NgModule({
@@ -216,7 +220,7 @@ import { environment } from '../environments/environment';
     AuthenticationService,
 
     UserService,
-    MessagingService,
+   // MessagingService,
     AsyncPipe,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
