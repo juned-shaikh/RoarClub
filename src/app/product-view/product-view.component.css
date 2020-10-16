@@ -92,3 +92,48 @@ input[type=number]::-webkit-outer-spin-button {
     margin-top: -.6rem;
   }
 }}
+
+
+
+.product-filter h1 {
+  flex-grow: 1;
+}
+
+
+.product-filter {
+	display: flex;
+	padding: 30px 0;
+}
+
+.sort {
+	display: flex;
+	align-self: flex-end;
+}
+
+.collection-sort {
+ display: flex;
+	flex-direction: column;
+}
+
+.collection-sort:first-child {
+	padding-right: 20px;
+}
+
+
+
+
+.product--size {
+  margin: 20px 0;
+ 
+    display: inline-block;
+    width: 35px;
+    border: 1px solid #999;
+    border-radius: 4px 4px;
+    text-align: center;
+    padding: 1px 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    
+      color: #fff;
+      background: #008080;
+    }
