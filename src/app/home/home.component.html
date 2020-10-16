@@ -15,9 +15,7 @@
       <div *ngIf="banner_group_b==0 || bannerdata.value.banner_image_b_group==''" class="carousel-item">
         <img class="d-block w-100" src="{{ bannerdata.value.banner_image_b }}" alt="Third slide">
       </div>
-      <div *ngIf="banner_group_b==1 && bannerdata.value.banner_image_b_group!=''  && banner_group_linkb==0"  class="carousel-item" (click)="navigation(bannerdata.value.banner_image_b_group,bannerdata.value.banner_image_b_group_type,bannerdata.value.banner_image_b_group_id)"></div>>
-        <img class="d-block w-100" src="{{ bannerdata.value.banner_image_b }}" alt="fourth slide">
-      </div>
+   
 
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

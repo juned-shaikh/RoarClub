@@ -93,7 +93,10 @@ export class HomeComponent implements OnInit {
     private modalService: NgbModal,
 
   ) {}
-
+  product(){
+    this.router.navigate(['/product-view'])
+  }
+  
   open(content) {
     this.modalService
       .open(content, { ariaLabelledBy: "modal-basic-title" })
