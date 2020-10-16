@@ -7,18 +7,20 @@ import {FooterComponent} from './footer/footer.component';
 import {ProductViewComponent} from './product-view/product-view.component';
  
 const routes: Routes = [
-  {
-    path: "",
-    component: HeaderComponent,
-    pathMatch: "prefix",
+  { path: "",  pathMatch: "prefix", 
+      component:HeaderComponent,
     children: [
-      { path: "", component: HomeComponent },
-      { path: "home", component: HomeComponent },
-      {  path:"footer",component : FooterComponent },
-      {  path:"category-page",component : CategoryPageComponent },
+      {path : '', component : HomeComponent},
+      {path : 'Home', component : HomeComponent},
+      {path: 'category-page', component:CategoryPageComponent },
       {path : "product-view", component : ProductViewComponent},
     ],
-  },
+ },
+
+
+
+
+ 
   // { path:'',  pathMatch:'full'},
  
 //   {  path:"header",component : HeaderComponent },
