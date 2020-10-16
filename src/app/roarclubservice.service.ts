@@ -325,12 +325,6 @@ checkUserExist(data) {
     return this.https.post(this.baseUrl + "user/payment_status_check", data);
   }
 
-  fetch_particular_company_registry_with_sno(data){
-    return this.https.post(
-      this.baseUrl + "company/fetch_particular_company_registry_with_sno",
-      data
-    );
-  }
   fetch_banner_image(data) {
     return this.https.post(this.baseUrl + "user/fetch_banner_images", data);
   }
@@ -341,4 +335,17 @@ checkUserExist(data) {
   fethcProductWishlist(data) {
     return this.https.post(this.baseUrl + "user/fetch_product_wishlist", data);
   }
+  fetch_particular_company_registry_with_sno(data){
+    return this.https.post(
+      this.baseUrl + "company/fetch_particular_company_registry_with_sno",
+      data
+    );
+  }
+  // fetch_banner_image(data) {
+  //   return this.https.post(this.baseUrl + "user/fetch_banner_images", data);
+  // }
+
+  // fethcProductWishlist(data) {
+  //   return this.https.post(this.baseUrl + "user/fetch_product_wishlist", data);
+  // }
 }

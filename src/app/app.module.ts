@@ -5,13 +5,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-
-import { HashLocationStrategy, LocationStrategy , PathLocationStrategy} from '@angular/common';
-// import { HomeComponent } from './home/home.component';
+// import { MatSnackBarModule, MatButtonModule,
+//   MatTabsModule, MatToolbarModule, 
+//   MatGridListModule, MatSidenavModule, 
+//  MatListModule, MatProgressSpinnerModule, MatTableModule,  
+//  MatOptionModule, MatSelectModule,  MatCheckboxModule, MatMenuModule,  
+//  MatRadioModule, 
+//  } from "@angular/material";
+// import { HashLocationStrategy, LocationStrategy , PathLocationStrategy} from '@angular/common';
+import { HomeComponent } from './home/home.component';
 import { CategoryPageComponent } from './category-page/category-page.component';
 import { ProductViewComponent } from './product-view/product-view.component';
  //import { MatSnackBarModule} from "@angular/material";
- import { HomeComponent } from './home/home.component';
+ import {MatSnackBarModule} from '@angular/material/snack-bar';
  import { from } from 'rxjs';
 
 
@@ -25,7 +31,8 @@ import { AlertService, AuthenticationService, UserService} from './_services';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //import { FlexLayoutModule } from '@angular/flex-layout';
  
-
+//  import { MatSnackBarModule, MatButtonModule,
+//   MatTabsModule, MatToolbarModule,      MatGridListModule, MatSidenavModule,    MatListModule, MatProgressSpinnerModule,} from "@angular/material";
    import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import {MatIconModule} from '@angular/material/icon';
@@ -40,7 +47,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { AsyncPipe } from '../../node_modules/@angular/common';
+// import { AsyncPipe } from '../../node_modules/@angular/common';
 // import {MatExpansionModule} from '@angular/material/expansion';
 // import { ContactUsComponent } from './contact-us/contact-us.component';
 // import { LoginComponent } from './login/login.component';
@@ -89,6 +96,9 @@ import { environment } from '../environments/environment';
 // import { TestingZoomComponent } from './testing-zoom/testing-zoom.component';
 // import { ReturnOrderComponent } from './return-order/return-order.component';
 // import { HomeProfileComponent } from './home-profile/home-profile.component';
+import { AsyncPipe } from '../../node_modules/@angular/common';
+
+import { HashLocationStrategy, LocationStrategy , PathLocationStrategy} from '@angular/common';
 
 
 @NgModule({
@@ -164,7 +174,7 @@ import { environment } from '../environments/environment';
    // MatNativeDateModule,
     ReactiveFormsModule, 
     FormsModule,
-    //MatSnackBarModule,
+    MatSnackBarModule,
     BrowserModule,
     BrowserAnimationsModule,
   //   MatCardModule,
@@ -219,7 +229,7 @@ import { environment } from '../environments/environment';
     AuthenticationService,
 
     UserService,
-    // MessagingService,
+   // MessagingService,
     AsyncPipe,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
