@@ -345,4 +345,7 @@ checkUserExist(data) {
   //   return this.https.post(this.baseUrl + "user/fetch_banner_images", data);
   // }
 
+  // fethcProductWishlist(data) {
+  //   return this.https.post(this.baseUrl + "user/fetch_product_wishlist", data);
+  // }
 }

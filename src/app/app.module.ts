@@ -5,6 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+// import { MatSnackBarModule, MatButtonModule,
+//   MatTabsModule, MatToolbarModule, 
+//   MatGridListModule, MatSidenavModule, 
+//  MatListModule, MatProgressSpinnerModule, MatTableModule,  
+//  MatOptionModule, MatSelectModule,  MatCheckboxModule, MatMenuModule,  
+//  MatRadioModule, 
+//  } from "@angular/material";
+// import { HashLocationStrategy, LocationStrategy , PathLocationStrategy} from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { CategoryPageComponent } from './category-page/category-page.component';
 import { ProductViewComponent } from './product-view/product-view.component';
@@ -39,7 +47,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-
+// import { AsyncPipe } from '../../node_modules/@angular/common';
 // import {MatExpansionModule} from '@angular/material/expansion';
 // import { ContactUsComponent } from './contact-us/contact-us.component';
 // import { LoginComponent } from './login/login.component';
@@ -97,15 +105,16 @@ import { HashLocationStrategy, LocationStrategy , PathLocationStrategy} from '@a
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent,
     HomeComponent,
+    FooterComponent,
+    // HomeComponent,
     CategoryPageComponent,
     ProductViewComponent,
    
    
     AppComponent,
     // AlertComponent,
-    HomeComponent,
+    // HomeComponent,
     // ContactUsComponent,
     // LoginComponent,
     // RegisterComponent,
@@ -151,7 +160,7 @@ import { HashLocationStrategy, LocationStrategy , PathLocationStrategy} from '@a
   // GallerizeModule,
   // AmazingTimePickerModule,
   // NgxMaterialTimepickerModule,
-   MatSnackBarModule,
+  //  MatSnackBarModule,
    // MatRippleModule,
     BrowserModule,
     //MatTooltipModule,
@@ -165,7 +174,7 @@ import { HashLocationStrategy, LocationStrategy , PathLocationStrategy} from '@a
    // MatNativeDateModule,
     ReactiveFormsModule, 
     FormsModule,
-    //MatSnackBarModule,
+    MatSnackBarModule,
     BrowserModule,
     BrowserAnimationsModule,
   //   MatCardModule,
