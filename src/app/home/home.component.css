@@ -498,3 +498,33 @@ img {
     .product-grid{ margin-bottom: 30px; }
 }
 /* end */
+.checked {
+  color: #a0236e; }
+  .star-mobile{
+      font-size: 10px;
+  }
+ .unchecked{
+    color: #ea895694;
+ }
+
+  .button-minus{
+    color: #fff;
+    width: 27px;
+    /* width: 27px; */
+    line-height: 1;
+    height: 27px;
+    border-radius: 20px;
+    font-size: 18px;
+    /* background-color: #117a8b; */
+    background: linear-gradient(45deg, #6c0753, #d4474d);
+    /* border-color: #10707f; */
+  }
+  .Quantity-box{
+    background: white;
+    position: absolute;
+    visibility: hidden;
+    bottom: 3px;
+    right: 0;
+    left: 0;
+   
+}

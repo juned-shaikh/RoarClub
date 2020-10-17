@@ -348,4 +348,13 @@ checkUserExist(data) {
   // fethcProductWishlist(data) {
   //   return this.https.post(this.baseUrl + "user/fetch_product_wishlist", data);
   // }
+  fetch_media_links(data){
+    return this.https.post(this.baseUrl + "user/fetch_media_link", data);    
+  }
+  getCompnyBasicDetail(data) {
+    return this.https.post(
+      this.baseUrl + "user/get_company_basic_details",
+      data
+    );
+  }
 }
