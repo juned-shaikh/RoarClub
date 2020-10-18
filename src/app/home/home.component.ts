@@ -1136,6 +1136,7 @@ this.count = this.count+1;
         }
       });
   }
+  
   bannerImage(dd) {
     this.adminservice
       .fetch_banner_image({
