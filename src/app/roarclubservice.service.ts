@@ -357,4 +357,39 @@ checkUserExist(data) {
       data
     );
   }
+  unsubscribe_topic(data){
+    return this.https.post(this.baseUrl + "notification/topic_unsubscribe_notification", data);
+
+  } 
+  get_host_link(data){
+    return this.https.post(this.baseUrl + "user/get_host_link", data);
+
+}
+get_host_link_of_comapny(data){
+  return this.https.post(this.baseUrl + "user/get_host_link_of_comapny", data);
+
+}
+fetch_company_tagline(data){
+  return this.https.post(this.baseUrl + "user/fetch_company_tagline", data);    
+}
+fetchBrands(data) {
+  return this.https.post(
+    this.baseUrl + "user/fetch_brand_all_for_comp",
+    data
+  );
+}
+fetch_subcategory_all_new(data) {
+  return this.https.post(this.baseUrl + "user/fetch_subcategory_all", data);
+  // return this.https.post("http://localhost/9toys/index.php/user/fetch_subcategory_all", data);
+
+}
+fetchBrandsEcom(data) {
+  return this.https.post(
+    this.baseUrl + "user/fetch_brand_all_for_comp_ecom",
+    data
+  );
+}
+changeProductList(list) {
+  this.productSource.next(list);
+}
 }

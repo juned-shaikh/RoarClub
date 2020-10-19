@@ -10,14 +10,19 @@
           </label>
      <!--  <a href="#" class="logo">logo</a> -->
   <!--    <img src="list.png" width=40px" style="color: white"> -->
-     <img src="./assets/1.png" width="120px" height="80px">
+     <img src="./assets/1.png" width="120px" height="80px" routerLink="/">
       <input type="checkbox" id="chkToggle">
       <ul class="main-nav" id="js-menu">
-        <li>
-          <a routerLink="/Home" class="nav-links" style="text-decoration: none;font-size: 25px;">Home</a>
+        <li  *ngFor="let category of categories2" style="color: antiquewhite;">
+          <a  (click)=" 
+          navigateCategory(category.name, category.category_no)
+        " class="nav-links" style="text-decoration: none;font-size: 25px;">
+            {{
+              category.name
+            }}</a>
         </li>
-        <li>
-          <a routerLink="/category-page" routerLink="/category-page" class="nav-links" style="text-decoration: none;font-size: 25px;">Category</a>
+        <!-- <li>
+          <a  routerLink="/category-page" class="nav-links" style="text-decoration: none;font-size: 25px;">Category</a>
         </li>
         <li>
           <a href="#" class="nav-links" style="text-decoration: none;font-size: 25px;">Shorts</a>
@@ -30,7 +35,7 @@
         </li>
         <li>
                   <a href="#" class="nav-links" style="text-decoration: none;font-size: 25px;">login</a>
-                </li>
+                </li> -->
       </ul>
               
       <DIV>
