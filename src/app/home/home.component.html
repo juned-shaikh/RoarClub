@@ -166,8 +166,8 @@
      
     <!-- </div> -->
   </div>
-    <ul class="cards" style="padding-top: 20px;" >
-      <li class="cards_item" *ngFor="let nprd2 of topSelling">
+    <div class="cards row" style="padding-top: 20px;" >
+      <li class="cards_item col-md-4" *ngFor="let nprd2 of topSelling">
         <div class="card">
           <div class="card_image">
             <img
@@ -259,11 +259,11 @@
           </div>
           
         </div>
-      </li>
+      </div>
      
      
       
-    </ul>
+    </div>
     <!-- <div class=" justify-content-center d-flex Quantity-box " *ngIf="nprd2.cart_check == true">
       <button *ngIf="nprd2.cart_inventory.qty > 1 || nprd2.cart_inventory.qty > '1'" class="button-minus   btn-info btn-sm ml-1"
         title="decrease"
@@ -521,7 +521,7 @@
                   <i class="fa fa-heart-o" aria-hidden="true" style="color: white;position: absolute;left: 30px;" ></i>
               </a>
                 <a
-                style="cursor:pointer" *ngIf="nprd3.wishlist_check == true"
+                style="cursor:pointer;list-style-type: none;" *ngIf="nprd3.wishlist_check == true"
                 (click)="deleteFromWishlist(nprd3.wishlist_num)"
                 matTooltip="Already exist in Wishlist"
                 >
@@ -529,7 +529,7 @@
             </a>
 <!-- start without login -->
 <a *ngIf="userC == false" 
-                  style="cursor:pointer"
+                  style="cursor:pointer;list-style-type: none;"
                   (click)="addToWishlistWL(nprd3)"
                   matTooltip="Add to WishList"
                   >
@@ -654,10 +654,10 @@
 
 
       <div class="row">
-          <div class="col-md-12 text-center feature-title" >
+          <!-- <div class="col-md-12 text-center feature-title" >
               <h2>FEATURED PRODUCTS</h2>
               <a class="feature-active" href="#">BEST SELLER</a> | <a href="#">NEW ARRIVAL</a> | <a href="#">MOST WANTED</a> 
-          </div>
+          </div> -->
           <!-- <div class="col-md-3 col-sm-6" *ngFor="let nprd of newproduct" >
               <div class="product-grid" >
                   <div class="product-image" > 

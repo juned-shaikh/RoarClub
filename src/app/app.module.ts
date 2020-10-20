@@ -39,6 +39,7 @@ import { environment } from '../environments/environment';
 import { AsyncPipe } from '../../node_modules/@angular/common';
 
 import { HashLocationStrategy, LocationStrategy , PathLocationStrategy} from '@angular/common';
+import { LoginRegisterDialogComponent } from './login-register-dialog/login-register-dialog.component';
 
 
 @NgModule({
@@ -55,6 +56,8 @@ import { HashLocationStrategy, LocationStrategy , PathLocationStrategy} from '@a
     AppComponent,
    
     FooterComponent,
+   
+    LoginRegisterDialogComponent,
    
 
 

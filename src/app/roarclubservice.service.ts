@@ -361,6 +361,14 @@ checkUserExist(data) {
     return this.https.post(this.baseUrl + "notification/topic_unsubscribe_notification", data);
 
   } 
+  estimate_time_delivery(data){
+    return this.https.post(this.baseUrl + "user/estimate_time_delivery", data);
+
+  }
+  insert_product_visit_log(data){
+    return this.https.post(this.baseUrl + "user/insert_product_visit_log", data);
+
+}
   get_host_link(data){
     return this.https.post(this.baseUrl + "user/get_host_link", data);
 

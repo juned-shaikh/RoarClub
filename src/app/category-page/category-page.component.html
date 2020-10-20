@@ -31,105 +31,50 @@
     <div class="container">
       <div class="row mb-5">
         <div class="col-md-3">
-          <div class="card mb-4">
-            <div class="card-header">Categories</div>
-            <div class="list-group list-group-flush">
-              <a *ngFor="let category of categories; let index = index"  (click)="
-              navigateCategory(category.name, category.category_no)
-            " class="list-group-item list-group-item-action"> {{
-                category.name.length > 22
-                  ? (category.name | slice: 0:22) + "..."
-                  : category.name
-              }}  </a>
-         
-            </div>
-          </div>
+          
           <div class="card">
             <div class="card-header">Filter</div>
             <div class="card-body p-1">
               <div class="card border-0 b-3">
                 <div class="card-header p-2 bg-white" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false">
-                  <p class="m-0 h6">Brand</p>
+                  <p class="m-0 h6">Categories ({{categories?.length}})</p>
                 </div>
                 <div class="card-body p-0 collapse show" id="collapseExample1">
                   <ul class="list-group list-group-flush" style="height:200px;overflow:auto;">
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                      <div class="custom-control custom-checkbox">
+                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center" *ngFor="let category of categories; let index = index"  (click)="
+                    navigateCategory(category.name, category.category_no)
+                  ">
+                      <div class="custom-control custom-checkbox" >
                         <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">Google</label>
+                        <label class="custom-control-label" for="customCheck1">  {{
+                          category.name.length > 22
+                            ? (category.name | slice: 0:22) + "..."
+                            : category.name
+                        }}</label>
                       </div>
-                      <span class="badge badge-secondary badge-pill">14</span>
+                      <!-- <span class="badge badge-secondary badge-pill">14</span> -->
                     </li>
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                      <div class="custom-control custom-checkbox">
+                 
+                  
+                  </ul>
+                </div>
+              </div>
+
+              <div class="card border-0 b-3" *ngIf="brandNav">
+                <div class="card-header p-2 bg-white" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false">
+                  <p class="m-0 h6">Brand ({{categories.length}})</p>
+                </div>
+                <div class="card-body p-0 collapse show" id="collapseExample1">
+                  <ul class="list-group list-group-flush" style="height:200px;overflow:auto;">
+                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center" *ngFor="let categoryi of categories | slice:0:9;">
+                      <div class="custom-control custom-checkbox" (click)="navigateBrand(categoryi.name, categoryi.brand_id)">
                         <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">Microsoft</label>
+                        <label class="custom-control-label" for="customCheck1">    {{ (categoryi.name.length>20)? (categoryi.name | slice:0:20)+'...':(categoryi.name) }}</label>
                       </div>
-                      <span class="badge badge-secondary badge-pill">14</span>
+                      <!-- <span class="badge badge-secondary badge-pill">14</span> -->
                     </li>
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">Apple</label>
-                      </div>
-                      <span class="badge badge-secondary badge-pill">14</span>
-                    </li>
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">Samsung</label>
-                      </div>
-                      <span class="badge badge-secondary badge-pill">14</span>
-                    </li>
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">Amazon</label>
-                      </div>
-                      <span class="badge badge-secondary badge-pill">14</span>
-                    </li>
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">Asus</label>
-                      </div>
-                      <span class="badge badge-secondary badge-pill">14</span>
-                    </li>
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">LG</label>
-                      </div>
-                      <span class="badge badge-secondary badge-pill">14</span>
-                    </li>
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">Sony</label>
-                      </div>
-                      <span class="badge badge-secondary badge-pill">14</span>
-                    </li>
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">MSI</label>
-                      </div>
-                      <span class="badge badge-secondary badge-pill">14</span>
-                    </li>
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">HP</label>
-                      </div>
-                      <span class="badge badge-secondary badge-pill">14</span>
-                    </li>
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">Compact</label>
-                      </div>
-                      <span class="badge badge-secondary badge-pill">14</span>
-                    </li>
+                 
+                  
                   </ul>
                 </div>
               </div>
@@ -382,7 +327,7 @@
         <div class="col-md-4 mb-4" *ngFor="let nprd of products" >
           <div class="card" >
             <img
-            class="card-img-top Recent-img p-2  "
+            class="card-img-top Recent-img p-2 " style="cursor: pointer;"
             src="{{ nprd.product_image.medium_thumbnail_link }}"
             
             alt="Product Image"
@@ -394,7 +339,7 @@
                     "
           />
             <div class="card-body">
-              <p class="h6"  (click)="
+              <p class="h6" style="cursor: pointer;" (click)="
               view_product(
                 nprd.product.meta_title,
                 nprd.product.product_no,nprd.product.slug,nprd.product.quick_product_check

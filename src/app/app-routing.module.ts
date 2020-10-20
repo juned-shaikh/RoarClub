@@ -15,7 +15,7 @@ const routes: Routes = [
       {path: 'category-page/', component:CategoryPageComponent },
       {path: 'category-page/:id1/:id', component:CategoryPageComponent },
       {path: 'category-page/:id', component:CategoryPageComponent },
-      {path : "product-view", component : ProductViewComponent},
+      {path : "product-view/:id", component : ProductViewComponent},
     ],
  },
 
