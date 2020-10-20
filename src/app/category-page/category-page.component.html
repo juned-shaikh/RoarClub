@@ -330,12 +330,12 @@
               <div class="row">
                 <div class="col-md-5">
                   <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-secondary active"><i class="fas fa-th"></i></button>
+                    <!-- <button type="button" class="btn btn-secondary active"><i class="fas fa-th"></i></button>
                     <button type="button" class="btn btn-secondary"><i class="fas fa-th-list"></i></button>
                     <button type="button" class="btn btn-secondary">
                       <i class="fas fa-sync-alt"></i>
                       <span>Product Compare (0)</span>
-                    </button>
+                    </button> -->
                   </div>
                 </div>
                 <div class="col-md-4">
@@ -380,9 +380,9 @@
             <div class="card-body">
       <div class="row">
         <div class="col-md-4 mb-4" *ngFor="let nprd of products" >
-          <div class="card" >
+          <div class="card" style="height: 460px;max-width: 300px;">
             <img
-            class="card-img-top Recent-img p-2  "
+            class="card-img-top Recent-img p-2  " height="200px"
             src="{{ nprd.product_image.medium_thumbnail_link }}"
             
             alt="Product Image"
