@@ -5,7 +5,7 @@
     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
   </ol>
   <div class="carousel-inner"> -->
-    
+    <div class="container-fluid" style="overflow: hidden;">    
     <div id="demo" class="carousel slide main-slider" data-ride="carousel" *ngIf="banner">
       <div class="carousel-inner">
         <div *ngIf="banner_group_a==0 || bannerdata.value.banner_image_a_group==''" class="carousel-item active">
@@ -173,7 +173,7 @@
             <img
             src="{{ nprd2.gallery.medium_thumbnail_link }}" width="400px" height="300px" (click)="view_product(nprd2.meta_title, nprd2.product_no,nprd2.slug,nprd2.quick_product_check)"
          
-            onerror="this.src='assets/img/favicon1.png';"
+            
             alt="Product Image"
           />
             <h4 style="color: white;margin-left:20px">{{ (nprd2.name.length>60)? (nprd2.name | slice:0:60)+'...':(nprd2.name) }}</h4>
@@ -332,8 +332,8 @@
   <div class="col-4"  style="color: white;border-radius: 25px;" *ngFor="let nprd of newproduct">
  
     <img
-    src="{{ nprd.gallery.medium_thumbnail_link }}" style="border-radius: 15px;height:300px"
-    onerror="this.src='assets/img/favicon1.png';"
+    src="{{nprd.gallery.medium_thumbnail_link}}" style="border-radius: 15px;height:300px"
+    onerror="this.src='https://assets.myntassets.com/dpr_2,q_60,w_210,c_limit,fl_progressive/assets/images/3736649/2018/3/12/11520834456858-na-6651520834456691-1.jpg';"
     alt="Product Image"  (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)"
   />
     <h4 style="color: white;margin-left:20px">{{ (nprd.name.length>60)? (nprd.name | slice:0:60)+'...':(nprd.name) }}</h4>
@@ -471,7 +471,7 @@
   <div class="row">
     <div class="col-md-12 text-center" >
   <h2 class="title">Featured Products</h2>
-  <div class="  row">
+  <div class="  row ">
     <div class="col-md-6">
     <li class="page-item  ml-0" *ngIf="offsetDisc != 1">
       <a matTooltip="Previous"
@@ -658,7 +658,7 @@
               <h2>TRENDING PRODUCTS</h2>
               <a class="feature-active" href="#">BEST SELLER</a> | <a href="#">NEW ARRIVAL</a> | <a href="#">MOST WANTED</a> 
           </div>
-          <div class="col-md-3 col-sm-6" *ngFor="let nprd of newproduct" >
+          <!-- <div class="col-md-3 col-sm-6" *ngFor="let nprd of newproduct" >
               <div class="product-grid" >
                   <div class="product-image" > 
                       <a  matTooltip="Next"
@@ -693,7 +693,7 @@
                       <a class="btn-outline-icon"><i class="fas fa-chart-pie"></i></a>
                   </div>
               </div>
-          </div>
+          </div> -->
           <!-- <div class="col-md-3 col-sm-6">
               <div class="product-grid">
                   <div class="product-image">
@@ -785,6 +785,7 @@
           </div>
       </div>
 
+    </div>
 
   
          

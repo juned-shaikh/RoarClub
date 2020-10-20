@@ -5,14 +5,23 @@
       <div class="row">
         <div class="col-md-12 bg-light border-bottom pt-5 pb-5" style="height: 110px;padding-top: 30px;">
           <div class="container">
-            <div class="row">
+            <div class="row" *ngIf="subcat">
               <div class="col-md-12">
-                <h3>Laptops & Notebooks</h3>
-                <ol class="breadcrumb p-0 m-0 bg-transparent">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item"><a href="#">Electronics, Computers</a></li>
-                  <li class="breadcrumb-item active">Laptops & Notebooks</li>
-                </ol>
+                <h3 (click)="navigateCategory(subcategory.name, subcategory.category_no)" style="cursor: pointer;">{{ subcategory.name }}</h3>
+                <div class="row " >
+                  <div class="breadcrumbs">
+                      <div class="row">
+                        <ol class="breadcrumb p-0 m-0 bg-transparent">
+                          <li class="breadcrumb-item" *ngFor="let sub of subcategory.sub_category"><a style="cursor: pointer;" (click)="navigateCategory(sub.name, sub.category_no) ">{{ sub.name }}</a></li>
+                         
+                        </ol>
+
+
+                       
+                      </div>
+                    </div>
+      
+                </div>
               </div>
             </div>
           </div>
@@ -25,16 +34,14 @@
           <div class="card mb-4">
             <div class="card-header">Categories</div>
             <div class="list-group list-group-flush">
-              <a href="#" class="list-group-item list-group-item-action">Desktops (13)</a>
-              <a href="#" class="list-group-item list-group-item-action active">Laptops &amp; Notebooks (5)</a>
-              <a href="#" class="list-group-item list-group-item-action">&nbsp;&nbsp;&nbsp;- Macs (0)</a>
-              <a href="#" class="list-group-item list-group-item-action">&nbsp;&nbsp;&nbsp;- Windows (0)</a>
-              <a href="#" class="list-group-item list-group-item-action">Components (2)</a>
-              <a href="#" class="list-group-item list-group-item-action">Tablets (1)</a>
-              <a href="#" class="list-group-item list-group-item-action">Software (0)</a>
-              <a href="#" class="list-group-item list-group-item-action">Phones &amp; PDAs (3)</a>
-              <a href="#" class="list-group-item list-group-item-action">Cameras (2)</a>
-              <a href="#" class="list-group-item list-group-item-action">MP3 Players (4)</a>
+              <a *ngFor="let category of categories; let index = index"  (click)="
+              navigateCategory(category.name, category.category_no)
+            " class="list-group-item list-group-item-action"> {{
+                category.name.length > 22
+                  ? (category.name | slice: 0:22) + "..."
+                  : category.name
+              }}  </a>
+         
             </div>
           </div>
           <div class="card">
@@ -339,9 +346,14 @@
                     <select class="form-control" id="" name="">
                       <option value="">Default</option>
                       <option value="">Name (A - Z)</option>
-                      <option value="">Name (Z - A)</option>
-                      <option value="">Price (Low &gt; High)</option>
-                      <option value="">Price (High &gt; Low)</option>
+                      <option  (click)="setSorting('new')"
+                      value="1">New</option>
+                      <option
+                      (click)="setSorting('low-to-high')"
+                      value="3"
+                      >Price (Low &gt; High)</option>
+                      <option (click)="setSorting('high-to-low')"
+                      value="2">Price (High &gt; Low)</option>
                       <option value="">Rating (Highest)</option>
                       <option value="">Rating (Lowest)</option>
                       <option value="">Model (A - Z)</option>
@@ -367,11 +379,27 @@
             </div>
             <div class="card-body">
       <div class="row">
-        <div class="col-md-4 mb-4">
-          <div class="card" (click)=" product()">
-            <img class="card-img-top" src="https://assets.myntassets.com/dpr_2,q_60,w_210,c_limit,fl_progressive/assets/images/3736649/2018/3/12/11520834456858-na-6651520834456691-1.jpg" alt="" />
+        <div class="col-md-4 mb-4" *ngFor="let nprd of products" >
+          <div class="card" >
+            <img
+            class="card-img-top Recent-img p-2  "
+            src="{{ nprd.product_image.medium_thumbnail_link }}"
+            
+            alt="Product Image"
+            (click)="
+                      view_product(
+                        nprd.product.meta_title,
+                        nprd.product.product_no,nprd.product.slug,nprd.product.quick_product_check
+                      )
+                    "
+          />
             <div class="card-body">
-              <p class="h6" href="/product-view" routerLink="/product-view"><small class="text-muted">Apple</small><br/>Butterflies Hand composite</p>
+              <p class="h6"  (click)="
+              view_product(
+                nprd.product.meta_title,
+                nprd.product.product_no,nprd.product.slug,nprd.product.quick_product_check
+              )
+            "><small class="text-muted">{{nprd.product.brand_name}}</small><br/>{{ (nprd.product.name.length>80)? (nprd.product.name | slice:0:80)+'...':(nprd.product.name) }} </p>
               <p class="m-0">
                 <i class="fa-xs far fa-star"></i>
                 <i class="fa-xs far fa-star"></i>
@@ -379,390 +407,84 @@
                 <i class="fa-xs far fa-star"></i>
                 <i class="fa-xs far fa-star"></i>
               </p>
-              <p class="h5 m-0">$782.00</p>
+              <p class="h5 m-0">
+                  <span
+                    *ngIf="nprd.product_rate[0].is_rent == '1'"
+                    class="for-you"
+                    >{{ nprd.product_rate[0].name }} @
+                    {{ nprd.product_rate[0].rate }}
+                  </span>
+                  <span
+                    *ngIf="nprd.product_rate[0].is_rent != '2'"
+                    class="for-you"
+                    >
+                    ₹ {{ nprd.product_rate[0].rate }}
+                  </span>
+                  <span
+                    class="for-you font-wieght-500"
+                    *ngIf="nprd.product_rate[0].rate < nprd.product.mrp"
+                    ><del
+                      > ₹ {{ nprd.product.mrp  }}
+                    </del></span
+                  >
+                  <span
+                    *ngIf="nprd.product_rate[0].is_rent == '2'"
+                    class="for-you"
+                    >{{ nprd.product_rate[1].name }} @
+                    {{ nprd.product_rate[1].rate }} </span
+                    >&nbsp;
+                    <span
+                *ngIf="nprd.product_rate[0].rate < nprd.product.mrp" 
+                class="font-wieght-bold  for-you text-success"
+                >
+                {{
+                  nprd.product_rate[0].discount_percent | number:'1.0-0'
+                }}% off</span
+              >
+                
+                </p>
             </div>
             <div class="card-footer p-0">
+
+             
               <div class="btn-group" role="group">
-                <button type="button" class="btn btn-light">
+                <div class="" *ngIf="userC==true">
+                <button type="button" *ngIf="nprd.product.cart_check == false"  (click)="addToCart(nprd)" class="btn btn-light">
                   <i class="fas fa-cart-plus"></i>
            <span>Add Cart</span>
+
                 </button>
+</div>
+<button type="button" *ngIf="userC == false"  (click)="addToCart(nprd)" class="btn btn-light">
+  <i class="fas fa-cart-plus"></i>
+<span>Add Cart</span>
+
+</button>
                 <button type="button" class="btn btn-light">
                   <i class="fas fa-shopping-cart"></i>
                 </button>
-                <button type="button" class="btn btn-light">
+                <button type="button" class="btn btn-light"  *ngIf="userC == false"  (click)="addToWishlistWL(nprd)">
                   <i class="fas fa-heart"></i>
                 </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-sync-alt"></i>
+                <button type="button" class="btn btn-light" *ngIf="nprd.product.wishlist_check == true"  (click)="deleteFromWishlist(nprd.product.wishlist_num)">
+                  <i class="fas fa-heart"></i>
                 </button>
+                <button type="button" class="btn btn-light"  (click)="addToWishlistWL(nprd)"  *ngIf="nprd.product.wishlist_check == false">
+                  <i class="fas fa-heart"></i>
+                </button>
+
+                <button type="button" class="btn btn-light" *ngIf=" nprd.product.txn_quantity > '0'">
+                  <i class="fa fa-bolt" (click)="rates(nprd)" *ngIf="(nprd.product.cart_check == false) && userC==true 
+                  "></i>
+                  <i class="fa fa-bolt" (click)="rates(nprd)" *ngIf="userC == false" style="cursor: default;"></i>
+                </button>
+
+
               </div>
             </div>
           </div>
         </div>
-        <div class="col-md-4 mb-4">
-          <div class="card" (click)=" product()">
-            <img class="card-img-top" src="https://assets.myntassets.com/dpr_2,q_60,w_210,c_limit,fl_progressive/assets/images/3736649/2018/3/12/11520834456858-na-6651520834456691-1.jpg" alt="" />
-            <div class="card-body">
-              <p class="h6"><small class="text-muted">Apple</small><br/>Butterflies Hand composite</p>
-              <p class="m-0">
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-              </p>
-              <p class="h5 m-0">$782.00</p>
-            </div>
-            <div class="card-footer p-0">
-              <div class="btn-group" role="group">
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-cart-plus"></i>
-                  <span>Add Cart</span>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-shopping-cart"></i>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-heart"></i>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-sync-alt"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card" (click)=" product()">
-            <img class="card-img-top" src="https://assets.myntassets.com/dpr_2,q_60,w_210,c_limit,fl_progressive/assets/images/3736649/2018/3/12/11520834456858-na-6651520834456691-1.jpg" alt="" />
-            <div class="card-body">
-              <p class="h6"><small class="text-muted">Apple</small><br/>Butterflies Hand composite</p>
-              <p class="m-0">
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-              </p>
-              <p class="h5 m-0">$782.00 <s class="lead text-muted">$943.00</s></p>
-            </div>
-            <div class="card-footer p-0">
-              <div class="btn-group" role="group">
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-cart-plus"></i>
-                  <span>Add Cart</span>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-shopping-cart"></i>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-heart"></i>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-sync-alt"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card">
-            <img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
-            <div class="card-body">
-              <p class="h6"><small class="text-muted">Apple</small>Butterflies Hand composite</p>
-              <p class="m-0">
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-              </p>
-              <p class="h5 m-0">$782.00</p>
-            </div>
-            <div class="card-footer p-0">
-              <div class="btn-group" role="group">
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-cart-plus"></i>
-                  <span>Add Cart</span>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-shopping-cart"></i>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-heart"></i>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-sync-alt"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card">
-            <img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
-            <div class="card-body">
-              <p class="h6"><small class="text-muted">Apple</small>Butterflies Hand composite</p>
-              <p class="m-0">
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-              </p>
-              <p class="h5 m-0">$782.00</p>
-            </div>
-            <div class="card-footer p-0">
-              <div class="btn-group" role="group">
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-cart-plus"></i>
-                  <span>Add Cart</span>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-shopping-cart"></i>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-heart"></i>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-sync-alt"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card">
-            <img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
-            <div class="card-body">
-              <p class="h6"><small class="text-muted">Apple</small>Butterflies Hand composite</p>
-              <p class="m-0">
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-              </p>
-              <p class="h5 m-0">$782.00 <s class="lead text-muted">$943.00</s></p>
-            </div>
-            <div class="card-footer p-0">
-              <div class="btn-group" role="group">
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-cart-plus"></i>
-                  <span>Add Cart</span>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-shopping-cart"></i>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-heart"></i>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-sync-alt"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card">
-            <img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
-            <div class="card-body">
-              <p class="h6"><small class="text-muted">Apple</small>Butterflies Hand composite</p>
-              <p class="m-0">
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-              </p>
-              <p class="h5 m-0">$782.00</p>
-            </div>
-            <div class="card-footer p-0">
-              <div class="btn-group" role="group">
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-cart-plus"></i>
-                  <span>Add Cart</span>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-shopping-cart"></i>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-heart"></i>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-sync-alt"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card">
-            <img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
-            <div class="card-body">
-              <p class="h6"><small class="text-muted">Apple</small>Butterflies Hand composite</p>
-              <p class="m-0">
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-              </p>
-              <p class="h5 m-0">$782.00</p>
-            </div>
-            <div class="card-footer p-0">
-              <div class="btn-group" role="group">
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-cart-plus"></i>
-                  <span>Add Cart</span>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-shopping-cart"></i>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-heart"></i>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-sync-alt"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card">
-            <img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
-            <div class="card-body">
-              <p class="h6"><small class="text-muted">Apple</small>Butterflies Hand composite</p>
-              <p class="m-0">
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-              </p>
-              <p class="h5 m-0">$782.00 <s class="lead text-muted">$943.00</s></p>
-            </div>
-            <div class="card-footer p-0">
-              <div class="btn-group" role="group">
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-cart-plus"></i>
-                  <span>Add Cart</span>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-shopping-cart"></i>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-heart"></i>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-sync-alt"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card">
-            <img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
-            <div class="card-body">
-              <p class="h6"><small class="text-muted">Apple</small>Butterflies Hand composite</p>
-              <p class="m-0">
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-              </p>
-              <p class="h5 m-0">$782.00</p>
-            </div>
-            <div class="card-footer p-0">
-              <div class="btn-group" role="group">
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-cart-plus"></i>
-                  <span>Add Cart</span>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-shopping-cart"></i>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-heart"></i>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-sync-alt"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card">
-            <img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
-            <div class="card-body">
-              <p class="h6"><small class="text-muted">Apple</small>Butterflies Hand composite</p>
-              <p class="m-0">
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-              </p>
-              <p class="h5 m-0">$782.00</p>
-            </div>
-            <div class="card-footer p-0">
-              <div class="btn-group" role="group">
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-cart-plus"></i>
-                  <span>Add Cart</span>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-shopping-cart"></i>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-heart"></i>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-sync-alt"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card">
-            <img class="card-img-top" src="https://via.placeholder.com/200x200" alt="" />
-            <div class="card-body">
-              <p class="h6"><small class="text-muted">Apple</small>Butterflies Hand composite</p>
-              <p class="m-0">
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-              </p>
-              <p class="h5 m-0">$782.00 <s class="lead text-muted">$943.00</s></p>
-            </div>
-            <div class="card-footer p-0">
-              <div class="btn-group" role="group">
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-cart-plus"></i>
-                  <span>Add Cart</span>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-shopping-cart"></i>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-heart"></i>
-                </button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-sync-alt"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+       
       </div>
             </div>
             <div class="card-footer p-3">
