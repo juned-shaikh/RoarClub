@@ -39,6 +39,8 @@ import { environment } from '../environments/environment';
 import { AsyncPipe } from '../../node_modules/@angular/common';
 
 import { HashLocationStrategy, LocationStrategy , PathLocationStrategy} from '@angular/common';
+import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 
 @NgModule({
@@ -55,6 +57,10 @@ import { HashLocationStrategy, LocationStrategy , PathLocationStrategy} from '@a
     AppComponent,
    
     FooterComponent,
+   
+    LoginComponent,
+   
+    RegistrationComponent,
    
 
 
