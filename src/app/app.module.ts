@@ -41,6 +41,7 @@ import { AsyncPipe } from '../../node_modules/@angular/common';
 import { HashLocationStrategy, LocationStrategy , PathLocationStrategy} from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 
 
 @NgModule({
@@ -61,6 +62,8 @@ import { RegistrationComponent } from './registration/registration.component';
     LoginComponent,
    
     RegistrationComponent,
+   
+    AddToCartComponent,
    
 
 
