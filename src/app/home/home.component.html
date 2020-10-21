@@ -169,7 +169,7 @@
     <ul class="cards" style="padding-top: 20px;" >
       <li class="cards_item" *ngFor="let nprd2 of topSelling">
         <div class="card">
-          <div class="card_image">
+          <div class="card_image" style="width: 100%;">
             <img
             src="{{ nprd2.gallery.medium_thumbnail_link }}" width="100%" height="300px" (click)="view_product(nprd2.meta_title, nprd2.product_no,nprd2.slug,nprd2.quick_product_check)"
          
