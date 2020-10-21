@@ -5,6 +5,8 @@ import {CategoryPageComponent} from './category-page/category-page.component';
 import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
 import {ProductViewComponent} from './product-view/product-view.component';
+import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
  
 const routes: Routes = [
   { path: "",  pathMatch: "prefix", 
@@ -16,6 +18,12 @@ const routes: Routes = [
       {path: 'category-page/:id1/:id', component:CategoryPageComponent },
       {path: 'category-page/:id', component:CategoryPageComponent },
       {path : "product-view/:id", component : ProductViewComponent},
+      {
+        path : "login", component:LoginComponent
+      },
+      {
+        path:"register", component:RegistrationComponent
+      }
     ],
  },
 

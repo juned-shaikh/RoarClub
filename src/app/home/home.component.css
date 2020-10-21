@@ -9,7 +9,11 @@
 }
 
 /* start */
-
+@media only screen and (max-width: 600px) {
+  body {
+    background-color: #202328;
+  }
+}
 
 /* end */
 

@@ -97,40 +97,17 @@
 
 
 <div class="row" style="padding-top: 20px;background-color: #202328;" >
-  <div class="col-md-2" *ngFor="let nprd2 of topSelling">
-    <div class="single-price" >
-      <img  src="{{ nprd2.gallery.medium_thumbnail_link }}" width="220px" height="150px" >
+  <div class="col-md-2" *ngFor="let brand of brands | slice:0:6;">
+    <div class="" >
+
+      <div class=" circular-image-brand" (click)="navigateCategory(brand.name,brand.brand_id)">
+        <img src="{{brand.thumbnail_sml_location}}" onerror="this.src='https://ap2-prod-images.disco-api.com/2020/2/24/d4cfb8ac-9ee1-4af5-a175-81790d55ebb9.jpg';" class="brand-image" style="width: 100%;" height="150px">
+    </div>
+
+      <!-- <img  src="{{ nprd2.gallery.medium_thumbnail_link }}" width="220px" height="150px" > -->
      </div>
   </div>
-  <!-- <div class="col-md-2">
-    <div class="single-price">
-      
-      <img src="https://ap2-prod-images.disco-api.com/2020/2/24/d4cfb8ac-9ee1-4af5-a175-81790d55ebb9.jpg">
-    </div>
-  </div>
-  <div class="col-md-2">
-    <div class="single-price">
-      <img src="https://ap2-prod-images.disco-api.com/2020/9/29/4839492d-1d34-4799-b6a2-22a7650e1870.jpg">
-      
-    </div>
-  </div>
-  <div class="col-md-2">
-    <div class="single-price">
-      <img src="https://ap2-prod-images.disco-api.com/2020/2/24/d5ca1e86-6fe8-4b63-aca6-ce2c8e1a170a.jpg">
-      
-    </div>
-  </div>
-  <div class="col-md-2">
-    <div class="single-price">
-      <img src="https://ap2-prod-images.disco-api.com/2020/2/24/c0d4c1bd-6306-44f4-9285-25df1ce20f5a.jpg">
-    </div>
-  </div>
-  <div class="col-md-2">
-    <div class="single-price">
-      <img src="https://ap2-prod-images.disco-api.com/2020/2/24/a38afaf2-2cf7-4615-ad19-e24e85f572e0.jpg">
-      
-    </div>
-  </div> -->
+ 
 
 </div>
 
@@ -167,11 +144,11 @@
     <!-- </div> -->
   </div>
     <div class="cards row" style="padding-top: 20px;" >
-      <li class="cards_item col-md-4" *ngFor="let nprd2 of topSelling">
+      <li class="cards_item col-md-4" *ngFor="let nprd2 of topSelling" style="cursor: pointer;">
         <div class="card">
-          <div class="card_image">
+          <div class="card_image" >
             <img
-            src="{{ nprd2.gallery.medium_thumbnail_link }}" width="100%" height="300px" (click)="view_product(nprd2.meta_title, nprd2.product_no,nprd2.slug,nprd2.quick_product_check)"
+            src="{{ nprd2.gallery.medium_thumbnail_link }}" width="400px" height="300px" (click)="view_product(nprd2.meta_title, nprd2.product_no,nprd2.slug,nprd2.quick_product_check)"
          
             
             alt="Product Image"
@@ -328,7 +305,7 @@
   </div>
    
 </div>
-<div class="row">
+<div class="row justify-content-start">
   <div class="col-4"  style="color: white;border-radius: 25px;" *ngFor="let nprd of newproduct">
  
     <img
@@ -423,7 +400,7 @@
     >
     <span *ngIf="nprd.rate[0].is_rent == '2'" 
       >{{ nprd.rate[1].name }} @ {{ nprd.rate[1].rate }} </span
-    ><br />
+    >&nbsp;
     <span
       *ngIf="nprd.rate[0].rate < nprd.mrp"
       class="font-wieght-bold text-center for-you text-success"
@@ -469,7 +446,7 @@
     Mens shoes
   </h2> -->
   <div class="row">
-    <div class="col-md-12 text-center feature-title" >
+    <div class="col-md-12 text-center" >
   <h2 class="title">Featured Products</h2>
   <div class="  row ">
     <div class="col-md-6">
@@ -497,7 +474,7 @@
    
   <!-- </div> -->
 </div>
-<div class="row">
+<div class="row justify-content-start">
   <div class="col-4"  style="color: white;border-radius: 25px;" *ngFor="let nprd3 of discountS">
     <img
     src="{{ nprd3.gallery.medium_thumbnail_link }}"

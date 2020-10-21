@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
   isShow: boolean;
   qty_set;
   qty;
+  brands;
   rating_option=true;
   alreadyCart=false;
   alreadyCartStock=false;
@@ -133,7 +134,75 @@ export class HomeComponent implements OnInit {
   mlm = false;
   serverlink;
   ngOnInit() {
+    // let l = location.origin;
+    // var c = l.split("//");
+    // this.host_name = c[1];
+    // let serv = this.host_name;
+    // var s = serv.split(".");
+    // this.serverlink = s[1];
+     this.adminservice
+          .get_host_link({
+          comp_num : 0
+          })
+          .subscribe(datan => {
+            if(datan['status']==1){
+              var h= JSON.parse(datan['result']['value']);
+               this.serverlink=h['host_link'];
+            }
 
+        })
+     if(this.serverlink == 'ecomtrails'){
+        this.ecomtrails = true;
+      }else if(this.serverlink == '9toys'){
+        this.ninetoys = true;
+      }else{
+        this.ecomtrails = true;
+
+      }
+    if(this.ecomtrails == true){
+    this.adminservice
+    .fetchBrandsEcom({//for ecom
+     // .fetchBrands({
+        // access_token: this.access_token,user_num: this.user_num
+        comp_num : this.comp_num_new
+      })
+      .subscribe(
+        data => {
+          if (data["status"] == 1) {
+            this.brands = data['result'];
+
+          } else if (data["status"] == 10) {
+            
+          } else {
+          }
+        },
+        error => {
+          // this.loading = false;
+        }
+      );
+    }
+    else{
+       this.adminservice
+    // .FetchBrandEcom({//for ecom
+     .fetchBrands({
+        // access_token: this.access_token,user_num: this.user_num
+        comp_num : 0
+      })
+      .subscribe(
+        data => {
+          if (data["status"] == 1) {
+            this.brands = data['result'];
+
+          } else if (data["status"] == 10) {
+            
+          } else {
+          }
+        },
+        error => {
+          // this.loading = false;
+        }
+      );
+    }
     this.compSettings_ratingOption();
 
 
@@ -904,17 +973,19 @@ this.count = this.count+1;
      // name.replace(re,"-");
     // let slug = name.replace(/\s+/g, '-') + "-?product_no=" + id  + "&marketplace=ECOMTRAILS";
         if(this.previewFlag == '1'){
-          this.router
-          .navigateByUrl("/RefreshComponent", {
-            skipLocationChange: true
-          })
-          .then(() => this.router.navigate(["/Admin/preview/product", slug]));
+          // this.router
+          // .navigateByUrl("/RefreshComponent", {
+          //   skipLocationChange: true
+          // })
+          // .then(() => 
+          this.router.navigate(["/Admin/preview/product-view", slug]);
         }else{
-          this.router
-          .navigateByUrl("/RefreshComponent", {
-            skipLocationChange: true
-          })
-          .then(() => this.router.navigate(["/product", slug]));
+          // this.router
+          // .navigateByUrl("/RefreshComponent", {
+          //   skipLocationChange: true
+          // })
+          // .then(() => 
+          this.router.navigate(["/product-view", slug]);
 
         }
     }
@@ -1231,17 +1302,20 @@ nav.replace(/\s+/g, "-") +
        let slug = nav.replace(/\s+/g, '-') + "-?product_no=" + id  + "&marketplace=ECOMTRAILS";
       // name.replace(/\s+/g, "-")+"-?product_no="+id+"?marketplace=ECOMTRAILS
         if(this.previewFlag == '1'){
-          this.router
-          .navigateByUrl("/RefreshComponent", {
-            skipLocationChange: true
-          })
-          .then(() => this.router.navigate(["/Admin/preview/product", slug]));
+          // this.router
+          // .navigateByUrl("/RefreshComponent", {
+          //   skipLocationChange: true
+          // })
+          // .then(() =>
+           this.router.navigate(["/Admin/preview/product-view", slug]);
         }else{
-          this.router
-          .navigateByUrl("/RefreshComponent", {
-            skipLocationChange: true
-          })
-          .then(() => this.router.navigate(["/product", slug]));
+          // this.router
+          // .navigateByUrl("/RefreshComponent", {
+          //   skipLocationChange: true
+          // })
+          // .then(() =>
+          
+          this.router.navigate(["/product-view", slug]);
 
         }
     }

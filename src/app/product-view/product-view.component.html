@@ -241,140 +241,52 @@
 <!-- Classic tabs -->
 <!--Section: Block Content-->
 <section class="text-center">
-
+   <div><h3 class="text-center" style="color: lightgray; text-transform: capitalize;">similar product</h3></div>
   <!-- Grid row -->
   <div class="row">
 
     <!-- Grid column -->
-    <div class="col-md-6 col-lg-3 mb-5">
-
+    <div class="col-md-6 col-lg-3 mb-5" *ngFor="let nprd2 of similarPro"> 
       <!-- Card -->
       <div class="">
-
-        <div class="view zoom overlay z-depth-2 rounded">
-          <img class="img-fluid w-100"
-            src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg" alt="Sample">
-          <a href="#!">
-            <div class="mask">
-              <img class="img-fluid w-100"
-                src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg">
-              <div class="mask rgba-black-slight"></div>
-            </div>
-          </a>
+        <div class="view zoom overlay z-depth-2 rounded" style="height: 250px; text-align: center; justify-content: center;">
+          <img  style="height: inherit; min-height: -webkit-fill-available;" (click)="
+          similar_product(nprd2.product_no, nprd2.meta_title, nprd2.slug)
+        "
+            src="{{ nprd2.gallery.medium_thumbnail_link }}"
+            class="img-fluid Recent-img"
+            onerror="this.src='https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13a.jpg';"
+            alt="Publication Image"
+          />
         </div>
 
         <div class="pt-4" style="color:white">
 
-          <h5>Fantasy T-shirt</h5>
-          <h6>12.99 $</h6>
+          <h4>{{ (nprd2.name.length>80)? (nprd2.name | slice:0:80)+'...':(nprd2.name) }}</h4>
+          <h5> <span *ngIf="nprd2.rate[0].is_rent == '1'" class="for-you"
+            >{{ nprd2.rate[0].name }} @ {{ nprd2.rate[0].rate }} 
+          </span>
+          <span *ngIf="nprd2.rate[0].is_rent != '2' && nprd2.rate[0].is_rent != '1'" class="for-you"
+            > ₹ {{ nprd2.rate[0].rate}}
+          </span>&nbsp;
+          <span class="for-you text-muted" *ngIf="nprd2.rate[0].rate < nprd2.mrp"
+            ><del>  ₹ {{ nprd2.mrp }} </del></span
+          >
+          <span *ngIf="nprd2.rate[0].is_rent == '2'" class="for-you"
+            >{{ nprd2.rate[1].name }} @ {{ nprd2.rate[1].rate }} </span
+          > &nbsp;
+          <span
+            *ngIf="nprd2.rate[0].rate < nprd2.mrp"
+            class="font-wieght-bold text-center for-you text-success"
+            >Discount : {{ nprd2.rate[0].discount_percent | number:'1.0-0' }}%</span
+          ></h5>
         </div>
 
       </div>
       <!-- Card -->
 
     </div>
-    <!-- Grid column -->
-
-    <!-- Grid column -->
-    <div class="col-md-6 col-lg-3 mb-5">
-
-      <!-- Card -->
-      <div class="">
-
-        <div class="view zoom overlay z-depth-2 rounded">
-          <img class="img-fluid w-100"
-            src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13a.jpg" alt="Sample">
-          <a href="#!">
-            <div class="mask">
-              <img class="img-fluid w-100"
-                src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13.jpg">
-              <div class="mask rgba-black-slight"></div>
-            </div>
-          </a>
-        </div>
-
-        <div class="pt-4"style="color:white" >
-
-          <h5 >Fantasy T-shirt</h5>
-          <h6>12.99 $</h6>
-
-        </div>
-
-      </div>
-      <!-- Card -->
-
-    </div>
-    <!-- Grid column -->
-
-    <!-- Grid column -->
-    <div class="col-md-6 col-lg-3 mb-5">
-
-      <!-- Card -->
-      <div class="">
-
-        <div class="view zoom overlay z-depth-2 rounded">
-          <img class="img-fluid w-100"
-            src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14a.jpg" alt="Sample">
-          <h4 class="mb-0"><span class="badge badge-primary badge-pill badge-news">Sale</span></h4>
-          <a href="#!">
-            <div class="mask">
-              <img class="img-fluid w-100"
-                src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14.jpg">
-              <div class="mask rgba-black-slight"></div>
-            </div>
-          </a>
-        </div>
-
-        <div class="pt-4">
-
-          <h5 style="color:white">Fantasy T-shirt</h5>
-          <h6>
-            <span class="text-danger mr-1">$12.99</span>
-            <span class="text-primary"><s>$36.99</s></span>
-          </h6>
-
-        </div>
-
-      </div>
-      <!-- Card -->
-
-    </div>
-    <!-- Grid column -->
-
-    <!-- Grid column -->
-    <div class="col-md-6 col-lg-3 mb-5">
-
-      <!-- Card -->
-      <div class="">
-
-        <div class="view zoom overlay z-depth-2 rounded">
-          <img class="img-fluid w-100"
-            src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg" alt="Sample">
-          <h4 class="mb-0"><span class="badge badge-primary badge-pill badge-news">Sale</span></h4>
-          <a href="#!">
-            <div class="mask">
-              <img class="img-fluid w-100"
-                src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14.jpg">
-              <div class="mask rgba-black-slight"></div>
-            </div>
-          </a>
-        </div>
-
-        <div class="pt-4">
-
-          <h5 style="color:white">Fantasy T-shirt</h5>
-          <h6>
-            <span class="text-danger mr-1">$12.99</span>
-            <span class="text-primary"><s>$36.99</s></span>
-          </h6>
-
-        </div>
-
-      </div>
-      <!-- Card -->
-
-    </div>
-    <!-- Grid column -->
+   
 
   </div>
   <!-- Grid row -->
