@@ -42,6 +42,7 @@ import { HashLocationStrategy, LocationStrategy , PathLocationStrategy} from '@a
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
+import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 
 
 @NgModule({
@@ -64,6 +65,8 @@ import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
     RegistrationComponent,
    
     AddToCartComponent,
+   
+    CheckoutPageComponent,
    
 
 
