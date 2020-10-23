@@ -5,8 +5,9 @@ import {CategoryPageComponent} from './category-page/category-page.component';
 import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
 import {ProductViewComponent} from './product-view/product-view.component';
-import { LoginComponent } from './login/login.component';
+import { UserloginComponent } from './userlogin/userlogin.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
  
 const routes: Routes = [
   { path: "",  pathMatch: "prefix", 
@@ -17,12 +18,16 @@ const routes: Routes = [
       {path: 'category-page/', component:CategoryPageComponent },
       {path: 'category-page/:id1/:id', component:CategoryPageComponent },
       {path: 'category-page/:id', component:CategoryPageComponent },
-      {path : "product-view/:id", component : ProductViewComponent},
+      {path : "product-view/:id", component : ProductViewComponent},  
       {
-        path : "login", component:LoginComponent
+        path : "login", component:UserloginComponent
       },
       {
         path:"register", component:RegistrationComponent
+      },
+      {
+        path:"cart",
+        component:AddToCartComponent
       }
     ],
  },

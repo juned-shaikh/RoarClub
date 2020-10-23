@@ -357,6 +357,28 @@ checkUserExist(data) {
       data
     );
   }
+  otpSendForLogin(data){
+    return this.https.post(this.baseUrl + "registration/otpSendForLogin", data);
+
+  }
+  otpVerification(data) {
+    return this.https.post(this.baseUrl + "company/otpVerification", data);
+  }
+
+  resendOtpForLogin(data){
+    return this.https.post(this.baseUrl + "registration/resendOtpForLogin", data);
+
+  }
+  otpVerificationForLogin(data){
+        return this.https.post(this.baseUrl + "registration/otpVerificationForLogin", data);
+
+  }
+  registerVendor(data) {
+    return this.https.post(this.baseUrl + "company/registerVendor", data);
+  }
+  ResendOtpVerification(data) {
+    return this.https.post(this.baseUrl + "company/resendOtp", data);
+  }
   unsubscribe_topic(data){
     return this.https.post(this.baseUrl + "notification/topic_unsubscribe_notification", data);
 

@@ -35,9 +35,9 @@ import { environment } from '../environments/environment';
 import { AsyncPipe } from '../../node_modules/@angular/common';
 
 import { HashLocationStrategy, LocationStrategy , PathLocationStrategy} from '@angular/common';
-import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
+import { UserloginComponent } from './userlogin/userlogin.component';
 
 
 @NgModule({
@@ -54,12 +54,11 @@ import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
     AppComponent,
    
     FooterComponent,
-   
-    LoginComponent,
-   
     RegistrationComponent,
    
     AddToCartComponent,
+   
+    UserloginComponent,
    
 
 

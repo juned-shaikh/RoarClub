@@ -1,0 +1,233 @@
+<div class="col-sm-9 col-md-6 col-lg-4 mx-auto" style="background-color:black;margin-top: 80px;">
+
+    <h5 class="card-header info-color white-text text-center  py-4 ">
+      <strong>Sign in</strong>
+    </h5>
+  
+    <div class="card-body px-lg-5 pt-0" *ngIf="signup  == 1">
+  
+      <form class="text-center" style="color: #757575;" [formGroup]="loginuser">
+  
+        <div class="md-form">
+          <input type="email" id="materialLoginFormEmail" (keyup)="checkUserExist()" formControlName="username" class="form-control">
+          <label for="materialLoginFormEmail">Enter Email or Phone Number</label>
+        </div>
+  
+        <div class="md-form" *ngIf="pass  == 1">
+          <input type="password" id="materialLoginFormPassword" formControlName="password" class="form-control">
+          <label for="materialLoginFormPassword">Password</label>
+        </div>
+  
+        <div class="d-flex justify-content-around">
+        
+          <div>
+            <a *ngIf="pass  == 1" (click)="openXl(content2)">Forgot password?</a>
+          </div>
+        </div>
+  
+        <!-- <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" *ngIf="pass==1" type="submit">Log in</button>
+        <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" *ngIf="pass==0" type="submit">Login/Signup/button>
+        <button class="btn btn-outline-secondary btn-rounded btn-block my-4 waves-effect z-depth-0" (click)= "onSubmitSign()" style="cursor: not-allowed!important;" *ngIf="pass==2" type="submit">Get Otp</button>
+        <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" *ngIf="pass==1" (click)="openXl(codOtp)" type="submit">Login with Otp</button> -->
+  
+      </form>
+  
+    </div>
+  
+    <div class="card-body px-lg-5 pt-0" *ngIf="signup == 2">
+  
+      <form class="text-center" style="color: #757575;" [formGroup]="otpForm">
+  
+        <div class="md-form">
+          <input type="email" id="materialLoginFormEmail" formControlName="otp" class="form-control">
+          <label for="materialLoginFormEmail">Enter Otp</label>
+        </div>
+  
+        <div class="md-form">
+          <input type="password" (keyup)="checkConfirmPassword()" id="materialLoginFormPassword" formControlName="password" class="form-control">
+          <label for="materialLoginFormPassword">Password</label>
+        </div>
+        <div class="md-form">
+          <input type="password" (keyup)="checkConfirmPassword()" id="materialLoginFormPassword" formControlName="confirmPassword" [class.is-invalid]="otpForm.errors?.misMatch" class="form-control">
+          <label for="materialLoginFormPassword">Confirm Password</label>
+  
+          <small class="text-danger" *ngIf="is_confirm">Confirm Password do not match with Password</small>
+        </div>
+  
+        <div class="d-flex justify-content-around">
+          <div>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="materialLoginFormRemember">
+              <label class="form-check-label" for="materialLoginFormRemember">Remember me</label>
+            </div>
+          </div>
+          <div>
+            <a  (click)="openXl(content2)">Forgot password?</a>
+          </div>
+        </div>
+  
+        <!-- <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0"  type="submit" (click)= "onSubmitOTP()">Verify</button>
+        <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0"  type="submit" (click)= "onSubmitResendOtp()">Resend Otp</button> -->
+  
+      </form>
+  
+    </div>
+  </div>
+  
+  <ng-template #content2 let-modal>
+    <div class="modal-header p-3"  >
+      <h6 class="modal-title" id="modal-basic-title" align="center">
+        Forgot Password
+      </h6>
+  
+      <mat-icon
+        (click)="modal.dismiss('Cross click')"
+        class="text-danger cursor-pointer"
+        >close</mat-icon
+      >
+    </div>
+  
+    <div class="modal-body ">
+      <div class="container-fluid">
+        <form [formGroup]="forgotForm">
+          <div class=" ">
+   
+   <div class="row justify-content-center mt-1">
+     <div class="col-md-10">Enter Your Email or Mobile No.</div>
+   </div>          
+            <div class="row justify-content-center">
+              <div class="col-md-10">
+  
+                
+                 <div class="input-group mb-1 mt-2 ">
+                           
+                            <input type="text"  class="form-control" formControlName="username" placeholder="Please Enter Email/Mobile" >
+                        </div>
+               
+                
+               
+              </div>
+            </div>
+           
+           
+            <div class="row justify-content-center mt-2 mb-3">
+              <button
+                class="order-button text-white"
+                mat-raised-button
+                matTooltip="Send Password"
+                (click)="forgotPassword(); modal.close('Save click')"
+              >
+                OK
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ng-template>
+  
+  
+  <ng-template #codOtp let-modal>
+    <div class="modal-header p-3 justify-content-center">
+      <h5 class="modal-title font-weight-600" id="modal-basic-title" align="center" *ngIf="verify==false || shownamebox">
+        Enter mobile number or email
+      </h5>
+      <h5 class="modal-title font-weight-600" id="modal-basic-title" align="center" *ngIf="verify==true">
+        Veirfy mobile number or email 
+      </h5>
+  
+     
+    </div>
+    <div class="modal-body ">
+      <div class="container-fluid">
+        <form [formGroup]="otpFormLogin">
+       
+                <div class="row mt-2 justify-content-center">
+                  <div class=" col-lg-8"> 
+               
+                    <mat-form-field  class="example-full-width " *ngIf="verify==false || shownamebox">
+                      <input
+                        matInput 
+                      class="pl-3"
+                        formControlName="username"
+                        required
+                      />
+                      <mat-icon matPrefix class="text-primary">perm_phone_msg</mat-icon>
+                    </mat-form-field>
+                   
+                
+                       <div class="row justify-content-center">
+                   
+               
+                      <div  class="col-sm-8 text-center">
+                        <h6> <span class="checkout-register-otp font-weight-500" *ngIf="verify==true">{{otpFormLogin.controls.username.value}}</span>   <span matTooltip="edit " (click)="edit()" *ngIf="verify==true && !shownamebox" class="text-primary">(change)</span><span *ngIf="shownamebox" (click)="cancel()" class="text-danger">(cancel)</span> </h6>
+                      </div>
+                      <p class="font-weight-500" *ngIf="verify==true">A text with a code has been sent to the number or email above.</p>
+                    
+                    </div>
+                  </div>
+                </div>
+                <div class="row justify-content-center mt-4" *ngIf="verify == true">
+                  <div class="col-lg-6 text-center">
+                    <mat-form-field  class="example-full-width" >
+                      <input
+                        matInput type="number"
+                        placeholder="Enter OTP"
+                        formControlName="otp"
+                        required
+                      />
+                    </mat-form-field>
+                   
+                  </div>
+                </div>
+          
+            <div
+              class="row mt-2 mb-3 justify-content-center"
+            >
+            
+            <button *ngIf="verify == true"
+            class="order-button text-white w-35"
+            mat-raised-button
+            matTooltip="Verify OTP"
+            (click)="otpVerificationUser(); modal.close('Save click')" [disabled]="!loading"
+          >
+            Verify
+          </button>
+          &nbsp; &nbsp;
+           
+              <button *ngIf="otpgeneration == true " [disabled]="!loading"
+              class="order-button text-white w-35"
+              mat-raised-button
+              matTooltip="Resend OTP"
+              (click)="resendOtpVerify()"
+            >
+              Resend OTP
+            </button> 
+              &nbsp; &nbsp;
+              <button  *ngIf="verify == false && otpgeneration == false"
+              class="bg-danger text-white mb-3 w-35"
+              mat-raised-button
+              matTooltip="cancel"
+              (click)="modal.dismiss('Cross click')" [disabled]="!loading"
+            >
+              Cancel
+            </button>
+            &nbsp;&nbsp;
+              <button  *ngIf="verify == false"
+              class="order-button text-white mb-3 w-35"
+              mat-raised-button
+              matTooltip="Send OTP"
+              (click)="otpGenerate()" [disabled]="!loading"
+            >
+              Send OTP
+            </button>
+          
+            </div>
+          
+           
+        </form>
+      </div>
+    </div>
+  </ng-template>
+
+
