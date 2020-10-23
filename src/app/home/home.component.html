@@ -168,7 +168,7 @@
   </div>
     <ul class="cards" style="padding-top: 20px;" >
       <li class="cards_item" *ngFor="let nprd2 of topSelling">
-        <div class="card" style="margin: auto;">
+        <div class="card" style="margin: auto;  height:450px ;">
           <div class="card_image" width="100%">
             <img
             src="{{ nprd2.gallery.medium_thumbnail_link }}" width="400px" height="300px" (click)="view_product(nprd2.meta_title, nprd2.product_no,nprd2.slug,nprd2.quick_product_check)"
@@ -177,19 +177,20 @@
             alt="Product Image"
           />
             <h4 style="color: white;margin-left:20px">{{ (nprd2.name.length>60)? (nprd2.name | slice:0:60)+'...':(nprd2.name) }}</h4>
-            <div > 
-              <ul>
-                <li>
+            <div  class="row"> 
+              <div class="col-sm-1">
+              <!-- <ul>
+                <li> -->
                   <a *ngIf="nprd2.wishlist_check == false" 
                     style="cursor:pointer"
                     (click)="addToWishlist(nprd2)"
                     matTooltip="Add to WishList"
-                    > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;position: absolute;left: 30px;" ></i></a>
+                    > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i></a>
                   <a
                   style="cursor:pointer" *ngIf="nprd2.wishlist_check == true"
                   (click)="deleteFromWishlist(nprd2.wishlist_num)"
                   matTooltip="Already exist in Wishlist"
-                  > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;position: absolute;left: 30px;" ></i>
+                  > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i>
               </a>
 
                 <!-- for withouyt login -->
@@ -197,34 +198,37 @@
                     style="cursor:pointer"
                     (click)="addToWishlistWL(nprd2)"
                     matTooltip="Add to WishList"
-                    > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;position: absolute;left: 30px;" ></i>
+                    > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i>
                 </a>
                 <!-- for without login -->
-                </li>
-                <li *ngIf="userC==true">
+                </div>
+                <!-- </li>
+                <li *ngIf="userC==true"> -->
+                  <div class="col-sm-1">
                   <a *ngIf="nprd2.cart_check == false"
                     style="cursor:pointer"
                     (click)="addToCart(nprd2)"
                     matTooltip="Add to Cart"
-                    > <i class="fa fa-cart-plus" style="color: green;position: absolute;left: 70px;top:340px"></i></a>
-                    </li>
-                    <li *ngIf="userC==false">
+                    > <i class="fa fa-cart-plus" style="color: green;"></i></a>
+                    <!-- </li>
+                    <li *ngIf="userC==false"> -->
                   <a 
                     style="cursor:pointer"
                     (click)="addToCart(nprd2)"
                     matTooltip="Add to Cart"
-                    > <i class="fa fa-cart-plus" style="color: green;position: absolute;left: 70px;top:340px"></i>
+                    > <i class="fa fa-cart-plus" style="color: green;"></i>
                 </a>
-                </li>
-              </ul>
+                <!-- </li>
+              </ul> -->
 
-
+                </div>
 
 
                 <!-- <i class="fa fa-heart-o" aria-hidden="true" style="color: red;margin-left:20px" ></i>
                 <i class="fa fa-cart-plus" style="color: green;margin-left:350px"></i> -->
-              </div>
-            <div class="rating" style="position: absolute;left: 70px;top:337px">
+             
+              
+            <div class="col-sm-4" style="color: red;" >
               
               <span
               class="fa fa-star checked"
@@ -235,6 +239,7 @@
               *ngFor="let i of createRange2(5 - nprd2.ratings)"
             ></span>
           </span>
+        </div>
             </div>
             <p style="color: rgb(131, 128, 128);margin-left:10px">
               <span *ngIf="nprd2.rate[0].is_rent == '1'" 
@@ -257,7 +262,7 @@
             >
             </p>
           </div>
-          
+        
         </div>
       </li>
      
@@ -329,71 +334,75 @@
    
 </div>
 <div class="row">
-  <div class="col-4"  style="color: white;border-radius: 25px;" *ngFor="let nprd of newproduct">
- 
+  <div    class="card col-4"  style="color: white;height:460px; 
+  border-radius: 25px;" *ngFor="let nprd of newproduct">
+  <div class="card_image" width="100%">
     <img
-    src="{{nprd.gallery.medium_thumbnail_link}}" style="border-radius: 15px;height:300px"
+    src="{{nprd.gallery.medium_thumbnail_link}}" style="height:300px"
     onerror="this.src='https://assets.myntassets.com/dpr_2,q_60,w_210,c_limit,fl_progressive/assets/images/3736649/2018/3/12/11520834456858-na-6651520834456691-1.jpg';"
     alt="Product Image"  (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)"
   />
-    <h4 style="color: white;margin-left:20px">{{ (nprd.name.length>60)? (nprd.name | slice:0:60)+'...':(nprd.name) }}</h4>
-            <div > 
-              <ul >
-                <li style="list-style-type: none;">
+    <h4 style="color: white;">{{ (nprd.name.length>60)? (nprd.name | slice:0:60)+'...':(nprd.name) }}</h4>
+            <div class="row">
+              <div class="col-sm-2">
+                                  <!-- <ul >
+                                    <li style="list-style-type: none;"> -->
 
-                  <a *ngIf="nprd.wishlist_check == false" 
-                  style="cursor:pointer"
-                  (click)="addToWishlist(nprd)"
-                  matTooltip="Add to WishList"
-                  >
-                  <i class="fa fa-heart-o" aria-hidden="true" style="color: white;position: absolute;left: 30px;" ></i>
-              </a>
-                <a
-                style="cursor:pointer" *ngIf="nprd.wishlist_check == true"
-                (click)="deleteFromWishlist(nprd.wishlist_num)"
-                matTooltip="Already exist in Wishlist"
-                >
-                <i class="fa fa-heart-o" aria-hidden="true" style="color: white;position: absolute;left: 30px;" ></i>
-            </a>
-              <!-- start without logi -->
-<a *ngIf="userC == false" 
-                  style="cursor:pointer"
-                  (click)="addToWishlistWL(nprd)"
-                  matTooltip="Add to WishList"
-                  >
-                  <i class="fa fa-heart-o" aria-hidden="true" style="color: white;position: absolute;left: 30px;" ></i>
-              </a>
-              <!-- end without login -->
-
-                
-                </li>
-                                  <li *ngIf="userC==true">
+                                      <a *ngIf="nprd.wishlist_check == false" 
+                                      style="cursor:pointer"
+                                      (click)="addToWishlist(nprd)"
+                                      matTooltip="Add to WishList"
+                                      >
+                                      <i class="fa fa-heart-o" aria-hidden="true" style="color: white;" ></i>
+                                  </a>
+                                    <a
+                                    style="cursor:pointer" *ngIf="nprd.wishlist_check == true"
+                                    (click)="deleteFromWishlist(nprd.wishlist_num)"
+                                    matTooltip="Already exist in Wishlist"
+                                    >
+                                    <i class="fa fa-heart-o" aria-hidden="true" style="color: white;" ></i>
+                                </a>
+                                  <!-- start without logi -->
+                    <a *ngIf="userC == false" 
+                                      style="cursor:pointer"
+                                      (click)="addToWishlistWL(nprd)"
+                                      matTooltip="Add to WishList"
+                                      >
+                                      <i class="fa fa-heart-o" aria-hidden="true" style="color: white;" ></i>
+                                  </a>
+                                  <!-- end without login -->
+                  </div>
+              
+                  <div class="col-sm-2">
+                <!-- </li>
+                                  <li *ngIf="userC==true"> -->
 
                 <a *ngIf="nprd.cart_check == false"
                   style="cursor:pointer"
                   (click)="addToCart(nprd)"
                   matTooltip="Add to Cart"
-                  > <i class="fa fa-cart-plus" style="color: green;position: absolute;left: 70px;top:374px"></i>
+                  > <i class="fa fa-cart-plus" style="color: green;"></i>
               </a>
-                  </li>
-                  <li *ngIf="userC==false">
+                  <!-- </li>
+                  <li *ngIf="userC==false"> -->
 
                 <a 
                   style="cursor:pointer"
                   (click)="addToCart(nprd)"
                   matTooltip="Add to Cart"
-                  > <i class="fa fa-cart-plus" style="color: green;position: absolute;left: 70px;top:374px"></i>
+                  > <i class="fa fa-cart-plus" style="color: green;"></i>
               </a>
               
-              </li>
+              <!-- </li>
           
-              </ul>
+              </ul> -->
+              </div>
 
 
                 <!-- <i class="fa fa-heart-o" aria-hidden="true" style="color: white;margin-left:20px" ></i>
                 <i class="fa fa-cart-plus" style="color: green;margin-left:300px"></i> -->
-              </div>
-            <div class="rating" style="color: white;position: absolute;left: 30px;">
+     
+            <div class="col-sm-4" style="color: white;">
               <!-- <i class="fa fa-star"></i>
               <i class="fa fa-star"></i>
 
@@ -409,9 +418,9 @@
               *ngFor="let i of createRange2(5 - nprd.ratings)"
             ></span>
           </span>
-
+        </div>
             </div>
-    <p style="color: white;position: absolute;left: 30px;">
+    <p style="color: white;">
       <span *ngIf="nprd.rate[0].is_rent == '1'" 
       >{{ nprd.rate[0].name }} @ {{ nprd.rate[0].rate }}
     </span>
@@ -460,7 +469,7 @@
       <a matTooltip="Buy Now" (click)="rates(nprd)" *ngIf="userC == false" class="default-btn  cursor-pointer" ><span class="fa fa-bolt " ></span>&nbsp; Buy Now</a>
     </div> -->
   </div>
- 
+</div>
 
 <!-- start -->
 
@@ -498,34 +507,37 @@
   <!-- </div> -->
 </div>
 <div class="row">
-  <div class="col-4"  style="color: white;border-radius: 25px;" *ngFor="let nprd3 of discountS">
+  <!-- <div class="card"> -->
+  <div class="card col-4"  style="color: white;height:450px" *ngFor="let nprd3 of discountS">
+    <div class="card_image" width="100%">
     <img
     src="{{ nprd3.gallery.medium_thumbnail_link }}"
-    style="border-radius: 15px;height:300px"
+    style="height: 300px;"
     onerror="this.src='https://assets.myntassets.com/dpr_2,q_60,w_210,c_limit,fl_progressive/assets/images/3736649/2018/3/12/11520834456858-na-6651520834456691-1.jpg';"
     alt="Product Image"
     (click)="view_product(nprd3.meta_title, nprd3.product_no,nprd3.slug,nprd3.quick_product_check)"
   />
 
  
-    <h4 style="color: white;margin-left:30px">{{ (nprd3.name.length>60)? (nprd3.name | slice:0:60)+'...':(nprd3.name) }}</h4>
-            <div > 
-              <ul>
-                <li style="list-style-type:none;">
+    <h4 style="color: white;">{{ (nprd3.name.length>60)? (nprd3.name | slice:0:60)+'...':(nprd3.name) }}</h4>
+            <div class="row">
+              <div class="col-sm-2">
+              <!-- <ul>
+                <li style="list-style-type:none;"> -->
                 
                   <a *ngIf="nprd3.wishlist_check == false" 
                   style="cursor:pointer"
                   (click)="addToWishlist(nprd3)"
                   matTooltip="Add to WishList"
                   >
-                  <i class="fa fa-heart-o" aria-hidden="true" style="color: white;position: absolute;left: 30px;" ></i>
+                  <i class="fa fa-heart-o" aria-hidden="true" style="color: white;" ></i>
               </a>
                 <a
                 style="cursor:pointer" *ngIf="nprd3.wishlist_check == true"
                 (click)="deleteFromWishlist(nprd3.wishlist_num)"
                 matTooltip="Already exist in Wishlist"
                 >
-                <i class="fa fa-heart-o" aria-hidden="true" style="color: white;position: absolute;left: 30px;" ></i>
+                <i class="fa fa-heart-o" aria-hidden="true" style="color: white;" ></i>
             </a>
 <!-- start without login -->
 <a *ngIf="userC == false" 
@@ -533,50 +545,51 @@
                   (click)="addToWishlistWL(nprd3)"
                   matTooltip="Add to WishList"
                   >
-                  <i class="fa fa-heart-o" aria-hidden="true" style="color: white;position: absolute;left: 30px;" ></i>
+                  <i class="fa fa-heart-o" aria-hidden="true" style="color: white;" ></i>
               </a>
 <!-- end without login -->
-                </li>
+                <!-- </li>
             
-                                  <li *ngIf="userC==true" style="list-style-type: none;">
-
-              
+                   <li *ngIf="userC==true" style="list-style-type: none;"> -->
+                  </div> 
+              <div class="col-sm-2">
                 <a *ngIf="nprd3.cart_check == false"
                   style="cursor:pointer"
                   (click)="addToCart(nprd3)"
                   matTooltip="Add to Cart"
                   >
-                  <i class="fa fa-cart-plus" style="color: green;position: absolute;left: 70px;top:351px"></i>
+                  <i class="fa fa-cart-plus" style="color: green;"></i>
               </a>
 
                   
 
                         
-                      
+<!--                       
                   </li>
-                  <li *ngIf="userC==false">
+                  <li *ngIf="userC==false"> -->
 
                 <a 
                   style="cursor:pointer"
                   (click)="addToCart(nprd3)"
                   matTooltip="Add to Cart"
                   >
-                  <i class="fa fa-cart-plus" style="color: green;position: absolute;left: 70px;top:351px"></i>
+                  <i class="fa fa-cart-plus" style="color: green;"></i>
               </a>
 
-                  
+            </div>   
               
-              </li>
+              <!-- </li>
          
-              </ul>
+              </ul> -->
 
 
 
 
                 <!-- <i class="fa fa-heart-o" aria-hidden="true" style="color: white;margin-left:30px" ></i>
                 <i class="fa fa-cart-plus" style="color: green;margin-left:300px"></i> -->
-              </div>
-            <div class="rating" style="color: white;position: absolute;left: 30px;">
+             
+
+            <div class="col-sm-4" style="color: white;">
               <span
               class="fa fa-star checked"
               *ngFor="let i of createRange2(nprd3.ratings)"
@@ -586,7 +599,7 @@
               *ngFor="let i of createRange2(5 - nprd3.ratings)"
             ></span>
           </span>
-
+        </div>
               <!-- <i class="fa fa-star"></i>
               <i class="fa fa-star"></i>
 
@@ -646,18 +659,18 @@
 
   </div>
   </div>
-
+</div>
 <!-- end -->
 
 
 <!-- start -->
 
 
-      <div class="row">
+      <!-- <div class="row">
           <div class="col-md-12 text-center feature-title" >
               <h2>TRENDING PRODUCTS</h2>
               <a class="feature-active" href="#">BEST SELLER</a> | <a href="#">NEW ARRIVAL</a> | <a href="#">MOST WANTED</a> 
-          </div>
+          </div> -->
           <!-- <div class="col-md-3 col-sm-6" *ngFor="let nprd of newproduct" >
               <div class="product-grid" >
                   <div class="product-image" > 

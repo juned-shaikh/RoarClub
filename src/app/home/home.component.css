@@ -509,12 +509,12 @@ img {
 }
 /* end */
 .checked {
-  color: #a0236e; }
+  color: red; }
   .star-mobile{
       font-size: 10px;
   }
  .unchecked{
-    color: #ea895694;
+    color: white;
  }
 
   .button-minus{
@@ -537,4 +537,8 @@ img {
     right: 0;
     left: 0;
    
+}
+
+.fa fa-star{
+  color: red;
 }
