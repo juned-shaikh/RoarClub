@@ -25,10 +25,10 @@
           </div>
         </div>
   
-        <!-- <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" *ngIf="pass==1" type="submit">Log in</button>
-        <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" *ngIf="pass==0" type="submit">Login/Signup/button>
-        <button class="btn btn-outline-secondary btn-rounded btn-block my-4 waves-effect z-depth-0" (click)= "onSubmitSign()" style="cursor: not-allowed!important;" *ngIf="pass==2" type="submit">Get Otp</button>
-        <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" *ngIf="pass==1" (click)="openXl(codOtp)" type="submit">Login with Otp</button> -->
+        <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" (click)= "login()" *ngIf="pass==1" >Log in</button>
+        <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" *ngIf="pass==0" style="cursor: not-allowed!important;">Login/Signup</button>
+        <button class="btn btn-outline-secondary btn-rounded btn-block my-4 waves-effect z-depth-0"   *ngIf="pass==2" (click)= "onSubmitSign()"  type="submit">Get Otp</button>
+        <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" *ngIf="pass==1" (click)="openXl(codOtp)" >Login with Otp</button>
   
       </form>
   
@@ -66,8 +66,8 @@
           </div>
         </div>
   
-        <!-- <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0"  type="submit" (click)= "onSubmitOTP()">Verify</button>
-        <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0"  type="submit" (click)= "onSubmitResendOtp()">Resend Otp</button> -->
+        <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0"   (click)= "onSubmitOTP()">Verify</button>
+        <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0"   (click)= "onSubmitResendOtp()">Resend Otp</button>
   
       </form>
   

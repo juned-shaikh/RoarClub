@@ -8,6 +8,8 @@ import {ProductViewComponent} from './product-view/product-view.component';
 import { UserloginComponent } from './userlogin/userlogin.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+
  
 const routes: Routes = [
   { path: "",  pathMatch: "prefix", 
@@ -28,6 +30,10 @@ const routes: Routes = [
       {
         path:"cart",
         component:AddToCartComponent
+      },
+      {
+        path:"checkout",
+        component:CheckoutComponent
       }
     ],
  },

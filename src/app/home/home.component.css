@@ -538,3 +538,7 @@ img {
     left: 0;
    
 }
+.carousel-item img{
+  height: 90vh;
+  width: 100%;
+}

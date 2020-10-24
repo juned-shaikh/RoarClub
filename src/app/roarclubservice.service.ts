@@ -361,6 +361,12 @@ checkUserExist(data) {
     return this.https.post(this.baseUrl + "registration/otpSendForLogin", data);
 
   }
+  getparticularCompSetting(data) {
+    return this.https.post(
+      this.baseUrl + "user/fetch_particular_company_registry",
+      data
+    );
+  }
   otpVerification(data) {
     return this.https.post(this.baseUrl + "company/otpVerification", data);
   }
@@ -373,16 +379,45 @@ checkUserExist(data) {
         return this.https.post(this.baseUrl + "registration/otpVerificationForLogin", data);
 
   }
+  otpGenerate(data) {
+    return this.https.post(this.baseUrl + "user/otpGenerate", data);
+  }
+  otpVerificationUser(data) {
+    return this.https.post(this.baseUrl + "user/otpVerification", data);
+  }
+  resendOtpVerify(data) {
+    return this.https.post(this.baseUrl + "user/resendOtpVerify", data);
+  }
   registerVendor(data) {
     return this.https.post(this.baseUrl + "company/registerVendor", data);
   }
+  getState(data) {
+    return this.https.post(this.baseUrl + "profile/get_state", data);
+  }
+  getCity(data) {
+    return this.https.post(this.baseUrl + "profile/get_city", data);
+  }
+  getCountry(data) {
+    return this.https.post(this.baseUrl + "profile/get_country", data);
+  }
   ResendOtpVerification(data) {
     return this.https.post(this.baseUrl + "company/resendOtp", data);
+  }
+  fetch_coupon_code(data) {
+    return this.https.post(this.baseUrl + "admin/fetch_coupon_code", data);
   }
   unsubscribe_topic(data){
     return this.https.post(this.baseUrl + "notification/topic_unsubscribe_notification", data);
 
   } 
+  pincode_api(data){
+    return this.https.post(this.baseUrl + "company/pincode_api", data);
+
+}
+pincode_country_state_city_api(data){
+    return this.https.post(this.baseUrl + "company/pincode_country_state_city_api", data);
+
+}
   estimate_time_delivery(data){
     return this.https.post(this.baseUrl + "user/estimate_time_delivery", data);
 
