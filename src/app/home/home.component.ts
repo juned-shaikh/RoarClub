@@ -1478,6 +1478,7 @@ nav.replace(/\s+/g, "-") +
       comp_num: sessionStorage.getItem("comp_num_new"),
       access_token: sessionStorage.getItem("access_token")
     }
+    
 
       this.adminservice.updateCart(data2).subscribe(data => {
        

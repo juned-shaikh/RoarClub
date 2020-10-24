@@ -32,9 +32,7 @@
   color: blue!important;
 }
 .dropdown-toggle:after { content: none; }
-.delivery:hover{
-/* color: blue!important; */
-}
+
 @media only screen and (min-width:992px){
 .add-billing{
   border: 2px dashed blue;

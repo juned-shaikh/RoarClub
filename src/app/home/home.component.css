@@ -509,12 +509,12 @@ img {
 }
 /* end */
 .checked {
-  color: #a0236e; }
+  color: red; }
   .star-mobile{
       font-size: 10px;
   }
  .unchecked{
-    color: #ea895694;
+    color: white;
  }
 
   .button-minus{
@@ -541,4 +541,8 @@ img {
 .carousel-item img{
   height: 90vh;
   width: 100%;
+}
+
+.fa fa-star{
+  color: red;
 }
