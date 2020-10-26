@@ -1,19 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-
 import { HomeComponent } from './home/home.component';
 import { CategoryPageComponent } from './category-page/category-page.component';
 import { ProductViewComponent } from './product-view/product-view.component';
  //import { MatSnackBarModule} from "@angular/material";
  import {MatSnackBarModule} from '@angular/material/snack-bar';
  import { from } from 'rxjs';
-
-
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from './_guards';
 import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
@@ -27,8 +23,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import {MatIconModule} from '@angular/material/icon';
    import {MatTooltipModule} from '@angular/material/tooltip';
-
+   import {MatCardModule} from '@angular/material/card';
    import {MatSortModule} from '@angular/material/sort';
+   import {MatRadioModule} from '@angular/material/radio';
 
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -39,10 +36,12 @@ import { environment } from '../environments/environment';
 import { AsyncPipe } from '../../node_modules/@angular/common';
 
 import { HashLocationStrategy, LocationStrategy , PathLocationStrategy} from '@angular/common';
-import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
+import { UserloginComponent } from './userlogin/userlogin.component';
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { CheckoutStatusComponent } from './checkout-status/checkout-status.component';
 
 
 @NgModule({
@@ -54,18 +53,16 @@ import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
     // HomeComponent,
     CategoryPageComponent,
     ProductViewComponent,
-   
-   
+    CheckoutStatusComponent,
+    CheckoutComponent,
     AppComponent,
    
     FooterComponent,
-   
-    LoginComponent,
-   
     RegistrationComponent,
    
     AddToCartComponent,
    
+    UserloginComponent,
     CheckoutPageComponent,
    
 
@@ -74,13 +71,17 @@ import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    
-  
+    MatTooltipModule,
+    MatIconModule,
+    MatCardModule,
+    MatRadioModule,
     BrowserModule,
     //MatTooltipModule,
     AppRoutingModule,
+    MatFormFieldModule,
     BrowserAnimationsModule,
-    
+    MatInputModule,
+    // MatCardModule,
     HttpClientModule,
    // MatNativeDateModule,
     ReactiveFormsModule, 
