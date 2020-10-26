@@ -58,13 +58,13 @@ img {
   list-style: none;
   margin: 0;
   padding: 0;
-  border-radius: 25px;
+  /* border-radius: 25px; */
 }
 
 .cards_item {
   display: flex;
   padding: 1rem;
-  border-radius: 25px;
+  /* border-radius: 25px; */
   
 }
 
@@ -82,12 +82,11 @@ img {
 
 .card {
   background-color:#202328;
-  border-radius: 0.25rem;
+  border-radius: 1px;
   box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  border-radius: 25px;
 }
 
 .card_content {
@@ -211,9 +210,9 @@ img {
   
   .title{
     text-align: center;
-    margin: 0 auto 80px;
+    margin: 0 auto 20px;
     position: relative;
-    line-height: 60px;
+    line-height: 40px;
     color: #555;
   }
   
@@ -530,9 +529,9 @@ img {
     /* border-color: #10707f; */
   }
   .Quantity-box{
-    background: white;
-    position: absolute;
-    visibility: hidden;
+    /* background: white; */
+    /* position: absolute; */
+    visibility: visible;
     bottom: 3px;
     right: 0;
     left: 0;
@@ -545,4 +544,35 @@ img {
 
 .fa fa-star{
   color: red;
+}
+.page-item{
+  color: white;
+  background: white;
+}
+.page-previous{
+  color: white;
+  background: white;
+}
+/* .fa-angle-right{
+  color: white;
+  background: white;
+}
+.fa-angle-left{
+  color: white;
+  background: white;
+} */
+.page-link{
+  cursor: pointer;
+}
+.more-brands{
+ color: lightgray;
+ cursor: pointer;
+ padding-right: 20px;
+}
+.more-brands:hover{
+  color: #d4474d;
+  transition: 2s;
+  /* transition-delay: 2s; */
+   padding-right: 0;
+  cursor: pointer;
 }
