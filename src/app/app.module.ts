@@ -43,6 +43,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
 
 
 @NgModule({
@@ -67,6 +68,8 @@ import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
     AddToCartComponent,
    
     CheckoutPageComponent,
+   
+    ProfilePageComponent,
    
 
 
@@ -98,6 +101,7 @@ import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
     NgbModule,
     
     NgbModule,
+    
     
     RecaptchaModule,  
     RecaptchaFormsModule, 
