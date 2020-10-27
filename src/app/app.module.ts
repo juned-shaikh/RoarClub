@@ -42,7 +42,7 @@ import { UserloginComponent } from './userlogin/userlogin.component';
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CheckoutStatusComponent } from './checkout-status/checkout-status.component';
-
+import { OurBrandComponent } from './our-brand/our-brand.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +56,7 @@ import { CheckoutStatusComponent } from './checkout-status/checkout-status.compo
     CheckoutStatusComponent,
     CheckoutComponent,
     AppComponent,
-   
+    OurBrandComponent,
     FooterComponent,
     RegistrationComponent,
    

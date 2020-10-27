@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
   shipping='0';
   rentShow  = false;
   offsetNew=1;
-  page_itemsNew=6;
+  page_itemsNew=4;
   pagesNew=1;
   ratebuy;
   banner_group_a=0;
@@ -58,14 +58,14 @@ export class HomeComponent implements OnInit {
 
    offsetSelling=1;
    pagesSelling=1;
-  page_itemsSelling=6;
+  page_itemsSelling=3;
 
    offsetRent=1;
-  page_itemsRent=6;
+  page_itemsRent=4;
   pagesRent=1;
 
    offsetDisc=1;
-  page_itemsDisc=6;
+  page_itemsDisc=4;
   pagesDisc=1;
 
 
@@ -1265,17 +1265,19 @@ nav.replace(/\s+/g, "-") +
       "&marketplace=ECOMTRAILS";
      
       if(this.previewFlag == '1'){
-          this.router
-          .navigateByUrl("/RefreshComponent", {
-            skipLocationChange: true
-          })
-          .then(() => this.router.navigate(["/Admin/preview/shop/brand", slug]));
+          // this.router
+          // .navigateByUrl("/RefreshComponent", {
+          //   skipLocationChange: true
+          // })
+          // .then(() =>
+           this.router.navigate(["/Admin/preview/category-page/brand", slug]);
         }else{
-          this.router
-          .navigateByUrl("/RefreshComponent", {
-            skipLocationChange: true
-          })
-          .then(() => this.router.navigate(["/shop/brand", slug]));
+          // this.router
+          // .navigateByUrl("/RefreshComponent", {
+          //   skipLocationChange: true
+          // })
+          // .then(() => 
+          this.router.navigate(["/category-page/brand", slug]);
 
         }
       // this.router.navigate(["/shop", nav]);
@@ -1283,17 +1285,19 @@ nav.replace(/\s+/g, "-") +
     else if(type=="category"){
        let slug = nav.replace(/\s+/g, '-') + "-?category_no=" + id  + "&marketplace=ECOMTRAILS";
       if(this.previewFlag == '1'){
-          this.router
-          .navigateByUrl("/RefreshComponent", {
-            skipLocationChange: true
-          })
-          .then(() => this.router.navigate(["/shop", slug]));
+          // this.router
+          // .navigateByUrl("/RefreshComponent", {
+          //   skipLocationChange: true
+          // })
+          // .then(() =>
+           this.router.navigate(["/category-page", slug]);
         }else{
-          this.router
-          .navigateByUrl("/RefreshComponent", {
-            skipLocationChange: true
-          })
-          .then(() => this.router.navigate(["/shop", slug]));
+          // this.router
+          // .navigateByUrl("/RefreshComponent", {
+          //   skipLocationChange: true
+          // })
+          // .then(() => 
+          this.router.navigate(["/category-page", slug]);
 
         }
       // this.router.navigate(["/shop", nav]);
@@ -1320,11 +1324,12 @@ nav.replace(/\s+/g, "-") +
         }
     }
     else{
-      this.router
-          .navigateByUrl("/RefreshComponent", {
-            skipLocationChange: true
-          })
-          .then(() => this.router.navigate([nav]));
+      // this.router
+      //     .navigateByUrl("/RefreshComponent", {
+      //       skipLocationChange: true
+      //     })
+      //     .then(() => 
+          this.router.navigate([nav]);
 
         
     }
@@ -1338,11 +1343,12 @@ nav.replace(/\s+/g, "-") +
     // this.router.navigate(['/category', id]);
     // let slug = name.replace(/\s/, "-") + "-?" + id;
     window.scroll(0, 0);
-    this.router
-      .navigateByUrl("/RefreshComponent", {
-        skipLocationChange: true
-      })
-      .then(() => this.router.navigate(["/shop", slug]));
+    // this.router
+    //   .navigateByUrl("/RefreshComponent", {
+    //     skipLocationChange: true
+    //   })
+    //   .then(() =>
+       this.router.navigate(["/category-page", slug]);
     this.megaMenu = false;
   }
 
