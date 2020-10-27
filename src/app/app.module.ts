@@ -40,12 +40,15 @@ import { RegistrationComponent } from './registration/registration.component';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 import { UserloginComponent } from './userlogin/userlogin.component';
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
-<<<<<<< HEAD
+
 import { ProfilePageComponent } from './profile-page/profile-page.component';
-=======
+
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CheckoutStatusComponent } from './checkout-status/checkout-status.component';
->>>>>>> 5395eceb24de8a96e6fa9665b2eb2017a16373db
+
+
+
+import { OurBrandComponent } from './our-brand/our-brand.component';
 
 
 @NgModule({
@@ -60,7 +63,7 @@ import { CheckoutStatusComponent } from './checkout-status/checkout-status.compo
     CheckoutStatusComponent,
     CheckoutComponent,
     AppComponent,
-   
+    OurBrandComponent,
     FooterComponent,
     RegistrationComponent,
    

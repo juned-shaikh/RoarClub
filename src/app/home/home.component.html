@@ -3,80 +3,83 @@
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    
+
+    
   </ol>
   <div class="carousel-inner"> -->
-    <div class="container-fluid" style="overflow: hidden;">    
+    <div class="container-fluid" style="overflow: hidden; ">    
       <div id="demo" class="carousel slide main-slider" data-ride="carousel" *ngIf="banner">
         <div class="carousel-inner">
           <div *ngIf="banner_group_a==0 || bannerdata.value.banner_image_a_group==''" class="carousel-item active">
-            <img src="{{ bannerdata.value.banner_image_a }}" />
+            <img src="{{ bannerdata.value.banner_image_a }}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
           </div>
           <div *ngIf="banner_group_a==1 && bannerdata.value.banner_image_a_group!='' && banner_group_linka==0" class="carousel-item active cursor-pointer" (click)="navigation(bannerdata.value.banner_image_a_group,bannerdata.value.banner_image_a_group_type,bannerdata.value.banner_image_a_group_id)">
-            <img  src="{{ bannerdata.value.banner_image_a }}" />
+            <img  src="{{ bannerdata.value.banner_image_a }}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
           </div>
         
           <a *ngIf="banner_group_a==1 && bannerdata.value.banner_image_a_group!='' && banner_group_linka==1" class="carousel-item active cursor-pointer" target="_blank"  href="{{bannerdata.value.banner_image_a_group}}"
           >
-          <img src="{{bannerdata.value.banner_image_a}}" />
+          <img src="{{bannerdata.value.banner_image_a}}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
         </a>
         
           
   
           <div *ngIf="banner_group_b==0 || bannerdata.value.banner_image_b_group==''" class="carousel-item">
-            <img src="{{ bannerdata.value.banner_image_b }}" />
+            <img src="{{ bannerdata.value.banner_image_b }}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
           </div>
           <div *ngIf="banner_group_b==1 && bannerdata.value.banner_image_b_group!=''  && banner_group_linkb==0"  class="carousel-item cursor-pointer" (click)="navigation(bannerdata.value.banner_image_b_group,bannerdata.value.banner_image_b_group_type,bannerdata.value.banner_image_b_group_id)">
-            <img  src="{{ bannerdata.value.banner_image_b }}" />
+            <img  src="{{ bannerdata.value.banner_image_b }}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
           </div>
         
           <a *ngIf="banner_group_b==1 && bannerdata.value.banner_image_b_group!='' && banner_group_linkb==1" class="carousel-item active cursor-pointer" target="_blank"  href="{{bannerdata.value.banner_image_b_group}}"
           >
-          <img src="{{bannerdata.value.banner_image_b}}" />
+          <img src="{{bannerdata.value.banner_image_b}}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
         </a>
   
           <div class="carousel-item" *ngIf="banner_group_c==0 || bannerdata.value.banner_image_c_group==''" class="carousel-item">
-          <img src="{{ bannerdata.value.banner_image_c }}" />
+          <img src="{{ bannerdata.value.banner_image_c }}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
         </div>
           <div  *ngIf="banner_group_c==1 && bannerdata.value.banner_image_c_group!='' && banner_group_linkc==0" class="carousel-item cursor-pointer" (click)="navigation(bannerdata.value.banner_image_c_group,bannerdata.value.banner_image_c_group_type,bannerdata.value.banner_image_c_group_id)">
-          <img src="{{ bannerdata.value.banner_image_c }}" />
+          <img src="{{ bannerdata.value.banner_image_c }}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
         </div>
   
       
   
     <a *ngIf="banner_group_c==1 && bannerdata.value.banner_image_c_group!='' && banner_group_linkc==1" class="carousel-item active cursor-pointer" target="_blank"  href="{{bannerdata.value.banner_image_c_group}}"
           >
-          <img src="{{bannerdata.value.banner_image_c}}" />
+          <img src="{{bannerdata.value.banner_image_c}}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
         </a>   
   
         <!-- start for 4 and 5 -->
   <!-- start for 4 -->
   <div class="carousel-item" *ngIf="banner_group_d==0 || bannerdata.value.banner_image_d_group==''" class="carousel-item">
-          <img src="{{ bannerdata.value.banner_image_d }}" />
+          <img src="{{ bannerdata.value.banner_image_d }}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
         </div>
           <div  *ngIf="banner_group_d==1 && bannerdata.value.banner_image_d_group!='' && banner_group_linkd==0" class="carousel-item cursor-pointer" (click)="navigation(bannerdata.value.banner_image_d_group,bannerdata.value.banner_image_d_group_type,bannerdata.value.banner_image_d_group_id)">
-          <img src="{{ bannerdata.value.banner_image_d }}" />
+          <img src="{{ bannerdata.value.banner_image_d }}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
         </div>
   
       
   
     <a *ngIf="banner_group_d==1 && bannerdata.value.banner_image_d_group!='' && banner_group_linkd==1" class="carousel-item active cursor-pointer" target="_blank"  href="{{bannerdata.value.banner_image_d_group}}"
           >
-          <img src="{{bannerdata.value.banner_image_d}}" />
+          <img src="{{bannerdata.value.banner_image_d}}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
         </a>  
   <!-- end for 4 -->
   <!-- start for 5 -->
   <div class="carousel-item" *ngIf="banner_group_e==0 || bannerdata.value.banner_image_e_group==''" class="carousel-item">
-          <img src="{{ bannerdata.value.banner_image_e }}" />
+          <img src="{{ bannerdata.value.banner_image_e }}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
         </div>
           <div  *ngIf="banner_group_e==1 && bannerdata.value.banner_image_e_group!='' && banner_group_linke==0" class="carousel-item cursor-pointer" (click)="navigation(bannerdata.value.banner_image_e_group,bannerdata.value.banner_image_e_group_type,bannerdata.value.banner_image_e_group_id)">
-          <img src="{{ bannerdata.value.banner_image_e }}" />
+          <img src="{{ bannerdata.value.banner_image_e }}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
         </div>
   
       
   
     <a *ngIf="banner_group_e==1 && bannerdata.value.banner_image_e_group!='' && banner_group_linke==1" class="carousel-item active cursor-pointer" target="_blank"  href="{{bannerdata.value.banner_image_e_group}}"
           >
-          <img src="{{bannerdata.value.banner_image_e}}" />
+          <img src="{{bannerdata.value.banner_image_e}}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
         </a>  
   <!-- end for 5 -->
         <!-- end for 4 and 5 -->
@@ -91,46 +94,24 @@
         </a>
       </div>
   
-       
+      <!--       -->
   
   <!-- slider start -->
+   <div class="row justify-content-end text-right pr-3"  *ngIf="brands?.length > 6">
+  <span class="more-brands" routerLink="/our-brand"> see more brands <i class="fas fa-chevron-right"></i></span>
+   </div>
+  <div class="row justify-content-start mt-1" style="background-color: #202328;" >
+    <div class="col-md-2" *ngFor="let brand of brands | slice:0:6;">
+      <div class="" style="background: white; cursor: pointer;" >
   
+        <div class=" circular-image-brand" (click)="navigateCategory(brand.name,brand.brand_id)">
+          <img src="{{brand.thumbnail_sml_location}}" onerror="this.src='https://ap2-prod-images.disco-api.com/2020/2/24/d4cfb8ac-9ee1-4af5-a175-81790d55ebb9.jpg';" class="brand-image" style="width: 100%;" height="150px">
+      </div>
   
-  <div class="row" style="padding-top: 20px;background-color: #202328;" >
-    <div class="col-md-2" *ngFor="let nprd2 of topSelling">
-      <div class="single-price" >
-        <img  src="{{ nprd2.gallery.medium_thumbnail_link }}" width="220px" height="150px" >
+        <!-- <img  src="{{ nprd2.gallery.medium_thumbnail_link }}" width="220px" height="150px" > -->
        </div>
     </div>
-    <!-- <div class="col-md-2">
-      <div class="single-price">
-        
-        <img src="https://ap2-prod-images.disco-api.com/2020/2/24/d4cfb8ac-9ee1-4af5-a175-81790d55ebb9.jpg">
-      </div>
-    </div>
-    <div class="col-md-2">
-      <div class="single-price">
-        <img src="https://ap2-prod-images.disco-api.com/2020/9/29/4839492d-1d34-4799-b6a2-22a7650e1870.jpg">
-        
-      </div>
-    </div>
-    <div class="col-md-2">
-      <div class="single-price">
-        <img src="https://ap2-prod-images.disco-api.com/2020/2/24/d5ca1e86-6fe8-4b63-aca6-ce2c8e1a170a.jpg">
-        
-      </div>
-    </div>
-    <div class="col-md-2">
-      <div class="single-price">
-        <img src="https://ap2-prod-images.disco-api.com/2020/2/24/c0d4c1bd-6306-44f4-9285-25df1ce20f5a.jpg">
-      </div>
-    </div>
-    <div class="col-md-2">
-      <div class="single-price">
-        <img src="https://ap2-prod-images.disco-api.com/2020/2/24/a38afaf2-2cf7-4615-ad19-e24e85f572e0.jpg">
-        
-      </div>
-    </div> -->
+   
   
   </div>
   
@@ -140,33 +121,34 @@
   <!-- juned start -->
     
      <div class="" style="background-color: #202328;">
-      <div class="pagination  row border-info">
-        <div class="col-md-6">
-        <li class="page-item  ml-0" *ngIf="offsetSelling != 1">
-          <a matTooltip="Previous"
+      <h2 class="title" style="font-family: Cinzel Semi Bold;">Top Selling Products</h2>
+      <div class="pagination  row ">
+        <div class="col-md-6 text-left">
+        <span class="page-item  float-left" *ngIf="offsetSelling != 1">
+          <span matTooltip="Previous"
             class="page-link page-previous"
             (click)="changeOffsetSell(offsetSelling - 1)"
             aria-label="Previous"
           >
             <span aria-hidden="true" class=" font-weight-bold cursor-pointer"><i class="fas fa-angle-left"></i></span>
-          </a>
-        </li>
+        </span>
+        </span>
       </div>
       <div class="col-md-6 text-right ">
-        <li class="page-item float-right mr-4" *ngIf="offsetSelling != pagesSelling">
-          <a  matTooltip="Next"
+        <span class="page-item float-right " *ngIf="offsetSelling != pagesSelling">
+          <span  matTooltip="Next"
             class="page-link page-next"
             (click)="changeOffsetSell(offsetSelling + 1)"
             aria-label="Next"
           >
             <span aria-hidden="true" class=" font-weight-bold cursor-pointer"> <i class="fas fa-angle-right"></i></span>
-          </a>
-        </li>
+        </span>
+        </span>
       </div>
        
       <!-- </div> -->
     </div>
-      <ul class="cards" style="padding-top: 20px;" >
+      <ul class="cards"  >
         <li class="cards_item" *ngFor="let nprd2 of topSelling">
           <div class="card" style="margin: auto;  height:450px ;">
             <div class="card_image" width="100%">
@@ -205,14 +187,14 @@
                   <!-- </li>
                   <li *ngIf="userC==true"> -->
                     <div class="col-sm-1">
-                    <a *ngIf="nprd2.cart_check == false"
+                    <a *ngIf="nprd2.cart_check == false && userC==true"
                       style="cursor:pointer"
                       (click)="addToCart(nprd2)"
                       matTooltip="Add to Cart"
                       > <i class="fa fa-cart-plus" style="color: green;"></i></a>
                       <!-- </li>
                       <li *ngIf="userC==false"> -->
-                    <a 
+                    <a  *ngIf="userC==false"
                       style="cursor:pointer"
                       (click)="addToCart(nprd2)"
                       matTooltip="Add to Cart"
@@ -224,8 +206,7 @@
                   </div>
   
   
-                  <!-- <i class="fa fa-heart-o" aria-hidden="true" style="color: red;margin-left:20px" ></i>
-                  <i class="fa fa-cart-plus" style="color: green;margin-left:350px"></i> -->
+                
                
                 
               <div class="col-sm-4" style="color: red;" >
@@ -269,12 +250,12 @@
        
         
       </ul>
-      <!-- <div class=" justify-content-center d-flex Quantity-box " *ngIf="nprd2.cart_check == true">
-        <button *ngIf="nprd2.cart_inventory.qty > 1 || nprd2.cart_inventory.qty > '1'" class="button-minus   btn-info btn-sm ml-1"
+      <!-- <div class="justify-content-center d-flex " *ngIf="nprd2.cart_check == true">
+        <button *ngIf="nprd2.cart_inventory.qty > 1 || nprd2.cart_inventory.qty > '1'" class="button-minus  btn-info btn-sm ml-1"
           title="decrease"
           (click)="updateCart3minus(nprd2.cart_inventory.cart_id,nprd2.cart_inventory.cart_inventory_id,nprd2.cart_inventory.rate_type,nprd2.cart_inventory.qty,nprd2.txn_quantity);">-
         </button>
-  &nbsp;
+  
         <button *ngIf="nprd2.cart_inventory.qty == 1 || nprd2.cart_inventory.qty == '1'" class="button-minus  btn btn-info btn-sm ml-1" (click)="deleteFromCartF(nprd2.cart_inventory.cart_inventory_id)"
           title="remove" >-
         </button>
@@ -282,7 +263,7 @@
         <input class="_2zH4zg form-control text-center" type="number" matInput
           placeholder="Quantity" value="{{nprd2.cart_inventory.qty}}" required min="1"
           (change)="updateCart3(nprd2.cart_inventory.cart_id,nprd2.cart_inventory.cart_inventory_id,nprd2.cart_inventory.rate_type,$event.target.value,nprd2.txn_quantity)"
-          (keyup)="updateCart3(nprd2.cart_inventory.cart_id,nprd2.cart_inventory.cart_inventory_id,nprd2.cart_inventory.rate_type,$event.target.value,nprd2.txn_quantity)">
+          (keyup)="updateCart3(nprd2.cart_inventory.cart_id,nprd2.cart_inventory.cart_inventory_id,nprd2.cart_inventory.rate_type,$event.target.value,nprd2.txn_quantity)" />
         <button *ngIf="nprd2.cart_inventory.qty<nprd2.txn_quantity" class="btn btn-info button-minus btn-sm ml-1 wNrY5O text-center" title="increase"
           (click)="updateCart3plus(nprd2.cart_inventory.cart_id,nprd2.cart_inventory.cart_inventory_id,nprd2.cart_inventory.rate_type,nprd2.cart_inventory.qty,nprd2.txn_quantity);">+
         </button>
@@ -292,12 +273,12 @@
   </button>
       </div>
       
-    <div class="add-to-cart2" *ngIf=" nprd2.txn_quantity > '0'">
+    <div class="add-to-cart2" *ngIf="nprd2.txn_quantity > '0'">
       <a  matTooltip="Buy Now" (click)="rates(nprd2)" *ngIf="(nprd2.cart_check == false) && userC==true 
       " class="default-btn  cursor-pointer"><span class="fa fa-bolt " ></span>&nbsp; Buy Now</a>
        <a  matTooltip="Buy Now" (click)="rates(nprd2)" *ngIf="userC == false" class="default-btn  cursor-pointer"><span class="fa fa-bolt " ></span>&nbsp; Buy Now</a>
-    </div>
     </div> -->
+    </div> 
     
   
   
@@ -305,8 +286,8 @@
     
     <h2 class="title" style="font-family: Cinzel Semi Bold;">Latest Products</h2>
     <div class="pagination   row ">
-      <div class="col-md-6">
-      <li class="page-item " *ngIf="offsetNew != 1">
+      <div class="col-md-6 text-left">
+      <li class="page-item float-left" *ngIf="offsetNew != 1">
         <a matTooltip="Previous"
           class="page-link page-previous"
           (click)="changeOffsetNew(offsetNew - 1)"
@@ -317,7 +298,7 @@
       </li>
     </div>
     <div class="col-md-6 text-right ">
-      <li class="page-item float-right mr-4" *ngIf="offsetNew != pagesNew">
+      <li class="page-item float-right " *ngIf="offsetNew != pagesNew">
         <a  matTooltip="Next"
           class="page-link page-next"
           (click)="changeOffsetNew(offsetNew + 1)"
@@ -329,9 +310,9 @@
     </div>
      
   </div>
-  <div class="row">
+  <div class="row justify-content-start">
     <div    class="card col-4"  style="color: white;height:460px; 
-    border-radius: 25px;" *ngFor="let nprd of newproduct">
+    " *ngFor="let nprd of newproduct">
     <div class="card_image" width="100%">
       <img
       src="{{nprd.gallery.medium_thumbnail_link}}" style="height:300px"
@@ -373,7 +354,7 @@
                   <!-- </li>
                                     <li *ngIf="userC==true"> -->
   
-                  <a *ngIf="nprd.cart_check == false"
+                  <a *ngIf="nprd.cart_check == false && userC==true"
                     style="cursor:pointer"
                     (click)="addToCart(nprd)"
                     matTooltip="Add to Cart"
@@ -382,7 +363,7 @@
                     <!-- </li>
                     <li *ngIf="userC==false"> -->
   
-                  <a 
+                  <a *ngIf="userC==false"
                     style="cursor:pointer"
                     (click)="addToCart(nprd)"
                     matTooltip="Add to Cart"
@@ -473,179 +454,177 @@
       <div class="col-md-12 text-center" >
     <h2 class="title" style="font-family: Cinzel Semi Bold;">Featured Products</h2>
     <div class="  row ">
-      <div class="col-md-6">
-      <li class="page-item  ml-0" *ngIf="offsetDisc != 1">
+      <div class="col-md-6 text-left">
+      <li class="page-item float-left " *ngIf="offsetDisc != 1">
         <a matTooltip="Previous"
           class="page-link page-previous"
           (click)="changeOffsetDisc(offsetDisc - 1)"
           aria-label="Previous"
         >
-          <span aria-hidden="true" class=" font-weight-bold cursor-pointer"><i class="fas fa-angle-left"></i></span>
+          <span aria-hidden="true" class=" font-weight-bold cursor-pointer" style="color: black;"><i class="fas fa-angle-left"></i></span>
         </a>
       </li>
     </div>
     <div class="col-md-6 text-right ">
-      <li class="page-item float-right mr-4" *ngIf="offsetDisc != pagesDisc">
+      <li class="page-item float-right " *ngIf="offsetDisc != pagesDisc">
         <a  matTooltip="Next"
           class="page-link page-next"
           (click)="changeOffsetDisc(offsetDisc + 1)"
           aria-label="Next"
         >
-          <span aria-hidden="true" class=" font-weight-bold cursor-pointer"> <i class="fas fa-angle-right"></i></span>
+          <span aria-hidden="true" class=" font-weight-bold cursor-pointer" style="color: black;"> <i class="fas fa-angle-right"></i></span>
         </a>
       </li>
     </div>
      
     <!-- </div> -->
   </div>
-  <div class="row">
-    <!-- <div class="card"> -->
-    <div class="card col-4"  style="color: white;height:450px" *ngFor="let nprd3 of discountS">
-      <div class="card_image" width="100%">
-      <img
-      src="{{ nprd3.gallery.medium_thumbnail_link }}"
-      style="height: 300px;"
-      onerror="this.src='https://assets.myntassets.com/dpr_2,q_60,w_210,c_limit,fl_progressive/assets/images/3736649/2018/3/12/11520834456858-na-6651520834456691-1.jpg';"
-      alt="Product Image"
-      (click)="view_product(nprd3.meta_title, nprd3.product_no,nprd3.slug,nprd3.quick_product_check)"
-    />
-  
-   
-      <h4 style="color: white;">{{ (nprd3.name.length>60)? (nprd3.name | slice:0:60)+'...':(nprd3.name) }}</h4>
-              <div class="row">
-                <div class="col-sm-2">
-                <!-- <ul>
-                  <li style="list-style-type:none;"> -->
-                  
-                    <a *ngIf="nprd3.wishlist_check == false" 
-                    style="cursor:pointer"
-                    (click)="addToWishlist(nprd3)"
-                    matTooltip="Add to WishList"
-                    >
-                    <i class="fa fa-heart-o" aria-hidden="true" style="color: white;" ></i>
-                </a>
-                  <a
-                  style="cursor:pointer" *ngIf="nprd3.wishlist_check == true"
-                  (click)="deleteFromWishlist(nprd3.wishlist_num)"
-                  matTooltip="Already exist in Wishlist"
-                  >
-                  <i class="fa fa-heart-o" aria-hidden="true" style="color: white;" ></i>
-              </a>
-  <!-- start without login -->
-  <a *ngIf="userC == false" 
-                    style="cursor:pointer"
-                    (click)="addToWishlistWL(nprd3)"
-                    matTooltip="Add to WishList"
-                    >
-                    <i class="fa fa-heart-o" aria-hidden="true" style="color: white;" ></i>
-                </a>
-  <!-- end without login -->
-                  <!-- </li>
-              
-                     <li *ngIf="userC==true" style="list-style-type: none;"> -->
-                    </div> 
-                <div class="col-sm-2">
-                  <a *ngIf="nprd3.cart_check == false"
-                    style="cursor:pointer"
-                    (click)="addToCart(nprd3)"
-                    matTooltip="Add to Cart"
-                    >
-                    <i class="fa fa-cart-plus" style="color: green;"></i>
-                </a>
-  
+  <div class="row justify-content-start">
+    <div class="col-md-3" *ngFor="let nprd3 of discountS">
+      <div class="card "  style="color: white;height:450px" >
+        <div class="card_image" width="100%">
+        <img
+        src="{{ nprd3.gallery.medium_thumbnail_link }}"
+        style="height: 300px;"
+        onerror="this.src='https://assets.myntassets.com/dpr_2,q_60,w_210,c_limit,fl_progressive/assets/images/3736649/2018/3/12/11520834456858-na-6651520834456691-1.jpg';"
+        alt="Product Image"
+        (click)="view_product(nprd3.meta_title, nprd3.product_no,nprd3.slug,nprd3.quick_product_check)"
+      />
+    
+     
+        <h4 style="color: white;">{{ (nprd3.name.length>60)? (nprd3.name | slice:0:60)+'...':(nprd3.name) }}</h4>
+                <div class="row">
+                  <div class="col-sm-2">
+                  <!-- <ul>
+                    <li style="list-style-type:none;"> -->
                     
-  
-                          
-  <!--                       
-                    </li>
-                    <li *ngIf="userC==false"> -->
-  
-                  <a 
-                    style="cursor:pointer"
-                    (click)="addToCart(nprd3)"
-                    matTooltip="Add to Cart"
+                      <a *ngIf="nprd3.wishlist_check == false" 
+                      style="cursor:pointer"
+                      (click)="addToWishlist(nprd3)"
+                      matTooltip="Add to WishList"
+                      >
+                      <i class="fa fa-heart-o" aria-hidden="true" style="color: white;" ></i>
+                  </a>
+                    <a
+                    style="cursor:pointer" *ngIf="nprd3.wishlist_check == true"
+                    (click)="deleteFromWishlist(nprd3.wishlist_num)"
+                    matTooltip="Already exist in Wishlist"
                     >
-                    <i class="fa fa-cart-plus" style="color: green;"></i>
+                    <i class="fa fa-heart-o" aria-hidden="true" style="color: white;" ></i>
                 </a>
-  
-              </div>   
+    <!-- start without login -->
+    <a *ngIf="userC == false" 
+                      style="cursor:pointer"
+                      (click)="addToWishlistWL(nprd3)"
+                      matTooltip="Add to WishList"
+                      >
+                      <i class="fa fa-heart-o" aria-hidden="true" style="color: white;" ></i>
+                  </a>
+    <!-- end without login -->
+                    <!-- </li>
                 
-                <!-- </li>
-           
-                </ul> -->
-  
-  
-  
-  
-                  <!-- <i class="fa fa-heart-o" aria-hidden="true" style="color: white;margin-left:30px" ></i>
-                  <i class="fa fa-cart-plus" style="color: green;margin-left:300px"></i> -->
-               
-  
-              <div class="col-sm-4" style="color: white;">
-                <span
-                class="fa fa-star checked"
-                *ngFor="let i of createRange2(nprd3.ratings)"
-              ></span>
-              <span *ngIf="nprd3.ratings>'0'"><span
-                class="fa fa-star unchecked"
-                *ngFor="let i of createRange2(5 - nprd3.ratings)"
-              ></span>
-            </span>
-          </div>
-                <!-- <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i> -->
-              </div>
-      <p style="color: white;position: absolute;left: 30px;">
-        <span *ngIf="nprd3.rate[0].is_rent != '2'" 
-        >₹ {{ nprd3.rate[0].rate }}
-      </span>
-      <span *ngIf="nprd3.rate[0].is_rent == '2'" 
-        >₹ {{ nprd3.rate[1].rate }}
-      </span>&nbsp;
-      <span *ngIf="nprd3.rate[0].is_rent == '1'" 
-        >{{ nprd3.rate[1].name }} @ {{ nprd3.rate[1].rate }}
-      </span>
-      <span class="for-you text-muted" *ngIf="nprd3.rate[0].rate < nprd3.mrp"
-        ><del>₹ {{ nprd3.mrp }} </del></span
-      ><br />
-      <span
-        *ngIf="nprd3.rate[0].rate < nprd3.mrp"
-        class="font-wieght-bold text-center for-you text-success"
-        >Discount : {{ nprd3.rate[0].discount_percent | number:'1.0-0' }}%</span
-      >
-      </p>
-      <!-- <div class="justify-content-center d-flex Quantity-box " *ngIf="nprd3.cart_check == true ">
-        <button *ngIf="nprd3.cart_inventory.qty > 1 || nprd3.cart_inventory.qty > '1'" class="button-minus   btn-info btn-sm ml-1"
-          title="decrease"
-          (click)="updateCart3minus(nprd3.cart_inventory.cart_id,nprd3.cart_inventory.cart_inventory_id,nprd3.cart_inventory.rate_type,nprd3.cart_inventory.qty,nprd3.txn_quantity);">-
-        </button>
-  &nbsp;
-        <button *ngIf="nprd3.cart_inventory.qty == 1 || nprd3.cart_inventory.qty == '1'" class="button-minus  btn btn-info btn-sm ml-1" (click)="deleteFromCartF(nprd3.cart_inventory.cart_inventory_id)"
-          title="remove" >-
-        </button>
-  &nbsp;
-        <input class="_2zH4zg form-control text-center" type="number" matInput
-          placeholder="Quantity" value="{{nprd3.cart_inventory.qty}}" required min="1"
-          (change)="updateCart3(nprd3.cart_inventory.cart_id,nprd3.cart_inventory.cart_inventory_id,nprd3.cart_inventory.rate_type,$event.target.value,nprd3.txn_quantity)"
-          (keyup)="updateCart3(nprd3.cart_inventory.cart_id,nprd3.cart_inventory.cart_inventory_id,nprd3.cart_inventory.rate_type,$event.target.value,nprd3.txn_quantity)">
-        <button *ngIf="nprd3.cart_inventory.qty<nprd3.txn_quantity" class="btn btn-info btn-sm ml-1 button-minus text-center" title="increase"
-          (click)="updateCart3plus(nprd3.cart_inventory.cart_id,nprd3.cart_inventory.cart_inventory_id,nprd3.cart_inventory.rate_type,nprd3.cart_inventory.qty,nprd3.txn_quantity);">+
-        </button>
-  <button *ngIf="nprd3.cart_inventory.qty >= nprd3.txn_quantity" class="btn btn-info btn-sm ml-1 button-minus text-center" title="limit reached" [disabled]=true
-  >+
-  </button>
+                       <li *ngIf="userC==true" style="list-style-type: none;"> -->
+                      </div> 
+                  <div class="col-sm-2">
+                    <a *ngIf="nprd3.cart_check == false && userC==true"
+                      style="cursor:pointer"
+                      (click)="addToCart(nprd3)"
+                      matTooltip="Add to Cart"
+                      >
+                      <i class="fa fa-cart-plus" style="color: green;"></i>
+                  </a>
+    
+                      
+    
+                            
+    <!--                       
+                      </li>
+                      <li *ngIf="userC==false"> -->
+    
+                    <a  *ngIf="userC==false"
+                      style="cursor:pointer"
+                      (click)="addToCart(nprd3)"
+                      matTooltip="Add to Cart"
+                      >
+                      <i class="fa fa-cart-plus" style="color: green;"></i>
+                  </a>
+    
+                </div>   
+                  
+                  <!-- </li>
+             
+                  </ul> -->
+    
+    
+    
+    
+                    <!-- <i class="fa fa-heart-o" aria-hidden="true" style="color: white;margin-left:30px" ></i>
+                    <i class="fa fa-cart-plus" style="color: green;margin-left:300px"></i> -->
+                 
+    
+                <div class="col-sm-4" style="color: white;">
+                  <span
+                  class="fa fa-star checked"
+                  *ngFor="let i of createRange2(nprd3.ratings)"
+                ></span>
+                <span *ngIf="nprd3.ratings>'0'"><span
+                  class="fa fa-star unchecked"
+                  *ngFor="let i of createRange2(5 - nprd3.ratings)"
+                ></span>
+              </span>
+            </div>
+                 
+                </div>
+        <p style="color: white;position: absolute;left: 30px;">
+          <span *ngIf="nprd3.rate[0].is_rent != '2'" 
+          >₹ {{ nprd3.rate[0].rate }}
+        </span>
+        <span *ngIf="nprd3.rate[0].is_rent == '2'" 
+          >₹ {{ nprd3.rate[1].rate }}
+        </span>&nbsp;
+        <span *ngIf="nprd3.rate[0].is_rent == '1'" 
+          >{{ nprd3.rate[1].name }} @ {{ nprd3.rate[1].rate }}
+        </span>
+        <span class="for-you text-muted" *ngIf="nprd3.rate[0].rate < nprd3.mrp"
+          ><del>₹ {{ nprd3.mrp }} </del></span
+        ><br />
+        <span
+          *ngIf="nprd3.rate[0].rate < nprd3.mrp"
+          class="font-wieght-bold text-center for-you text-success"
+          >Discount : {{ nprd3.rate[0].discount_percent | number:'1.0-0' }}%</span
+        >
+        </p>
+        <!-- <div class="justify-content-center d-flex Quantity-box border " *ngIf="nprd3.cart_check == true ">
+          <button *ngIf="nprd3.cart_inventory.qty > 1 || nprd3.cart_inventory.qty > '1'" class="button-minus   btn-info btn-sm ml-1"
+            title="decrease"
+            (click)="updateCart3minus(nprd3.cart_inventory.cart_id,nprd3.cart_inventory.cart_inventory_id,nprd3.cart_inventory.rate_type,nprd3.cart_inventory.qty,nprd3.txn_quantity);">-
+          </button>
+    &nbsp;
+          <button *ngIf="nprd3.cart_inventory.qty == 1 || nprd3.cart_inventory.qty == '1'" class="button-minus  btn btn-info btn-sm ml-1" (click)="deleteFromCartF(nprd3.cart_inventory.cart_inventory_id)"
+            title="remove" >-
+          </button>
+    &nbsp;
+          <input class="_2zH4zg form-control text-center" type="number" matInput
+            placeholder="Quantity" value="{{nprd3.cart_inventory.qty}}" required min="1"
+            (change)="updateCart3(nprd3.cart_inventory.cart_id,nprd3.cart_inventory.cart_inventory_id,nprd3.cart_inventory.rate_type,$event.target.value,nprd3.txn_quantity)"
+            (keyup)="updateCart3(nprd3.cart_inventory.cart_id,nprd3.cart_inventory.cart_inventory_id,nprd3.cart_inventory.rate_type,$event.target.value,nprd3.txn_quantity)">
+          <button *ngIf="nprd3.cart_inventory.qty<nprd3.txn_quantity" class="btn btn-info btn-sm ml-1 button-minus text-center" title="increase"
+            (click)="updateCart3plus(nprd3.cart_inventory.cart_id,nprd3.cart_inventory.cart_inventory_id,nprd3.cart_inventory.rate_type,nprd3.cart_inventory.qty,nprd3.txn_quantity);">+
+          </button>
+    <button *ngIf="nprd3.cart_inventory.qty >= nprd3.txn_quantity" class="btn btn-info btn-sm ml-1 button-minus text-center" title="limit reached" [disabled]=true
+    >+
+    </button>
+        </div>
+        <div class="add-to-cart2"  *ngIf=" nprd3.txn_quantity > '0'">
+          <a matTooltip="Buy Now" (click)="rates(nprd3)" *ngIf="nprd3.cart_check == false && userC==true" class="default-btn  cursor-pointer"><span class="fa fa-bolt " ></span>&nbsp; Buy Now</a>
+           <a matTooltip="Buy Now" (click)="rates(nprd3)" *ngIf="userC == false" class="default-btn  cursor-pointer"><span class="fa fa-bolt " ></span>&nbsp; Buy Now</a>
+        </div> -->
       </div>
-      <div class="add-to-cart2"  *ngIf=" nprd3.txn_quantity > '0'">
-        <a matTooltip="Buy Now" (click)="rates(nprd3)" *ngIf="nprd3.cart_check == false && userC==true" class="default-btn  cursor-pointer"><span class="fa fa-bolt " ></span>&nbsp; Buy Now</a>
-         <a matTooltip="Buy Now" (click)="rates(nprd3)" *ngIf="userC == false" class="default-btn  cursor-pointer"><span class="fa fa-bolt " ></span>&nbsp; Buy Now</a>
-      </div> -->
+     
+    
+      </div>
     </div>
    
-  
-    </div>
     </div>
   </div>
   <!-- end -->
@@ -785,7 +764,7 @@
             </div>
         </div>
   
-      </div>
+      <!-- </div> -->
   
     
            

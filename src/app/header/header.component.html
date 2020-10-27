@@ -1,18 +1,18 @@
 	
 <div class="header" style="background:#202328;">
-    <nav class="navbar" style="height: 100px;">
+    <nav class="navbar" style="height: 70px;">
       <label class="navbar-toggle" id="js-navbar-toggle" for="chkToggle">
               <i class="fa fa-bars"></i>
           </label>
      <!--  <a href="#" class="logo">logo</a> -->
   <!--    <img src="list.png" width=40px" style="color: white"> -->
-     <img src="./assets/1.png" width="120px" height="80px" routerLink="/">
+     <img src="./assets/1.png" width="120px" height="60px" routerLink="/">
       <input type="checkbox" id="chkToggle">
-      <ul class="main-nav" id="js-menu">
+      <ul class="main-nav mr-auto" id="js-menu">
         <li  *ngFor="let category of categories2" style="color: antiquewhite;">
           <a  (click)=" 
           navigateCategory(category.name, category.category_no)
-        " class="nav-links" style="text-decoration: none;font-size: 25px;">
+        " class="nav-links" >
             {{
               category.name
             }}</a>
@@ -29,16 +29,50 @@
         <li>
           <a href="#" class="nav-links" style="text-decoration: none;font-size: 25px;">Branded</a>
         </li> -->
-        <li>
-                  <a routerLink="/login" class="nav-links" style="text-decoration: none;font-size: 25px;">login</a>
-                </li>
+       
                
                
                   
+                  
               
       </ul>
+      <ul style="display: contents; " class="ml-auto">
+        <li style="list-style: none; text-decoration: none;" class="">
+          <div class="searchbar ">
+            <input class="search_input" type="text" name="" placeholder="Search...">
+            <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+          </div>
+        </li>
+        <li *ngIf="is_logged_out">
+          <a routerLink="/login" style="list-style: none;" class="nav-links" >login </a>
+        </li>
+        <li *ngIf="is_logged_in">
+          <a routerLink="/" style="list-style: none;" class="nav-links" >  <i
+            *ngIf="nm != null" 
+            class="fas fa-user text-center"
+            title="{{ nm }}"
+          >
+            {{ nm.length > 10 ? (nm | slice: 0:10) + "..." : nm }}</i
+          >
+          <i
+            *ngIf="nm == null"
+            class="fas fa-user text-center"
+            title="user"
+            >user</i
+          > </a>
+        </li>
+     &nbsp;&nbsp;
+        <li style="list-style: none;" class="" routerLink="/cart">
+           <a>  <i class="fas fa-shopping-bag text-center">
+            <sup class="text-danger ">
+              {{ cart }}
+            </sup></i
+          >
+          </a>
+        </li>
+      </ul>
               
-     <div class="searchbar">
+     <!-- <div class="searchbar">
                     <input class="search_input" type="text" name="" placeholder="Search...">
                     <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
                   </div>
@@ -50,12 +84,12 @@
                   
                      <a [routerLink]="['/registration']">
                       <i class="fa fa-sign-in" aria-hidden="true"></i>
-                    </a>
+                    </a> -->
                
             
-                <a [routerLink]="['/add-to-cart']">
+                <!-- <a [routerLink]="['/add-to-cart']">
                <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                </a>
+                </a> -->
             
   
  
