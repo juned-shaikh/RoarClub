@@ -40,9 +40,16 @@ import { RegistrationComponent } from './registration/registration.component';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 import { UserloginComponent } from './userlogin/userlogin.component';
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
+
+import { ProfilePageComponent } from './profile-page/profile-page.component';
+
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CheckoutStatusComponent } from './checkout-status/checkout-status.component';
+
+
+
 import { OurBrandComponent } from './our-brand/our-brand.component';
+
 
 @NgModule({
   declarations: [
@@ -64,6 +71,8 @@ import { OurBrandComponent } from './our-brand/our-brand.component';
    
     UserloginComponent,
     CheckoutPageComponent,
+   
+    ProfilePageComponent,
    
 
 
@@ -99,6 +108,7 @@ import { OurBrandComponent } from './our-brand/our-brand.component';
     NgbModule,
     
     NgbModule,
+    
     
     RecaptchaModule,  
     RecaptchaFormsModule, 

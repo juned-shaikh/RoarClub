@@ -211,7 +211,12 @@
   .searchbar{
     margin-bottom: auto;
     margin-top: auto;
+/* <<<<<<< HEAD
+    height: 60px; */
+   
+
     height: 40px;
+
     background-color: #353b48;
     border-radius: 21px;
     padding: 10px;
