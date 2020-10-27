@@ -2,7 +2,7 @@
 import { Component, OnInit } from "@angular/core";
 // import { access } from 'fs';
 import { RoarclubserviceService } from "../roarclubservice.service";
-import {MatSnackBar} from  '@angular/material/snack-bar'
+import {MatSnackBar} from  '@angular/material/snack-bar';
 import { Router } from "@angular/router";
 import { CookieService } from "ngx-cookie-service";
 import {

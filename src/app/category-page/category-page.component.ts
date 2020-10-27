@@ -757,17 +757,19 @@ this.ngOnInit();
     let re = " ";
     if(quick=='N'){
     if(this.previewFlag == '1'){
-      this.router
-      .navigateByUrl("/RefreshComponent", {
-        skipLocationChange: true
-      })
-      .then(() => this.router.navigate(["/Admin/preview/product", slug]));
+      // this.router
+      // .navigateByUrl("/RefreshComponent", {
+      //   skipLocationChange: true
+      // })
+      // .then(() => 
+      this.router.navigate(["/Admin/preview/product-view", slug]);
     }else{
-      this.router
-      .navigateByUrl("/RefreshComponent", {
-        skipLocationChange: true
-      })
-      .then(() => this.router.navigate(["/product", slug]));
+      // this.router
+      // .navigateByUrl("/RefreshComponent", {
+      //   skipLocationChange: true
+      // })
+      // .then(() =>
+       this.router.navigate(["/product-view", slug]);
 
     }
   }
@@ -976,18 +978,20 @@ this.ngOnInit();
     // let slug = name.replace(/\s/, "-") + "-?" + id;
     window.scroll(0, 0);
     if(this.previewFlag == '1'){
-      this.router
-      .navigateByUrl("/RefreshComponent", {
-        skipLocationChange: true
-      })
-      .then(() => this.router.navigate(["/Admin/preview/shop", slug]));
+      // this.router
+      // .navigateByUrl("/RefreshComponent", {
+      //   skipLocationChange: true
+      // })
+      // .then(() => 
+      this.router.navigate(["/Admin/preview/category-page", slug]);
 
     }else{
-      this.router
-      .navigateByUrl("/RefreshComponent", {
-        skipLocationChange: true
-      })
-      .then(() => this.router.navigate(["/shop", slug]));
+      // this.router
+      // .navigateByUrl("/RefreshComponent", {
+      //   skipLocationChange: true
+      // })
+      // .then(() =>
+       this.router.navigate(["/category-page", slug]);
 
     }
     
@@ -1035,14 +1039,15 @@ this.ngOnInit();
       .navigateByUrl("/RefreshComponent", {
         skipLocationChange: true
       })
-      .then(() => this.router.navigate(["/Admin/preview/shop", "brand", slug]));
+      .then(() => this.router.navigate(["/Admin/preview/category-page", "brand", slug]));
 
     }else{
-      this.router
-      .navigateByUrl("/RefreshComponent", {
-        skipLocationChange: true
-      })
-      .then(() => this.router.navigate(["/shop", "brand", slug]));
+      // this.router
+      // .navigateByUrl("/RefreshComponent", {
+      //   skipLocationChange: true
+      // })
+      // .then(() =>
+       this.router.navigate(["/category-page", "brand", slug]);
       
     }
           
@@ -1307,27 +1312,29 @@ updateCart3minus(cart_id,cart_inventory_id,rate_type_actual,qty2,qty_stock) {
       } else if (data["status"] == "10") {
         if(this.previewFlag == '1'){
           if ((sessionStorage.getItem("comp_num_new") == "0") && (this.host_name != "localhost:4209")) {
-            this.router
-            .navigateByUrl("/RefreshComponent", {
-              skipLocationChange: true
-            })
-            .then(() => this.router.navigate(["/Admin/preview/login"]));
+            // this.router
+            // .navigateByUrl("/RefreshComponent", {
+            //   skipLocationChange: true
+            // })
+            // .then(() =>
+             this.router.navigate(["/Admin/preview/login"]);
           }else{
-            this.router
-            .navigateByUrl("/RefreshComponent", {
-              skipLocationChange: true
-            })
-            .then(() => this.router.navigate(["/login"]));
+            // this.router
+            // .navigateByUrl("/RefreshComponent", {
+            //   skipLocationChange: true
+            // })
+            // .then(() =>
+             this.router.navigate(["/login"]);
 
           }
 
 
         }else{
-          this.router
-          .navigateByUrl("/RefreshComponent", {
-            skipLocationChange: true
-          })
-          .then(() => this.router.navigate(["/login"]));
+          // this.router
+          // .navigateByUrl("/RefreshComponent", {
+          //   skipLocationChange: true
+          // })
+           this.router.navigate(["/login"]);
 
         }
       } else {
@@ -1335,11 +1342,12 @@ updateCart3minus(cart_id,cart_inventory_id,rate_type_actual,qty2,qty_stock) {
           if(this.previewFlag == '1'){
             if ((sessionStorage.getItem("comp_num_new") == "0") && (this.host_name != "localhost:4209")) {
  
-                this.router
-                .navigateByUrl("/RefreshComponent", {
-                  skipLocationChange: true
-                })
-                .then(() => this.router.navigate(["/Admin/preview/login"]));
+                // this.router
+                // .navigateByUrl("/RefreshComponent", {
+                //   skipLocationChange: true
+                // })
+                // .then(() =>
+                 this.router.navigate(["/Admin/preview/login"]);
             }else{
              
             }

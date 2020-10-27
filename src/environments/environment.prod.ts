@@ -5,7 +5,7 @@ export const environment = {
   // baseUrl: 'https://www.ecomtrails.com/ecom_api/index.php/' ,
   //  baseUrl: 'https://www.ecomtrails.com/ecom_api_test/index.php/' ,
  // baseUrl: 'https://909corns.in/ecom_api/index.php/' ,
- baseUrl: ' https://roarclub.in/ecom_api/index.php/' ,
+ baseUrl: ' https://roarclub.in/ecom_api/index.php/' , 
 
   UploadUrl : 'https://909corns.in/uploads/', 
   firebase  :{
