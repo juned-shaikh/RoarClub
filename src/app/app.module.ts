@@ -32,6 +32,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { environment } from '../environments/environment'; 
+import {MatListModule} from '@angular/material/list';
 
 import { AsyncPipe } from '../../node_modules/@angular/common';
 
@@ -112,6 +113,7 @@ import { OurBrandComponent } from './our-brand/our-brand.component';
     
     RecaptchaModule,  
     RecaptchaFormsModule, 
+    MatListModule
 
   ],
   providers: [
