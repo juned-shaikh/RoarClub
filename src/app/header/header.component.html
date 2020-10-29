@@ -8,19 +8,67 @@
   <!--    <img src="list.png" width=40px" style="color: white"> -->
      <img src="./assets/1.png" width="120px" height="60px" routerLink="/">
       <input type="checkbox" id="chkToggle">
-      <ul class="main-nav mr-auto" id="js-menu">
-        <li  *ngFor="let category of categories2" style="color: antiquewhite;">
-          <a  (click)=" 
+      <ul class="main-nav mr-auto" id="js-menu" style="list-style-type:none">
+        <!-- <li  *ngFor="let category of categories2" style="color: antiquewhite;">
+          <a data-toggle="dropdown"
+          class="  dropdown-toggle multi-level-dropdown"   (click)=" 
           navigateCategory(category.name, category.category_no)
         " class="nav-links" >
             {{
               category.name
             }}</a>
-        </li>
-        <!-- <li>
+                    </li> -->
+         <!-- <li>
           <a  routerLink="/category-page" class="nav-links" style="text-decoration: none;font-size: 25px;">Category</a>
-        </li>
-        <li>
+        </li> -->
+      
+<!-- <ul class="navbar-nav" style="list-style-type:none"> -->
+	<li  *ngFor="let category of categories2" style="color: antiquewhite;" class="nav-item dropdown">
+		<a class="nav-link " href="#" data-toggle="dropdown"  style="font-family: Cinzel Semi Bold;color: white;font-size: larger;"
+   > {{
+    category.name
+  }} </a>
+	    <ul class="dropdown-menu" style="font-family: Cinzel Semi Bold;color: cornflowerblue;font-size: larger;">
+		  <li><a class="dropdown-item" href="#"> Dropdown item 1 </a></li>
+		  <li><a class="dropdown-item" href="#"> Dropdown item 2 </a></li>
+		  <li><a class="dropdown-item" href="#"> Dropdown item 3 </a></li>
+		  <li class="has-submenu">
+		  	 <a class="dropdown-item dropdown-toggle" href="#"> Dropdown item 4 </a>
+		  	 <div class="megasubmenu dropdown-menu">
+			   <div class="row">
+	                <div class="col-6">
+	                    	<h6 class="title"  style="font-family: Cinzel Semi Bold;color: cornflowerblue;font-size: larger;">Title Menu One</h6>
+	                        <ul class="list-unstyled" style="font-family: Raleway Regular;">
+	                            <li><a href="#">Custom Menu</a></li>
+	                            <li><a href="#">Custom Menu</a></li>
+	                            <li><a href="#">Custom Menu</a></li>
+	                            <li><a href="#">Custom Menu</a></li>
+	                            <li><a href="#">Custom Menu</a></li>
+	                        </ul>
+	                </div><!-- end col-3 -->
+	                <div class="col-6">
+	                    <h6 class="title" style="font-family: Cinzel Semi Bold;color: cornflowerblue;font-size: larger;">Title Menu Two</h6>
+	                        <ul class="list-unstyled" style="font-family: Raleway Regular;">
+	                            <li><a href="#">Custom Menu</a></li>
+	                            <li><a href="#">Custom Menu</a></li>
+	                            <li><a href="#">Custom Menu</a></li>
+	                            <li><a href="#">Custom Menu</a></li>
+	                        </ul>
+	                </div><!-- end col-3 -->
+	            </div><!-- end row -->
+			 </div>
+		  </li>
+		 
+      <li><a class="dropdown-item" href="#"> Dropdown item 6 </a></li>
+      <li><a class="dropdown-item" href="#"> Dropdown item 7 </a></li>
+      <li><a class="dropdown-item" href="#"> Dropdown item 8 </a></li>
+	    </ul>
+	</li>
+	
+<!-- </ul> -->
+        <!-- hover  -->
+     
+      <!--  <li>
           <a href="#" class="nav-links" style="text-decoration: none;font-size: 25px;">Shorts</a>
         </li>
         <li>
