@@ -97,6 +97,14 @@
      
       outline: none;
     }
+    .nav-item{
+      display: flex;
+      margin-left: 5px ;
+      margin-top: 10px;
+      flex-direction: row;
+      justify-content: flex-end;
+  text-decoration:none;
+    }
   
     .nav-links {
       margin-left: 30px;
@@ -255,3 +263,24 @@
       color: white;
       text-decoration: none;
     }
+
+    /* dropdown show */
+    
+		.dropdown-menu .dropdown-toggle:after{
+			border-top: .3em solid transparent;
+		    border-right: 0;
+		    border-bottom: .3em solid transparent;
+		    border-left: .3em solid;
+		}
+		.dropdown-menu{	
+			margin:0; 
+		}
+		.megasubmenu{ 
+			left:100%; top:0; min-height: 100%; min-width:500px;
+		}
+		
+		.dropdown-menu > li:hover .megasubmenu{
+			display: block;
+		}
+    /* new hover dropdown */
+ 
