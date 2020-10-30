@@ -29,45 +29,74 @@
     category.name
   }} </a>
 	    <ul class="dropdown-menu" style="font-family: Cinzel Semi Bold;color: cornflowerblue;font-size: larger;">
-		  <li><a class="dropdown-item" href="#"> Dropdown item 1 </a></li>
-		  <li><a class="dropdown-item" href="#"> Dropdown item 2 </a></li>
-		  <li><a class="dropdown-item" href="#"> Dropdown item 3 </a></li>
-		  <li class="has-submenu">
+		  <li class="has-submenu" *ngFor="let category of categories">
+        
+        <a (click)="
+        navigateCategory(category.name, category.category_no)
+      " title="{{ category.name }}" class="dropdown-item " href="#">{{category.name}} </a>
+    
+      <div  *ngFor="let categoryi of category.sub_category"
+      (click)="
+        navigateCategory(category.name, category.category_no)
+      " class="megasubmenu dropdown-menu">
+        <div class="row">
+                 <div class="col-6">
+                       <h6 class="title"  style="font-family: Cinzel Semi Bold;color: cornflowerblue;font-size: larger;">Title Menu One</h6>
+                         <ul *ngFor="let categoryi of category.sub_category" class="list-unstyled" style="font-family: Raleway Regular;">
+                             <li *ngIf="categoryi.sub_category2"><a (click)="
+                              navigateCategory(
+                                categoryi.name,
+                                categoryi.category_no
+                              )
+                            "  href="#"> {{
+                              categoryi.name.length > 40
+                                ? (categoryi.name | slice: 0:40) + "..."
+                                : categoryi.name
+                            }}</a></li>
+                             <!-- <li><a href="#">Custom Menu</a></li>
+                             <li><a href="#">Custom Menu</a></li>
+                             <li><a href="#">Custom Menu</a></li>
+                             <li><a href="#">Custom Menu</a></li> -->
+                         </ul>
+                 </div>
+                 <!-- end col-3 -->
+                 <div class="col-6">
+                     <h6 class="title" style="font-family: Cinzel Semi Bold;color: cornflowerblue;font-size: larger;">Title Menu Two</h6>
+                         <ul class="list-unstyled" style="font-family: Raleway Regular;">
+                             <li *ngIf="categoryi.sub_category2" ><a *ngFor="let categoryj of categoryi.sub_category2" href="#"> {{
+                              categoryj.name.length > 25
+                                ? (categoryj.name | slice: 0:25) + "..."
+                                : categoryj.name
+                            }}</a></li>
+                             <!-- <li><a href="#">Custom Menu</a></li>
+                             <li><a href="#">Custom Menu</a></li>
+                             <li><a href="#">Custom Menu</a></li> -->
+                         </ul>
+                 </div>
+                 <!-- end col-3 -->
+             </div>
+             <!-- end row -->
+      </div>
+
+
+    </li>
+		  <!-- <li><a class="dropdown-item" href="#"> Dropdown item 2 </a></li>
+		  <li><a class="dropdown-item" href="#"> Dropdown item 3 </a></li> -->
+		  <!-- <li class="has-submenu">
 		  	 <a class="dropdown-item dropdown-toggle" href="#"> Dropdown item 4 </a>
-		  	 <div class="megasubmenu dropdown-menu">
-			   <div class="row">
-	                <div class="col-6">
-	                    	<h6 class="title"  style="font-family: Cinzel Semi Bold;color: cornflowerblue;font-size: larger;">Title Menu One</h6>
-	                        <ul class="list-unstyled" style="font-family: Raleway Regular;">
-	                            <li><a href="#">Custom Menu</a></li>
-	                            <li><a href="#">Custom Menu</a></li>
-	                            <li><a href="#">Custom Menu</a></li>
-	                            <li><a href="#">Custom Menu</a></li>
-	                            <li><a href="#">Custom Menu</a></li>
-	                        </ul>
-	                </div><!-- end col-3 -->
-	                <div class="col-6">
-	                    <h6 class="title" style="font-family: Cinzel Semi Bold;color: cornflowerblue;font-size: larger;">Title Menu Two</h6>
-	                        <ul class="list-unstyled" style="font-family: Raleway Regular;">
-	                            <li><a href="#">Custom Menu</a></li>
-	                            <li><a href="#">Custom Menu</a></li>
-	                            <li><a href="#">Custom Menu</a></li>
-	                            <li><a href="#">Custom Menu</a></li>
-	                        </ul>
-	                </div><!-- end col-3 -->
-	            </div><!-- end row -->
-			 </div>
-		  </li>
+		  	 
+		  </li> -->
 		 
-      <li><a class="dropdown-item" href="#"> Dropdown item 6 </a></li>
+      <!-- <li><a class="dropdown-item" href="#"> Dropdown item 6 </a></li>
       <li><a class="dropdown-item" href="#"> Dropdown item 7 </a></li>
-      <li><a class="dropdown-item" href="#"> Dropdown item 8 </a></li>
+      <li><a class="dropdown-item" href="#"> Dropdown item 8 </a></li> -->
 	    </ul>
 	</li>
 	
 <!-- </ul> -->
         <!-- hover  -->
-     
+  
+        
       <!--  <li>
           <a href="#" class="nav-links" style="text-decoration: none;font-size: 25px;">Shorts</a>
         </li>
