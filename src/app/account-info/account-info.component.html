@@ -1,0 +1,48 @@
+<div class="container">
+     <div class="row justify-content-center" >
+        <div class="col-md-11 mt-2 mb-1 col-11">
+            <div class="row  justify-content-between pb-2 cursor-pointer" >
+                <h6 class="font-weight-500  pl-2 text-primary cursor-pointer" matTooltip="Change Password">Change Password</h6>  
+                <span (click)="showchangepass()" class="border  pl-2 pr-2 border" matTooltip="cancel">cancel</span>
+            </div>
+            <div class="row">
+              <div class="col-md-5">
+                <form [formGroup]= "Changepassword">
+                  <div class="row mt-2" >
+                      <mat-form-field appearance="fill" class="example-full-width">
+                          <mat-label>Enter Current Password</mat-label>
+                          <input matInput  required formControlName="old_password" type="password">
+                        <mat-icon matSuffix>lock</mat-icon>
+                      </mat-form-field>
+                  </div>
+                  <div class="row" >
+                      <mat-form-field appearance="fill" class="example-full-width">
+                          <mat-label>Enter New Password</mat-label>
+                          <input matInput  required formControlName="new_password" type="password">
+                        <mat-icon matSuffix>lock</mat-icon>
+                      </mat-form-field>
+                  </div>
+                  <div class="row" >
+                      <mat-form-field appearance="fill" class="example-full-width">
+                          <mat-label>Re-Enter New Password</mat-label>
+      
+                          <input matInput  required formControlName="confirm_password" type="password">
+                        <mat-icon matSuffix>lock</mat-icon>
+                      </mat-form-field>
+                  </div>
+                 
+                  <div class="row mb-2" >
+                      <button mat-raised-button class="order-button cursor-pointer" (click)="ChangePassword()">Change Password</button>
+                  </div>
+              </form>
+              </div>
+              <div class="col-md-7 d-none d-md-block d-lg-block">
+                <div class="card mt-2">
+                  <img src="https://static.goanywhere.com/img/blog-images/2017/08/Untitled%20design.jpg" height="220"/>
+                </div>
+              </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

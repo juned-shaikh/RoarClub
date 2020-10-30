@@ -41,7 +41,7 @@ const routes: Routes = [
         component:CheckoutComponent
       },
       {
-        path:"profile-page",
+        path:"client-info",
         component:ProfilePageComponent
       }
     ],

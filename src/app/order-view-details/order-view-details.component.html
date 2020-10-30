@@ -1,0 +1,199 @@
+<div class="container-fluid">
+      <div class="row justify-content-center mt-1">
+        <div class="col-md-12">
+          <h6 class="text-info font-weight-600"><i class="fab fa-first-order-alt"></i> Order No.  {{orderDetails.order_number}}</h6>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+       <div class="col-md-12 col-lg-12 mt-1" *ngFor="let orderDetail of orderDetails.order_inventory;let n=index">
+        <div  class=" card " >
+
+          <div class="row mt-2 ">
+
+         <div class="col-lg-2">
+             <div class="cursor-pointer p-2" style="height: 160px; overflow: hidden;"  (click)="view_product2(orderDetail.product.meta_title, orderDetail.product.product_no,orderDetail.product.slug,orderDetail.product.quick_product_check);modal.dismiss('Cross click')" title="View Product">
+               <img
+                 src="{{ orderDetail.product_image.image_link }}"
+                 height="120"
+                 width="120" class=""
+                 onerror="this.src='assets/img/favicon1.png';"
+               />
+             </div>
+         </div>
+         <div class="col-lg-6">
+           <!-- <div class="row justify-content-center">
+             <div class="col-md-12">
+             <h6 class="text-muted">Product Detail</h6>
+           </div>
+           </div> -->
+           <div class="row">
+             <div class="col-lg-12 " title="{{ orderDetail.product.name }}">
+               <span class=" details font-weight-600"> {{ (orderDetail.product.name.length>40)? (orderDetail.product.name | slice:0:40)+'...':(orderDetail.product.name) }} </span
+               >
+
+              
+             </div>
+           </div>
+           <div class="row">
+             <div class="col-lg-12 " title="{{ orderDetail.product.heading }}">
+               <span class=" details1  text-muted">   {{ (orderDetail.product.heading.length>40)? (orderDetail.product.heading | slice:0:40)+'...':(orderDetail.product.heading) }} </span
+               > 
+            
+               
+             </div>
+           </div>
+           <div class="row">
+             <div class="col-lg-6 details">
+               <div
+               class=""
+               click="view_product(orderDetail.product.product_no,orderDetail.product.quick_product_check)"
+             >
+            
+             
+               <div>
+                 <span class="details">Quantity :</span>
+                 {{ orderDetail.qty }}
+               </div>
+               <div>
+                 <span class="details">Model :</span>
+                 {{ orderDetail.product.model }}
+               </div>
+             
+               <div>
+                 <span class="details">HSN Code :</span>
+                 {{ orderDetail.product.hsncode }}
+               </div>
+               <!-- <div>
+                 <span class="details">Type: </span
+                 >{{ orderDetail.product_rate.name }}
+               </div> -->
+               <div class="">
+                 <span class="details d-flex">Shipping Charge :  ₹  {{ orderDetail.product_rate.pro_shipping_amt }}</span> 
+                
+               </div>
+             </div>
+             </div>
+             <!-- <div class="col-lg-6">
+             
+ 
+               <div class="">
+                 <span class="details">MRP : </span> ₹
+                 {{ orderDetail.product.mrp }}
+               </div>
+               <div class="">
+                 <span class="details"> Tax Rate : </span>
+                 {{ orderDetail.product.tax_rate }}%
+               </div>
+               <div class="">
+                 <span class="details">Amount : </span> ₹
+                 {{ orderDetail.product_rate.rate }}
+               </div>
+              
+               <div class="">
+                 <span class="details">Discount  : </span> ₹
+                 {{ orderDetail.product_rate.discount_amt }}
+               </div>
+             
+             </div> -->
+           </div>
+       
+         </div>
+         <div class="col-lg-4 details" >
+           <div
+             class=""
+           >
+             <h6 class="text-muted">Price Detail</h6>
+
+           
+             <!-- <div>
+               <span class="details">Type: </span
+               >{{ orderDetail.product_rate.name }}
+             </div> -->
+             <!-- <div>
+               <span class="details">Qty:</span> {{ orderDetail.qty }}
+             </div> -->
+
+             <div class="">
+               <span class="details">Total MRP : </span> ₹ {{ orderDetail.product_rate.total_mrp }}
+             </div>
+             <div class="">
+               <span class="details">Total Amount : </span> ₹
+               {{ orderDetail.product_rate.inventory_total_amt }}
+             </div>
+
+             <div class="">
+               <span class="details">Discount  : </span> ₹
+               {{ orderDetail.product_rate.discount_total_amt }}
+             </div>
+              <div *ngIf="orderDetail.product_rate.promo_code_discount!=0 && orderDetail.product_rate.promo_code_discount!=null" class=""> <span class="details">Promo Code Discount : </span> ₹{{ orderDetail.product_rate.promo_code_discount }}</div>
+            
+             <div class="">
+               <span class="details">Net Amount : </span> ₹
+               {{ orderDetail.product_rate.net_amt }}
+             </div>
+             <!-- <div class="">
+               <span class="details">Shipping Charge : </span> ₹
+               {{ orderDetail.product_rate.shipping_amt }}
+             </div> -->
+             <br />
+
+           </div>
+         </div>
+       
+         <!-- <hr width="50%" size="8" align="center"> -->
+         <br>
+       </div>
+       </div>
+       </div>
+      </div>
+        <div class="row justify-content-center mt-2">
+        <div class="col-lg-12 ">
+          <!-- <h5 class="p-1">Address Details:</h5> -->
+
+<div class="row justify-content-center">
+  <div class="col-md-10 border-bottom border-top pt-2 pb-2">
+    <h6 class="text-muted font-weight-400">Updated sent to</h6>
+   
+       <h5 class="font-weight-400"><i class="fas fa-phone text-muted"></i> {{ orderDetails.billing_address.contact_no }}</h5>
+       <h6 class="font-weight-400"><i class="far fa-envelope"></i> {{ orderDetails.billing_address.email }}</h6>
+  </div>
+</div>
+<div class="row justify-content-center" *ngIf="orderDetails.billing_address">
+  <div class="col-lg-10 border-bottom pt-2 pb-2">
+    <h6 class="text-muted font-weight-400 pb-2"><i class="fas fa-location-arrow"></i> Billing Address</h6>
+    <h6 class="font-weight-600">
+      {{ orderDetails.billing_address.receiver_name }}
+    </h6>
+    <h6 class="font-weight-400">
+      {{ orderDetails.billing_address.line1 }},{{
+        orderDetails.billing_address.line2
+      }}<br />
+      {{ orderDetails.billing_address.city }},
+      {{ orderDetails.billing_address.state }}<br />
+      {{ orderDetails.billing_address.country }}
+    </h6>
+  </div>
+</div>
+
+<div class="row justify-content-center" *ngIf="orderDetails.shipping_address">
+  <div class="col-lg-10 border-bottom pt-2 pb-2">
+    <h6 class="text-muted font-weight-400 pb-2"><i class="fas fa-street-view"></i> Shipping Address</h6>
+    <h6 class="font-weight-600">
+      {{ orderDetails.shipping_address.receiver_name }}
+    </h6>
+    <h6 class="font-weight-400">
+      {{ orderDetails.shipping_address.line1 }},{{
+        orderDetails.shipping_address.line2
+      }}<br />
+      {{ orderDetails.shipping_address.city }},
+      {{ orderDetails.shipping_address.state }}<br />
+      {{ orderDetails.shipping_address.country }}
+    </h6>
+  </div>
+</div>
+
+          
+        </div>
+      </div>
+
+</div>

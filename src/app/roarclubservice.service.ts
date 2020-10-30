@@ -426,6 +426,17 @@ pincode_country_state_city_api(data){
     return this.https.post(this.baseUrl + "user/insert_product_visit_log", data);
 
 }
+fetch_order_with_orderrandomid(data){
+  return this.https.post(this.baseUrl + "user/fetch_order_with_orderrandomid", data);
+
+}
+fetch_order_detail_without_token(data){
+  return this.https.post(this.baseUrl + "user/fetch_order_detail_without_token", data);
+
+}
+getOrdersHistory(data) {
+  return this.https.post(this.baseUrl + "user_log/fetch_orders", data);
+}
   get_host_link(data){
     return this.https.post(this.baseUrl + "user/get_host_link", data);
 

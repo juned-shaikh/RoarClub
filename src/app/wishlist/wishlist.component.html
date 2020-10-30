@@ -1,0 +1,70 @@
+<div class="container-fluid">
+<div class="container mb-4 mt-4">
+    <div class="row">
+       
+        <!-- Wishlist-->
+        <div class="col-lg-12 pb-2" >
+
+
+             <div *ngIf="!wishlist">
+      <div class="text-center" style="padding: 0% 0;">
+        <mat-card-content>
+         <h5 class="text-center">YOUR WISHLIST IS EMPTY</h5>
+         <p class="text-muted" style="font-size: 14px;">Add items that you like to your wishlist. Review them anytime <br>and easily move them to the cart.</p>
+<div class="row example-button-row justify-content-center">
+  <img src="https://img.icons8.com/cute-clipart/64/000000/wish-list.png" height="70"/>
+</div>
+
+          <div class="example-button-row pt-4 ">
+
+            <button routerLink="/" style="font-size: 15px;" class="text-uppercase font-wieght-600 pt-1 pb-1 pl-3 pr-3 border border-info text-success">
+              Continue Shopping
+            </button>
+          </div>
+        </mat-card-content>
+      </div>
+    </div>
+
+            <div class="row mt-3 justify-content-start">
+                <div class="col-md-12 " *ngFor = "let pwl of wishlist" >
+            
+         
+            <!-- Item-->
+            <div class="cart-item d-md-flex justify-content-between"><span (click)="deleteFromWishlist(pwl.wishlist_num)" class="remove-item" title="delete"><i class="fa fa-times"></i></span>
+                <div class="px-3 my-3">
+                    <a class="cart-item-product">
+                        <div class="cart-item-product-thumb cursor-pointer" (click)="view_product(pwl.product.meta_title, pwl.product.product_no,pwl.product.slug,pwl.product.quick_product_check)" matTooltip="View Product">
+                          <img src="{{pwl.product_image.image_link}}"  class="img-fluid"  onerror="this.src='assets/img/favicon1.png';" alt="Product">
+                        
+                        </div>
+                        <div class="cart-item-product-info row">
+                         
+                          <div class="col-md-8">  
+                            <h4 class="cart-item-product-title ">{{pwl.product.name | titlecase}}</h4>
+                         
+                            <h6 class="cart-item-product-title2"><span>Model :</span>  {{pwl.product.model}}</h6>
+                            <span *ngIf="pwl.product_rate[0].is_rent== '1'" class="for-you">{{pwl.product_rate[0].name}} @  {{pwl.product_rate[0].rate }}  </span>
+                            <span *ngIf="pwl.product_rate[0].is_rent!='2'" class="for-you">Buy @  {{pwl.product_rate[0].rate }}  </span>
+                            <span class="for-you" *ngIf="pwl.product_rate[0].rate !== pwl.product.mrp"><del>MRP  : {{pwl.product.mrp | currency:"₹"}} </del></span>
+                            <span *ngIf="pwl.product_rate[0].is_rent=='2'" class="for-you">Buy @  {{pwl.product_rate[1].rate }} </span>
+                            <h5 *ngIf="pwl.product_rate[0].rate !== pwl.product_rate.mrp" class="font-wieght-bold  for-you text-primary">Discount : {{pwl.product_rate[0].discount_percent | number}}%</h5></div>
+                          <div class="col-md-4 mt-5" style="width: 250px; "> <span  class="mt-3" mat-raised-button  (click)="addToCart(pwl);addtocartFromWishlist(pwl.wishlist_num)"  title="Add to Cart"> <span style="border-radius: 9px;" class="cursor-pointer border p-2 bg-info text-white"><i class="fa fa-shopping-cart"></i> Add To Cart</span></span>
+                          </div>
+                            
+
+                          
+
+
+
+                                                     </div>
+
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+          
+        </div>
+    </div>
+</div>
+</div>

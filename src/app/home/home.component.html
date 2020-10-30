@@ -105,7 +105,7 @@
       <div class="" style="background: white; cursor: pointer;" >
   
         <div class=" circular-image-brand" (click)="navigateCategory(brand.name,brand.brand_id)">
-          <img src="{{brand.thumbnail_sml_location}}" onerror="this.src='https://ap2-prod-images.disco-api.com/2020/2/24/d4cfb8ac-9ee1-4af5-a175-81790d55ebb9.jpg';" class="brand-image" style="width: 100%;" height="150px">
+          <img src="{{brand?.thumbnail_sml_location}}" onerror="this.src='https://ap2-prod-images.disco-api.com/2020/2/24/d4cfb8ac-9ee1-4af5-a175-81790d55ebb9.jpg';" class="brand-image" style="width: 100%;" height="150px">
       </div>
   
         <!-- <img  src="{{ nprd2.gallery.medium_thumbnail_link }}" width="220px" height="150px" > -->
@@ -153,7 +153,7 @@
           <div class="card" style="margin: auto;  height:450px ;">
             <div class="card_image" width="100%">
               <img
-              src="{{ nprd2.gallery.medium_thumbnail_link }}" width="400px" height="300px" (click)="view_product(nprd2.meta_title, nprd2.product_no,nprd2.slug,nprd2.quick_product_check)"
+              src="{{ nprd2.gallery?.medium_thumbnail_link }}" width="400px" height="300px" (click)="view_product(nprd2.meta_title, nprd2.product_no,nprd2.slug,nprd2.quick_product_check)"
            
               
               alt="Product Image"
@@ -315,7 +315,7 @@
     " *ngFor="let nprd of newproduct">
     <div class="card_image" width="100%">
       <img
-      src="{{nprd.gallery.medium_thumbnail_link}}" style="height:300px"
+      src="{{nprd.gallery?.medium_thumbnail_link}}" style="height:300px"
       onerror="this.src='https://assets.myntassets.com/dpr_2,q_60,w_210,c_limit,fl_progressive/assets/images/3736649/2018/3/12/11520834456858-na-6651520834456691-1.jpg';"
       alt="Product Image"  (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)"
     />
@@ -484,7 +484,7 @@
       <div class="card "  style="color: white;height:450px" >
         <div class="card_image" width="100%">
         <img
-        src="{{ nprd3.gallery.medium_thumbnail_link }}"
+        src="{{ nprd3.gallery?.medium_thumbnail_link }}"
         style="height: 300px;"
         onerror="this.src='https://assets.myntassets.com/dpr_2,q_60,w_210,c_limit,fl_progressive/assets/images/3736649/2018/3/12/11520834456858-na-6651520834456691-1.jpg';"
         alt="Product Image"
