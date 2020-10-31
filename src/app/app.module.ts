@@ -56,10 +56,12 @@ import { OrderComponent } from './order/order.component';
 import { OrderViewDetailsComponent } from './order-view-details/order-view-details.component';
 import { AddressComponent } from './address/address.component';
 import { ClientaddressComponent } from './clientaddress/clientaddress.component';
+import { CustomerProfileComponent } from './customer-profile/customer-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
     ClientaddressComponent,
+    CustomerProfileComponent,
     HeaderComponent,
     AddressComponent,
     // ChangePasswordComponent,

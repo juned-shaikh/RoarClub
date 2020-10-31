@@ -77,7 +77,7 @@ export class CheckoutStatusComponent implements OnInit {
                 .navigateByUrl("/RefrshComponent", {
                   skipLocationChange: true
                 })
-                .then(() => this.router.navigate(["/home_profile/orders"]));
+                .then(() => this.router.navigate(["/client-info"]));
 
               }
                    

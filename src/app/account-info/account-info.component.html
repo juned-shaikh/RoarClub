@@ -1,14 +1,14 @@
-<div class="container">
+<div class="container mt-1">
      <div class="row justify-content-center" >
         <div class="col-md-11 mt-2 mb-1 col-11">
-            <div class="row  justify-content-between pb-2 cursor-pointer" >
-                <h6 class="font-weight-500  pl-2 text-primary cursor-pointer" matTooltip="Change Password">Change Password</h6>  
-                <span (click)="showchangepass()" class="border  pl-2 pr-2 border" matTooltip="cancel">cancel</span>
+            <div class="row  justify-content-start pb-2 cursor-pointer" >
+                <h4 class="font-weight-500  pl-2  cursor-pointer" matTooltip="Change Password">Change Password</h4>  
+                
             </div>
             <div class="row">
               <div class="col-md-5">
                 <form [formGroup]= "Changepassword">
-                  <div class="row mt-2" >
+                  <div class="row mt-1" >
                       <mat-form-field appearance="fill" class="example-full-width">
                           <mat-label>Enter Current Password</mat-label>
                           <input matInput  required formControlName="old_password" type="password">
@@ -36,11 +36,11 @@
                   </div>
               </form>
               </div>
-              <div class="col-md-7 d-none d-md-block d-lg-block">
+              <!-- <div class="col-md-7 d-none d-md-block d-lg-block">
                 <div class="card mt-2">
-                  <img src="https://static.goanywhere.com/img/blog-images/2017/08/Untitled%20design.jpg" height="220"/>
+                  <img src="https://www.kindpng.com/picc/m/200-2005293_lock-password-icon-hd-png-download.png" height="220"/>
                 </div>
-              </div>
+              </div> -->
             </div>
             
         </div>

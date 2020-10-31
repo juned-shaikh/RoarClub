@@ -50,12 +50,9 @@ public orders: any = null;
 
   sendOrderId(order_id,order_item_id,orderRandomId){
    
-   console.log(orderRandomId);
-   console.log(order_id);
-   console.log(order_item_id);
     sessionStorage.setItem('order_id',order_id);
     sessionStorage.setItem('order_item_id', order_item_id)
-    this.router.navigate(['/home_profile/order-details',orderRandomId]);
+    this.router.navigate(['/order-details',orderRandomId]);
 
 
 }

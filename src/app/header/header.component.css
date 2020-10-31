@@ -16,7 +16,15 @@
     pointer-events: none;
 }
 
-
+.sub-cat{
+  color: white!important;
+  width: 100%;
+}
+.sub-cat:hover{
+  background-color: white;
+  color: #000000!important;
+  width: 100%;
+}
 .navbar {
     font-size: 18px;
     background: #000000!important;
@@ -194,7 +202,7 @@
   /* .searchbar:hover {
     width: 27rem;
     height: 6rem;
-  }
+  }bhai mega menu may dekho uska xolor chng kaise hua css may
   */
   /* .button {
     height: 2rem;
@@ -284,11 +292,44 @@
 			margin:0; 
 		}
 		.megasubmenu{ 
-			left:100%; top:0; min-height: 100%; min-width:500px;
-		}
+			left:100%; top:0; min-height: 100%; min-width:1000px;
+    }
+  
 		
 		.dropdown-menu > li:hover .megasubmenu{
 			display: block;
 		}
-    /* new hover dropdown */
- 
+    /* new hover dropdown*/
+   
+    main-nav a:hover{
+      padding: 1px 1px;
+        background: linear-gradient(to left, #4E50B3, #2ceedc)!important;
+    }
+   
+
+    li a:hover{
+      cursor:pointer;
+      
+        background: linear-gradient(to left,white)!important;
+        color:   #4E50B3;
+        position: relative;
+        display: inline-block;
+        border-bottom: 1px dotted white; 
+    }
+      .dropdown-menu > li:hover .megasubmenu{
+        display: block;
+        
+      }
+li a:hover{
+        background:white ;
+        color:  #4E50B3;
+        }  
+        li .dropdown-item{
+          color: white;
+       
+        } 
+        .dropdown-menu{
+          background-color:#202328;
+        }
+       
+    /* :start */
