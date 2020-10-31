@@ -10,6 +10,8 @@ import { RegistrationComponent } from './registration/registration.component';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { OurBrandComponent } from './our-brand/our-brand.component';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { OrderViewDetailsComponent } from './order-view-details/order-view-details.component';
 
  
 const routes: Routes = [
@@ -38,7 +40,17 @@ const routes: Routes = [
       {
         path:"checkout",
         component:CheckoutComponent
+      },
+      {
+        path:"client-info",
+        component:ProfilePageComponent,
+       
+      }, {
+        path: "order-details/:id",
+        component:OrderViewDetailsComponent,
       }
+     
+
     ],
  },
 

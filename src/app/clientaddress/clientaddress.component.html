@@ -1,0 +1,531 @@
+<mat-card style="background: #000000;" class="mt-3">
+    <div class="row justify-content-center">
+      <div class="col-md-12 ">
+        <button mat-raised-button class="order-button ml-1"  (click)="openXl(content)"> <mat-icon>add</mat-icon>&nbsp; Add Address</button>
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="col-lg-12">
+
+<!-- billing check start -->
+<mat-radio-group aria-label="Modes" >
+          <div
+            class="row mt-3" style="width: 98%;"  *ngFor="let address1 of address; let i = index"
+            
+          >
+            <div class="col-md-12  add-more" style="background: #4d4c4c; border-radius: 12px;">
+              <div class="row cursor-pointer    font-weight-400 mt-1 mb-1" >
+               <div class="col-md-11 col-6" >
+                <!-- <div class="form-check ">
+                  <label class="form-check-label">
+                    <mat-radio-button   class="text-info"
+                      matTooltip="Billing Address "
+                      [checked]="true"
+                      >  Billing Address 
+                    </mat-radio-button>
+                  </label>
+                </div> -->
+             
+               </div>
+            
+              <div class="d-flex justify-content-end col-md-1 pt-1 col-6">
+                <div class="dropdown dropleft">
+                  <a
+                    id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i
+                      class="fa fa-ellipsis-v cursor-pointer text-muted"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                  <div
+                    class="dropdown-menu"
+                    aria-labelledby="dropdownMenuButton"
+                  >
+                    <a
+                      class="dropdown-item cursor-pointer"
+                      (click)="
+                        openXl(content2);
+                        getAddressSpecific(address1.address_no)
+                      "
+                      ><i class="fas fa-pencil-alt text-success"></i>  Edit</a
+                    >
+                    <a
+                      class="dropdown-item cursor-pointer"
+                      (click)="removeAddress(address1.address_no)"
+                      ><i class="fas fa-trash-alt text-danger"></i>  delete</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+              <div class="row pl-3">
+                <h6 class="font-weight-500">
+                  {{ address1.receiver_name }}
+                </h6>
+                <h5 class="font-weight-400 ml-5">
+                  {{ address1.contact_no }}
+                </h5>
+              </div>
+              <div class="row pl-3">
+                <p class="font-weight-400">
+                  {{ address1.line1 }},{{ address1.line2 }},
+                  {{ address1.city }}, <br />{{ address1.state }},
+                  {{ address1.country }} -<span class="font-weight-500"
+                    >{{ address1.pin_code }}
+                  </span>
+                </p>
+              </div>
+              <div class="row pl-3">
+                <p>{{ address1.email }}</p>
+             
+              </div>
+            </div>
+          </div>
+        </mat-radio-group>
+        
+<!-- billing check end -->
+        <mat-radio-group aria-label="Modes" *ngIf="addresses !=null">
+          <div
+            class="row mt-3" style="width: 98%;"
+            *ngFor="let address of addresses; let i = index" 
+          >
+            <div class="col-md-12  add-more" style="background: #f7f7f7; border-radius: 12px;">
+              <div class="row cursor-pointer    font-weight-400 mt-1 mb-1" >
+               <div class="col-md-11 col-6" >
+                <!-- <div class="form-check ">
+                  <label class="form-check-label">
+                    <mat-radio-button   (click)="addShippingAddress(i)" class="text-info"
+                      matTooltip="Deliver Here "
+                      value="{{ address.address_no }}"
+                      >  Deliver Here 
+                    </mat-radio-button>
+                  </label>
+                </div> -->
+             
+               </div>
+            
+              <div class="d-flex justify-content-end col-md-1 pt-1 col-6">
+                <div class="dropdown dropleft">
+                  <a
+                    id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i
+                      class="fa fa-ellipsis-v cursor-pointer text-muted"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                  <div
+                    class="dropdown-menu"
+                    aria-labelledby="dropdownMenuButton"
+                  >
+                    <a
+                      class="dropdown-item cursor-pointer"
+                      (click)="
+                        openXl(content2);
+                        getAddressSpecific(address.address_no)
+                      "
+                      ><i class="fas fa-pencil-alt text-success"></i>  Edit</a
+                    >
+                    <a
+                      class="dropdown-item cursor-pointer"
+                      (click)="removeAddress(address.address_no)"
+                      ><i class="fas fa-trash-alt text-danger"></i>  delete</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+              <div class="row pl-3">
+                <h6 class="font-weight-500">
+                  {{ address.receiver_name }}
+                </h6>
+                <h5 class="font-weight-400 ml-5">
+                  {{ address.contact_no }}
+                </h5>
+              </div>
+              <div class="row pl-3">
+                <p class="font-weight-400">
+                  {{ address.line1 }},{{ address.line2 }},
+                  {{ address.city }}, <br />{{ address.state }},
+                  {{ address.country }} -<span class="font-weight-500"
+                    >{{ address.pin_code }}
+                  </span>
+                </p>
+              </div>
+              <div class="row pl-3">
+                <p>{{ address.email }}</p>
+             
+              </div>
+            </div>
+          </div>
+        </mat-radio-group>
+        
+      </div>
+
+<!-- <div class="col-lg-3">
+<div class="row justify-content-center">
+<div 
+class="col-md-11  col-12 mx-auto mt-auto mb-auto"
+
+>
+<button mat-raised-button class="order-button "  (click)="openXl(content)"> <mat-icon>add</mat-icon> Address</button>
+
+</div>
+</div>
+</div> -->
+
+    </div>
+  
+  </mat-card>
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h6 class="modal-title font-weight-600" id="modal-basic-title" align="center">
+        Add Address
+      </h6>
+  
+      <mat-icon
+        class="text-danger cursor-pointer"
+        title="close"
+        (click)="modal.dismiss('Cross click')"
+        >close</mat-icon
+      >
+    </div>
+    <!-- modal body starts -->
+    <div class="modal-body ">
+      <div class="container">
+        <form [formGroup]="registerForm">
+          <div class="row">
+            <div class="col-md-6">
+              <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>Contact Person Name</mat-label>
+                <input
+                  matInput
+                  placeholder="Contact Person Name"
+                  formControlName="receiver_name"
+                  required
+                />
+                <mat-icon matSuffix>how_to_reg</mat-icon>
+              </mat-form-field>
+            </div>
+            <div  class="col-md-6">
+              <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>Contact No.</mat-label>
+                <input
+                  matInput
+                  placeholder="Contact No."
+                  formControlName="contact_no"  type="number"
+                  required
+                />
+                <mat-icon matSuffix>call</mat-icon>
+              </mat-form-field>
+            </div>
+  
+           
+          </div>
+        
+          <div class="row">
+            <div class="col-md-6">
+              <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>Address Line1</mat-label>
+                <input
+                  matInput
+                  placeholder="Address Line1"
+                  formControlName="line1"
+                  required
+                />
+                <mat-icon matSuffix>streetview</mat-icon>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field appearance="fill" class="example-full-width">
+                  <mat-label>Address Line2</mat-label>
+                  <input
+                    matInput
+                    placeholder="Address Line2"
+                    formControlName="line2"
+                    
+                  />
+                  <mat-icon matSuffix>streetview</mat-icon>
+                </mat-form-field>
+              </div>
+          </div>
+          
+           <div class="row">
+            <div class="col-md-6">
+              <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>Pin Code</mat-label>
+                <input (keyup)="pincode_api($event.target.value)"
+                  matInput type="number"
+                  placeholder="Pin Code"
+                  formControlName="pin_code"
+                  required
+                />
+                <mat-icon matSuffix>fiber_pin</mat-icon>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>Landmark</mat-label>
+                <input
+                  matInput
+                  placeholder="Landmark"
+                  formControlName="landmark"
+                  
+                />
+                <mat-icon matSuffix>streetview</mat-icon>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              
+                <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>State</mat-label>
+                <input
+                  matInput
+                  placeholder="State"
+                  formControlName="state"
+                  required 
+                />
+                <mat-icon matSuffix>streetview</mat-icon>
+              </mat-form-field>
+            </div>
+  
+            <div class="col-md-6">
+            
+                         <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>City</mat-label>
+                <input
+                  matInput
+                  placeholder="City"
+                  formControlName="city"
+                  required 
+                />
+                <mat-icon matSuffix>streetview</mat-icon>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+           
+            <div *ngIf="flagEmail==1" class="col-md-6 ">
+              <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input
+                  matInput
+                  placeholder="Email"
+                  formControlName="email"
+                  
+                />
+                <mat-icon matSuffix>email</mat-icon>
+              </mat-form-field>
+            </div>
+  
+             <div *ngIf="flagEmail==0" class="col-md-6 mt-4">
+              <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input
+                  matInput
+                  placeholder="Email"
+                  formControlName="email" 
+                  
+                />
+                <mat-icon matSuffix>email</mat-icon>
+              </mat-form-field>
+            </div>
+          </div>
+  
+          <div class="modal-footer text-center ml-auto mr-auto justify-content-center">
+            <button
+              class=" text-white order-button"
+              (click)="addAddress(); "
+              mat-raised-button
+              
+            >
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ng-template>
+  <!-- End add address -->
+  <!-- Start update address -->
+  
+  <ng-template #content2 let-modal>
+    <div class="modal-header">
+      <h6 class="modal-title font-weight-600" id="modal-basic-title" align="center">
+        Update Address
+      </h6>
+  
+      <mat-icon
+        (click)="modal.dismiss('Cross click')"
+        class="text-danger cursor-pointer"
+        >close</mat-icon
+      >
+    </div>
+    <!-- modal body starts -->
+    <div class="modal-body ">
+      <div class="container">
+        <form [formGroup]="registerForm2">
+            <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field appearance="fill" class="example-full-width">
+                    <mat-label>Contact Person Name</mat-label>
+                    <input
+                      matInput
+                      placeholder="Contact Person Name"
+                      formControlName="receiver_name"
+                      required
+                    />
+                    <mat-icon matSuffix>how_to_reg</mat-icon>
+                  </mat-form-field>
+                </div>
+                <div  class="col-md-6">
+                  <mat-form-field appearance="fill" class="example-full-width">
+                    <mat-label>Contact No.</mat-label>
+                    <input
+                      matInput
+                      placeholder="Contact No."
+                      formControlName="contact_no"  type="number"
+                      required
+                    />
+                    <mat-icon matSuffix>call</mat-icon>
+                  </mat-form-field>
+                </div>
+      
+               
+              </div>
+            
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field appearance="fill" class="example-full-width">
+                    <mat-label>Address Line1</mat-label>
+                    <input
+                      matInput
+                      placeholder="Address Line1"
+                      formControlName="line1"
+                      required
+                    />
+                    <mat-icon matSuffix>streetview</mat-icon>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field appearance="fill" class="example-full-width">
+                      <mat-label>Address Line2</mat-label>
+                      <input
+                        matInput
+                        placeholder="Address Line2"
+                        formControlName="line2"
+                        
+                      />
+                      <mat-icon matSuffix>streetview</mat-icon>
+                    </mat-form-field>
+                  </div>
+              </div>
+              
+               <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field appearance="fill" class="example-full-width">
+                    <mat-label>Pin Code</mat-label>
+                    <input (keyup)="pincode_api($event.target.value)"
+                      matInput type="number"
+                      placeholder="Pin Code"
+                      formControlName="pin_code"
+                      required
+                    />
+                    <mat-icon matSuffix>fiber_pin</mat-icon>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field appearance="fill" class="example-full-width">
+                    <mat-label>Landmark</mat-label>
+                    <input
+                      matInput
+                      placeholder="Landmark"
+                      formControlName="landmark"
+                      
+                    />
+                    <mat-icon matSuffix>streetview</mat-icon>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  
+                    <mat-form-field appearance="fill" class="example-full-width">
+                    <mat-label>State</mat-label>
+                    <input
+                      matInput
+                      placeholder="State"
+                      formControlName="state"
+                      required 
+                    />
+                    <mat-icon matSuffix>streetview</mat-icon>
+                  </mat-form-field>
+                </div>
+      
+                <div class="col-md-6">
+                
+                             <mat-form-field appearance="fill" class="example-full-width">
+                    <mat-label>City</mat-label>
+                    <input
+                      matInput
+                      placeholder="City"
+                      formControlName="city"
+                      required 
+                    />
+                    <mat-icon matSuffix>streetview</mat-icon>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+               
+                <div *ngIf="flagEmail==1" class="col-md-6 ">
+                  <mat-form-field appearance="fill" class="example-full-width">
+                    <mat-label>Email</mat-label>
+                    <input
+                      matInput
+                      placeholder="Email"
+                      formControlName="email"
+                      
+                    />
+                    <mat-icon matSuffix>email</mat-icon>
+                  </mat-form-field>
+                </div>
+      
+                 <div *ngIf="flagEmail==0" class="col-md-6 mt-4">
+                  <mat-form-field appearance="fill" class="example-full-width">
+                    <mat-label>Email</mat-label>
+                    <input
+                      matInput
+                      placeholder="Email"
+                      formControlName="email" 
+                      
+                    />
+                    <mat-icon matSuffix>email</mat-icon>
+                  </mat-form-field>
+                </div>
+              </div>
+          <div class="modal-footer text-center ml-auto mr-auto">
+            <button
+              class="order-button"
+              (click)="updateAddress(); "
+              mat-raised-button
+             
+            >
+              Update 
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ng-template>

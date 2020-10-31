@@ -7,8 +7,24 @@
 .header{
   margin-bottom: 6%;
 }
+.dropdown:hover>.dropdown-menu {
+  display: block;
+}
 
+.dropdown>.dropdown-toggle:active {
+  /*Without this, clicking will make it sticky*/
+    pointer-events: none;
+}
 
+.sub-cat{
+  color: white!important;
+  width: 100%;
+}
+.sub-cat:hover{
+  background-color: white;
+  color: #000000!important;
+  width: 100%;
+}
 .navbar {
     font-size: 18px;
     background: #000000!important;

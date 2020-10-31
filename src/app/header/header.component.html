@@ -1,6 +1,6 @@
 	
 <div class="header" style="background:#202328;">
-    <nav class="navbar" style="height: 70px;">
+    <nav class="navbar" style="height: 100px;">
       <label class="navbar-toggle" id="js-navbar-toggle" for="chkToggle">
               <i class="fa fa-bars"></i>
           </label>
@@ -23,8 +23,8 @@
         </li> -->
       
 <!-- <ul class="navbar-nav" style="list-style-type:none"> -->
-	<li  *ngFor="let category of categories2" style="color: antiquewhite;" class="nav-item dropdown">
-		<a class="nav-link " href="#" data-toggle="dropdown"  style="font-family: Cinzel Semi Bold;color: white;font-size: larger;"
+	<li  *ngFor="let category of categories2" style="color: antiquewhite;" class="nav-item dropdown ">
+		<a class="nav-link sub-cat"  data-toggle="dropdown"  style="font-family: Cinzel Semi Bold;color: white;font-size: larger;"
    > {{
     category.name
   }} </a>
@@ -33,7 +33,7 @@
         
         <a (click)="
         navigateCategory(category.name, category.category_no)
-      " title="{{ category.name }}" class="dropdown-item " href="#">{{category.name}} </a>
+      " title="{{ category.name }}" class="dropdown-item " >{{category.name}} </a>
     
       <div  *ngFor="let categoryi of category.sub_category"
       (click)="
@@ -43,12 +43,12 @@
                  <div class="col-6">
                        <h6 class="title"  style="font-family: Cinzel Semi Bold;color: cornflowerblue;font-size: larger;">Title Menu One</h6>
                          <ul *ngFor="let categoryi of category.sub_category" class="list-unstyled" style="font-family: Raleway Regular;">
-                             <li *ngIf="categoryi.sub_category2"><a (click)="
+                             <li *ngIf="categoryi.sub_category2" ><a (click)="
                               navigateCategory(
                                 categoryi.name,
                                 categoryi.category_no
                               )
-                            "  href="#"> {{
+                            " class="sub-cat" > {{
                               categoryi.name.length > 40
                                 ? (categoryi.name | slice: 0:40) + "..."
                                 : categoryi.name
@@ -63,7 +63,7 @@
                  <div class="col-6">
                      <h6 class="title" style="font-family: Cinzel Semi Bold;color: cornflowerblue;font-size: larger;">Title Menu Two</h6>
                          <ul class="list-unstyled" style="font-family: Raleway Regular;">
-                             <li *ngIf="categoryi.sub_category2" ><a *ngFor="let categoryj of categoryi.sub_category2" href="#"> {{
+                             <li *ngIf="categoryi.sub_category2" ><a *ngFor="let categoryj of categoryi.sub_category2" class="sub-cat"> {{
                               categoryj.name.length > 25
                                 ? (categoryj.name | slice: 0:25) + "..."
                                 : categoryj.name
@@ -123,7 +123,7 @@
         <li *ngIf="is_logged_out">
           <a routerLink="/login" style="list-style: none;" class="nav-links" >login </a>
         </li>
-        <li *ngIf="is_logged_in">
+        <li *ngIf="is_logged_in" routerLink="/client-info">
           <a routerLink="/" style="list-style: none;" class="nav-links" >  <i
             *ngIf="nm != null" 
             class="fas fa-user text-center"

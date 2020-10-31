@@ -2,28 +2,32 @@
 
 
 <hr>
-<div class="container bootstrap snippet">
+<div class="container bootstrap snippet card" style="min-height: 80vh; background: #636363;">
     <div class="row">
-      <div class="col-sm-10"><h1>User name</h1></div>
+      <div class="col-sm-10"><h3>Hello, {{userdata.name}}</h3></div>
       <div class="col-sm-2"><a href="/users" class="pull-right">
         <!-- <img title="profile image" class="img-circle img-responsive" src="http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100"> --></a></div>
     </div>
     <div class="row">
       <div class="col-sm-3"><!--left col-->
               
-
+       
       <div class="text-center">
-        <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+        <img 
+        src="{{userdata?.profile_image}}" onerror="this.src='http://ssl.gstatic.com/accounts/ui/avatar_2x.png'"
+        class="avatar img-circle img-thumbnail" alt="avatar">
 
-        <h6>Upload a different photo...</h6>
-        <input type="file" class="text-center center-block file-upload">
-      </div><br>
-
-               
-          <div class="panel panel-default">
-           
-            <div class="panel-body"><a href="http://bootnipets.com">Logout</a></div>
-          </div>
+        <!-- <h6>Upload a different photo...</h6> -->
+        <!-- <input type="file" class="text-center center-block file-upload"> -->
+      </div>
+      <h4 class="text-right" ><span><i class="fas fa-user-edit" (click)="edit()" style="cursor: pointer;" href="#home" data-toggle="tab"></i></span></h4>
+      <h3 class="mt-2" >Hello, {{userdata.name}} </h3>
+      <h5 *ngIf="userdata.mobile" class="d-flex"><i class="fas fa-phone-square-alt"></i>&nbsp; {{userdata.mobile}}</h5> 
+      <h5 *ngIf="userdata.email" class=""><i class="fas fa-envelope-open-text"></i>&nbsp; {{userdata.email}}</h5> 
+      <h5 class="" href="#home" data-toggle="tab"><a  (click)="showchangepass()" ><i class="fas fa-cog"></i>&nbsp; account-setting</a></h5>
+            <h5 class=""><a  (click)="logout()" ><i class="fas fa-user-lock"></i>&nbsp; Logout</a></h5>
+            
+          <!-- </div> -->
           
          
                
@@ -32,7 +36,7 @@
         </div><!--/col-3-->
       <div class="col-sm-9">
             <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#home">PROFILE SETTINGS</a></li>
+                <li class="active"><a data-toggle="tab">PROFILE SETTINGS</a></li>
                 <li><a data-toggle="tab" href="#ORDERS">ORDERS DETAILS</a></li>
                 <li><a data-toggle="tab" href="#ADDRESSES">ADDRESSES</a></li>
                 <li><a data-toggle="tab" href="#MY">MY WISHLIST</a></li>
@@ -41,165 +45,64 @@
               
           <div class="tab-content">
             <div class="tab-pane active" id="home">
-                
-                  <form class="form" action="##" method="post" id="registrationForm">
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="first_name"><h4>First name</h4></label>
-                              <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                            <label for="last_name"><h4>Last name</h4></label>
-                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
-                          </div>
-                      </div>
-          
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="phone"><h4>Phone</h4></label>
-                              <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">
-                          </div>
-                      </div>
-          
-                      <div class="form-group">
-                          <div class="col-xs-6">
-                             <label for="mobile"><h4>Mobile</h4></label>
-                              <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="email"><h4>Email</h4></label>
-                              <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="email"><h4>Location</h4></label>
-                              <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="password"><h4>Password</h4></label>
-                              <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                            <label for="password2"><h4>Verify</h4></label>
-                              <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                           <div class="col-xs-12">
-                                <br>
-                                <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                                <button class="btn btn-lg btn-warning" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
-                            </div>
-                      </div>
-                </form>
+                <div class="mat-card " *ngIf="shownamebox" style="background: #000000;">
+                  <div class="row " >
+                    <div class="col-md-1 p-3 col-3">
+                        <!-- <div class="card" style="border: none;">
+                            <img src="../../assets/img/customer-profile.png" height="150" width="150"/>
+                        </div> -->
+                        <!-- <div  *ngIf="userdata?.profile_image ==null || userdata?.profile_image =='default.png'"  style="border: none;">
+                            <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" height="150" width="150"/>
+                        </div>
+                        <div  *ngIf="userdata?.profile_image !=null && userdata?.profile_image !='default.png'"  class="user-profile">
+                            <img src="{{userdata?.profile_image}}" height="175" width="175" class="img-fluid">
+                        </div> -->
+                    </div>
+                    <div class="col-md-8 pt-3 pl-3 col-7">
+                        <form [formGroup]="updateprofile" style="background: grey;padding: 10px;">
+                            <mat-label  >User Name :</mat-label>&nbsp;&nbsp;
+                        <mat-form-field class="example-full-width " >
+                            <input matInput placeholder="User Name"  formControlName="name" value="{{userdata?.name}}" >
+                        </mat-form-field>
+                      
+                        
+                        <br/>
+                        <button mat-raised-button class=" order-button mt-2 " style="margin-left: 15%;" (click)="update()">Update</button>
+                        </form>
+                    </div>
+                    <div class="col-md-3 p-3 col-2">
+                        <span class="border p-1 text-uppercase cursor-pointer" style="    font-size: 10px;
+                        font-weight: 600;" (click)="cancel()" title="update">cancel</span>
+                    </div>
               
+                </div>
+                </div>
+                <!-- <app-customer-profile></app-customer-profile> -->
+              <app-account-info *ngIf="changepasssbox"></app-account-info>
               
               
              </div><!--/tab-pane-->
              <div class="tab-pane" id="ORDERS">
-               <div class="col-xs-12" style="text-align: center;">
-               <h2>There are no orders</h2>
-               
-               <img src="./assets/clipboard.png" width="200px" height="200px">
-               <div class="col-xs-12">
-               <button class="btn btn-lg btn-primary" ><i class="fa fa-shopping-bag"></i> START SHOPPING</button>
-           </div>
-             </div>
-               
+              <app-order></app-order>
                      
                
              </div><!--/tab-pane-->
+             
              <div class="tab-pane" id="ADDRESSES">
                 
-                
+               <app-clientaddress></app-clientaddress>
                   
-                  <form class="form" action="##" method="post" id="registrationForm">
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="first_name"><h4>ADDRESSES ONE</h4></label>
-                              <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                            <label for="last_name"><h4>ADDRESSES TWO</h4></label>
-                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
-                          </div>
-                      </div>
-                       <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                            <label for="last_name"><h4>PINCODE</h4></label>
-                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
-                          </div>
-                      </div>
-                       <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                            <label for="last_name"><h4>LANDMARK</h4></label>
-                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                            <label for="last_name"><h4>STATE</h4></label>
-                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
-                          </div>
-                      </div>
-                       <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                            <label for="last_name"><h4>CITY</h4></label>
-                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
-                          </div>
-                      </div>
-          <div class="form-group">
-                           <div class="col-xs-12">
-                                <br>
-                                <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                               
-                            </div>
-                      </div>
-                   
-                </form>
+                  
           
                
               </div><!--/tab-pane-->
 <!-- my whislist -->
  <div class="tab-pane" id="MY">
-               <div class="col-xs-12" style="text-align: center;">
-               <h2>YOUR WISHLIST IS EMPTY</h2>
-               <p>Add items that you like to your wishlist. Review them anytime
-and easily move them to the cart.</p>
-               
-               <hr><img src="./assets/wishlist.png" width="200px" height="200px">
-               <div class="col-xs-12">
-               <button class="btn btn-lg btn-success" type="submit"><i class="fa fa-shopping-cart"></i> CONTINUE SHOPPING </button>
-             </div>
-                 </div>
-                     
+   <app-wishlist></app-wishlist>
+              
                
              </div><!--/tab-pane-->
-
+           
 
           </div><!--/tab-content-->
 

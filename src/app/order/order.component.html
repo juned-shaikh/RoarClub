@@ -1,0 +1,304 @@
+
+ <div *ngIf="!loader" class="row justify-content-center" style="margin-top: 10%;">
+  <div class="col-md-4 text-center">
+  <img src="assets/img/loader.gif" height="200" width="200">
+  </div>
+  </div>
+<div *ngIf="loader">
+  <div class="orders " style="overflow:hidden;">
+    <div 
+      *ngIf="!noOrder || noOrder == false"  class="row justify-content-center mt-5 mb-5"  >
+      <div class="text-center col-md-7 ">
+        <mat-card-content> 
+          <img src="https://img.icons8.com/color/96/000000/order-history.png" height="100" width="100"/>
+          <h5 class="pt-3 order-head">There are no orders</h5>
+          <div class="example-button-row pt-4 pb-3">
+            <button
+              routerLink="/"
+              mat-raised-button
+              class="text-white bg-primary" 
+              matTooltip="Start Shopping"
+            >
+              Start Shopping <mat-icon class="arrow">double_arrow</mat-icon>
+            </button>
+          </div>
+        </mat-card-content>
+      </div>
+    </div>
+    <div *ngIf="noOrder"  class="container-fluid">
+      <!-- <div class="row mt-2">
+        <div class="col-md-6">
+          <h5 class="pl-2"><span class=" font-size-500">Order List :- </span></h5>
+        </div>
+      </div> -->
+      <div class="row justify-content-start mt-3">
+        <div *ngFor="let order of order_inventory" class=" mb-3 col-md-12">
+          <div class="card " style="background: #000000;">
+            <div>
+              <div class="container-fluid pt-2">
+                <div class="row">
+                  <div class="ml-1 font-weight-500 order_id">
+                   
+                     ORDER NO. :- {{ order.order_number }}
+                  </div>
+                  <div class="ml-auto mr-1  d-flex cursor-pointer " title="view order details"  (click)="
+                  sendOrderId(order.order_id, order.order_item_id,order.orderRandomId);
+                  
+                ">
+                  view details  <mat-icon
+                      class="text-info cursor-pointer arrow-right "
+                      matTooltip="view order details"
+                      (click)="
+                        sendOrderId(order.order_id, order.order_item_id,order.orderRandomId);
+                        
+                      "
+                      >chevron_right</mat-icon
+                    >
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 col-4 cursor-pointer" (click)="view_product2(order.product.meta_title, order.product.product_no,order.product.slug,order.product.quick_product_check)" matTooltip="View Product">
+                    <img
+                      
+                      class="order-image" style="height: 150px; width: 100%;"
+                      src="{{ order.product_image.medium_thumbnail_link }}"
+                      onerror="this.src='assets/img/favicon1.png';"
+                    />
+                  </div>
+
+                  <div class="col-md-8 col-8 product-details">
+                    <div class="font-weight-600">{{ order.product.name }}</div>
+                  
+                    <div class="font-size-13">
+                      Type : {{ order.product_rate.name }}
+                    </div>
+                    <div class="font-size-13">Qty : {{ order.qty }}</div>
+                    <div class="font-size-13">Rate : {{ order.product_rate.rate }}</div>
+                     <div *ngIf="order.product_rate.promo_code_discount!=0 && order.product_rate.promo_code_discount!=null" class="font-size-13">Promo code Discount : {{ order.product_rate.promo_code_discount }}</div>
+                    <div *ngIf="order.product_rate.net_amt != 0">
+                      Net Amount :
+                      ₹ {{ order.product_rate.net_amt  }}
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="container p-1 text-center ">
+                <div class="process">
+                           <div class="process-row nav nav-tabs">
+                             <div class="process-step " *ngFor="let order_status of order.status_flow; let i = index">
+                               <button
+                                 type="button"
+                                 class="btn btn-info btn-circle text-center" 
+                               > 
+                               <i class="fas fa-check-circle fa-1x text-center"></i>
+                              
+                               </button>
+                               <p><small>{{ order_status.status }}</small></p>
+                             </div>
+                             
+                             
+                             
+                           </div>
+                     </div>
+             
+              </div>
+              <!-- for rating -->
+               <!-- <div class="card-footer" >
+                 <div class="row">
+                   <div class="col-md-8">*****</div>
+                   <div class="col-md-4 text-center review-button-write">write review</div>
+                 </div>
+               </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- start order detail -->
+  <!-- start add tag -->
+
+  <ng-template #content2 let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title" id="modal-basic-title" align="center">
+        Order Detail
+      </h5>
+      <a aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <mat-icon class="cursor-pointer" title="close">close</mat-icon>
+      </a>
+    </div>
+    <!-- modal body starts -->
+    <div class="modal-body ">
+      <div class="container">
+        <mat-card>
+          <div *ngFor="let orderDetail of orderDetails.order_inventory;let n=index">
+             <div class="row">
+            
+
+            <div class="col-lg-4">
+               <!-- {{n+1}} -->
+              <div class="card" >
+                <div class="cursor-pointer" (click)="view_product2(orderDetail.product.meta_title, orderDetail.product.product_no,orderDetail.product.slug,orderDetail.product.quick_product_check);modal.dismiss('Cross click')" title="View Product">
+                  <img
+                    src="{{ orderDetail.product_image.image_link }}"
+                    height="300"
+                    width="300"
+                    onerror="this.src='assets/img/favicon1.png';"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4" >
+              <div
+                class=""
+                
+              >
+                <h6 class="p-1">Order Detail</h6>
+
+              
+                <div>
+                  <span class="details">Type: </span
+                  >{{ orderDetail.product_rate.name }}
+                </div>
+                <div>
+                  <span class="details">Qty:</span> {{ orderDetail.qty }}
+                </div>
+
+                <div class="">
+                  <span class="details">Total MRP : </span> ₹ {{ orderDetail.product_rate.total_mrp }}
+                </div>
+                <div class="">
+                  <span class="details">Total Amount : </span> ₹
+                  {{ orderDetail.product_rate.inventory_total_amt }}
+                </div>
+               
+                <div class="">
+                  <span class="details">Discount Total Amount : </span> ₹
+                  {{ orderDetail.product_rate.discount_total_amt }}
+                </div>
+                <div class="">
+                  <span class="details">Net Amount : </span> ₹
+                  {{ orderDetail.product_rate.net_amt }}
+                </div>
+                <div class="">
+                  <span class="details">Shipping Charge : </span> ₹
+                  {{ orderDetail.product_rate.shipping_amt }}
+                </div>
+                <br />
+
+                <span class="font-weight-500">Not Yet Delivered</span>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div
+                class=""
+                click="view_product(orderDetail.product.product_no,orderDetail.product.quick_product_check)"
+              >
+                <h6 class="p-1">Product Detail</h6>
+                <div>
+                  <span class=" details">Product : </span
+                  >{{ orderDetail.product.name }}
+                </div>
+                <div>
+                  <span class="details">Brand :</span>
+                  {{ orderDetail.product.brand_name }}
+                </div>
+                <div>
+                  <span class="details">Model :</span>
+                  {{ orderDetail.product.model }}
+                </div>
+                <div>
+                  <span class="details">Heading :</span>
+                  {{ orderDetail.product.heading }}
+                </div>
+                <div>
+                  <span class="details">HSN Code :</span>
+                  {{ orderDetail.product.hsncode }}
+                </div>
+             
+                <div>
+                  <span class="details">Type: </span
+                  >{{ orderDetail.product_rate.name }}
+                </div>
+
+                <div class="">
+                  <span class="details">MRP : </span> ₹
+                  {{ orderDetail.product.mrp }}
+                </div>
+                <div class="">
+                  <span class="details"> Tax Rate : </span>
+                  {{ orderDetail.product.tax_rate }}%
+                </div>
+                <div class="">
+                  <span class="details">Amount : </span> ₹
+                  {{ orderDetail.product_rate.rate }}
+                </div>
+               
+                <div class="">
+                  <span class="details">Discount Amount : </span> ₹
+                  {{ orderDetail.product_rate.discount_amt }}
+                </div>
+                <div class="">
+                  <span class="details">Shipping Charge : </span> ₹
+                  {{ orderDetail.product_rate.pro_shipping_amt }}
+                </div>
+              </div>
+            </div>
+            <hr width="50%" size="8" align="center">
+            <br>
+          </div>
+          </div>
+          <div class="col-lg-12 card">
+            <h5 class="p-1">Address Details:</h5>
+            <div class="row p-1">
+              <div *ngIf="orderDetails.billing_address" class="p-3">
+                <div class="details">Billing Address :</div>
+                <p>
+                  Name : {{ orderDetails.billing_address.receiver_name }}<br />
+                </p>
+                <p>
+                  {{ orderDetails.billing_address.line1 }},{{
+                    orderDetails.billing_address.line2
+                  }}<br />
+                  {{ orderDetails.billing_address.city }},
+                  {{ orderDetails.billing_address.state }}<br />
+                  {{ orderDetails.billing_address.country }}<br />
+                </p>
+                <p>
+                  Phone : {{ orderDetails.billing_address.contact_no }}<br />
+                  E-Mail : {{ orderDetails.billing_address.email }}
+                </p>
+              </div>
+              <div *ngIf="orderDetails.shipping_address" class="p-3">
+                <div class="details">Shipping Address :</div>
+                <p>
+                  Name : {{ orderDetails.shipping_address.receiver_name }}<br />
+                </p>
+                <p>
+                  {{ orderDetails.shipping_address.line1 }},{{
+                    orderDetails.shipping_address.line2
+                  }}<br />
+                  {{ orderDetails.shipping_address.city }},
+                  {{ orderDetails.shipping_address.state }}<br />
+                  {{ orderDetails.shipping_address.country }}<br />
+                </p>
+                <p>
+                  Phone : {{ orderDetails.shipping_address.contact_no }}<br />
+                  E-Mail : {{ orderDetails.shipping_address.email }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </mat-card>
+
+        <div class="modal-footer text-center ml-auto mr-auto"></div>
+      </div>
+    </div>
+  </ng-template>
+  <!-- End add tag -->
+
+  <!-- end order detail -->
+</div>
