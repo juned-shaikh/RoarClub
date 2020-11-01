@@ -1,12 +1,12 @@
 	
 <div class="header" style="background:#202328;">
-    <nav class="navbar" style="height: 100px;">
+    <nav class="navbar" style="height: 70px;">
       <label class="navbar-toggle" id="js-navbar-toggle" for="chkToggle">
               <i class="fa fa-bars"></i>
           </label>
      <!--  <a href="#" class="logo">logo</a> -->
   <!--    <img src="list.png" width=40px" style="color: white"> -->
-     <img src="./assets/1.png" width="120px" height="60px" routerLink="/">
+     <img src="./assets/1.png" width="120px" height="60px" routerLink="/" style="padding: 10px;">
       <input type="checkbox" id="chkToggle">
       <ul class="main-nav mr-auto" id="js-menu" style="list-style-type:none">
         <!-- <li  *ngFor="let category of categories2" style="color: antiquewhite;">
@@ -114,17 +114,17 @@
               
       </ul>
       <ul style="display: contents; " class="ml-auto">
-        <li style="list-style: none; text-decoration: none;" class="">
+        <li style="list-style-type:none; text-decoration: none;" class="">
           <div class="searchbar ">
             <input class="search_input" type="text" name="" placeholder="Search...">
             <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
           </div>
         </li>
         <li *ngIf="is_logged_out">
-          <a routerLink="/login" style="list-style: none;" class="nav-links" >login </a>
+          <a routerLink="/login" style="list-style-type:none;" class="nav-links" ><i class="fa fa-sign-in" aria-hidden="true"></i> </a>
         </li>
         <li *ngIf="is_logged_in" routerLink="/client-info">
-          <a routerLink="/" style="list-style: none;" class="nav-links" >  <i
+          <a routerLink="/" style="list-style-type:none;" class="nav-links" >  <i
             *ngIf="nm != null" 
             class="fas fa-user text-center"
             title="{{ nm }}"
@@ -140,8 +140,8 @@
         </li>
      &nbsp;&nbsp;
         <li style="list-style: none;" class="" routerLink="/cart">
-           <a>  <i class="fas fa-shopping-bag text-center">
-            <sup class="text-danger ">
+           <a> <i class="fas fa-shopping-cart text-center" >
+               <sup class="text-danger ">
               {{ cart }}
             </sup></i
           >
