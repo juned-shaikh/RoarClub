@@ -161,3 +161,120 @@ input[type=number]::-webkit-outer-spin-button {
     line-height: 2.5;
     width: 25px;
     }
+
+
+
+    .skin-2 .num-in {
+      background: #FFFFFF;
+      box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
+      border-radius: 25px;
+      height: 40px;
+      width: 110px;
+      float: left;
+    }
+    
+    .skin-2 .num-in	span {
+      width: 40%;
+      display: block;
+      height: 40px;
+      float: left;
+      position: relative;
+    }
+    
+    .skin-2 .num-in span:before, .skin-2 .num-in span:after {
+      content: '';
+      position: absolute;
+      background-color: #667780;
+      height: 2px;
+      width: 10px;
+      top: 50%;
+      left: 50%;
+      margin-top: -1px;
+      margin-left: -5px;
+    }
+    
+    .skin-2 .num-in span.plus:after {
+      transform: rotate(90deg);
+    }
+    
+    .skin-2 .num-in input {
+        float: left;
+        width: 20%;
+        height: 40px;
+        border: none;
+        text-align: center;
+    }
+    
+    /* / skin 2 */
+    
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    
+    /* Firefox */
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+    input:focus{
+      outline: none;
+      border: none;
+    }
+    .show-status{
+      text-align: center;
+      width: 97%;
+      display: none;
+      background: #f5f5f5ba;
+      /* padding-top: 0px; */
+      padding: 5px;
+      justify-self: center;
+      border-radius: 5px;
+      position: absolute;
+      color: red;
+      font-size: 16px;
+      font-weight: 600;
+      top: 30px;
+      left: 5px;
+      right: 5px;
+    }
+    .card_image:hover .show-status{
+      display: block;
+    }
+    .buy-now-button{
+      color: black!important;
+        border: 1.5px solid grey;
+        padding: 6px;
+        
+        border-top-left-radius: 9px;
+        border-bottom-right-radius: 11px;
+    }
+    .buy-now-button:hover{
+      transition: 1s;
+      box-shadow: 2px 2px grey;
+    }
+    #img1{
+      max-height: 280px; min-height: unset; height: -webkit-fill-available; -o-object-fit: contain;
+      object-fit: contain;
+      margin: none; width: 99%;
+      text-align: center;
+      vertical-align: middle;
+      position: inherit;
+    
+    }
+    #box-img1{
+      height: 280px; width: 100%; background: transparent; margin: none;    position: relative;
+    }
+    #imgpro{
+      max-height: 470px; min-height: unset; height: -webkit-fill-available; -o-object-fit: contain;
+      object-fit: contain;
+      margin: none; width: 99%;
+      text-align: center;
+      vertical-align: middle;
+      position: inherit;
+    
+    }
+    #box-imgpro{
+      border: 1px solid white!important;
+      height: 480px; width: 100%; background: transparent; margin: none;    position: relative;
+    }
