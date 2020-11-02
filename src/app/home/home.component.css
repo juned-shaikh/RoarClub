@@ -95,6 +95,26 @@ img {
 }
 
 
+/* #car-img{
+display: block;
+width: 100%;
+height: auto;
+  padding-top: 100%;
+position: relative;
+overflow: hidden;
+
+}
+#car-img img1{
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+} */
+
 .made_by{
   font-weight: 400;
   font-size: 13px;

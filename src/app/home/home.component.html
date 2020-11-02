@@ -151,9 +151,9 @@
       <ul class="cards"  >
         <li class="cards_item" *ngFor="let nprd2 of topSelling">
           <div class="card" style="margin: auto;  height:450px ;">
-            <div class="card_image" width="100%">
+            <div class="card_image" >
               <img
-              src="{{ nprd2.gallery?.medium_thumbnail_link }}" width="400px" height="300px" (click)="view_product(nprd2.meta_title, nprd2.product_no,nprd2.slug,nprd2.quick_product_check)"
+              src="{{ nprd2.gallery?.medium_thumbnail_link }}" width="400px"  height="300px" (click)="view_product(nprd2.meta_title, nprd2.product_no,nprd2.slug,nprd2.quick_product_check)"
            
               
               alt="Product Image"
@@ -482,10 +482,10 @@
   <div class="row justify-content-start">
     <div class="col-md-3" *ngFor="let nprd3 of discountS">
       <div class="card "  style="color: white;height:450px" >
-        <div class="card_image" width="100%">
+        <div class="card_image" width="100%" id="car-img">
         <img
         src="{{ nprd3.gallery?.medium_thumbnail_link }}"
-        style="height: 300px;"
+        style="height: 300px;" id="img1"
         onerror="this.src='https://assets.myntassets.com/dpr_2,q_60,w_210,c_limit,fl_progressive/assets/images/3736649/2018/3/12/11520834456858-na-6651520834456691-1.jpg';"
         alt="Product Image"
         (click)="view_product(nprd3.meta_title, nprd3.product_no,nprd3.slug,nprd3.quick_product_check)"
