@@ -81,12 +81,15 @@ img {
 }
 
 .card {
-  background-color:#202328;
-  border-radius: 1px;
-  box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
+  background-color:#000000;
+  border-radius: 6px;
+  box-shadow: 0 0 5px rgb(102, 101, 101);
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  height: 450px!important;
+  
+  padding: 10px;
 }
 
 .card_content {
@@ -95,16 +98,19 @@ img {
 }
 
 
-/* #car-img{
-display: block;
-width: 100%;
-height: auto;
-  padding-top: 100%;
-position: relative;
-overflow: hidden;
+#img1{
+  max-height: 280px; min-height: unset; height: -webkit-fill-available; -o-object-fit: contain;
+  object-fit: contain;
+  margin: none; width: 99%;
+  text-align: center;
+  vertical-align: middle;
+  position: inherit;
 
 }
-#car-img img1{
+#box-img1{
+  height: 280px; width: 100%; background: transparent; margin: none;    position: relative;
+}
+/* #car-img img1{
   display: block;
   max-width: 100%;
   max-height: 100%;
@@ -113,7 +119,7 @@ overflow: hidden;
   bottom: 0;
   left: 0;
   right: 0;
-} */
+}  */
 
 .made_by{
   font-weight: 400;
@@ -536,27 +542,6 @@ overflow: hidden;
     color: white;
  }
 
-  .button-minus{
-    color: #fff;
-    width: 27px;
-    /* width: 27px; */
-    line-height: 1;
-    height: 27px;
-    border-radius: 20px;
-    font-size: 18px;
-    /* background-color: #117a8b; */
-    background: linear-gradient(45deg, #6c0753, #d4474d);
-    /* border-color: #10707f; */
-  }
-  .Quantity-box{
-    /* background: white; */
-    /* position: absolute; */
-    visibility: visible;
-    bottom: 3px;
-    right: 0;
-    left: 0;
-   
-}
 .carousel-item img{
   height: 90vh;
   width: 100%;
@@ -595,4 +580,93 @@ overflow: hidden;
   /* transition-delay: 2s; */
    padding-right: 0;
   cursor: pointer;
+}
+.skin-2 .num-in {
+	background: #FFFFFF;
+	box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
+	border-radius: 25px;
+	height: 40px;
+	width: 110px;
+  float: left;
+}
+
+.skin-2 .num-in	span {
+  width: 40%;
+  display: block;
+  height: 40px;
+  float: left;
+  position: relative;
+}
+
+.skin-2 .num-in span:before, .skin-2 .num-in span:after {
+  content: '';
+  position: absolute;
+  background-color: #667780;
+  height: 2px;
+  width: 10px;
+  top: 50%;
+  left: 50%;
+  margin-top: -1px;
+  margin-left: -5px;
+}
+
+.skin-2 .num-in span.plus:after {
+  transform: rotate(90deg);
+}
+
+.skin-2 .num-in input {
+		float: left;
+		width: 20%;
+		height: 40px;
+		border: none;
+		text-align: center;
+}
+
+/* / skin 2 */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+input:focus{
+  outline: none;
+  border: none;
+}
+.show-status{
+  text-align: center;
+  width: 97%;
+  display: none;
+  background: #f5f5f5ba;
+  /* padding-top: 0px; */
+  padding: 5px;
+  justify-self: center;
+  border-radius: 5px;
+  position: absolute;
+  color: red;
+  font-size: 16px;
+  font-weight: 600;
+  top: 30px;
+  left: 5px;
+  right: 5px;
+}
+.card_image:hover .show-status{
+  display: block;
+}
+.buy-now-button{
+  color: white!important;
+    border: 1.5px solid grey;
+    padding: 6px;
+    
+    border-top-left-radius: 9px;
+    border-bottom-right-radius: 11px;
+}
+.buy-now-button:hover{
+  transition: 1s;
+  box-shadow: 2px 2px grey;
 }

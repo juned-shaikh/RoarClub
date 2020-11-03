@@ -1,6 +1,6 @@
 	
 <div class="header" style="background:#202328;">
-    <nav class="navbar" style="height: 70px;">
+    <nav class="navbar" style="height: 70px; box-shadow: 0 0 3px lightgray;">
       <label class="navbar-toggle" id="js-navbar-toggle" for="chkToggle">
               <i class="fa fa-bars"></i>
           </label>
@@ -27,52 +27,37 @@
 		<a class="nav-link sub-cat"  data-toggle="dropdown"  style="font-family: Cinzel Semi Bold;color: white;font-size: larger;"
    > {{
     category.name
-  }} </a>
+  }}</a>
 	    <ul class="dropdown-menu" style="font-family: Cinzel Semi Bold;color: cornflowerblue;font-size: larger;">
-		  <li class="has-submenu" *ngFor="let category of categories">
+		  <li class="has-submenu" *ngFor="let categoryi of category.sub_category">
         
         <a (click)="
         navigateCategory(category.name, category.category_no)
-      " title="{{ category.name }}" class="dropdown-item " >{{category.name}} </a>
+      " title="{{ category.name }}" class="dropdown-item " >{{categoryi.name}} </a>
     
       <div  *ngFor="let categoryi of category.sub_category"
       (click)="
         navigateCategory(category.name, category.category_no)
       " class="megasubmenu dropdown-menu">
-        <div class="row">
-                 <div class="col-6">
-                       <h6 class="title"  style="font-family: Cinzel Semi Bold;color: cornflowerblue;font-size: larger;">Title Menu One</h6>
-                         <ul *ngFor="let categoryi of category.sub_category" class="list-unstyled" style="font-family: Raleway Regular;">
-                             <li *ngIf="categoryi.sub_category2" ><a (click)="
-                              navigateCategory(
-                                categoryi.name,
-                                categoryi.category_no
-                              )
-                            " class="sub-cat" > {{
-                              categoryi.name.length > 40
-                                ? (categoryi.name | slice: 0:40) + "..."
-                                : categoryi.name
-                            }}</a></li>
-                             <!-- <li><a href="#">Custom Menu</a></li>
-                             <li><a href="#">Custom Menu</a></li>
-                             <li><a href="#">Custom Menu</a></li>
-                             <li><a href="#">Custom Menu</a></li> -->
-                         </ul>
-                 </div>
+      <div class="row ">
+        <h6 class="title col-md-6 pl-4" style="font-family: Cinzel Semi Bold;color: cornflowerblue;font-size: larger;">Sub category</h6>
+      </div>
+        <div class="row" *ngIf="categoryi.sub_category2">
+          <div class="col-6 pl-5 col-md-4" *ngFor="let categoryj of categoryi.sub_category2">
+      
+                <ul class="list-unstyled" style="font-family: Raleway Regular; display: inline;">
+                    <li  style="display: inline-block;"><a  class="sub-cat"> {{
+                     categoryj.name.length > 25
+                       ? (categoryj.name | slice: 0:25) + "..."
+                       : categoryj.name
+                   }}</a></li>
+                    <!-- <li><a href="#">Custom Menu</a></li>
+                    <li><a href="#">Custom Menu</a></li>
+                    <li><a href="#">Custom Menu</a></li> -->
+                </ul>
+        </div>
                  <!-- end col-3 -->
-                 <div class="col-6">
-                     <h6 class="title" style="font-family: Cinzel Semi Bold;color: cornflowerblue;font-size: larger;">Title Menu Two</h6>
-                         <ul class="list-unstyled" style="font-family: Raleway Regular;">
-                             <li *ngIf="categoryi.sub_category2" ><a *ngFor="let categoryj of categoryi.sub_category2" class="sub-cat"> {{
-                              categoryj.name.length > 25
-                                ? (categoryj.name | slice: 0:25) + "..."
-                                : categoryj.name
-                            }}</a></li>
-                             <!-- <li><a href="#">Custom Menu</a></li>
-                             <li><a href="#">Custom Menu</a></li>
-                             <li><a href="#">Custom Menu</a></li> -->
-                         </ul>
-                 </div>
+                 
                  <!-- end col-3 -->
              </div>
              <!-- end row -->
@@ -113,17 +98,17 @@
                   
               
       </ul>
-      <ul style="display: contents; " class="ml-auto">
-        <li style="list-style-type:none; text-decoration: none;" class="">
+      <ul style="display: contents; list-style: none;" class="ml-auto">
+        <li style=" text-decoration: none; list-style: none!important;" class="">
           <div class="searchbar ">
             <input class="search_input" type="text" name="" placeholder="Search...">
-            <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+            <span  class="search_icon"><i class="fas fa-search"></i></span>
           </div>
         </li>
         <li *ngIf="is_logged_out">
-          <a routerLink="/login" style="list-style-type:none;" class="nav-links" ><i class="fa fa-sign-in" aria-hidden="true"></i> </a>
+          <a routerLink="/login" style="list-style-type:none;" class="nav-links" >login </a>
         </li>
-        <li *ngIf="is_logged_in" routerLink="/client-info">
+        <li *ngIf="is_logged_in" routerLink="/client-info" class="mr-3">
           <a routerLink="/" style="list-style-type:none;" class="nav-links" >  <i
             *ngIf="nm != null" 
             class="fas fa-user text-center"

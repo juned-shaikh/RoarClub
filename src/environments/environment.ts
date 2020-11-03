@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
 
-   // baseUrl: 'https://www.ecomtrails.com/ecom_api/index.php/' , 
+  //  baseUrl: 'https://www.ecomtrails.com/ecom_api/index.php/' , 
 
    // baseUrl: 'http://localhost/ecomTrailsC/index.php/' ,
 
@@ -14,7 +14,6 @@ export const environment = {
   //  baseUrl: 'https://www.9toys.in/ecom_api/index.php/' ,
   // baseUrl: 'https://www.ecomtrails.com/ecom_api_test/index.php/',
   baseUrl: ' https://roarclub.in/ecom_api/index.php/',
-  // baseUrl: ' https://roarclub.in/ecom_api/index.php/',
 
    UploadUrl : 'https://www.ecomtrails.com/uploads/',
   

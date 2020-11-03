@@ -58,7 +58,7 @@ export class HomeComponent implements OnInit {
 
    offsetSelling=1;
    pagesSelling=1;
-  page_itemsSelling=3;
+  page_itemsSelling=4;
 
    offsetRent=1;
   page_itemsRent=4;
