@@ -55,7 +55,7 @@
   
   .main-nav li {
     text-align: left;
-    margin: 9px auto;
+    /* margin: 9px auto; */
     color: black;
     font-size: 16px;
   }
@@ -102,10 +102,10 @@
   
     .main-nav {
       display: flex;
-      margin-left: 5px ;
-      margin-top: 10px;
+      /* margin-left: 5px ; */
+      /* margin-top: 10px; */
       flex-direction: row;
-      justify-content: flex-end;
+      justify-content: flex-start;
   text-decoration:none;
     }
   
@@ -237,7 +237,7 @@
     margin-top: auto;
 /* <<<<<<< HEAD
     height: 60px; */
-   
+   /* width: 250px; */
 
     height: 40px;
 
@@ -258,15 +258,14 @@
 
     .searchbar .search_input{
     padding: 0 10px;
-    width: 130px;
-    caret-color:red;
+    width: 250px;
+    caret-color:#000000;
     transition: width 0.4s linear;
     }
 
-    .searchbar:hover > .search_icon{
-    /* background: white; */
+    /* .searchbar:hover > .search_icon{
     color: #e74c3c;
-    }
+    } */
 
     .search_icon{
       height: 20px;

@@ -13,9 +13,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     margin-top: 120px!important;
     width: 100%;
     pointer-events: auto;
-    background-color: #fff;
+    background-color: #000000;
     background-clip: padding-box;
+    color: white;
     z-index: auto;
-    border: 1px solid rgba(0,0,0,.2);
-    outline: 0;
+    border: 1px solid white;
+    border-radius: 12px!important;
+    /* outline: 0; */
   }
