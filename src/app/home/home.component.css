@@ -81,16 +81,33 @@ img {
 }
 
 .card {
-  background-color:#000000;
+
+  background-color:#fff;
   border-radius: 6px;
   box-shadow: 0 0 5px rgb(102, 101, 101);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  height: 450px!important;
-  
+  /* height: 450px!important; */
+  height: auto;
+  margin: auto;
   padding: 10px;
 }
+
+
+
+.name1{
+  color: black;
+  margin-left:20px; 
+  font-weight: bold;
+   text-transform: capitaliz;
+   font-family: Cinzel Semi Bold;
+}
+
+		
+
+
+
 
 .card_content {
   padding: 1rem;
@@ -110,6 +127,15 @@ img {
 #box-img1{
   height: 280px; width: 100%; background: transparent; margin: none;    position: relative;
 }
+
+.pshow{
+  display: none;
+}
+
+.bimg:hover +.pshow{
+display: block;
+}
+
 /* #car-img img1{
   display: block;
   max-width: 100%;
@@ -133,14 +159,15 @@ img {
 /* start */
 
 .row{
+ 
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   justify-content: space-around;
+    }
   
-  
-  }
-  
+ 
+
   .col-2{
     flex-basis: 50%;
     min-width: 300px;
@@ -659,10 +686,10 @@ input:focus{
   display: block;
 }
 .buy-now-button{
-  color: white!important;
+  color: black!important;
     border: 1.5px solid grey;
     padding: 6px;
-    
+   
     border-top-left-radius: 9px;
     border-bottom-right-radius: 11px;
 }
@@ -670,3 +697,5 @@ input:focus{
   transition: 1s;
   box-shadow: 2px 2px grey;
 }
+
+
