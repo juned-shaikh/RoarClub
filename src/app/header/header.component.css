@@ -27,7 +27,7 @@
 }
 .navbar {
     font-size: 18px;
-    background: #000000!important;
+    background: #202328!important;
     position: fixed;
     width: 100%;
     top: 0;
@@ -109,6 +109,11 @@
   text-decoration:none;
     }
   
+.navbar-nav{
+display: flex;
+
+}
+
     .main-nav li {
      
       outline: none;
@@ -151,93 +156,14 @@
     }
   }
   
-  
-  /*start---------*/
-  /* @import url('https://fonts.googleapis.com/css?family=Sarabun'); */
-  
-  /* *,
-  *::after,
-  *::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
-  }
-  
-  html {
-    font-size: 62.5%;
-  }
-  
-  body {
-    box-sizing: border-box;
-    background-color:   rgba(229,229,229, .3);
-    font-family: 'Sarabun', sans-serif;
-  
-  }
-  
-  .container {
-    width: 25rem;
-    height: 100%;
-    margin: 0 1rem;
-    position: relative;
-  }
-  
-  h1 {
-    margin: 2rem;  
-  }
-  
-  .searchbar {
-    font-size: 1rem;
-    width: 15rem;
-    height: 1rem;
-    border: none;
-    outline: none;
-    border-radius: 10rem;
-    box-shadow: 0 1rem 2rem rgba(black, .1);
-    padding: 2rem;
-    position: relative;
-    transition: all .2s;
-    transition-delay: .1s;
-  }
-  
-  /* .searchbar:hover {
-    width: 27rem;
-    height: 6rem;
-  }bhai mega menu may dekho uska xolor chng kaise hua css may
-  */
-  /* .button {
-    height: 2rem;
-    
-    position: absolute;
-    
-    margin-left: 12rem;
-    transition: all .2s;
-    transition-delay: .1s;
-  }
-  
-  .button:hover {
-    cursor: pointer;
-  }
-   */
-  /*.searchbar:hover + .button {
-    height: 2.5rem;
-    top: 1.8rem;
-    right: 0;
-  }
-  */
-  /* .searchbar::placeholder {
-    opacity: .5;
-  }
-   */
-  
+ 
 
   /* new .searchbar start */
    
-  .searchbar{
+  /* .searchbar{
     margin-bottom: auto;
     margin-top: auto;
-/* <<<<<<< HEAD
-    height: 60px; */
-   /* width: 250px; */
+
 
     height: 40px;
 
@@ -261,13 +187,13 @@
     width: 250px;
     caret-color:#000000;
     transition: width 0.4s linear;
-    }
+    } */
 
     /* .searchbar:hover > .search_icon{
     color: #e74c3c;
     } */
 
-    .search_icon{
+    /* .search_icon{
       height: 20px;
       width: 21px;
       float: right;
@@ -277,11 +203,20 @@
       border-radius: 50%;
       color: white;
       text-decoration: none;
+    } */
+
+    /* .searchbar */
+
+    .form-control{
+      width:80px;
+      background-color: aliceblue;
+
     }
 
+    /* .searchbar end */
     /* dropdown show */
     
-		.dropdown-menu .dropdown-toggle:after{
+		/* .dropdown-menu .dropdown-toggle:after{
 			border-top: .3em solid transparent;
 		    border-right: 0;
 		    border-bottom: .3em solid transparent;
@@ -297,10 +232,10 @@
 		
 		.dropdown-menu > li:hover .megasubmenu{
 			display: block;
-		}
+		} */
     /* new hover dropdown*/
    
-    main-nav a:hover{
+    /* main-nav a:hover{
       padding: 1px 1px;
         background: linear-gradient(to left, #4E50B3, #2ceedc)!important;
     }
@@ -330,5 +265,30 @@ li a:hover{
         .dropdown-menu{
           background-color:#202328;
         }
-       
+        */
     /* :start */
+    @media all and (min-width: 992px) {
+      .navbar{ padding-top: 0; padding-bottom: 0; }
+      .navbar .has-megamenu{position:static!important;}
+      .navbar .megamenu{left:0; right:0; width:40%; padding:10px;  }
+      .navbar .nav-link{ padding-top:1rem; padding-bottom:1rem;  }
+    }
+  
+          .megasubmenu{ 
+              left:100%; top:0; min-height: 100%; min-width:1000px;
+          }
+           .list-unstyled>li:hover .megasubmenu{
+              display: block;
+          }
+  
+  
+      .list-unstyled >li:hover .submenu{
+              display: block;
+          }
+           .submenu >li:hover .submen{
+              display: block;
+          }
+  
+          .submenu{
+              top:50px;
+          }

@@ -10,7 +10,7 @@
   <div class="carousel-inner"> -->
     <div class="container-fluid" style="overflow: hidden; ">    
       <div id="demo" class="carousel slide main-slider" data-ride="carousel" *ngIf="banner">
-        <div class="carousel-inner">
+        <div class="carousel-inner" style="height: 450px;">
           <div *ngIf="banner_group_a==0 || bannerdata.value.banner_image_a_group==''" class="carousel-item active">
             <img src="{{ bannerdata.value.banner_image_a }}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
           </div>
@@ -106,7 +106,8 @@
   
         <div class=" circular-image-brand" (click)="navigateCategory(brand.name,brand.brand_id)">
           <img src="{{brand?.thumbnail_sml_location}}" onerror="this.src='https://ap2-prod-images.disco-api.com/2020/2/24/d4cfb8ac-9ee1-4af5-a175-81790d55ebb9.jpg';" class="brand-image" style="width: 100%;" height="150px">
-      </div>
+    
+        </div>
   
         <!-- <img  src="{{ nprd.gallery.medium_thumbnail_link }}" width="220px" height="150px" > -->
        </div>
@@ -150,9 +151,9 @@
     </div>
       <div class="row justify-content-start"  >
         <div class="col-md-3" *ngFor="let nprd of topSelling">
-          <div class="card" style="margin: auto;  height:450px ;">
+          <div class="card" >
             <div class="card_image" >
-              <div id="box-img1"> 
+              <div class="bimg" id="box-img1"> 
               <img
               src="{{ nprd?.gallery?.medium_thumbnail_link }}" w (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)"
            
@@ -161,10 +162,12 @@
             />
           </div>
 
-       
+       <!-- start -->
+       <div class="pshow">  
           <h1  class="show-status" *ngIf="userC == true && nprd.txn_quantity < '1'"> Out of stock</h1>
-          <h4 style="color: white;margin-left:20px; text-transform: capitaliz;">{{ (nprd.name.length>60)? (nprd.name | slice:0:60)+'...':(nprd.name) }}</h4>
-              <div  class="row "> 
+          <h4 class="name1" >{{ (nprd.name.length>60)? (nprd.name | slice:0:60)+'...':(nprd.name) }}</h4>
+           
+          <div  class="row "> 
                 <div class="col-md-1 text-center ">
                 <!-- <ul>
                   <li> -->
@@ -246,7 +249,7 @@
                     <span *ngIf="nprd.rate[0].is_rent == '1'" 
                     >{{ nprd.rate[0].name }} @ {{ nprd.rate[0].rate }}
                   </span>
-                  <span *ngIf="nprd.rate[0].is_rent != '2'" style="color: white;"
+                  <span *ngIf="nprd.rate[0].is_rent != '2'" style="color: black;"
                     >₹ {{ nprd.rate[0].rate}} 
                   </span> &nbsp;
                   <span class="for-you text-muted font-weight-500" *ngIf="nprd.rate[0].rate < nprd.mrp"
@@ -264,14 +267,15 @@
                   </p>
                 </div>
                 <div class="col-md-5" *ngIf="nprd?.txn_quantity > '0'">
-                  <div class="" >
+                  <div class="buy" >
                     <a    (click)="rates(nprd)" *ngIf="(nprd?.cart_check == false) && userC==true 
                     " class="buy-now-button cursor-pointer"><span class="fa fa-bolt " ></span>&nbsp; Buy Now</a>
                      <a   (click)="rates(nprd)" *ngIf="userC == false" class="buy-now-button  cursor-pointer"><span class="fa fa-bolt " ></span>&nbsp; Buy Now</a>
                   </div>
                 </div>
               </div>
-             
+             </div>
+             <!-- end -->
             </div>
           
           </div>
@@ -314,11 +318,11 @@
      
   </div>
   <div class="row justify-content-start">
-    <div    class=" col-md-3"  style="color: white;height:460px; 
+    <div    class=" col-md-3"  style="color: black;height:auto; 
     " *ngFor="let nprd of newproduct">
-  <div class="card" style="margin: auto;  height:450px ;">
+  <div class="card" style="margin: auto;  height:auto ;">
     <div class="card_image" >
-      <div id="box-img1"> 
+      <div class="bimg" id="box-img1"> 
       <img
       src="{{ nprd?.gallery?.medium_thumbnail_link }}" w (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)"
    
@@ -327,9 +331,10 @@
     />
   </div>
 
-
+<!-- pshow div start -->
+<div class="pshow">
   <h1  class="show-status" *ngIf="userC == true && nprd.txn_quantity < '1'"> Out of stock</h1>
-  <h4 style="color: white;margin-left:20px; text-transform: capitaliz;">{{ (nprd.name.length>60)? (nprd.name | slice:0:60)+'...':(nprd.name) }}</h4>
+  <h4 style="color: black;margin-left:20px; font-weight: bold; text-transform: capitaliz;font-family: Cinzel Semi Bold;">{{ (nprd.name.length>60)? (nprd.name | slice:0:60)+'...':(nprd.name) }}</h4>
       <div  class="row mb-1"> 
         <div class="col-md-1 text-center ">
         <!-- <ul>
@@ -412,7 +417,7 @@
             <span *ngIf="nprd.rate[0].is_rent == '1'" 
             >{{ nprd.rate[0].name }} @ {{ nprd.rate[0].rate }}
           </span>
-          <span *ngIf="nprd.rate[0].is_rent != '2'" style="color: white;"
+          <span *ngIf="nprd.rate[0].is_rent != '2'" style="color: black;"
             >₹ {{ nprd.rate[0].rate}} 
           </span> &nbsp;
           <span class="for-you text-muted font-weight-500" *ngIf="nprd.rate[0].rate < nprd.mrp"
@@ -437,7 +442,8 @@
           </div>
         </div>
       </div>
-     
+    </div>
+     <!--pshow div end -->
     </div>
   
   </div>
@@ -481,9 +487,9 @@
    <div class="container-fluid mt-1">
     <div class="row">
       <div class="col-md-3"  *ngFor="let nprd of discountS"> 
-        <div class="card" style="margin: auto;  height:450px ;">
+        <div class="card" style="margin: auto;  height:auto;">
           <div class="card_image" >
-            <div id="box-img1"> 
+            <div class="bimg" id="box-img1"> 
             <img
             src="{{ nprd?.gallery?.medium_thumbnail_link }}" w (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)"
          
@@ -492,9 +498,10 @@
           />
         </div>
 
-     
+     <!-- pshow div start -->
+     <div class="pshow">
         <h1  class="show-status" *ngIf="userC == true && nprd.txn_quantity < '1'"> Out of stock</h1>
-        <h4 style="color: white;margin-left:20px; text-transform: capitaliz;">{{ (nprd.name.length>60)? (nprd.name | slice:0:60)+'...':(nprd.name) }}</h4>
+        <h4 style="color: black;margin-left:20px; font-weight: bold; text-transform: capitaliz;font-family: Cinzel Semi Bold;">{{ (nprd.name.length>60)? (nprd.name | slice:0:60)+'...':(nprd.name) }}</h4>
             <div  class="row "> 
               <div class="col-md-1 text-center ">
               <!-- <ul>
@@ -573,11 +580,11 @@
             </div>
             <div class="row justify-content-start">
               <div class="col-md-7">
-                <p style="color: rgb(131, 128, 128);margin-left:10px">
+                <p style="color: rgb(131, 128, 128);margin-left:10px;">
                   <span *ngIf="nprd.rate[0].is_rent == '1'" 
                   >{{ nprd.rate[0].name }} @ {{ nprd.rate[0].rate }}
                 </span>
-                <span *ngIf="nprd.rate[0].is_rent != '2'" style="color: white;"
+                <span *ngIf="nprd.rate[0].is_rent != '2'" style="color: black;"
                   >₹ {{ nprd.rate[0].rate}} 
                 </span> &nbsp;
                 <span class="for-you text-muted font-weight-500" *ngIf="nprd.rate[0].rate < nprd.mrp"
@@ -597,12 +604,13 @@
               <div class="col-md-5" *ngIf="nprd?.txn_quantity > '0'">
                 <div class="" >
                   <a    (click)="rates(nprd)" *ngIf="(nprd?.cart_check == false) && userC==true 
-                  " class="buy-now-button cursor-pointer"><span class="fa fa-bolt " ></span>&nbsp; Buy Now</a>
-                   <a   (click)="rates(nprd)" *ngIf="userC == false" class="buy-now-button  cursor-pointer"><span class="fa fa-bolt " ></span>&nbsp; Buy Now</a>
+                  " class="buy-now-button cursor-pointer" style="color: white;"><span class="fa fa-bolt " ></span>&nbsp; Buy Now</a>
+                   <a   (click)="rates(nprd)" *ngIf="userC == false" class="buy-now-button  cursor-pointer" style="color: black;"><span class="fa fa-bolt " ></span>&nbsp; Buy Now</a>
                 </div>
               </div>
             </div>
-           
+          </div>     
+           <!-- pshow div end -->
           </div>
         
         </div>

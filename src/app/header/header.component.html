@@ -6,24 +6,14 @@
           </label>
      <!--  <a href="#" class="logo">logo</a> -->
   <!--    <img src="list.png" width=40px" style="color: white"> -->
+  
      <img src="./assets/1.png" width="120px" height="60px" routerLink="/" style="padding: 10px;">
       <input type="checkbox" id="chkToggle">
-      <ul class="main-nav mr-auto" id="js-menu" style="list-style-type:none">
-        <!-- <li  *ngFor="let category of categories2" style="color: antiquewhite;">
-          <a data-toggle="dropdown"
-          class="  dropdown-toggle multi-level-dropdown"   (click)=" 
-          navigateCategory(category.name, category.category_no)
-        " class="nav-links" >
-            {{
-              category.name
-            }}</a>
-                    </li> -->
-         <!-- <li>
-          <a  routerLink="/category-page" class="nav-links" style="text-decoration: none;font-size: 25px;">Category</a>
-        </li> -->
       
-<!-- <ul class="navbar-nav" style="list-style-type:none"> -->
-	<li  *ngFor="let category of categories2" style="color: antiquewhite;" class="nav-item dropdown ">
+      
+      
+      <!-- <ul class="main-nav mr-auto" id="js-menu" style="list-style-type:none">
+       	<li  *ngFor="let category of categories2" style="color: antiquewhite;" class="nav-item dropdown ">
 		<a class="nav-link sub-cat"  data-toggle="dropdown"  style="font-family: Cinzel Semi Bold;color: white;font-size: larger;"
    > {{
     category.name
@@ -31,9 +21,7 @@
 	    <ul class="dropdown-menu" style="font-family: Cinzel Semi Bold;color: cornflowerblue;font-size: larger;">
 		  <li class="has-submenu" *ngFor="let categoryi of category.sub_category">
         
-        <a (click)="
-        navigateCategory(category.name, category.category_no)
-      " title="{{ category.name }}" class="dropdown-item " >{{categoryi.name}} </a>
+        <a (click)="navigateCategory(category.name, category.category_no)" title="{{ category.name }}" class="dropdown-item " >{{categoryi.name}} </a>
     
       <div  *ngFor="let categoryi of category.sub_category"
       (click)="
@@ -51,62 +39,87 @@
                        ? (categoryj.name | slice: 0:25) + "..."
                        : categoryj.name
                    }}</a></li>
-                    <!-- <li><a href="#">Custom Menu</a></li>
-                    <li><a href="#">Custom Menu</a></li>
-                    <li><a href="#">Custom Menu</a></li> -->
+                    
                 </ul>
         </div>
-                 <!-- end col-3 -->
-                 
-                 <!-- end col-3 -->
-             </div>
+                
+             </div> -->
              <!-- end row -->
-      </div>
+      <!-- </div>
 
 
     </li>
-		  <!-- <li><a class="dropdown-item" href="#"> Dropdown item 2 </a></li>
-		  <li><a class="dropdown-item" href="#"> Dropdown item 3 </a></li> -->
-		  <!-- <li class="has-submenu">
-		  	 <a class="dropdown-item dropdown-toggle" href="#"> Dropdown item 4 </a>
-		  	 
-		  </li> -->
-		 
-      <!-- <li><a class="dropdown-item" href="#"> Dropdown item 6 </a></li>
-      <li><a class="dropdown-item" href="#"> Dropdown item 7 </a></li>
-      <li><a class="dropdown-item" href="#"> Dropdown item 8 </a></li> -->
-	    </ul>
-	</li>
-	
-<!-- </ul> -->
-        <!-- hover  -->
-  
-        
-      <!--  <li>
-          <a href="#" class="nav-links" style="text-decoration: none;font-size: 25px;">Shorts</a>
-        </li>
-        <li>
-          <a href="#" class="nav-links" style="text-decoration: none;font-size: 25px;">Mens</a>
-        </li>
-        <li>
-          <a href="#" class="nav-links" style="text-decoration: none;font-size: 25px;">Branded</a>
-        </li> -->
-       
-               
-               
-                  
-                  
-              
-      </ul>
+			    </ul>
+	</li>       
+      </ul> -->
+<!-- end -->
+  <!-- start -->
+  <ul class="navbar-nav mr-auto flex-row"  id="js-menu">
+
+    <li *ngFor="let category of categories2" style="color: antiquewhite;padding:10px" class="nav-item dropdown has-megamenu">
+      <a class="nav-link sub-cat " href="#" data-toggle="dropdown"
+    style="font-family: Cinzel Semi Bold;color: white;font-size: larger;"
+      >{{
+      category.name
+    }} </a>
+        <div class="dropdown-menu megamenu" role="menu">
+                      <div class="row">
+                          <div class="col-md-6">
+                              <div class="col-megamenu">
+                                <h1 class="title">top brands selling Here now order</h1>                     
+                            </div>  <!-- col-megamenu.// -->
+                          </div><!-- end col-3 -->
+                          <div class="col-md-6">
+                            <div class="col-megamenu">
+                              <h6 class="title">Title Menu Two</h6>
+                                  <ul class="list-unstyled">
+          
+               <li class="has-submenu"  *ngFor="let categoryi of category.sub_category">
+               <a class="dropdown-item dropdown-toggle" href="#"     (click)="navigateCategory(category.name, category.category_no)" title="{{ category.name }}" > {{categoryi.name}} </a>
+               <div *ngFor="let categoryi of category.sub_category"
+        (click)="
+          navigateCategory(category.name, category.category_no)
+        " class="megasubmenu dropdown-menu">
+                 <div class="row" *ngIf="categoryi.sub_category2">
+                      <div class="col-3" *ngFor="let categoryj of categoryi.sub_category2">
+                              <h6 class="title">Title Menu One</h6>
+                              <ul class="list-unstyled">
+                                  <li><a href="#" >{{
+                       categoryj.name.length > 25
+                         ? (categoryj.name | slice: 0:25) + "..."
+                         : categoryj.name
+                     }}</a></li>
+                                  
+                              </ul>
+                      </div><!-- end col-3 -->
+                      
+                  </div><!-- end row -->
+               </div>
+            </li>                      
+                                  </ul>
+                              </div>  <!-- col-megamenu.// -->
+                          </div><!-- end col-3 -->
+                          
+                         
+                      </div><!-- end row --> 
+          </div> <!-- dropdown-mega-menu.// -->
+    </li>
+  </ul>
+<!-- end -->
+
       <ul style="display: contents; list-style: none;" class="ml-auto">
         <li style=" text-decoration: none; list-style: none!important;" class="">
           <div class="searchbar ">
-            <input class="search_input" type="text" name="" placeholder="Search...">
-            <span  class="search_icon"><i class="fas fa-search"></i></span>
+           
+          <form class="form-inline d-flex justify-content-center md-form form-sm">
+            <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search"
+              aria-label="Search">
+            <i class="fas fa-search" aria-hidden="true"></i>
+          </form>
           </div>
         </li>
         <li *ngIf="is_logged_out">
-          <a routerLink="/login" style="list-style-type:none;" class="nav-links" >login </a>
+          <a routerLink="/login" style="list-style-type:none;" class="nav-links" style="color: green;"><i class="fas fa-user"></i></a>
         </li>
         <li *ngIf="is_logged_in" routerLink="/client-info" class="mr-3">
           <a routerLink="/" style="list-style-type:none;" class="nav-links" >  <i
