@@ -83,7 +83,8 @@ img {
 .card {
 
   background-color:#fff;
-  border-radius: 6px;
+  /* background-color: #000000; */
+  border-radius: 1px;
   box-shadow: 0 0 5px rgb(102, 101, 101);
   display: flex;
   flex-direction: column;
@@ -91,23 +92,54 @@ img {
   /* height: 450px!important; */
   height: auto;
   margin: auto;
-  padding: 10px;
+  /* padding: 10px; */
 }
 
 
+.newproduct_mrp{
+  font-size: 16px;
+  font-family: Cinzel Semi Bold;
+  color: black;
+  font-weight: bold;
 
+}
 .name1{
   color: black;
-  margin-left:20px; 
+  margin-left:10px; margin-right: 10px;
   font-weight: bold;
    text-transform: capitaliz;
    font-family: Cinzel Semi Bold;
 }
 
+.newproduct_heading{
+  color: black;
+  font-weight: bold;
+  right: 3px;
+  left: 7px;
+  position: relative;
+   text-transform: capitaliz;
+   font-family: Cinzel Semi Bold;
+   font-size: 17px;
+}
 		
+.circular-image-brand {
+  border-radius: 9.5px;
+  overflow: hidden;
+  background: white;
+}
+.circular-image-brand img{
+  border-radius: 9.5px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.circular-image-brand img:hover{
+  border-radius: 9.5px;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: .9;
+  
 
-
-
+}
 
 .card_content {
   padding: 1rem;
@@ -116,16 +148,16 @@ img {
 
 
 #img1{
-  max-height: 280px; min-height: unset; height: -webkit-fill-available; -o-object-fit: contain;
+  max-height: 320px; min-height: unset; height: -webkit-fill-available; -o-object-fit: contain;
   object-fit: contain;
-  margin: none; width: 99%;
+  margin: none; width: 100%;
   text-align: center;
   vertical-align: middle;
   position: inherit;
 
 }
 #box-img1{
-  height: 280px; width: 100%; background: transparent; margin: none;    position: relative;
+  height: 320px; width: 100%; background: white; margin: none;    position: relative;
 }
 
 .pshow{
@@ -612,7 +644,7 @@ display: block;
 	background: #FFFFFF;
 	box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
 	border-radius: 25px;
-	height: 40px;
+	height: 38px;
 	width: 110px;
   float: left;
 }
@@ -644,7 +676,7 @@ display: block;
 .skin-2 .num-in input {
 		float: left;
 		width: 20%;
-		height: 40px;
+		height: 38px;
 		border: none;
 		text-align: center;
 }
@@ -682,16 +714,28 @@ input:focus{
   left: 5px;
   right: 5px;
 }
-.card_image:hover .show-status{
+#img1:hover .show-status{
   display: block;
 }
+.outofstockproduct{
+  top: 11px;
+    font-size: 18px;
+    left: 8px;
+    position: absolute;
+    font-weight: 500;
+    color: red;
+    text-shadow: -0.5px 0.5px orange;
+    /* font-weight: 400; */
+    text-align: center;
+}
 .buy-now-button{
+  background: #FFFFFF;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
   color: black!important;
-    border: 1.5px solid grey;
-    padding: 6px;
-   
-    border-top-left-radius: 9px;
-    border-bottom-right-radius: 11px;
+  padding: 7px 23px 7px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 9px;
 }
 .buy-now-button:hover{
   transition: 1s;
@@ -699,3 +743,64 @@ input:focus{
 }
 
 
+.newproduct_box {
+  background-color: white;
+  position: relative;
+  width: 100%;
+  height: 360px;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  height: auto;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  box-shadow: 0 0 4px lightgrey;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  transition: .5s ease;
+}
+
+.newproduct_box:hover .overlay {
+  height: 35%;
+}
+
+.text {
+  color: #000000;
+  font-size: 20px;
+  /* position: absolute; */
+  /* top: 15%; */
+  /* left: 5%; */
+  /* -webkit-transform: translate(-50%, -50%); */
+  /* -ms-transform: translate(-50%, -50%); */
+  /* transform: translate(-50%, -50%); */
+  /* text-align: center; */
+}
+.add-to-cart_newproduct{
+  position: absolute;
+  right: 9px;
+  top: 7px;
+  visibility: hidden;
+  /* transition: 2s; */
+}
+.add-to-cart_newproduct li{
+  list-style: none;
+
+}
+.add-to-cart_newproduct li a{
+  font-size: 19px;
+  
+}
+ .newproduct_box:hover .add-to-cart_newproduct{
+   visibility: visible;
+   transition: 1s;
+ }
