@@ -1,16 +1,8 @@
-<!-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    
 
-    
-  </ol>
-  <div class="carousel-inner"> -->
-    <div class="container-fluid" style="overflow: hidden; ">    
-      <div id="demo" class="carousel slide main-slider" data-ride="carousel" *ngIf="banner">
-        <div class="carousel-inner" style="height: 450px;">
+    <div class="container-fluid" style="overflow: hidden; ">  
+        <!-- rounded slider by Aman Verma 05-11-2020 -->
+      <div id="demo" class="carousel slide main-slider mb-2" data-ride="carousel" *ngIf="banner">
+        <div class="carousel-inner" style="height: 490px; border-radius: 9.5px!important;">
           <div *ngIf="banner_group_a==0 || bannerdata.value.banner_image_a_group==''" class="carousel-item active">
             <img src="{{ bannerdata.value.banner_image_a }}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
           </div>
@@ -22,8 +14,6 @@
           >
           <img src="{{bannerdata.value.banner_image_a}}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
         </a>
-        
-          
   
           <div *ngIf="banner_group_b==0 || bannerdata.value.banner_image_b_group==''" class="carousel-item">
             <img src="{{ bannerdata.value.banner_image_b }}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
@@ -96,32 +86,21 @@
   
       <!--       -->
   
-  <!-- slider start -->
-   <div class="row justify-content-end text-right pr-3"  *ngIf="brands?.length > 6">
-  <span class="more-brands" routerLink="/our-brand"> see more brands <i class="fas fa-chevron-right"></i></span>
-   </div>
+  
+  <!-- brand gallary view by Aman Verma 05-11-2020 -->
   <div class="row justify-content-start mt-1" style="background-color: #202328;" >
     <div class="col-md-2" *ngFor="let brand of brands | slice:0:6;">
-      <div class="" style="background: white; cursor: pointer;" >
-  
         <div class=" circular-image-brand" (click)="navigateCategory(brand.name,brand.brand_id)">
           <img src="{{brand?.thumbnail_sml_location}}" onerror="this.src='https://ap2-prod-images.disco-api.com/2020/2/24/d4cfb8ac-9ee1-4af5-a175-81790d55ebb9.jpg';" class="brand-image" style="width: 100%;" height="150px">
-    
         </div>
-  
-        <!-- <img  src="{{ nprd.gallery.medium_thumbnail_link }}" width="220px" height="150px" > -->
-       </div>
     </div>
-   
-  
   </div>
-  
-  
-  <!-- slidr end -->
-  
-  <!-- juned start -->
-    
-     <div class="" style="background-color: #202328;">
+  <div class="row justify-content-end text-right pr-3 mt-1"  *ngIf="brands?.length > 6">
+    <span class="more-brands" routerLink="/our-brand"> see more brands <i class="fas fa-chevron-right"></i></span>
+     </div>
+<!-- top selling product by Aman Verma 06-11-2020 -->
+  <section class="mt-2">
+     <div class="container-fluid">
       <h2 class="title" style="font-family: Cinzel Semi Bold;">Top Selling Products</h2>
       <div class="pagination  row ">
         <div class="col-md-6 text-left">
@@ -149,150 +128,119 @@
        
       <!-- </div> -->
     </div>
-      <div class="row justify-content-start"  >
-        <div class="col-md-3" *ngFor="let nprd of topSelling">
-          <div class="card" >
-            <div class="card_image" >
-              <div class="bimg" id="box-img1"> 
-              <img
-              src="{{ nprd?.gallery?.medium_thumbnail_link }}" w (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)"
-           
-                id="img1"
-              alt="Product Image"
-            />
-          </div>
-
-       <!-- start -->
-       <div class="pshow">  
-          <h1  class="show-status" *ngIf="userC == true && nprd.txn_quantity < '1'"> Out of stock</h1>
-          <h4 class="name1" >{{ (nprd.name.length>60)? (nprd.name | slice:0:60)+'...':(nprd.name) }}</h4>
-           
-          <div  class="row "> 
-                <div class="col-md-1 text-center ">
-                <!-- <ul>
-                  <li> -->
-                    <a *ngIf="nprd.wishlist_check == false" 
-                      style="cursor:pointer"
-                      (click)="addToWishlist(nprd)"
-                      matTooltip="Add to WishList"
-                      > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i></a>
-                    <a
-                    style="cursor:pointer" *ngIf="nprd.wishlist_check == true"
-                    (click)="deleteFromWishlist(nprd.wishlist_num)"
-                    matTooltip="Already exist in Wishlist"
-                    > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i>
-                </a>
-  
-                  <!-- for withouyt login -->
-                   <a *ngIf="userC==false" 
-                      style="cursor:pointer"
-                      (click)="addToWishlistWL(nprd)"
-                      matTooltip="Add to WishList"
-                      > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i>
-                  </a>
-                  <!-- for without login -->
-                  </div>
-                  <!-- </li>
-                  <li *ngIf="userC==true"> -->
-                  
-  
-                
-              <div class="col-md-5 text-center " style="color: red;" >
-                
-                <span
-                class="fa fa-star checked"
-                *ngFor="let i of createRange2(nprd.ratings)"
-              ></span>
-              <span *ngIf="nprd.ratings>'0'"><span
-                class="fa fa-star unchecked"
-                *ngFor="let i of createRange2(5 - nprd.ratings)"
-              ></span>
-            </span>
-          </div>
-          <div class="col-md-5 text-right " >
-            <div class="num-block skin-2"  *ngIf="nprd?.cart_check == true">
-              <div class="num-in" style="cursor: pointer;">
-                <span class="minus dis" *ngIf="nprd.cart_inventory.qty > 1 || nprd.cart_inventory.qty > '1'"  (click)="updateCart3minus(nprd.cart_inventory.cart_id,nprd.cart_inventory.cart_inventory_id,nprd.cart_inventory.rate_type,nprd.cart_inventory.qty,nprd.txn_quantity);"></span>
-                <span class="minus dis" *ngIf="nprd.cart_inventory.qty == 1 || nprd.cart_inventory.qty == '1'"  (click)="deleteFromCartF(nprd.cart_inventory.cart_inventory_id)"></span>
-                <input type="number" class="in-num"   value="{{nprd.cart_inventory.qty}}" required min="1"
-                (change)="updateCart3(nprd.cart_inventory.cart_id,nprd.cart_inventory.cart_inventory_id,nprd.cart_inventory.rate_type,$event.target.value,nprd.txn_quantity)"
-                (keyup)="updateCart3(nprd.cart_inventory.cart_id,nprd.cart_inventory.cart_inventory_id,nprd.cart_inventory.rate_type,$event.target.value,nprd.txn_quantity)" >
-                <span class="plus" *ngIf="nprd.cart_inventory.qty<nprd.txn_quantity"
-                  (click)="updateCart3plus(nprd.cart_inventory.cart_id,nprd.cart_inventory.cart_inventory_id,nprd.cart_inventory.rate_type,nprd.cart_inventory.qty,nprd.txn_quantity);"></span>
-                <span class="plus" *ngIf="nprd.cart_inventory.qty>nprd.txn_quantity || nprd.cart_inventory.qty==nprd.txn_quantity"  title="Reached limit" [disabled]=true></span>
-              </div>
-            </div>
-           
-            <span *ngIf="userC==true">
-              <a *ngIf="nprd.cart_check == false "
-              style="cursor:pointer"
-              (click)="addToCart(nprd)"
-              matTooltip="Add to Cart"
-              > <i class="fa fa-cart-plus" style="color: green;"></i></a>
-            </span>
-            
-             
-            <a  *ngIf="userC==false"
-              style="cursor:pointer"
-              (click)="addToCart(nprd)"
-              matTooltip="Add to Cart"
-              > <i class="fa fa-cart-plus" style="color: green;"></i>
+       <div class="row justify-content-start">
+         <div class="col-md-3" *ngFor="let nprd of topSelling">
+           <div class="card newproduct_box" id="box-img1">
+            <img src="{{ nprd?.gallery?.medium_thumbnail_link }}" id="img1" alt="New Product Image" class="image" (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)">
+            <h1  class="outofstockproduct" *ngIf="userC == true && nprd.txn_quantity < '1'"> Out of stock</h1>
+            <ul class="add-to-cart_newproduct">
+              <li><a *ngIf="nprd.wishlist_check == false" 
+                style="cursor:pointer"
+                (click)="addToWishlist(nprd)"
+                matTooltip="Add to WishList"
+                > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i></a>
+              <a
+              style="cursor:pointer" *ngIf="nprd.wishlist_check == true"
+              (click)="deleteFromWishlist(nprd.wishlist_num)"
+              matTooltip="Already exist in Wishlist"
+              > <i class="fas fa-heart" aria-hidden="true" style="color: red;" ></i>
           </a>
-          <!-- </li>
-        </ul> -->
-
-          </div>
-              </div>
-              <div class="row justify-content-start">
-                <div class="col-md-7">
-                  <p style="color: rgb(131, 128, 128);margin-left:10px">
-                    <span *ngIf="nprd.rate[0].is_rent == '1'" 
-                    >{{ nprd.rate[0].name }} @ {{ nprd.rate[0].rate }}
-                  </span>
-                  <span *ngIf="nprd.rate[0].is_rent != '2'" style="color: black;"
-                    >₹ {{ nprd.rate[0].rate}} 
-                  </span> &nbsp;
-                  <span class="for-you text-muted font-weight-500" *ngIf="nprd.rate[0].rate < nprd.mrp"
-                    ><del>₹ {{ nprd.mrp }} </del></span
-                  >
-                  <span *ngIf="nprd.rate[0].is_rent == '2'" 
-                    >{{ nprd.rate[1].name }} @ {{ nprd.rate[1].rate }} </span
-                  >
-                  <br/>
-                  <span
-                    *ngIf="nprd.rate[0].rate < nprd.mrp && nprd.rate[0].discount_percent !=0"
-                    class="font-wieght-bold text-center for-you text-success"
-                    >Discount : {{ nprd.rate[0].discount_percent | number:'1.0-0' }}% </span
-                  >
-                  </p>
-                </div>
-                <div class="col-md-5" *ngIf="nprd?.txn_quantity > '0'">
-                  <div class="buy" >
-                    <a    (click)="rates(nprd)" *ngIf="(nprd?.cart_check == false) && userC==true 
-                    " class="buy-now-button cursor-pointer"><span class="fa fa-bolt " ></span>&nbsp; Buy Now</a>
-                     <a   (click)="rates(nprd)" *ngIf="userC == false" class="buy-now-button  cursor-pointer"><span class="fa fa-bolt " ></span>&nbsp; Buy Now</a>
-                  </div>
-                </div>
-              </div>
-             </div>
-             <!-- end -->
-            </div>
-          
-          </div>
-        </div>
-       
-       
         
+            <!-- for withouyt login -->
+             <a *ngIf="userC==false" 
+                style="cursor:pointer"
+                (click)="addToWishlistWL(nprd)"
+                matTooltip="Add to WishList"
+                > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i>
+            </a></li>
+              <li class="mt-1"><span *ngIf="userC==true">
+                <a *ngIf="nprd.cart_check == false "
+                style="cursor:pointer"
+                (click)="addToCart(nprd)"
+                matTooltip="Add to Cart"
+                > <i class="fa fa-cart-plus" style="color: green;"></i></a>
+                </span>
+                
+                
+                <a  *ngIf="userC==false"
+                style="cursor:pointer"
+                (click)="addToCart(nprd)"
+                matTooltip="Add to Cart"
+                > <i class="fa fa-cart-plus" style="color: green;"></i>
+                </a></li>
+            </ul>
+            <div class="overlay">
+              <div class="text ">
+<div class="row">
+  <div class="col-md-12 ">
+    <span class="newproduct_heading " >{{ (nprd.name.length>60)? (nprd.name | slice:0:60)+'...':(nprd.name) }}</span>
+  </div>
+</div>
+
+
+<div class="row justify-content-start">
+  <div class="col-md-12">
+    <p style="color: rgb(131, 128, 128);margin-left:10px">
+      <span *ngIf="nprd.rate[0].is_rent == '1'" 
+      >{{ nprd.rate[0].name }} @ {{ nprd.rate[0].rate }}
+    </span>
+    <span *ngIf="nprd.rate[0].is_rent != '2'" class="newproduct_mrp"
+      >₹ {{ nprd.rate[0].rate}} 
+    </span> &nbsp;
+    <span class="newproduct_mrp text-muted font-weight-500" *ngIf="nprd.rate[0].rate < nprd.mrp"
+      ><del>₹ {{ nprd.mrp }} </del></span
+    >
+    <span *ngIf="nprd.rate[0].is_rent == '2'" 
+      >{{ nprd.rate[1].name }} @ {{ nprd.rate[1].rate }} </span
+    >
+    &nbsp;&nbsp;
+    <span 
+      *ngIf="nprd.rate[0].rate < nprd.mrp && nprd.rate[0].discount_percent !=0"
+      class="font-wieght-bold text-center newproduct_mrp text-success"
+      > {{ nprd.rate[0].discount_percent | number:'1.0-0' }}%  off</span
+    >
+    </p>
+  </div>
+  <div class="col-md-12 text-center " >
+    <div class="buy" *ngIf="nprd?.txn_quantity > '0'">
+      <a    (click)="rates(nprd)" *ngIf="(nprd?.cart_check == false) && userC==true 
+      " class="buy-now-button cursor-pointer"><span class="fa fa-bolt " ></span>&nbsp; Buy Now</a>
+       <a   (click)="rates(nprd)" *ngIf="userC == false" class="buy-now-button  cursor-pointer"><span class="fa fa-bolt " ></span>&nbsp; Buy Now</a>
+    </div>
+  </div>
+
+
+  
+</div>
+<div class="row justify-content-center">
+  <div class="col-md-5 text-center ">
+    <div class="num-block skin-2"  *ngIf="nprd?.cart_check == true">
+      <div class="num-in" style="cursor: pointer;">
+        <span class="minus dis" *ngIf="nprd.cart_inventory.qty > 1 || nprd.cart_inventory.qty > '1'"  (click)="updateCart3minus(nprd.cart_inventory.cart_id,nprd.cart_inventory.cart_inventory_id,nprd.cart_inventory.rate_type,nprd.cart_inventory.qty,nprd.txn_quantity);"></span>
+        <span class="minus dis" *ngIf="nprd.cart_inventory.qty == 1 || nprd.cart_inventory.qty == '1'"  (click)="deleteFromCartF(nprd.cart_inventory.cart_inventory_id)"></span>
+        <input type="number" class="in-num"   value="{{nprd.cart_inventory.qty}}" required min="1"
+        (change)="updateCart3(nprd.cart_inventory.cart_id,nprd.cart_inventory.cart_inventory_id,nprd.cart_inventory.rate_type,$event.target.value,nprd.txn_quantity)"
+        (keyup)="updateCart3(nprd.cart_inventory.cart_id,nprd.cart_inventory.cart_inventory_id,nprd.cart_inventory.rate_type,$event.target.value,nprd.txn_quantity)" >
+        <span class="plus" *ngIf="nprd.cart_inventory.qty<nprd.txn_quantity"
+          (click)="updateCart3plus(nprd.cart_inventory.cart_id,nprd.cart_inventory.cart_inventory_id,nprd.cart_inventory.rate_type,nprd.cart_inventory.qty,nprd.txn_quantity);"></span>
+        <span class="plus" *ngIf="nprd.cart_inventory.qty>nprd.txn_quantity || nprd.cart_inventory.qty==nprd.txn_quantity"  title="Reached limit" [disabled]=true></span>
       </div>
-    
-    </div> 
-    
-  
-  
-    <!-- end -->
-    
-    <h2 class="title" style="font-family: Cinzel Semi Bold;">Latest Products</h2>
-    <div class="pagination   row ">
+      </div>
+  </div>
+</div>
+
+              </div>
+            </div>
+           </div>
+         </div>
+       </div>
+     </div>
+  </section>
+  <!-- latest product view by Aman Verma 06-11-2020 -->
+  <section class="mt-2">
+    <div class="container-fluid">
+     <h2 class="title" style="font-family: Cinzel Semi Bold;">Latest Products</h2>
+     <div class="pagination   row ">
       <div class="col-md-6 text-left">
       <li class="page-item float-left" *ngIf="offsetNew != 1">
         <a matTooltip="Previous"
@@ -317,448 +265,259 @@
     </div>
      
   </div>
-  <div class="row justify-content-start">
-    <div    class=" col-md-3"  style="color: black;height:auto; 
-    " *ngFor="let nprd of newproduct">
-  <div class="card" style="margin: auto;  height:auto ;">
-    <div class="card_image" >
-      <div class="bimg" id="box-img1"> 
-      <img
-      src="{{ nprd?.gallery?.medium_thumbnail_link }}" w (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)"
-   
-        id="img1"
-      alt="Product Image"
-    />
-  </div>
-
-<!-- pshow div start -->
-<div class="pshow">
-  <h1  class="show-status" *ngIf="userC == true && nprd.txn_quantity < '1'"> Out of stock</h1>
-  <h4 style="color: black;margin-left:20px; font-weight: bold; text-transform: capitaliz;font-family: Cinzel Semi Bold;">{{ (nprd.name.length>60)? (nprd.name | slice:0:60)+'...':(nprd.name) }}</h4>
-      <div  class="row mb-1"> 
-        <div class="col-md-1 text-center ">
-        <!-- <ul>
-          <li> -->
-            <a *ngIf="nprd.wishlist_check == false" 
-              style="cursor:pointer"
-              (click)="addToWishlist(nprd)"
-              matTooltip="Add to WishList"
-              > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i></a>
-            <a
-            style="cursor:pointer" *ngIf="nprd.wishlist_check == true"
-            (click)="deleteFromWishlist(nprd.wishlist_num)"
-            matTooltip="Already exist in Wishlist"
-            > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i>
-        </a>
-
-          <!-- for withouyt login -->
-           <a *ngIf="userC==false" 
-              style="cursor:pointer"
-              (click)="addToWishlistWL(nprd)"
-              matTooltip="Add to WishList"
-              > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i>
-          </a>
-          <!-- for without login -->
-          </div>
-          <!-- </li>
-          <li *ngIf="userC==true"> -->
-          
-
-        
-      <div class="col-md-5 text-center " style="color: red;" >
-        
-        <span
-        class="fa fa-star checked"
-        *ngFor="let i of createRange2(nprd.ratings)"
-      ></span>
-      <span *ngIf="nprd.ratings>'0'"><span
-        class="fa fa-star unchecked"
-        *ngFor="let i of createRange2(5 - nprd.ratings)"
-      ></span>
-    </span>
-  </div>
-  <div class="col-md-5 text-right " >
-    <div class="num-block skin-2"  *ngIf="nprd?.cart_check == true">
-      <div class="num-in" style="cursor: pointer;">
-        <span class="minus dis" *ngIf="nprd.cart_inventory.qty > 1 || nprd.cart_inventory.qty > '1'"  (click)="updateCart3minus(nprd.cart_inventory.cart_id,nprd.cart_inventory.cart_inventory_id,nprd.cart_inventory.rate_type,nprd.cart_inventory.qty,nprd.txn_quantity);"></span>
-        <span class="minus dis" *ngIf="nprd.cart_inventory.qty == 1 || nprd.cart_inventory.qty == '1'"  (click)="deleteFromCartF(nprd.cart_inventory.cart_inventory_id)"></span>
-        <input type="number" class="in-num"   value="{{nprd.cart_inventory.qty}}" required min="1"
-        (change)="updateCart3(nprd.cart_inventory.cart_id,nprd.cart_inventory.cart_inventory_id,nprd.cart_inventory.rate_type,$event.target.value,nprd.txn_quantity)"
-        (keyup)="updateCart3(nprd.cart_inventory.cart_id,nprd.cart_inventory.cart_inventory_id,nprd.cart_inventory.rate_type,$event.target.value,nprd.txn_quantity)" >
-        <span class="plus" *ngIf="nprd.cart_inventory.qty<nprd.txn_quantity"
-          (click)="updateCart3plus(nprd.cart_inventory.cart_id,nprd.cart_inventory.cart_inventory_id,nprd.cart_inventory.rate_type,nprd.cart_inventory.qty,nprd.txn_quantity);"></span>
-        <span class="plus" *ngIf="nprd.cart_inventory.qty>nprd.txn_quantity || nprd.cart_inventory.qty==nprd.txn_quantity"  title="Reached limit" [disabled]=true></span>
-      </div>
-    </div>
-   
-    <span *ngIf="userC==true">
-      <a *ngIf="nprd.cart_check == false "
-      style="cursor:pointer"
-      (click)="addToCart(nprd)"
-      matTooltip="Add to Cart"
-      > <i class="fa fa-cart-plus" style="color: green;"></i></a>
-    </span>
-    
-     
-    <a  *ngIf="userC==false"
-      style="cursor:pointer"
-      (click)="addToCart(nprd)"
-      matTooltip="Add to Cart"
-      > <i class="fa fa-cart-plus" style="color: green;"></i>
-  </a>
-  <!-- </li>
-</ul> -->
-
-  </div>
-      </div>
       <div class="row justify-content-start">
-        <div class="col-md-7">
-          <p style="color: rgb(131, 128, 128);margin-left:10px">
-            <span *ngIf="nprd.rate[0].is_rent == '1'" 
-            >{{ nprd.rate[0].name }} @ {{ nprd.rate[0].rate }}
-          </span>
-          <span *ngIf="nprd.rate[0].is_rent != '2'" style="color: black;"
-            >₹ {{ nprd.rate[0].rate}} 
-          </span> &nbsp;
-          <span class="for-you text-muted font-weight-500" *ngIf="nprd.rate[0].rate < nprd.mrp"
-            ><del>₹ {{ nprd.mrp }} </del></span
-          >
-          <span *ngIf="nprd.rate[0].is_rent == '2'" 
-            >{{ nprd.rate[1].name }} @ {{ nprd.rate[1].rate }} </span
-          >
-          <br/>
-          <span
-            *ngIf="nprd.rate[0].rate < nprd.mrp && nprd.rate[0].discount_percent !=0"
-            class="font-wieght-bold text-center for-you text-success"
-            >Discount : {{ nprd.rate[0].discount_percent | number:'1.0-0' }}% </span
-          >
-          </p>
-        </div>
-        <div class="col-md-5" *ngIf="nprd?.txn_quantity > '0'">
-          <div class="" >
-            <a    (click)="rates(nprd)" *ngIf="(nprd?.cart_check == false) && userC==true 
-            " class="buy-now-button cursor-pointer"><span class="fa fa-bolt " ></span>&nbsp; Buy Now</a>
-             <a   (click)="rates(nprd)" *ngIf="userC == false" class="buy-now-button  cursor-pointer"><span class="fa fa-bolt " ></span>&nbsp; Buy Now</a>
-          </div>
-        </div>
-      </div>
-    </div>
-     <!--pshow div end -->
-    </div>
-  
-  </div>
-  </div>
-  
-  <!-- start -->
-  
-  
-    <!-- <h2>
-      Mens shoes
-    </h2> -->
-    <div class="row">
-      <div class="col-md-12 text-center" >
-    <h2 class="title" style="font-family: Cinzel Semi Bold;">Featured Products</h2>
-    <div class="  row ">
-      <div class="col-md-6 text-left pl-2">
-      <li class="page-item float-left " style="background: #202328; color: #202328;" *ngIf="offsetDisc != 1">
-        <a matTooltip="Previous"
-          class="page-link page-previous"
-          (click)="changeOffsetDisc(offsetDisc - 1)"
-          aria-label="Previous"
-        >
-          <span aria-hidden="true" class=" font-weight-bold cursor-pointer" style="color: black;"><i class="fas fa-angle-left"></i></span>
-        </a>
-      </li>
-    </div>
-    <div class="col-md-6 text-right ">
-      <li class="page-item float-right pr-2" style="background: #202328; color: #202328;" *ngIf="offsetDisc != pagesDisc">
-        <a  matTooltip="Next"
-          class="page-link page-next"
-          (click)="changeOffsetDisc(offsetDisc + 1)"
-          aria-label="Next"
-        >
-          <span aria-hidden="true" class=" font-weight-bold cursor-pointer" style="color: black;"> <i class="fas fa-angle-right"></i></span>
-        </a>
-      </li>
-    </div>
-     
-    <!-- </div> -->
-  </div>
-   <div class="container-fluid mt-1">
-    <div class="row">
-      <div class="col-md-3"  *ngFor="let nprd of discountS"> 
-        <div class="card" style="margin: auto;  height:auto;">
-          <div class="card_image" >
-            <div class="bimg" id="box-img1"> 
-            <img
-            src="{{ nprd?.gallery?.medium_thumbnail_link }}" w (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)"
-         
-              id="img1"
-            alt="Product Image"
-          />
-        </div>
+        <div class="col-md-3" *ngFor="let nprd of newproduct">
+          <div class="card newproduct_box" id="box-img1">
+           <img src="{{ nprd?.gallery?.medium_thumbnail_link }}" id="img1" alt="New Product Image" class="image" (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)">
+           <h1  class="outofstockproduct" *ngIf="userC == true && nprd.txn_quantity < '1'"> Out of stock</h1>
+           <ul class="add-to-cart_newproduct">
+             <li><a *ngIf="nprd.wishlist_check == false" 
+               style="cursor:pointer"
+               (click)="addToWishlist(nprd)"
+               matTooltip="Add to WishList"
+               > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i></a>
+             <a
+             style="cursor:pointer" *ngIf="nprd.wishlist_check == true"
+             (click)="deleteFromWishlist(nprd.wishlist_num)"
+             matTooltip="Already exist in Wishlist"
+             > <i class="fas fa-heart" aria-hidden="true" style="color: red;" ></i>
+         </a>
+       
+           <!-- for withouyt login -->
+            <a *ngIf="userC==false" 
+               style="cursor:pointer"
+               (click)="addToWishlistWL(nprd)"
+               matTooltip="Add to WishList"
+               > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i>
+           </a></li>
+             <li class="mt-1"><span *ngIf="userC==true">
+               <a *ngIf="nprd.cart_check == false "
+               style="cursor:pointer"
+               (click)="addToCart(nprd)"
+               matTooltip="Add to Cart"
+               > <i class="fa fa-cart-plus" style="color: green;"></i></a>
+               </span>
+               
+               
+               <a  *ngIf="userC==false"
+               style="cursor:pointer"
+               (click)="addToCart(nprd)"
+               matTooltip="Add to Cart"
+               > <i class="fa fa-cart-plus" style="color: green;"></i>
+               </a></li>
+           </ul>
+           <div class="overlay">
+             <div class="text ">
+<div class="row">
+ <div class="col-md-12 ">
+   <span class="newproduct_heading " >{{ (nprd.name.length>60)? (nprd.name | slice:0:60)+'...':(nprd.name) }}</span>
+ </div>
+</div>
 
-     <!-- pshow div start -->
-     <div class="pshow">
-        <h1  class="show-status" *ngIf="userC == true && nprd.txn_quantity < '1'"> Out of stock</h1>
-        <h4 style="color: black;margin-left:20px; font-weight: bold; text-transform: capitaliz;font-family: Cinzel Semi Bold;">{{ (nprd.name.length>60)? (nprd.name | slice:0:60)+'...':(nprd.name) }}</h4>
-            <div  class="row "> 
-              <div class="col-md-1 text-center ">
-              <!-- <ul>
-                <li> -->
-                  <a *ngIf="nprd.wishlist_check == false" 
-                    style="cursor:pointer"
-                    (click)="addToWishlist(nprd)"
-                    matTooltip="Add to WishList"
-                    > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i></a>
-                  <a
-                  style="cursor:pointer" *ngIf="nprd.wishlist_check == true"
-                  (click)="deleteFromWishlist(nprd.wishlist_num)"
-                  matTooltip="Already exist in Wishlist"
-                  > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i>
-              </a>
 
-                <!-- for withouyt login -->
-                 <a *ngIf="userC==false" 
-                    style="cursor:pointer"
-                    (click)="addToWishlistWL(nprd)"
-                    matTooltip="Add to WishList"
-                    > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i>
-                </a>
-                <!-- for without login -->
-                </div>
-                <!-- </li>
-                <li *ngIf="userC==true"> -->
-                
-
-              
-            <div class="col-md-5 text-center " style="color: red;" >
-              
-              <span
-              class="fa fa-star checked"
-              *ngFor="let i of createRange2(nprd.ratings)"
-            ></span>
-            <span *ngIf="nprd.ratings>'0'"><span
-              class="fa fa-star unchecked"
-              *ngFor="let i of createRange2(5 - nprd.ratings)"
-            ></span>
-          </span>
-        </div>
-        <div class="col-md-5 text-right " >
-          <div class="num-block skin-2"  *ngIf="nprd?.cart_check == true">
-            <div class="num-in" style="cursor: pointer;">
-              <span class="minus dis" *ngIf="nprd.cart_inventory.qty > 1 || nprd.cart_inventory.qty > '1'"  (click)="updateCart3minus(nprd.cart_inventory.cart_id,nprd.cart_inventory.cart_inventory_id,nprd.cart_inventory.rate_type,nprd.cart_inventory.qty,nprd.txn_quantity);"></span>
-              <span class="minus dis" *ngIf="nprd.cart_inventory.qty == 1 || nprd.cart_inventory.qty == '1'"  (click)="deleteFromCartF(nprd.cart_inventory.cart_inventory_id)"></span>
-              <input type="number" class="in-num"   value="{{nprd.cart_inventory.qty}}" required min="1"
-              (change)="updateCart3(nprd.cart_inventory.cart_id,nprd.cart_inventory.cart_inventory_id,nprd.cart_inventory.rate_type,$event.target.value,nprd.txn_quantity)"
-              (keyup)="updateCart3(nprd.cart_inventory.cart_id,nprd.cart_inventory.cart_inventory_id,nprd.cart_inventory.rate_type,$event.target.value,nprd.txn_quantity)" >
-              <span class="plus" *ngIf="nprd.cart_inventory.qty<nprd.txn_quantity"
-                (click)="updateCart3plus(nprd.cart_inventory.cart_id,nprd.cart_inventory.cart_inventory_id,nprd.cart_inventory.rate_type,nprd.cart_inventory.qty,nprd.txn_quantity);"></span>
-              <span class="plus" *ngIf="nprd.cart_inventory.qty>nprd.txn_quantity || nprd.cart_inventory.qty==nprd.txn_quantity"  title="Reached limit" [disabled]=true></span>
-            </div>
-          </div>
-         
-          <span *ngIf="userC==true">
-            <a *ngIf="nprd.cart_check == false "
-            style="cursor:pointer"
-            (click)="addToCart(nprd)"
-            matTooltip="Add to Cart"
-            > <i class="fa fa-cart-plus" style="color: green;"></i></a>
-          </span>
-          
-           
-          <a  *ngIf="userC==false"
-            style="cursor:pointer"
-            (click)="addToCart(nprd)"
-            matTooltip="Add to Cart"
-            > <i class="fa fa-cart-plus" style="color: green;"></i>
-        </a>
-        <!-- </li>
-      </ul> -->
-
-        </div>
-            </div>
-            <div class="row justify-content-start">
-              <div class="col-md-7">
-                <p style="color: rgb(131, 128, 128);margin-left:10px;">
-                  <span *ngIf="nprd.rate[0].is_rent == '1'" 
-                  >{{ nprd.rate[0].name }} @ {{ nprd.rate[0].rate }}
-                </span>
-                <span *ngIf="nprd.rate[0].is_rent != '2'" style="color: black;"
-                  >₹ {{ nprd.rate[0].rate}} 
-                </span> &nbsp;
-                <span class="for-you text-muted font-weight-500" *ngIf="nprd.rate[0].rate < nprd.mrp"
-                  ><del>₹ {{ nprd.mrp }} </del></span
-                >
-                <span *ngIf="nprd.rate[0].is_rent == '2'" 
-                  >{{ nprd.rate[1].name }} @ {{ nprd.rate[1].rate }} </span
-                >
-                <br/>
-                <span
-                  *ngIf="nprd.rate[0].rate < nprd.mrp && nprd.rate[0].discount_percent !=0"
-                  class="font-wieght-bold text-center for-you text-success"
-                  >Discount : {{ nprd.rate[0].discount_percent | number:'1.0-0' }}% </span
-                >
-                </p>
-              </div>
-              <div class="col-md-5" *ngIf="nprd?.txn_quantity > '0'">
-                <div class="" >
-                  <a    (click)="rates(nprd)" *ngIf="(nprd?.cart_check == false) && userC==true 
-                  " class="buy-now-button cursor-pointer" style="color: white;"><span class="fa fa-bolt " ></span>&nbsp; Buy Now</a>
-                   <a   (click)="rates(nprd)" *ngIf="userC == false" class="buy-now-button  cursor-pointer" style="color: black;"><span class="fa fa-bolt " ></span>&nbsp; Buy Now</a>
-                </div>
-              </div>
-            </div>
-          </div>     
-           <!-- pshow div end -->
-          </div>
-        
-        </div>
-      </div>
-     
-      </div>
+<div class="row justify-content-start">
+ <div class="col-md-12">
+   <p style="color: rgb(131, 128, 128);margin-left:10px">
+     <span *ngIf="nprd.rate[0].is_rent == '1'" 
+     >{{ nprd.rate[0].name }} @ {{ nprd.rate[0].rate }}
+   </span>
+   <span *ngIf="nprd.rate[0].is_rent != '2'" class="newproduct_mrp"
+     >₹ {{ nprd.rate[0].rate}} 
+   </span> &nbsp;
+   <span class="newproduct_mrp text-muted font-weight-500" *ngIf="nprd.rate[0].rate < nprd.mrp"
+     ><del>₹ {{ nprd.mrp }} </del></span
+   >
+   <span *ngIf="nprd.rate[0].is_rent == '2'" 
+     >{{ nprd.rate[1].name }} @ {{ nprd.rate[1].rate }} </span
+   >
+   &nbsp;&nbsp;
+   <span 
+     *ngIf="nprd.rate[0].rate < nprd.mrp && nprd.rate[0].discount_percent !=0"
+     class="font-wieght-bold text-center newproduct_mrp text-success"
+     > {{ nprd.rate[0].discount_percent | number:'1.0-0' }}%  off</span
+   >
+   </p>
+ </div>
+ <div class="col-md-12 text-center " >
+   <div class="buy" *ngIf="nprd?.txn_quantity > '0'">
+     <a    (click)="rates(nprd)" *ngIf="(nprd?.cart_check == false) && userC==true 
+     " class="buy-now-button cursor-pointer"><span class="fa fa-bolt " ></span>&nbsp; Buy Now</a>
+      <a   (click)="rates(nprd)" *ngIf="userC == false" class="buy-now-button  cursor-pointer"><span class="fa fa-bolt " ></span>&nbsp; Buy Now</a>
    </div>
+ </div>
+
 
  
+</div>
+<div class="row justify-content-center">
+ <div class="col-md-5 text-center ">
+   <div class="num-block skin-2"  *ngIf="nprd?.cart_check == true">
+     <div class="num-in" style="cursor: pointer;">
+       <span class="minus dis" *ngIf="nprd.cart_inventory.qty > 1 || nprd.cart_inventory.qty > '1'"  (click)="updateCart3minus(nprd.cart_inventory.cart_id,nprd.cart_inventory.cart_inventory_id,nprd.cart_inventory.rate_type,nprd.cart_inventory.qty,nprd.txn_quantity);"></span>
+       <span class="minus dis" *ngIf="nprd.cart_inventory.qty == 1 || nprd.cart_inventory.qty == '1'"  (click)="deleteFromCartF(nprd.cart_inventory.cart_inventory_id)"></span>
+       <input type="number" class="in-num"   value="{{nprd.cart_inventory.qty}}" required min="1"
+       (change)="updateCart3(nprd.cart_inventory.cart_id,nprd.cart_inventory.cart_inventory_id,nprd.cart_inventory.rate_type,$event.target.value,nprd.txn_quantity)"
+       (keyup)="updateCart3(nprd.cart_inventory.cart_id,nprd.cart_inventory.cart_inventory_id,nprd.cart_inventory.rate_type,$event.target.value,nprd.txn_quantity)" >
+       <span class="plus" *ngIf="nprd.cart_inventory.qty<nprd.txn_quantity"
+         (click)="updateCart3plus(nprd.cart_inventory.cart_id,nprd.cart_inventory.cart_inventory_id,nprd.cart_inventory.rate_type,nprd.cart_inventory.qty,nprd.txn_quantity);"></span>
+       <span class="plus" *ngIf="nprd.cart_inventory.qty>nprd.txn_quantity || nprd.cart_inventory.qty==nprd.txn_quantity"  title="Reached limit" [disabled]=true></span>
+     </div>
+     </div>
+ </div>
+</div>
+
+             </div>
+           </div>
+          </div>
+        </div>
+      </div>
+    </div>
+ </section>
+
+ <!-- Top discount product by Aman Verma 06-11-2020 -->
+ <section class="mt-2">
+  <div class="container-fluid">
+   <h2 class="title" style="font-family: Cinzel Semi Bold;">Top Discount Products</h2>
+   <div class="  row pagination">
+    <div class="col-md-6 text-left pl-2">
+    <li class="page-item float-left " style="background: #202328; color: #202328;" *ngIf="offsetDisc != 1">
+      <a matTooltip="Previous"
+        class="page-link page-previous"
+        (click)="changeOffsetDisc(offsetDisc - 1)"
+        aria-label="Previous"
+      >
+        <span aria-hidden="true" class=" font-weight-bold cursor-pointer" style="color: black;"><i class="fas fa-angle-left"></i></span>
+      </a>
+    </li>
   </div>
-  <!-- end -->
+  <div class="col-md-6 text-right ">
+    <li class="page-item float-right pr-2" style="background: #202328; color: #202328;" *ngIf="offsetDisc != pagesDisc">
+      <a  matTooltip="Next"
+        class="page-link page-next"
+        (click)="changeOffsetDisc(offsetDisc + 1)"
+        aria-label="Next"
+      >
+        <span aria-hidden="true" class=" font-weight-bold cursor-pointer" style="color: black;"> <i class="fas fa-angle-right"></i></span>
+      </a>
+    </li>
+  </div>
+   
+  <!-- </div> -->
+</div>
+    <div class="row justify-content-start">
+      <div class="col-md-3" *ngFor="let nprd of discountS">
+        <div class="card newproduct_box" id="box-img1">
+         <img src="{{ nprd?.gallery?.medium_thumbnail_link }}" id="img1" alt="New Product Image" class="image" (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)">
+         <h1  class="outofstockproduct" *ngIf="userC == true && nprd.txn_quantity < '1'"> Out of stock</h1>
+         <ul class="add-to-cart_newproduct">
+           <li><a *ngIf="nprd.wishlist_check == false" 
+             style="cursor:pointer"
+             (click)="addToWishlist(nprd)"
+             matTooltip="Add to WishList"
+             > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i></a>
+           <a
+           style="cursor:pointer" *ngIf="nprd.wishlist_check == true"
+           (click)="deleteFromWishlist(nprd.wishlist_num)"
+           matTooltip="Already exist in Wishlist"
+           > <i class="fas fa-heart" aria-hidden="true" style="color: red;" ></i>
+       </a>
+     
+         <!-- for withouyt login -->
+          <a *ngIf="userC==false" 
+             style="cursor:pointer"
+             (click)="addToWishlistWL(nprd)"
+             matTooltip="Add to WishList"
+             > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i>
+         </a></li>
+           <li class="mt-1"><span *ngIf="userC==true">
+             <a *ngIf="nprd.cart_check == false "
+             style="cursor:pointer"
+             (click)="addToCart(nprd)"
+             matTooltip="Add to Cart"
+             > <i class="fa fa-cart-plus" style="color: green;"></i></a>
+             </span>
+             
+             
+             <a  *ngIf="userC==false"
+             style="cursor:pointer"
+             (click)="addToCart(nprd)"
+             matTooltip="Add to Cart"
+             > <i class="fa fa-cart-plus" style="color: green;"></i>
+             </a></li>
+         </ul>
+         <div class="overlay">
+           <div class="text ">
+<div class="row">
+<div class="col-md-12 ">
+ <span class="newproduct_heading " >{{ (nprd.name.length>60)? (nprd.name | slice:0:60)+'...':(nprd.name) }}</span>
+</div>
+</div>
+
+
+<div class="row justify-content-start">
+<div class="col-md-12">
+ <p style="color: rgb(131, 128, 128);margin-left:10px">
+   <span *ngIf="nprd.rate[0].is_rent == '1'" 
+   >{{ nprd.rate[0].name }} @ {{ nprd.rate[0].rate }}
+ </span>
+ <span *ngIf="nprd.rate[0].is_rent != '2'" class="newproduct_mrp"
+   >₹ {{ nprd.rate[0].rate}} 
+ </span> &nbsp;
+ <span class="newproduct_mrp text-muted font-weight-500" *ngIf="nprd.rate[0].rate < nprd.mrp"
+   ><del>₹ {{ nprd.mrp }} </del></span
+ >
+ <span *ngIf="nprd.rate[0].is_rent == '2'" 
+   >{{ nprd.rate[1].name }} @ {{ nprd.rate[1].rate }} </span
+ >
+ &nbsp;&nbsp;
+ <span 
+   *ngIf="nprd.rate[0].rate < nprd.mrp && nprd.rate[0].discount_percent !=0"
+   class="font-wieght-bold text-center newproduct_mrp text-success"
+   > {{ nprd.rate[0].discount_percent | number:'1.0-0' }}%  off</span
+ >
+ </p>
+</div>
+<div class="col-md-12 text-center " >
+ <div class="buy" *ngIf="nprd?.txn_quantity > '0'">
+   <a    (click)="rates(nprd)" *ngIf="(nprd?.cart_check == false) && userC==true 
+   " class="buy-now-button cursor-pointer"><span class="fa fa-bolt " ></span>&nbsp; Buy Now</a>
+    <a   (click)="rates(nprd)" *ngIf="userC == false" class="buy-now-button  cursor-pointer"><span class="fa fa-bolt " ></span>&nbsp; Buy Now</a>
+ </div>
+</div>
+
+
+
+</div>
+<div class="row justify-content-center">
+<div class="col-md-5 text-center ">
+ <div class="num-block skin-2"  *ngIf="nprd?.cart_check == true">
+   <div class="num-in" style="cursor: pointer;">
+     <span class="minus dis" *ngIf="nprd.cart_inventory.qty > 1 || nprd.cart_inventory.qty > '1'"  (click)="updateCart3minus(nprd.cart_inventory.cart_id,nprd.cart_inventory.cart_inventory_id,nprd.cart_inventory.rate_type,nprd.cart_inventory.qty,nprd.txn_quantity);"></span>
+     <span class="minus dis" *ngIf="nprd.cart_inventory.qty == 1 || nprd.cart_inventory.qty == '1'"  (click)="deleteFromCartF(nprd.cart_inventory.cart_inventory_id)"></span>
+     <input type="number" class="in-num"   value="{{nprd.cart_inventory.qty}}" required min="1"
+     (change)="updateCart3(nprd.cart_inventory.cart_id,nprd.cart_inventory.cart_inventory_id,nprd.cart_inventory.rate_type,$event.target.value,nprd.txn_quantity)"
+     (keyup)="updateCart3(nprd.cart_inventory.cart_id,nprd.cart_inventory.cart_inventory_id,nprd.cart_inventory.rate_type,$event.target.value,nprd.txn_quantity)" >
+     <span class="plus" *ngIf="nprd.cart_inventory.qty<nprd.txn_quantity"
+       (click)="updateCart3plus(nprd.cart_inventory.cart_id,nprd.cart_inventory.cart_inventory_id,nprd.cart_inventory.rate_type,nprd.cart_inventory.qty,nprd.txn_quantity);"></span>
+     <span class="plus" *ngIf="nprd.cart_inventory.qty>nprd.txn_quantity || nprd.cart_inventory.qty==nprd.txn_quantity"  title="Reached limit" [disabled]=true></span>
+   </div>
+   </div>
+</div>
+</div>
+
+           </div>
+         </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
   
-  
-  <!-- start -->
-  
-  
-        <!-- <div class="row">
-            <div class="col-md-12 text-center feature-title" >
-                <h2>TRENDING PRODUCTS</h2>
-                <a class="feature-active" href="#">BEST SELLER</a> | <a href="#">NEW ARRIVAL</a> | <a href="#">MOST WANTED</a> 
-            </div> -->
-            <!-- <div class="col-md-3 col-sm-6" *ngFor="let nprd of newproduct" >
-                <div class="product-grid" >
-                    <div class="product-image" > 
-                        <a  matTooltip="Next"
-                        class="page-link page-next"
-                        (click)="changeOffsetNew(offsetNew + 1)"
-                        aria-label="Next"
-                          href="#" class="image" style="background-color:#F3F3F3;">
-                            <img class="pic-1" src="{{ nprd.gallery.medium_thumbnail_link }}"  onerror="this.src='assets/img/favicon1.png';"
-                            alt="Product Image"  (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)">
-                        </a>
-                        <a class="add-to-cart" href=""> + </a>
-                    </div>
-                    <div class="product-content" >
-                        <h3 class="title"><a href="#">{{ (nprd.name.length>60)? (nprd.name | slice:0:60)+'...':(nprd.name) }}</a></h3>
-                        
-                         <div class="price">$21.60</div>
-                        <ul class="rating">
-                           <li class="fas fa-star"></li>
-                           <li class="fas fa-star"></li>
-                           <li class="fas fa-star"></li>
-                           <li class="fas fa-star"></li>
-                           <li class="fas fa-star disable"></li>
-                       </ul>
-                    </div>
+ 
     
-                    <div class="action-buttons">
-                        <a class="btn-outline">ADD TO CART</a>
-                        
-                        <a class="btn-outline-icon" ><i class="far fa-heart"></i></a>
-                       
-                        <a class="btn-outline-icon"><i class="fas fa-chart-pie"></i></a>
-                    </div>
-                </div>
-            </div> -->
-            <!-- <div class="col-md-3 col-sm-6">
-                <div class="product-grid">
-                    <div class="product-image">
-                        <a href="#" class="image">
-                            <img class="pic-1" src="https://assets.myntassets.com/dpr_2,q_60,w_210,c_limit,fl_progressive/assets/images/3736649/2018/3/12/11520834456858-na-6651520834456691-1.jpg">
-                        </a>
-                        <a class="add-to-cart" href=""> + </a>
-                    </div>
-                    <div class="product-content">
-                        
-                        <h3 class="title"><a href="#">Product Name</a></h3>
-                        
-                         <div class="price">$21.60</div>
-                        <ul class="rating">
-                           <li class="fas fa-star"></li>
-                           <li class="fas fa-star"></li>
-                           <li class="fas fa-star"></li>
-                           <li class="fas fa-star"></li>
-                           <li class="fas fa-star"></li>
-                       </ul>
-                    </div>
-                    <div class="action-buttons">
-                        <a class="btn-outline">ADD TO CART</a>
-                        <a class="btn-outline-icon"><i class="far fa-heart"></i></a>
-                        <a class="btn-outline-icon"><i class="fas fa-chart-pie"></i></a>
-                    </div>
-    
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="product-grid">
-                    <div class="product-image">
-                        <a href="#" class="image">
-                            <img class="pic-1" src="https://assets.myntassets.com/dpr_2,q_60,w_210,c_limit,fl_progressive/assets/images/3736649/2018/3/12/11520834456858-na-6651520834456691-1.jpg">
-                        </a>
-                        <a class="add-to-cart" href=""> + </a>
-                    </div>
-                    <div class="product-content">
-                    
-    
-                        <h3 class="title"><a href="#">Product Name</a></h3>
-                        
-                         <div class="price">$21.60</div>
-                        <ul class="rating">
-                           <li class="fas fa-star"></li>
-                           <li class="fas fa-star"></li>
-                           <li class="fas fa-star"></li>
-                           <li class="fas fa-star"></li>
-                           <li class="fas fa-star"></li>
-                       </ul>
-                    </div>
-                    <div class="action-buttons">
-                        <a class="btn-outline">ADD TO CART</a>
-                        <a class="btn-outline-icon"><i class="far fa-heart"></i></a>
-                        <a class="btn-outline-icon"><i class="fas fa-chart-pie"></i></a>
-                    </div>
-    
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="product-grid">
-                    <div class="product-image">
-                        <a href="#" class="image">
-                            <img class="pic-1" src="https://assets.myntassets.com/dpr_2,q_60,w_210,c_limit,fl_progressive/assets/images/3736649/2018/3/12/11520834456858-na-6651520834456691-1.jpg">
-                        </a>
-                        <a class="add-to-cart" href=""> + </a>
-                    </div>
-                    <div class="product-content">
-                       
-                        <h3 class="title"><a href="#">Product Name</a></h3>
-                        
-                        <div class="price">$21.60</div>
-                        <ul class="rating">
-                           <li class="fas fa-star"></li>
-                           <li class="fas fa-star"></li>
-                           <li class="fas fa-star"></li>
-                           <li class="fas fa-star"></li>
-                           <li class="fas fa-star"></li>
-                       </ul>
-                    </div>
-    
-                    <div class="action-buttons">
-                        <a class="btn-outline">ADD TO CART</a>
-                        <a class="btn-outline-icon"><i class="far fa-heart"></i></a>
-                        <a class="btn-outline-icon"><i class="fas fa-chart-pie"></i></a>
-                    </div> -->
-    
-                </div>
-            </div>
+ 
         </div>
   
-      <!-- </div> -->
   
     
            
