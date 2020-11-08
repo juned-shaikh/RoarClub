@@ -57,8 +57,12 @@ import { OrderViewDetailsComponent } from './order-view-details/order-view-detai
 import { AddressComponent } from './address/address.component';
 import { ClientaddressComponent } from './clientaddress/clientaddress.component';
 import { CustomerProfileComponent } from './customer-profile/customer-profile.component';
+//import { NgxImageZoomModule } from 'ngx-image-zoom';
+//import { NgxImgZoomService } from "ngx-img-zoom";
+import { NgxImgZoomModule  } from 'ngx-img-zoom';
 @NgModule({
   declarations: [
+    
     AppComponent,
     ClientaddressComponent,
     CustomerProfileComponent,
@@ -92,6 +96,7 @@ import { CustomerProfileComponent } from './customer-profile/customer-profile.co
 
   ],
   imports: [
+     FormsModule, NgxImgZoomModule ,
     BrowserModule,
     AppRoutingModule,
     MatTooltipModule,

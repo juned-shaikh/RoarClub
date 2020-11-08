@@ -1,4 +1,6 @@
+import { NgxImageZoomModule } from 'ngx-image-zoom';
 
+import { NgxImgZoomService } from "ngx-img-zoom";
 import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
 import { RoarclubserviceService } from "../roarclubservice.service";
 import {MatSnackBar} from  '@angular/material/snack-bar'
@@ -35,7 +37,7 @@ import { Title, Meta } from "@angular/platform-browser";
 export class ProductViewComponent implements OnInit {
   public product_no = sessionStorage.getItem("pno");
   categories;
-  size_with_color=[];
+  size_with_color=[]; 
   estimate_count=0;
   loader;
   ship_ask=true;
@@ -91,6 +93,7 @@ export class ProductViewComponent implements OnInit {
   megaMenu = false;
   previewFlag = sessionStorage.getItem('previewFlag');
   constructor(
+    private ngxImgZoom: NgxImgZoomService,
     private snackbar: MatSnackBar,
     private route: ActivatedRoute,
     private _location: Location,
@@ -104,7 +107,16 @@ export class ProductViewComponent implements OnInit {
     private meta: Meta,
     // public gallery: Gallery,
     // public lightbox: LightboxModule
-  ) {}
+  )
+   { 
+      this.ngxImgZoom.setZoomBreakPoints([
+    { w: 100, h: 100 },
+    { w: 150, h: 150 },
+    { w: 200, h: 200 },
+    { w: 250, h: 250 },
+    { w: 300, h: 300 }
+     ]);
+}
   // open(content) {
   //   this.modalService
   //     .open(content, { ariaLabelledBy: "modal-basic-title" })
@@ -3027,5 +3039,38 @@ if (
       });
   }
 
- // end for product analysis
+
+
+
+
+
+public imagePath;
+  imgURL: any;
+  public message: string;
+
+  enableZoom: Boolean = true;
+  previewImageSrc: any;
+  zoomImageSrc: any;
+
+  
+    
+
+  preview(files) {
+    if (files.length === 0) return;
+
+    var mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.message = "Only images are supported.";
+      return;
+    }
+
+    var reader = new FileReader();
+    this.imagePath = files;
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+      //this.imgURL = reader.result;
+      this.previewImageSrc = reader.result;
+      this.zoomImageSrc = reader.result;
+    };
+}
 }
