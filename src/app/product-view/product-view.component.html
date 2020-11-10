@@ -60,74 +60,155 @@
     <div class="row">
       <div class="col-md-6 mb-4 mb-md-0">
   
-        <div id="mdb-lightbox-ui"></div>
-  
-        <div class="mdb-lightbox">
-  
-          <div class="row product-gallery mx-1">
-            <div class="col-12 col-md-2">
-              <div class="row mt-2">
-                <div class="col-12" *ngFor="let image of product_image | slice:0:5;let s=index">
-                  <div  class="view overlay rounded z-depth-1 gallery-item" style="height: 100px; width: 100px; overflow: hidden;">
-                    <img    src="{{items23[s].thumb}}" style="vertical-align: middle;
-                    height: inherit;
-                    padding: 6px;
-                    width: 100%;"
-                    onerror="this.src='https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13a.jpg';"
-                      class="">
-                    <div class="mask rgba-white-slight"></div>
-                  </div>
-                </div>
-              
-              </div>
-            </div>
-            <div class="col-12 col-md-10 mb-0" >
-              <figure class="view overlay rounded z-depth-1 main-img" id="box-img-pro" >
-                <a href="{{imageView}}"
-                  data-size="710x823">
-                  <img src="{{imageView}}" class="zoom" id="imgpro"  onerror="this.src='https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg';"
-                    >
-                    
-                </a>
-              </figure>
+        <div class="row "  >
+          <!-- for pc laptop gallary -->
+        <div class="col-md-2  d-none d-md-block d-lg-block">
+        
+        <!-- <ul class="preview-thumbnail nav nav-tabs  mt-1 row " gallerize > -->
+        <ul class="preview-thumbnail nav nav-tabs  mt-1 row "  >
+        <li class="col-12 col-md-12" style="display: inherit!important;"
+        *ngFor="let image of product_image | slice:0:5;let s=index"
+        class="active cursor-pointer"  
+        >
+        <a  
+          data-target="#pic-1" 
+          matTooltip="more product image "
+          data-toggle="tab"
+          (click)="Image(image.image_link)"
+        >
+          <img 
             
-            </div>
-           
-          </div>
-  
+        src="{{items23[s].thumb}}"
+            onerror="this.src='assets/img/favicon1.png';"
+            alt="Product Image"
+            class="border p-1"
+            height="60"
+            width="60"
+        /></a>
+        <span *ngIf="product_image >5">more</span>
+        
+        </li>
+        </ul>
+        </div>
+        <!-- for mobile gallary -->
+        <div class="col-md-2 col-3 d-block d-md-none d-lg-none">
+        
+        <ul class="preview-thumbnail nav nav-tabs  mt-1 row " >
+        <li class="col-12 col-md-12" style="border-radius: 15px;display: inherit!important;"
+        *ngFor="let image of product_image | slice:0:5;let s=index"
+        class="active cursor-pointer"  
+        >
+        <a 
+          data-target="#pic-1" 
+          matTooltip="more product image "
+          data-toggle="tab"
+              (click)="Image(image.image_link)"
+        >
+          <img 
+            
+        src="{{items23[s].thumb}}"
+            onerror="this.src='assets/img/favicon1.png';"
+            alt="Product Image"
+            class="border p-1"
+            height="60"
+            width="60"
+        /></a>
+        <span *ngIf="product_image >5">more</span>
+        
+        </li>
+        </ul>
+        </div>
+        
+        <div class="col-md-10 col-9 ">
+        
+        <div class="row">
+        
+        <div class="preview col-md-12 col-12" style="border-radius: 15px;">
+        <!-- for laptop -->
+        <span class="add-to-wishlist-on-image" *ngIf="wishlist_check==false && product.txn_quantity > '0'"><i class="far fa-heart" matTooltip="add to wishlist"  (click)="addToWishlist(product)"></i></span>
+        <span class="add-to-wishlist-on-image" *ngIf="wishlist_check==false && product.txn_quantity < '1'"><i class="far fa-heart " matTooltip="add to wishlist" style="cursor: not-allowed;"  (click)="addToWishlist(product)"></i></span>
+        <span class="add-to-wishlist-on-image" *ngIf="wishlist_check==true" ><i class="far fa-heart text-danger"  (click)="deleteFromWishlist(wishlist_num)" matTooltip="remove from wishlist"></i></span>
+        <!-- <div class="preview-pic tab-content  p-1  d-none d-lg-block d-xl-block border" > -->
+        
+        
+        <!-- <div class="tab-pane active show-image1  cursor-pointer " id="pic-1 " >   -->
+        
+        
+        <app-zoom [img]="img" [zoom]="2" [lenSize]="120"    class="new-image-show  d-none d-lg-block d-xl-block"   [divZoomed]="divZoomed" ></app-zoom>
+        <div #divZoomed class="img-zoom-result"  ></div>
+          
+        <!-- </div> -->
+        
+        
+        <!-- </div> -->
+        
+        
+        <!-- for mobile ipad -->
+        
+        
+        
+        <div class="preview-pic tab-content  p-1 show-image3 d-block d-lg-none" >
+        
+        <div class="tab-pane active show-image3  cursor-pointer " id="pic-1 " >
+        
+        <img src="{{imageView}}" onerror="this.src='assets/img/favicon1.png';" class="img-1 ">
+        
+        </div>
+        
+        </div>
+        
+        
+        
+        
+        </div>
+        </div>
+        </div>
         </div>
   
       </div>
+
+      
+
+
+
       <div class="col-md-6" style="color: white;">
   
-        <h1 class="product-title font-weight-600 pt-1 ">{{ product.name }}  <span  *ngIf="product.color != null || product.color != null" class="" >(<span *ngIf="product.color != null" ><span class="text-muted pl-2 pr-2" >{{ product.color }}</span></span> -<span *ngIf="product.size != null"> <span class="text-muted  pl-2 pr-2">{{ product.size }}</span></span>)</span> </h1>    
-        <h5 class=" text-muted text-uppercase " style="position: relative; top: -12px;">{{ product.subheading }}</h5>
+        <h1 class="product-title font-weight-600 pt-1 " style="font-family: Cinzel Semi Bold;">{{ product.name }}  <span  *ngIf="product.color != null || product.color != null" class="" >(<span *ngIf="product.color != null" ><span class="text-muted pl-2 pr-2" >{{ product.color }}</span></span> -<span *ngIf="product.size != null"> <span class="text-muted  pl-2 pr-2">{{ product.size }}</span></span>)</span> </h1>    
+        <h5 class=" text-muted text-uppercase " style="position: relative;font-family: Cinzel Semi Bold; top: -12px;">{{ product.subheading }}</h5>
       
         <div *ngFor="let prates of product_rate" class="d-flex  col-lg-12  ">
-          <div  *ngIf=" prates.is_rent !='2'">
+          <div  *ngIf=" prates.is_rent !='2'" style="font-family: Cinzel Semi Bold;">
               <span class="">  
-              <span style="font-size: 34px;">{{prates.rate | currency:'INR'}}</span></span> &nbsp;
-              <span *ngIf="product.mrp>prates.rate" class=" font-weight-500  mb-2">  <del> MRP : {{product.mrp | currency:'INR'}}</del></span> &nbsp;&nbsp;<span *ngIf="product.mrp>prates.rate" class="text-success">{{prates.discount_percent | number:'1.0-0'}} % off</span>  <br/>
+              <span style="font-size: 34px;color:  #D10024;">{{prates.rate | currency:'INR'}}</span></span> &nbsp;
+              <span *ngIf="product.mrp>prates.rate" class=" font-weight-500  mb-2">  <del> MRP : {{product.mrp | currency:'INR'}}</del></span> &nbsp;&nbsp;<span *ngIf="product.mrp>prates.rate" class="text-success" style="color:  #D10024;">{{prates.discount_percent | number:'1.0-0'}} % off</span>  <br/>
           </div>
-          </div>
+          </div><br/>
           <h5 [innerHTML]="product.meta_description"></h5> 
-          <div *ngFor="let pspec of product_specification">
-            <span class="font-weight-400"> {{ pspec.spec_name }} : {{ pspec.spec_value }} </span>
+          <div *ngFor="let pspec of product_specification" style="font-family: Raleway Regular;">
+            <!-- <span class="font-weight-400"> {{ pspec.spec_name }} : {{ pspec.spec_value }} </span> -->
+          <table class="table table-sm table-borderless mb-0" style="color: white;font-family: Raleway Regular;">
+            <tbody>
+              <tr>
+                <th class="pl-0 p-10 w-25" scope="row"><strong>{{ pspec.spec_name }}</strong></th>
+                <td>{{ pspec.spec_value }}</td>
+              </tr>
+            </tbody>
+          </table>
           </div>
         <div class="table-responsive">
           <table class="table table-sm table-borderless mb-0" style="color: white;font-family: Raleway Regular;">
             <tbody>
-              
+             
               <tr>
-                <th class="pl-0 p-0 w-25" scope="row"><strong>Model</strong></th>
+                <th class="pl-0 p-10 w-25" scope="row"><strong>Model</strong></th>
                 <td>{{ product.model }}</td>
               </tr>
               <tr>
-                <th class="pl-0 p-0 w-25" scope="row"><strong>brand</strong></th>
+                <th class="pl-0 p-10 w-25" scope="row"><strong>brand</strong></th>
                 <td>{{ product.brand_name }}</td>
               </tr>
               <tr>
-                <th class="pl-0 p-0 w-25" scope="row"><strong>Delivery</strong></th>
+                <th class="pl-0 p-10 w-25" scope="row"><strong>Delivery</strong></th>
                 <td> by {{etd}}</td>
               </tr>
             </tbody>
@@ -135,16 +216,19 @@
         </div>
        
         <div class="row">
-          <div class="col-md-8 d-flex">
-            
-         <button type="button"  *ngIf="userC == true  && product.txn_quantity > '0'" (click)="rates(product);" class="btn btn-primary btn-md mr-1 mb-2">Buy now</button>
+          <div class="col-md-12 d-flex">
+           <div class="col-md-4 d-flex"> 
+         <button type="button"  *ngIf="userC == true  && product.txn_quantity > '0'" (click)="rates(product);"  class="add-to-cart-btn">Buy now</button>
   
-         <button type="button"  *ngIf="userC == true && product.txn_quantity < '1'" style="cursor: not-allowed;" class="btn btn-secondary btn-md mr-1 mb-2">Buy now</button>
-            <button type="button"  *ngIf="userC == false  && product.txn_quantity > '0'" (click)="rates(product);" class="btn btn-primary btn-md mr-1 mb-2">Buy now</button>
-            <button type="button" *ngIf="userC == false && product.txn_quantity < '1'" style="cursor:not-allowed;" class="btn btn-secondary btn-md mr-1 mb-2">Buy now</button>
-           <button type="button"  class="btn btn-light btn-md mr-1 mb-2" *ngIf="userC==false  && product.txn_quantity > '0'"  (click)="addToCart(product)" ><i
+         <button type="button"  *ngIf="userC == true && product.txn_quantity < '1'" style="cursor: not-allowed;"  class="add-to-cart-btn">Buy now</button>
+            <button type="button"  *ngIf="userC == false  && product.txn_quantity > '0'" (click)="rates(product);" class="add-to-cart-btn">Buy now</button>
+            <button type="button" *ngIf="userC == false && product.txn_quantity < '1'" style="cursor:not-allowed;"  class="add-to-cart-btn">Buy now</button>
+          </div>
+          <div class="col-md-4 d-flex">
+            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+           <!-- <button type="button"  class="add-to-cart-btn" *ngIf="userC==false  && product.txn_quantity > '0'"  (click)="addToCart(product)" ><i
                class="fas fa-shopping-cart pr-2"> &nbsp;Add to cart</i></button> 
-               <button type="button"  class="btn btn-light btn-md mr-1 mb-2" *ngIf="userC==false &&  product.txn_quantity < '1'" style="cursor: not-allowed;"><i
+               <button type="button"  class="add-to-cart-btn" *ngIf="userC==false &&  product.txn_quantity < '1'" style="cursor: not-allowed;"><i
                  class="fas fa-shopping-cart pr-2"> &nbsp;Add to cart</i></button> 
 
                  <span class="d-flex update-button" *ngIf="cart_check == true">
@@ -171,21 +255,22 @@
   
       </span>
 
-                 <button type="button" *ngIf="cart_check == false && userC==true" class="btn btn-light btn-md mr-1 mb-2"><i
+                 <button type="button" *ngIf="cart_check == false && userC==true" class="add-to-cart-btn"><i
                    class="fas fa-shopping-cart pr-2" *ngIf="userC==true &&  product.txn_quantity > '0'" (click)="addToCart(product)"> &nbsp;Add to cart</i>
                    <i
                    class="fas fa-shopping-cart pr-2"  *ngIf="userC==true  && product.txn_quantity < '1'" style="cursor: not-allowed;"> &nbsp;Add to cart</i>
                    
-                 </button> 
-                  
-                 <button type="button" *ngIf="wishlist_check==false && product.txn_quantity > '0'"  class="btn btn-light btn-md mr-1 mb-2" ><i class="far fa-heart" matTooltip="add to wishlist"  (click)="addToWishlist(product)"></i></button> 
-                   <button type="button"  class="btn btn-light btn-md mr-1 mb-2" *ngIf="wishlist_check==false && product.txn_quantity < '1'"><i class="far fa-heart " matTooltip="add to wishlist" style="cursor: not-allowed;"  (click)="addToWishlist(product)"></i></button> 
+                 </button>  -->
+                </div>
+                <div class="col-md-4 d-flex">
+                 <button type="button" *ngIf="wishlist_check==false && product.txn_quantity > '0'"  class="add-to-cart-btn1"><i class="far fa-heart" matTooltip="add to wishlist"  (click)="addToWishlist(product)"></i></button> 
+                   <button type="button"  class="add-to-cart-btn1" *ngIf="wishlist_check==false && product.txn_quantity < '1'"><i class="far fa-heart " matTooltip="add to wishlist" style="cursor: not-allowed;"  (click)="addToWishlist(product)"></i></button> 
                     
-                   <button type="button"  class="btn btn-light btn-md mr-1 mb-2" *ngIf="wishlist_check==true"><i class="far fa-heart text-danger"  (click)="deleteFromWishlist(wishlist_num)" matTooltip="remove from wishlist"></i></button> 
-                   
+                   <button type="button"  class="add-to-cart-btn1" *ngIf="wishlist_check==true"><i class="far fa-heart text-danger"  (click)="deleteFromWishlist(wishlist_num)" matTooltip="remove from wishlist"></i></button> 
+                  </div>
           </div>
-          <div class="col-md-4">
-            <div  >
+          
+           
       
               <!-- <div class="d-flex " *ngIf="cart_check == true">
                 <button *ngIf="cart_inventory.qty > 1 || cart_inventory.qty > '1'" class=" updateCart3minus  btn-info btn-sm mr-1 p-1"
@@ -213,8 +298,8 @@
          
        
 
-  </div>
-          </div>
+
+        
         </div>
                   
         
@@ -385,17 +470,8 @@
   
   </div>
 </div>
-<input #file type="file" accept="image/*" (change)="preview(file.files)" />
-<img [src]="imgURL" height="200" *ngIf="imgURL" />
-<ngx-img-zoom
-  [zoomImageSrc]="zoomImageSrc"
-  [previewImageSrc]="previewImageSrc"
-  [imgStyle]="'width:515px; height:515px; bottom:0;  left:0;  right:0;  top:0;  margin:0 auto; border:1px solid #dcdcdc;'"
-  [resultStyle]="'width:824px; height:824px; background-repeat: no-repeat; z-index: 2; position:absolute;-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); top: 0;left: 100%;'"
-  [lensStyle]="'width:155px; height:155px'"
-  [enableZoom]="enableZoom"
-  [containerStyle]=""
-></ngx-img-zoom>
+
 
 <!-- end -->
 <!-- <app-footer></app-footer> -->
+
