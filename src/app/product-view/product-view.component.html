@@ -344,7 +344,7 @@
 
      
         <h1  class="show-status" *ngIf="userC == true && nprd2?.txn_quantity < '1'"> Out of stock</h1>
-        <h4 style="margin-left:20px; text-transform: capitaliz; font-weight: bold;">{{ (nprd2?.name.length>60)? (nprd2?.name | slice:0:60)+'...':(nprd2?.name) }}</h4>
+        <h4 style="margin-left:20px; text-transform: capitaliz; font-weight: bold;font-family: Cinzel Semi Bold;">{{ (nprd2?.name.length>60)? (nprd2?.name | slice:0:60)+'...':(nprd2?.name) }}</h4>
             <div  class="row mb-2"> 
               <div class="col-md-1 text-right ">
               <!-- <ul>
@@ -473,5 +473,7 @@
 
 
 <!-- end -->
-<!-- <app-footer></app-footer> -->
 
+<div><h2 class="text-center" style="color: lightgray; text-transform: capitalize;">Gallery product</h2></div>
+<app-gallery></app-gallery>
+<app-footer></app-footer>

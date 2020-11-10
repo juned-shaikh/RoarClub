@@ -61,6 +61,7 @@ import { CustomerProfileComponent } from './customer-profile/customer-profile.co
 //import { NgxImgZoomService } from "ngx-img-zoom";
 import { NgxImgZoomModule  } from 'ngx-img-zoom';
 import { ZoomComponent } from './product-view/zoom.component';
+import { GalleryComponent } from './gallery/gallery.component';
 
 @NgModule({
   declarations: [
@@ -94,6 +95,7 @@ import { ZoomComponent } from './product-view/zoom.component';
    
     WishlistComponent,
        ZoomComponent,
+       GalleryComponent,
       
 
 
