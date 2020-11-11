@@ -3,7 +3,7 @@ body{
     background-color: #202328;
 }
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0;  }
 .modal-content {
     position: relative;
     display: -ms-flexbox;
@@ -20,4 +20,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     border: 1px solid white;
     border-radius: 12px!important;
     /* outline: 0; */
+  }
+  .project-heading{
+    font-family: 'Cinzel', serif!important;
+  }
+  .project-discription{
+    font-family: 'Raleway', sans-serif!important;
+  }
+  .active1{
+      /* background: lightgrey; */
+      border-top: 1px solid grey;
+      border-left: 1px solid grey;
+      color: blue;
+      border-radius: 9px;
   }

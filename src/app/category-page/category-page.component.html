@@ -1,465 +1,469 @@
 
 
 
-    <div class="container-fluid mb-3">
+    <div class="container-fluid mb-3 bg-light" *ngIf="subcat">
       <div class="row">
-        <div class="col-md-12 bg-light border-bottom pt-5 pb-5" style="height: 110px;padding-top: 30px;">
-          <div class="container">
-            <div class="row" *ngIf="subcat">
-              <div class="col-md-12">
-                <h3 (click)="navigateCategory(subcategory.name, subcategory.category_no)" style="cursor: pointer;">{{ subcategory.name }}</h3>
-                <div class="row " >
-                  <div class="breadcrumbs">
-                      <div class="row">
-                        <ol class="breadcrumb p-0 m-0 bg-transparent">
-                          <li class="breadcrumb-item" *ngFor="let sub of subcategory.sub_category"><a style="cursor: pointer;" (click)="navigateCategory(sub.name, sub.category_no) ">{{ sub.name }}</a></li>
+        <div class="col-md-12 bg-light " style="padding: 10px;">
+          <div class="container " >
+       
+                <h3 (click)="navigateCategory(subcategory.name, subcategory.category_no)" class="project-heading " style="cursor: pointer;">{{ subcategory.name }}</h3> 
+              
+                        <ul class="breadcrumb p-0 m-0 bg-transparent ">
+                          <li class="breadcrumb-item" *ngFor="let sub of subcategory.sub_category" class="project-discription"><a style="cursor: pointer;" (click)="navigateCategory(sub.name, sub.category_no) ">{{ sub.name }}</a></li>
                          
-                        </ol>
+                        </ul>
 
-
-                       
-                      </div>
-                    </div>
-      
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="container">
-      <div class="row mb-5">
-        <div class="col-md-3">
-          
-          <div class="card">
-            <div class="card-header">Filter</div>
-            <div class="card-body p-1">
-              <div class="card border-0 b-3">
-                <div class="card-header p-2 bg-white" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false">
-                  <p class="m-0 h6">Categories ({{categories?.length}})</p>
-                </div>
-                <div class="card-body p-0 collapse show" id="collapseExample1">
-                  <ul class="list-group list-group-flush" style="height:200px;overflow:auto;">
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center" *ngFor="let category of categories; let index = index"  (click)="
-                    navigateCategory(category.name, category.category_no)
-                  ">
-                      <div class="custom-control custom-checkbox" >
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">  {{
-                          category.name.length > 22
-                            ? (category.name | slice: 0:22) + "..."
-                            : category.name
-                        }}</label>
-                      </div>
-                      <!-- <span class="badge badge-secondary badge-pill">14</span> -->
-                    </li>
-                 
-                  
-                  </ul>
-                </div>
-              </div>
 
-              <div class="card border-0 b-3" *ngIf="brandNav">
-                <div class="card-header p-2 bg-white" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false">
-                  <p class="m-0 h6">Brand ({{categories.length}})</p>
-                </div>
-                <div class="card-body p-0 collapse show" id="collapseExample1">
-                  <ul class="list-group list-group-flush" style="height:200px;overflow:auto;">
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center" *ngFor="let categoryi of categories | slice:0:9;">
-                      <div class="custom-control custom-checkbox" (click)="navigateBrand(categoryi.name, categoryi.brand_id)">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">    {{ (categoryi.name.length>20)? (categoryi.name | slice:0:20)+'...':(categoryi.name) }}</label>
-                      </div>
-                      <!-- <span class="badge badge-secondary badge-pill">14</span> -->
-                    </li>
-                 
-                  
-                  </ul>
-                </div>
-              </div>
-              <div class="card border-0 b-3">
-                <div class="card-header p-2 bg-white" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false">
-                  <p class="m-0 h6">Size</p>
-                </div>
-                <div class="card-body p-0 collapse show" id="collapseExample2">
-                  <ul class="list-group list-group-flush" style="height:200px;overflow:auto;">
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">XXS</label>
-                      </div>
-                    </li>
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">XS</label>
-                      </div>
-                    </li>
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">S</label>
-                      </div>
-                    </li>
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">M</label>
-                      </div>
-                    </li>
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">L</label>
-                      </div>
-                    </li>
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">XL</label>
-                      </div>
-                    </li>
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">XXL</label>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="card border-0 b-3">
-                <div class="card-header p-2 bg-white" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false">
-                  <p class="m-0 h6">Color</p>
-                </div>
-                <div class="card-body p-0 collapse show" id="collapseExample3">
-                  <ul class="list-group list-group-flush" style="height:200px;overflow:auto;">
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                      <div class="custom-control custom-checkbox w-100">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">
-                          <div class="float-left p-2 mt-1 mr-1" style="background-color:#E52B50"></div>
-                          <span>Amaranth</span>
-                        </label>
-                      </div>
-                    </li>
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                      <div class="custom-control custom-checkbox w-100">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">
-                          <div class="float-left p-2 mt-1 mr-1" style="background-color:#FFBF00"></div>
-                          <span>Amber</span>
-                        </label>
-                      </div>
-                    </li>
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">
-                          <div class="float-left p-2 mt-1 mr-1" style="background-color:#007FFF"></div>
-                          <span>Azure</span>
-                        </label>
-                      </div>
-                    </li>
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">
-                          <div class="float-left p-2 mt-1 mr-1" style="background-color:#007BA7"></div>
-                          <span>Cerulean</span>
-                        </label>
-                      </div>
-                    </li>
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">
-                          <div class="float-left p-2 mt-1 mr-1" style="background-color:#B87333"></div>
-                          <span>Copper</span>
-                        </label>
-                      </div>
-                    </li>
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">
-                          <div class="float-left p-2 mt-1 mr-1" style="background-color:#DC143C"></div>
-                          <span>Crimson</span>
-                        </label>
-                      </div>
-                    </li>
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">
-                          <div class="float-left p-2 mt-1 mr-1" style="background-color:#008000"></div>
-                          <span>Green</span>
-                        </label>
-                      </div>
-                    </li>
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">
-                          <div class="float-left p-2 mt-1 mr-1" style="background-color:#808080"></div>
-                          <span>Gray</span>
-                        </label>
-                      </div>
-                    </li>
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">
-                          <div class="float-left p-2 mt-1 mr-1" style="background-color:#FFD700"></div>
-                          <span>Gold</span>
-                        </label>
-                      </div>
-                    </li>
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">
-                          <div class="float-left p-2 mt-1 mr-1" style="background-color:#D1E231"></div>
-                          <span>Pear</span>
-                        </label>
-                      </div>
-                    </li>
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">
-                          <div class="float-left p-2 mt-1 mr-1" style="background-color:#800080"></div>
-                          <span>Purple</span>
-                        </label>
-                      </div>
-                    </li>
-                    <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">
-                          <div class="float-left p-2 mt-1 mr-1" style="background-color:#C0C0C0"></div>
-                          <span>Silver</span>
-                        </label>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="card border-0 b-3">
-                <div class="card-header p-2 bg-white" data-toggle="collapse" data-target="#collapseExample4" aria-expanded="false">
-                  <p class="m-0 h6">Price</p>
-                </div>
-                <div class="card-body p collapse show" id="collapseExample4">
-                  <div class="form-row">
-                    <div class="form-group col-md-6">
-                      <label>Min</label>
-                      <input class="form-control" placeholder="$0" type="number">
+    <div class="container-fluid">
+      <div class="container-fluid">
+        <div class="container-fluid">
+          <div class="row mb-5">
+            <div class="col-md-3">
+              
+              <div class="card project-discription">
+                <div class="card-header">Filter</div>
+                <div class="card-body p-1">
+                  <div class="card border-0 b-3">
+                    <div class="card-header p-2 bg-white" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false">
+                      <p class="m-0 h6 project-heading">Categories ({{categories?.length}})</p>
                     </div>
-                    <div class="form-group text-right col-md-6">
-                      <label>Max</label>
-                      <input class="form-control" placeholder="$1,0000" type="number">
+                    <div class="card-body p-0 collapse show" id="collapseExample1">
+                      <ul class="list-group list-group-flush" style="height:200px;overflow:auto;">
+                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center" *ngFor="let category of categories; let index = index"  (click)="
+                        navigateCategory(category.name, category.category_no)
+                      ">
+                          <div class="custom-control custom-checkbox" >
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">  {{
+                              category.name.length > 22
+                                ? (category.name | slice: 0:22) + "..."
+                                : category.name
+                            }}</label>
+                          </div>
+                          <!-- <span class="badge badge-secondary badge-pill">14</span> -->
+                        </li>
+                     
+                      
+                      </ul>
                     </div>
                   </div>
+    
+                  <div class="card border-0 b-3" *ngIf="brandNav">
+                    <div class="card-header p-2 bg-white" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false">
+                      <p class="m-0 h6 project-heading ">Brand ({{categories.length}})</p>
+                    </div>
+                    <div class="card-body p-0 collapse show" id="collapseExample1">
+                      <ul class="list-group list-group-flush" style="height:200px;overflow:auto;">
+                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center" *ngFor="let categoryi of categories | slice:0:9;">
+                          <div class="custom-control custom-checkbox" (click)="navigateBrand(categoryi.name, categoryi.brand_id)">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">    {{ (categoryi.name.length>20)? (categoryi.name | slice:0:20)+'...':(categoryi.name) }}</label>
+                          </div>
+                          <!-- <span class="badge badge-secondary badge-pill">14</span> -->
+                        </li>
+                     
+                      
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="card border-0 b-3 ">
+                    <div class="card-header p-2 bg-white" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false">
+                      <p class="m-0 h6">Size</p>
+                    </div>
+                    <div class="card-body p-0 collapse show" id="collapseExample2">
+                      <ul class="list-group list-group-flush" style="height:200px;overflow:auto;">
+                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">XXS</label>
+                          </div>
+                        </li>
+                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">XS</label>
+                          </div>
+                        </li>
+                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">S</label>
+                          </div>
+                        </li>
+                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">M</label>
+                          </div>
+                        </li>
+                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">L</label>
+                          </div>
+                        </li>
+                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">XL</label>
+                          </div>
+                        </li>
+                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">XXL</label>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="card border-0 b-3">
+                    <div class="card-header p-2 bg-white" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false">
+                      <p class="m-0 h6">Color</p>
+                    </div>
+                    <div class="card-body p-0 collapse show" id="collapseExample3">
+                      <ul class="list-group list-group-flush" style="height:200px;overflow:auto;">
+                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
+                          <div class="custom-control custom-checkbox w-100">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">
+                              <div class="float-left p-2 mt-1 mr-1" style="background-color:#E52B50"></div>
+                              <span>Amaranth</span>
+                            </label>
+                          </div>
+                        </li>
+                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
+                          <div class="custom-control custom-checkbox w-100">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">
+                              <div class="float-left p-2 mt-1 mr-1" style="background-color:#FFBF00"></div>
+                              <span>Amber</span>
+                            </label>
+                          </div>
+                        </li>
+                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">
+                              <div class="float-left p-2 mt-1 mr-1" style="background-color:#007FFF"></div>
+                              <span>Azure</span>
+                            </label>
+                          </div>
+                        </li>
+                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">
+                              <div class="float-left p-2 mt-1 mr-1" style="background-color:#007BA7"></div>
+                              <span>Cerulean</span>
+                            </label>
+                          </div>
+                        </li>
+                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">
+                              <div class="float-left p-2 mt-1 mr-1" style="background-color:#B87333"></div>
+                              <span>Copper</span>
+                            </label>
+                          </div>
+                        </li>
+                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">
+                              <div class="float-left p-2 mt-1 mr-1" style="background-color:#DC143C"></div>
+                              <span>Crimson</span>
+                            </label>
+                          </div>
+                        </li>
+                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">
+                              <div class="float-left p-2 mt-1 mr-1" style="background-color:#008000"></div>
+                              <span>Green</span>
+                            </label>
+                          </div>
+                        </li>
+                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">
+                              <div class="float-left p-2 mt-1 mr-1" style="background-color:#808080"></div>
+                              <span>Gray</span>
+                            </label>
+                          </div>
+                        </li>
+                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">
+                              <div class="float-left p-2 mt-1 mr-1" style="background-color:#FFD700"></div>
+                              <span>Gold</span>
+                            </label>
+                          </div>
+                        </li>
+                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">
+                              <div class="float-left p-2 mt-1 mr-1" style="background-color:#D1E231"></div>
+                              <span>Pear</span>
+                            </label>
+                          </div>
+                        </li>
+                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">
+                              <div class="float-left p-2 mt-1 mr-1" style="background-color:#800080"></div>
+                              <span>Purple</span>
+                            </label>
+                          </div>
+                        </li>
+                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">
+                              <div class="float-left p-2 mt-1 mr-1" style="background-color:#C0C0C0"></div>
+                              <span>Silver</span>
+                            </label>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="card border-0 b-3">
+                    <div class="card-header p-2 bg-white" data-toggle="collapse" data-target="#collapseExample4" aria-expanded="false">
+                      <p class="m-0 h6">Price</p>
+                    </div>
+                    <div class="card-body p collapse show" id="collapseExample4">
+                      <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label>Min</label>
+                          <input class="form-control" placeholder="$0" type="number">
+                        </div>
+                        <div class="form-group text-right col-md-6">
+                          <label>Max</label>
+                          <input class="form-control" placeholder="$1,0000" type="number">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <button type="button" class="btn btn-block btn-primary">Filter</button>
                 </div>
               </div>
             </div>
-            <div class="card-footer">
-              <button type="button" class="btn btn-block btn-primary">Filter</button>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-9">
-          <div class="card" style="background-color:#000000;">
-            <div class="card-header">
-              <div class="row">
-                <div class="col-md-5">
-                  <div class="btn-group" role="group">
-                    <!-- <button type="button" class="btn btn-secondary active"><i class="fas fa-th"></i></button>
-                    <button type="button" class="btn btn-secondary"><i class="fas fa-th-list"></i></button>
-                    <button type="button" class="btn btn-secondary">
-                      <i class="fas fa-sync-alt"></i>
-                      <span>Product Compare (0)</span>
-                    </button> -->
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Sort By:</span>
+            <div class="col-md-9">
+              <div class="card" style="background-color:grey;">
+                <div class="card-header">
+                  <div class="row">
+                    <div class="col-md-5">
+                      <div class="btn-group" role="group">
+                        <!-- <button type="button" class="btn btn-secondary active"><i class="fas fa-th"></i></button>
+                        <button type="button" class="btn btn-secondary"><i class="fas fa-th-list"></i></button>
+                        <button type="button" class="btn btn-secondary">
+                          <i class="fas fa-sync-alt"></i>
+                          <span>Product Compare (0)</span>
+                        </button> -->
+                      </div>
                     </div>
-                    <select class="form-control" id="" name="">
-                      <option value="">Default</option>
-                      <option value="">Name (A - Z)</option>
-                      <option  (click)="setSorting('new')"
-                      value="1">New</option>
-                      <option
-                      (click)="setSorting('low-to-high')"
-                      value="3"
-                      >Price (Low &gt; High)</option>
-                      <option (click)="setSorting('high-to-low')"
-                      value="2">Price (High &gt; Low)</option>
-                      <option value="">Rating (Highest)</option>
-                      <option value="">Rating (Lowest)</option>
-                      <option value="">Model (A - Z)</option>
-                      <option value="">Model (Z - A)</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">Show:</span>
+                    <!-- <div class="col-md-4">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">Sort By:</span>
+                        </div>
+                        <select class="form-control" id="" name="">
+                          <option value="">Default</option>
+                          <option value="">Name (A - Z)</option>
+                          <option  (click)="setSorting('new')"
+                          value="1">New</option>
+                          <option
+                          (click)="setSorting('low-to-high')"
+                          value="3"
+                          >Price (Low &gt; High)</option>
+                          <option (click)="setSorting('high-to-low')"
+                          value="2">Price (High &gt; Low)</option>
+                          <option value="">Rating (Highest)</option>
+                          <option value="">Rating (Lowest)</option>
+                          <option value="">Model (A - Z)</option>
+                          <option value="">Model (Z - A)</option>
+                        </select>
+                      </div>
                     </div>
-                    <select class="form-control" id="" name="">
-                      <option value="">15</option>
-                      <option value="">25</option>
-                      <option value="">50</option>
-                      <option value="">75</option>
-                      <option value="">100</option>
-                    </select>
+                    <div class="col-md-3">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">Show:</span>
+                        </div>
+                        <select class="form-control" id="" name="">
+                          <option value="">15</option>
+                          <option value="">25</option>
+                          <option value="">50</option>
+                          <option value="">75</option>
+                          <option value="">100</option>
+                        </select>
+                      </div>
+                    </div> -->
                   </div>
                 </div>
-              </div>
+                <div class="card-body " style="background: darkgrey;">
+          <div class="row">
+            <div class="col-md-4 mb-4 box-card" *ngFor="let nprd of products" >
+              <div class="card" style="height: 350px;">
+                <div class="box-image">
+                <img
+                class="card-img-top image  " 
+                src="{{ nprd.product_image.medium_thumbnail_link }}"
+                alt="Product Image"
+                (click)="
+                          view_product(
+                            nprd.product.meta_title,
+                            nprd.product.product_no,nprd.product.slug,nprd.product.quick_product_check
+                          )
+                        "
+              />
             </div>
-            <div class="card-body">
-      <div class="row">
-        <div class="col-md-4 mb-4" *ngFor="let nprd of products" >
-          <div class="card" style="height: 460px;max-width: 300px;">
-            <img
-            class="card-img-top Recent-img p-2  " height="200px"
-            src="{{ nprd.product_image.medium_thumbnail_link }}"
-            alt="Product Image"
-            (click)="
-                      view_product(
-                        nprd.product.meta_title,
-                        nprd.product.product_no,nprd.product.slug,nprd.product.quick_product_check
-                      )
-                    "
-          />
-            <div class="card-body">
-              <p class="h6" style="cursor: pointer;" (click)="
-              view_product(
-                nprd.product.meta_title,
-                nprd.product.product_no,nprd.product.slug,nprd.product.quick_product_check
-              )
-            "><small class="text-muted">{{nprd.product.brand_name}}</small><br/>{{ (nprd.product.name.length>80)? (nprd.product.name | slice:0:80)+'...':(nprd.product.name) }} </p>
-              <p class="m-0">
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-                <i class="fa-xs far fa-star"></i>
-              </p>
-              <p class="h5 m-0">
-                  <span
-                    *ngIf="nprd.product_rate[0].is_rent == '1'"
-                    class="for-you"
-                    >{{ nprd.product_rate[0].name }} @
-                    {{ nprd.product_rate[0].rate }}
-                  </span>
-                  <span
-                    *ngIf="nprd.product_rate[0].is_rent != '2'"
-                    class="for-you"
+                <div class="card-body mt-0 mb-0 pt-0 m-0 pl-2 pr-2">
+                  <div class="" style="cursor: pointer;" (click)="
+                  view_product(
+                    nprd.product.meta_title,
+                    nprd.product.product_no,nprd.product.slug,nprd.product.quick_product_check
+                  )
+                "><small class="text-muted brand-name project-discription">{{nprd.product.brand_name}}</small><br/><span class="project-heading heading">{{ (nprd.product.name.length>80)? (nprd.product.name | slice:0:80)+'...':(nprd.product.name) }}</span> </div>
+        
+                  <div class=" m-0 mt-0 pt-0 ">
+                      <span
+                        *ngIf="nprd.product_rate[0].is_rent == '1'"
+                        class="for-you"
+                        >{{ nprd.product_rate[0].name }} @
+                        {{ nprd.product_rate[0].rate }}
+                      </span>
+                      <span
+                        *ngIf="nprd.product_rate[0].is_rent != '2'"
+                        class="product-mrp"
+                        >
+                        ₹ {{ nprd.product_rate[0].rate }}
+                      </span>
+                      <span
+                        class="del-mrp"
+                        *ngIf="nprd.product_rate[0].rate < nprd.product.mrp"
+                        ><del
+                          > ₹ {{ nprd.product.mrp  }}
+                        </del></span
+                      >
+                      <span
+                        *ngIf="nprd.product_rate[0].is_rent == '2'"
+                        class="for-you"
+                        >{{ nprd.product_rate[1].name }} @
+                        {{ nprd.product_rate[1].rate }} </span
+                        >&nbsp;
+                        <span
+                    *ngIf="nprd.product_rate[0].rate < nprd.product.mrp" 
+                    class="font-wieght-bold  for-you text-success"
                     >
-                    ₹ {{ nprd.product_rate[0].rate }}
-                  </span>
-                  <span
-                    class="for-you font-wieght-500"
-                    *ngIf="nprd.product_rate[0].rate < nprd.product.mrp"
-                    ><del
-                      > ₹ {{ nprd.product.mrp  }}
-                    </del></span
+                    {{
+                      nprd.product_rate[0].discount_percent | number:'1.0-0'
+                    }}% off</span
                   >
-                  <span
-                    *ngIf="nprd.product_rate[0].is_rent == '2'"
-                    class="for-you"
-                    >{{ nprd.product_rate[1].name }} @
-                    {{ nprd.product_rate[1].rate }} </span
-                    >&nbsp;
-                    <span
-                *ngIf="nprd.product_rate[0].rate < nprd.product.mrp" 
-                class="font-wieght-bold  for-you text-success"
-                >
-                {{
-                  nprd.product_rate[0].discount_percent | number:'1.0-0'
-                }}% off</span
-              >
-                
-                </p>
+                    
+                  </div>
+                </div>
+                <div class=" bottom-section">
+                  <div *ngIf="nprd.product.txn_quantity > '0'" class="btn-group" role="group">
+                    <button type="button" class="btn btn-light" *ngIf="nprd.product.wishlist_check == false"  (click)="addToWishlist(nprd)" title="add to wishlist">
+                      <i class="fas fa-heart"></i>
+                    </button>
+                    <button type="button" class="btn btn-light" title="Already exist in Wishlist"  *ngIf="nprd.product.wishlist_check == true"  (click)="deleteFromWishlist(nprd.product.wishlist_num)">
+                      <i class="fas fa-heart text-danger"></i>
+                    </button>
+                    <button type="button" class="btn btn-light" *ngIf="userC == false" (click)="addToWishlistWL(nprd)" title="add to wishlist">
+                      <i class="fas fa-heart"></i>
+                    </button>
+                  
+                  </div>
+                  <div class="btn-group" role="group">
+                    <div *ngIf=" nprd.product.txn_quantity > '0'">
+                      <button type="button" class="btn btn-light" (click)="rates(nprd)" *ngIf="(nprd.product.cart_check == false) && userC==true" >
+                        <i class="fa fa-bolt"  title="buy now this product"
+                        ></i> buy now
+                       
+                      </button>
+                      <button type="button" class="btn btn-light" (click)="rates(nprd)" *ngIf="userC == false"> 
+                      
+                        <i class="fa fa-bolt"  title="login first" ></i> buy now
+                      </button>
+                    </div>
+                  
+
+
+
+                      
+                      <div class="num-block skin-2"  *ngIf="nprd.product.cart_check == true">
+                        <div class="num-in" style="cursor: pointer;">
+                          <span class="minus dis"  *ngIf="nprd.product.cart.qty > 1 || nprd.product.cart.qty > '1'"   (click)="updateCart3minus(nprd.product.cart.cart_id,nprd.product.cart.cart_inventory_id,nprd.product.cart.rate_type,nprd.product.cart.qty,nprd.product.txn_quantity);" ></span>
+                          <span class="minus dis" *ngIf="nprd.product.cart.qty == 1 || nprd.product.cart.qty == '1'"  (click)="deleteFromCartF(nprd.product.cart.cart_inventory_id)"></span>
+                          <input type="number" class="in-num"   value="{{nprd.product.cart.qty}}" required min="1"
+                          (change)="updateCart3(nprd.product.cart.cart_id,nprd.product.cart.cart_inventory_id,nprd.product.cart.rate_type,$event.target.value,nprd.product.txn_quantity)"
+                          (keyup)="updateCart3(nprd.product.cart.cart_id,nprd.product.cart.cart_inventory_id,nprd.product.cart.rate_type,$event.target.value,nprd.product.txn_quantity)" >
+                          <span class="plus"*ngIf="nprd.product.cart.qty<nprd.product.txn_quantity"  title="increase"
+                          (click)="updateCart3plus(nprd.product.cart.cart_id,nprd.product.cart.cart_inventory_id,nprd.product.cart.rate_type,nprd.product.cart.qty,nprd.product.txn_quantity);"></span>
+                          <span class="plus" *ngIf="nprd.product.cart.qty >= nprd.product.txn_quantity"  title="Reached limit" [disabled]=true></span>
+                        </div>
+                        </div>
+                    <button type="button" *ngIf="userC==false && nprd.product.txn_quantity > '0'"  (click)="addToCart(nprd)" class="btn btn-light">
+                      <i class="fas fa-cart-plus"></i>
+    
+                    </button>
+                    <div *ngIf="userC==true && nprd.product.txn_quantity> '0'">
+    <button type="button" *ngIf="nprd.product.cart_check == false"  (click)="addToCart(nprd)" class="btn btn-light">
+      <i class="fas fa-cart-plus"></i>
+    </button>
+  </div>
+ 
+                   
+    
+    
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="card-footer p-0">
-
-             
-              <div class="btn-group" role="group">
-                <div class="" *ngIf="userC==true">
-                <button type="button" *ngIf="nprd.product.cart_check == false"  (click)="addToCart(nprd)" class="btn btn-light">
-                  <i class="fas fa-cart-plus"></i>
-           <span>Add Cart</span>
-
-                </button>
-</div>
-<button type="button" *ngIf="userC == false"  (click)="addToCart(nprd)" class="btn btn-light">
-  <i class="fas fa-cart-plus"></i>
-<span>Add Cart</span>
-
-</button>
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-shopping-cart"></i>
-                </button>
-                <button type="button" class="btn btn-light"  *ngIf="userC == false"  (click)="addToWishlistWL(nprd)">
-                  <i class="fas fa-heart"></i>
-                </button>
-                <button type="button" class="btn btn-light" *ngIf="nprd.product.wishlist_check == true"  (click)="deleteFromWishlist(nprd.product.wishlist_num)">
-                  <i class="fas fa-heart"></i>
-                </button>
-                <button type="button" class="btn btn-light"  (click)="addToWishlistWL(nprd)"  *ngIf="nprd.product.wishlist_check == false">
-                  <i class="fas fa-heart"></i>
-                </button>
-
-                <button type="button" class="btn btn-light" *ngIf=" nprd.product.txn_quantity > '0'">
-                  <i class="fa fa-bolt" (click)="rates(nprd)" *ngIf="(nprd.product.cart_check == false) && userC==true 
-                  "></i>
-                  <i class="fa fa-bolt" (click)="rates(nprd)" *ngIf="userC == false" style="cursor: default;"></i>
-                </button>
-
-
+           
+          </div>
+                </div>
+                <!-- <div class="card-footer p-3">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <ul class="pagination m-0">
+                        <li class="page-item disabled">
+                          <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                          <a class="page-link" href="#">Next</a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="col-md-6">
+                      <p class="text-right mb-0 mt-1">Showing 1 to 12 of 12 (1 Pages)</p>
+                    </div>
+                  </div>
+                </div> -->
               </div>
             </div>
           </div>
         </div>
-       
       </div>
-            </div>
-            <div class="card-footer p-3">
-              <div class="row">
-                <div class="col-md-6">
-                  <ul class="pagination m-0">
-                    <li class="page-item disabled">
-                      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">Next</a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-md-6">
-                  <p class="text-right mb-0 mt-1">Showing 1 to 12 of 12 (1 Pages)</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row"></div>
-      <div class="row"></div>
-      <div class="row"></div>
-      <div class="row"></div>
-      <div class="row"></div>
-      <div class="row"></div>
-      <div class="row"></div>
-      <div class="row"></div>
+      
+    </div>
+     
       

@@ -2,7 +2,7 @@
     <div class="container-fluid" style="overflow: hidden; ">  
         <!-- rounded slider by Aman Verma 05-11-2020 -->
       <div id="demo" class="carousel slide main-slider mb-2" data-ride="carousel" *ngIf="banner">
-        <div class="carousel-inner" style="height: 490px; border-radius: 9.5px!important;">
+        <div class="carousel-inner" style="height: 490px; border-radius: 9.5px!important;  overflow: hidden;">
           <div *ngIf="banner_group_a==0 || bannerdata.value.banner_image_a_group==''" class="carousel-item active">
             <img src="{{ bannerdata.value.banner_image_a }}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
           </div>
@@ -101,9 +101,9 @@
 <!-- top selling product by Aman Verma 06-11-2020 -->
   <section class="mt-2">
      <div class="container-fluid">
-      <h2 class="title" style="font-family: Cinzel Semi Bold;">Top Selling Products</h2>
-      <div class="pagination  row ">
-        <div class="col-md-6 text-left">
+    
+      <div class="pagination  row mb-0">
+        <div class="col-md-4  text-left">
         <span class="page-item  float-left" *ngIf="offsetSelling != 1">
           <span matTooltip="Previous"
             class="page-link page-previous"
@@ -114,7 +114,10 @@
         </span>
         </span>
       </div>
-      <div class="col-md-6 text-right ">
+      <div class="col-md-4 text-center">
+        <h2 class="title" style="font-family: Cinzel Semi Bold;">Top Selling Products</h2>
+      </div>
+      <div class="col-md-4 text-right ">
         <span class="page-item float-right " *ngIf="offsetSelling != pagesSelling">
           <span  matTooltip="Next"
             class="page-link page-next"
@@ -128,7 +131,7 @@
        
       <!-- </div> -->
     </div>
-       <div class="row justify-content-start">
+       <div class="row justify-content-start mt-0">
          <div class="col-md-3" *ngFor="let nprd of topSelling">
            <div class="card newproduct_box" id="box-img1">
             <img src="{{ nprd?.gallery?.medium_thumbnail_link }}" id="img1" alt="New Product Image" class="image" (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)">
@@ -239,9 +242,9 @@
   <!-- latest product view by Aman Verma 06-11-2020 -->
   <section class="mt-2">
     <div class="container-fluid">
-     <h2 class="title" style="font-family: Cinzel Semi Bold;">Latest Products</h2>
-     <div class="pagination   row ">
-      <div class="col-md-6 text-left">
+    
+     <div class="pagination   row mb-0">
+      <div class="col-md-4 text-left">
       <li class="page-item float-left" *ngIf="offsetNew != 1">
         <a matTooltip="Previous"
           class="page-link page-previous"
@@ -252,7 +255,10 @@
         </a>
       </li>
     </div>
-    <div class="col-md-6 text-right ">
+    <div class="col-md-4 text-center">
+      <h2 class="title" style="font-family: Cinzel Semi Bold;">Latest Products</h2>
+    </div>
+    <div class="col-md-4 text-right ">
       <li class="page-item float-right " *ngIf="offsetNew != pagesNew">
         <a  matTooltip="Next"
           class="page-link page-next"
@@ -265,7 +271,7 @@
     </div>
      
   </div>
-      <div class="row justify-content-start">
+      <div class="row justify-content-start mt-0">
         <div class="col-md-3" *ngFor="let nprd of newproduct">
           <div class="card newproduct_box" id="box-img1">
            <img src="{{ nprd?.gallery?.medium_thumbnail_link }}" id="img1" alt="New Product Image" class="image" (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)">
@@ -377,34 +383,37 @@
  <!-- Top discount product by Aman Verma 06-11-2020 -->
  <section class="mt-2">
   <div class="container-fluid">
-   <h2 class="title" style="font-family: Cinzel Semi Bold;">Top Discount Products</h2>
-   <div class="  row pagination">
-    <div class="col-md-6 text-left pl-2">
-    <li class="page-item float-left " style="background: #202328; color: #202328;" *ngIf="offsetDisc != 1">
-      <a matTooltip="Previous"
-        class="page-link page-previous"
-        (click)="changeOffsetDisc(offsetDisc - 1)"
-        aria-label="Previous"
-      >
-        <span aria-hidden="true" class=" font-weight-bold cursor-pointer" style="color: black;"><i class="fas fa-angle-left"></i></span>
-      </a>
-    </li>
+  
+ 
+    <div class="pagination   row  mb-0">
+      <div class="col-md-4 text-left">
+      <li class="page-item float-left" *ngIf="offsetDisc != 1">
+        <a matTooltip="Previous"
+          class="page-link page-previous"
+          (click)="changeOffsetDisc(offsetDisc - 1)"
+          aria-label="Previous"
+        >
+          <span aria-hidden="true" class=" font-weight-bold cursor-pointer"><i class="fas fa-angle-left"></i></span>
+        </a>
+      </li>
+    </div>
+    <div class="col-md-4 text-center">
+      <h2 class="title" style="font-family: Cinzel Semi Bold;">Top Discount Products</h2>
+    </div>
+    <div class="col-md-4 text-right ">
+      <li class="page-item float-right " *ngIf="offsetDisc != pagesDisc">
+        <a  matTooltip="Next"
+          class="page-link page-next"
+          (click)="changeOffsetDisc(offsetDisc + 1)"
+          aria-label="Next"
+        >
+          <span aria-hidden="true" class=" font-weight-bold cursor-pointer"> <i class="fas fa-angle-right"></i></span>
+        </a>
+      </li>
+    </div>
+     
   </div>
-  <div class="col-md-6 text-right ">
-    <li class="page-item float-right pr-2" style="background: #202328; color: #202328;" *ngIf="offsetDisc != pagesDisc">
-      <a  matTooltip="Next"
-        class="page-link page-next"
-        (click)="changeOffsetDisc(offsetDisc + 1)"
-        aria-label="Next"
-      >
-        <span aria-hidden="true" class=" font-weight-bold cursor-pointer" style="color: black;"> <i class="fas fa-angle-right"></i></span>
-      </a>
-    </li>
-  </div>
-   
-  <!-- </div> -->
-</div>
-    <div class="row justify-content-start">
+    <div class="row justify-content-start  mt-0">
       <div class="col-md-3" *ngFor="let nprd of discountS">
         <div class="card newproduct_box" id="box-img1">
          <img src="{{ nprd?.gallery?.medium_thumbnail_link }}" id="img1" alt="New Product Image" class="image" (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)">
