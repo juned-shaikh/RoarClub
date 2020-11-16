@@ -71,7 +71,7 @@ export class HeaderComponent implements OnInit {
         this.cart = data
       }
     )
-
+   
     this.dataSharingService.isUserLoggedIn.subscribe(value => {
       this.isUserLoggedIn = value;
     });
