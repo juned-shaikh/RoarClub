@@ -276,3 +276,109 @@ h1{text-align:center;}
 .pt-5, .py-5 {
   padding-top: 1rem!important;
 }
+.heading{
+  font-weight: 600;
+  font-size: 16px;
+}
+.brand-name{
+  font-size: 13px;
+ 
+}
+.product-mrp{
+  font-weight: bold;
+  font-family: sans-serif;
+}
+.del-mrp{
+  color: gray;
+  font-weight: 500;
+}
+
+.image{
+  max-height: 250px; min-height: unset; height: -webkit-fill-available; -o-object-fit: contain;
+  object-fit: contain;
+  margin: none; width: 100%;
+  text-align: center;
+  vertical-align: middle;
+  position: inherit;
+
+}
+.box-image{
+  cursor: pointer;
+  height: 250px; width: 100%; background: white; margin: none;    position: relative;
+}
+.skin-2 .num-in {
+	background: lightgray;
+	box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
+	border-radius: 5px;
+	height: 38px;
+	width: 110px;
+  float: left;
+}
+
+.skin-2 .num-in	span {
+  width: 40%;
+  display: block;
+  height: 40px;
+  float: left;
+  position: relative;
+}
+
+.skin-2 .num-in span:before, .skin-2 .num-in span:after {
+  content: '';
+  position: absolute;
+  background-color: #667780;
+  height: 2px;
+  width: 10px;
+  top: 50%;
+  left: 50%;
+  margin-top: -1px;
+  margin-left: -5px;
+}
+
+.skin-2 .num-in span.plus:after {
+  transform: rotate(90deg);
+}
+
+.skin-2 .num-in input {
+    float: left;
+    background: lightgray;
+		width: 20%;
+		height: 38px;
+		border: none;
+		text-align: center;
+}
+
+/* / skin 2 */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+input:focus{
+  outline: none;
+  border: none;
+}
+.bottom-section{
+  visibility: hidden;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  box-shadow: 0 0 4px lightgrey;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  transition: .5s ease;
+
+}
+.box-card:hover .bottom-section{
+  visibility: visible;
+  height: 14%;
+}
