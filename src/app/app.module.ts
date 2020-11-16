@@ -63,6 +63,17 @@ import { NgxImgZoomModule  } from 'ngx-img-zoom';
 import { ZoomComponent } from './product-view/zoom.component';
 import { GalleryComponent } from './gallery/gallery.component';
 
+
+
+
+import { RouterModule } from '@angular/router';
+
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { GalleryModule } from 'ng-gallery';
+import { LightboxModule } from 'ng-gallery/lightbox';
+
+
+
 @NgModule({
   declarations: [
     
@@ -101,6 +112,11 @@ import { GalleryComponent } from './gallery/gallery.component';
 
   ],
   imports: [
+
+   
+    GalleryModule,
+    LightboxModule,
+    
      FormsModule, NgxImgZoomModule ,
     BrowserModule,
     AppRoutingModule,

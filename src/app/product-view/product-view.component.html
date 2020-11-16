@@ -91,6 +91,7 @@
         </ul>
         </div>
         <!-- for mobile gallary -->
+        
         <div class="col-md-2 col-3 d-block d-md-none d-lg-none">
         
         <ul class="preview-thumbnail nav nav-tabs  mt-1 row " >
@@ -104,6 +105,8 @@
           data-toggle="tab"
               (click)="Image(image.image_link)"
         >
+       
+
           <img 
             
         src="{{items23[s].thumb}}"
@@ -128,7 +131,7 @@
         <span class="add-to-wishlist-on-image" *ngIf="wishlist_check==false && product.txn_quantity > '0'"><i class="far fa-heart" matTooltip="add to wishlist"  (click)="addToWishlist(product)"></i></span>
         <span class="add-to-wishlist-on-image" *ngIf="wishlist_check==false && product.txn_quantity < '1'"><i class="far fa-heart " matTooltip="add to wishlist" style="cursor: not-allowed;"  (click)="addToWishlist(product)"></i></span>
         <span class="add-to-wishlist-on-image" *ngIf="wishlist_check==true" ><i class="far fa-heart text-danger"  (click)="deleteFromWishlist(wishlist_num)" matTooltip="remove from wishlist"></i></span>
-        <!-- <div class="preview-pic tab-content  p-1  d-none d-lg-block d-xl-block border" > -->
+        <div class="preview-pic tab-content  p-1  d-none d-lg-block d-xl-block border" style="border-radius: 15px;">
         
         
         <!-- <div class="tab-pane active show-image1  cursor-pointer " id="pic-1 " >   -->
@@ -140,7 +143,7 @@
         <!-- </div> -->
         
         
-        <!-- </div> -->
+        </div>
         
         
         <!-- for mobile ipad -->
@@ -475,5 +478,6 @@
 <!-- end -->
 
 <div><h2 class="text-center" style="color: lightgray; text-transform: capitalize;">Gallery product</h2></div>
+
 <app-gallery></app-gallery>
 <app-footer></app-footer>

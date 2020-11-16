@@ -60,6 +60,8 @@ body{
     transform: scale(1.1);
   }
   
-  
-  
-  
+  .lightbox{
+   padding-top:74px !important;
+    margin-top: 74px !important;
+  }
+   

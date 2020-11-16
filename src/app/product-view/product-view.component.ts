@@ -1,4 +1,7 @@
 import { NgxImageZoomModule } from 'ngx-image-zoom';
+import { Gallery, GalleryItem, ImageItem, ThumbnailsPosition, ImageSize } from 'ng-gallery';
+import { Lightbox } from 'ng-gallery/lightbox';
+import { map } from 'rxjs/operators';
 
 import { NgxImgZoomService } from "ngx-img-zoom";
 import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
@@ -55,9 +58,9 @@ export class ProductViewComponent implements OnInit {
   ratings = 0;
   coloring;
   otpForm: FormGroup;
-    items23=[];
+   items23=[];
 
-  // items23: GalleryItem[];
+  //items23: GalleryItem[];
   sizing;
   ratings_count = 0;
   reviews_count = 0;
@@ -105,8 +108,8 @@ export class ProductViewComponent implements OnInit {
     private cookie: CookieService,
     private titleService: Title,
     private meta: Meta,
-    // public gallery: Gallery,
-    // public lightbox: LightboxModule
+    public gallery: Gallery,
+    public lightbox: Lightbox
   )
    { 
       this.ngxImgZoom.setZoomBreakPoints([
@@ -588,22 +591,22 @@ if(this.userC==true){
           for(let y=0;y<this.product_image.length;y++){
             this.items23[y]={ src: this.product_image[y].image_link, thumb: this.product_image[y].image_link };
           }
-           // this.items23 = this.product_image.map(item => new ImageItem({ src: item.image_link, thumb: item.image_link }));
-          // this.items23 = this.product_image.map(
-                        // item => ({ src: item.image_link, thumb: item.image_link })
+           this.items23 = this.product_image.map(item => new ImageItem({ src: item.image_link, thumb: item.image_link }));
+          this.items23 = this.product_image.map(
+                        item => ({ src: item.image_link, thumb: item.image_link })
 
-          // );
+          );
 
         /** Lightbox */
 
-        // const lightboxRef = this.gallery.ref('lightbox');
-        // lightboxRef.setConfig({
-        //   imageSize: ImageSize.Cover,
-        //   thumbPosition: ThumbnailsPosition.Bottom
-        // });
-        // Load items into the lightbox gallery ref
+        const lightboxRef = this.gallery.ref('lightbox');
+        lightboxRef.setConfig({
+          imageSize: ImageSize.Cover,
+          thumbPosition: ThumbnailsPosition.Bottom
+        });
+       // Load items into the lightbox gallery ref
         console.log(this.items23);
-        // lightboxRef.load(this.items23);
+       lightboxRef.load(this.items23);
          
           
 
@@ -900,14 +903,14 @@ if(this.userC==true){
         /** Lightbox */
 
         // Get a lightbox gallery ref
-        // const lightboxRef = this.gallery.ref('lightbox');
-        // Add custom gallery config to the lightbox (optional)
+       // const lightboxRef = this.gallery.ref('lightbox');
+        //Add custom gallery config to the lightbox (optional)
         // lightboxRef.setConfig({
         //   imageSize: ImageSize.Cover,
         //   thumbPosition: ThumbnailsPosition.Bottom
         // });
-        // Load items into the lightbox gallery ref
-        // lightboxRef.load(this.items23);
+       // Load items into the lightbox gallery ref
+     //   lightboxRef.load(this.items23);
          
           
 
