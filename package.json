@@ -34,6 +34,7 @@
     "ngx-cookie-service": "^10.1.1",
     "ngx-image-zoom": "^0.6.0",
     "ngx-img-zoom": "^4.1.2",
+    "ngx-pinch-zoom": "^2.5.4",
     "popper.js": "^1.16.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.3",

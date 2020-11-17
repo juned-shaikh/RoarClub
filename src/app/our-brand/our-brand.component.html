@@ -7,8 +7,8 @@
   <div class="row">
     <div class="col-md-4 col-lg-2 col-sm-4 col-6 text-center mt-4" *ngFor="let brand of brands" >
 <mat-card  class="mat-box">
-        <div class=" circular-image-brand" (click)="navigateCategory(brand.name,brand.brand_id)">
-      <img src="{{brand.thumbnail_sml_location}}" onerror="this.src='https://cdn.iconscout.com/icon/free/png-256/404-page-not-found-456876.png';" class="brand-image">
+        <div class=" circular-image-brand" (click)="navigateCategory(brand.name,brand.brand_id)" >
+      <img  src="{{brand.thumbnail_sml_location}}" onerror="this.src='https://cdn.iconscout.com/icon/free/png-256/404-page-not-found-456876.png';" class="brand-image">
   </div>
  
   <p (click)="navigateCategory(brand.name,brand.brand_id)" class="brand-text font-weight-600 mt-1">   {{ (brand.name.length>15)? (brand.name | slice:0:15)+'...':(brand.name) }}</p>

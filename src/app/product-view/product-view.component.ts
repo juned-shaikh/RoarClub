@@ -1,4 +1,5 @@
 import { NgxImageZoomModule } from 'ngx-image-zoom';
+//import { LightboxModule } from "@ngx-gallery/lightbox";
 import { Gallery, GalleryItem, ImageItem, ThumbnailsPosition, ImageSize } from 'ng-gallery';
 import { Lightbox } from 'ng-gallery/lightbox';
 import { map } from 'rxjs/operators';
@@ -109,7 +110,9 @@ export class ProductViewComponent implements OnInit {
     private titleService: Title,
     private meta: Meta,
     public gallery: Gallery,
-    public lightbox: Lightbox
+     public lightbox: Lightbox,
+    
+    //public lightbox: LightboxModule
   )
    { 
       this.ngxImgZoom.setZoomBreakPoints([
@@ -895,22 +898,22 @@ if(this.userC==true){
           console.log(this.items23);
           
           
-          // this.items23 = this.product_image.map(
-          //               item => ({ src: item.image_link, thumb: item.image_link })
+          this.items23 = this.product_image.map(
+                        item => ({ src: item.image_link, thumb: item.image_link })
 
-          // );
+          );
 
         /** Lightbox */
 
         // Get a lightbox gallery ref
-       // const lightboxRef = this.gallery.ref('lightbox');
-        //Add custom gallery config to the lightbox (optional)
-        // lightboxRef.setConfig({
-        //   imageSize: ImageSize.Cover,
-        //   thumbPosition: ThumbnailsPosition.Bottom
-        // });
-       // Load items into the lightbox gallery ref
-     //   lightboxRef.load(this.items23);
+       const lightboxRef = this.gallery.ref('lightbox');
+      //  Add custom gallery config to the lightbox (optional)
+        lightboxRef.setConfig({
+          imageSize: ImageSize.Cover,
+          thumbPosition: ThumbnailsPosition.Bottom
+        });
+     //  Load items into the lightbox gallery ref
+       lightboxRef.load(this.items23);
          
           
 
@@ -2155,23 +2158,23 @@ updateCart3minus(cart_id,cart_inventory_id,rate_type_actual,qty2,qty_stock) {
 
   //end Priyangee 21/08/2020
 img_preview(){
-  // for(let y=0;y<this.product_image.length;y++){
-  //           this.items23[y]={ src: this.product_image[y].image_link, thumb: this.product_image[y].image_link };
-  //         }
-  //         // this.items23 = this.product_image.map(
-  //                       // item => ({ src: item.image_link, thumb: item.image_link })
+  for(let y=0;y<this.product_image.length;y++){
+            this.items23[y]={ src: this.product_image[y].image_link, thumb: this.product_image[y].image_link };
+          }
+          this.items23 = this.product_image.map(
+                        item => ({ src: item.image_link, thumb: item.image_link })
 
-  //         // );
+          );
 
   //       /** Lightbox */
 
   //       // Get a lightbox gallery ref
-        // const lightboxRef = this.gallery.ref('lightbox');
+         const lightboxRef = this.gallery.ref('lightbox');
   //       // Add custom gallery config to the lightbox (optional)
-        // lightboxRef.setConfig({
-        //   imageSize: ImageSize.Cover,
-        //   thumbPosition: ThumbnailsPosition.Bottom
-        // });
+         lightboxRef.setConfig({
+          imageSize: ImageSize.Cover,
+          thumbPosition: ThumbnailsPosition.Bottom
+        });
         // Load items into the lightbox gallery ref
         console.log(this.items23);
         // lightboxRef.load(this.items23);

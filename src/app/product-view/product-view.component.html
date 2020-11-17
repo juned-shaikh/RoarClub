@@ -5,18 +5,18 @@
   <section class="mb-5 mt-2">
   
     <div class="row">
-      <div class="col-md-1 ">
+      <div class="col-md-1 " >
 
           <ul class="preview-thumbnail nav nav-tabs  mt-1 row "  >
-          <li class="col-12 col-md-12 " 
+          <li class="col-12 col-md-12 " style="padding:5px"
             *ngFor="let image of product_image | slice:0:5;let s=index"
             class="active cursor-pointer"  
           >
-            <a 
+            <a  
               data-target="#pic-1" 
               matTooltip="more product image "
               data-toggle="tab"
-              (click)="Image(image.image_link)" class="p-0 select-image"
+              (click)="Image(image.image_link)" class="p-0 select-image" 
               
             >
               <img 
@@ -33,19 +33,28 @@
         </ul>
       </div>
      
-      <div class="preview-pic tab-content  p-1 col-md-5  " >
-       <div id="box-imgpro" class="">
-        <div class="tab-pane active show-image1 shadow-lg cursor-pointer " id="pic-1 " >  
+      <div class="preview-pic tab-content  p-3 col-md-5  " >
+       <div id="box-imgpro" class="gallerize-example" class="lightbox">
+        <div class="lightbox" class="tab-pane active show-image1 shadow-lg cursor-pointer " id="pic-1 " gallerize>  
         
-          <img src="{{imageView}}" onerror="this.src='https://m.hindustantimes.com/rf/image_size_1200x900/HT/p2/2020/02/25/Pictures/_f1f79ea8-57b8-11ea-8541-e1442385f8f3.JPG';" id="imgpro" class="img-1 ">
-              
+          <!-- <img src="{{imageView}}" onerror="this.src='https://m.hindustantimes.com/rf/image_size_1200x900/HT/p2/2020/02/25/Pictures/_f1f79ea8-57b8-11ea-8541-e1442385f8f3.JPG';"  id="imgpro" class="img-1 "> -->
+  
+          <!-- <div class="tab-pane active show-image1  cursor-pointer " id="pic-1 " >  
+          <app-zoom [img]="img" [zoom]="2" [lenSize]="120"    class="new-image-show  d-none d-lg-block d-xl-block"   [divZoomed]="divZoomed" ></app-zoom>
+          <div #divZoomed class="img-zoom-result"  ></div>
+        </div> -->
+       <div >
+        <pinch-zoom>
+  <img src="{{imageView}}" /> 
+</pinch-zoom></div>
+  
         </div>
 
 
        </div>
-      <div class="row mt-2">
-        <div class="col-md-4">
-          <div class="mat-card"> 
+      <div class="row mt-2 p-3">
+        <div class="col-md-4 ">
+          <div class="mat-card" > 
             <img src="https://img.icons8.com/fluent/96/000000/security-shield-green.png" height="50"/> <br/>
             <span>easy and secure payments</span>
           </div>
@@ -67,39 +76,37 @@
       </div>
 
       <div class="col-md-6" style="color: white;">
-        <div class="" style="cursor: pointer;"><small class="text-muted brand-name project-discription">{{product.brand_name}}</small> </div>
-        <h1 class="product-title font-weight-600 pt-1 project-heading">{{ product.name }}  <span  *ngIf="product.color != null || product.color != null" class="" >(<span *ngIf="product.color != null" ><span class="text-muted pl-2 pr-2" >{{ product.color }}</span></span> -<span *ngIf="product.size != null"> <span class="text-muted  pl-2 pr-2">{{ product.size }}</span></span>)</span> </h1>    
-        <h5 class=" text-muted text-uppercase project-discription" style="position: relative; top: -12px;">{{ product.subheading }}</h5>
+        <div class="" style="cursor: pointer;margin-left: 16px;" ><small class="text-muted brand-name project-discription">{{product.brand_name}}</small> </div>
+        <h1 class="product-title font-weight-600 pt-1 project-heading" style="margin-left: 16px;">{{ product.name }}  <span  *ngIf="product.color != null || product.color != null" class="" >(<span *ngIf="product.color != null" ><span class="text-muted pl-2 pr-2" >{{ product.color }}</span></span> -<span *ngIf="product.size != null"> <span class="text-muted  pl-2 pr-2">{{ product.size }}</span></span>)</span> </h1>    
+        <h5 class=" text-muted text-uppercase project-discription" style="position: relative; top: -12px;margin-left: 16px;">{{ product.subheading }}</h5>
       
         <div *ngFor="let prates of product_rate" class="d-flex  col-lg-12  ">
-          <div  *ngIf=" prates.is_rent !='2'" style="font-family: Cinzel Semi Bold;">
+          <div  *ngIf=" prates.is_rent !='2'">
               <span class="">  
-              <span style="font-size: 34px;color:  #D10024;">{{prates.rate | currency:'INR'}}</span></span> &nbsp;
-              <span *ngIf="product.mrp>prates.rate" class=" font-weight-500  mb-2">  <del> MRP : {{product.mrp | currency:'INR'}}</del></span> &nbsp;&nbsp;<span *ngIf="product.mrp>prates.rate" class="text-success" style="color:  #D10024;">{{prates.discount_percent | number:'1.0-0'}} % off</span>  <br/>
+              <span style="font-size: 34px;">{{prates.rate | currency:'INR'}}</span></span> &nbsp;
+              <span *ngIf="product.mrp>prates.rate" class=" font-weight-500  mb-2">  <del> MRP : {{product.mrp | currency:'INR'}}</del></span> &nbsp;&nbsp;<span *ngIf="product.mrp>prates.rate" class="text-success">{{prates.discount_percent | number:'1.0-0'}} % off</span>  <br/>
+          </div>
           </div>
          
        
        <div class="row">
          <div class="col-md-12 pl-4">
-           <h4 class="project-discription">
+           <h4 style="margin-left: 16px; " class="project-discription">
          <span class="project-heading">  Delivery  </span>    by {{etd}}
            </h4>
          </div>
        </div>
         <div class="row">
-          <div class="col-md-12 d-flex">
-           <div class="col-md-4 d-flex"> 
-         <button type="button"  *ngIf="userC == true  && product.txn_quantity > '0'" (click)="rates(product);"  class="add-to-cart-btn">Buy now</button>
+          <div class="col-md-8 d-flex">
+            
+         <button type="button"  *ngIf="userC == true  && product.txn_quantity > '0'" (click)="rates(product);" class="btn-hover color-8" >Buy now</button>
   
-         <button type="button"  *ngIf="userC == true && product.txn_quantity < '1'" style="cursor: not-allowed;"  class="add-to-cart-btn">Buy now</button>
-            <button type="button"  *ngIf="userC == false  && product.txn_quantity > '0'" (click)="rates(product);" class="add-to-cart-btn">Buy now</button>
-            <button type="button" *ngIf="userC == false && product.txn_quantity < '1'" style="cursor:not-allowed;"  class="add-to-cart-btn">Buy now</button>
-          </div>
-          <div class="col-md-4 d-flex">
-            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-           <!-- <button type="button"  class="add-to-cart-btn" *ngIf="userC==false  && product.txn_quantity > '0'"  (click)="addToCart(product)" ><i
+         <button type="button"  *ngIf="userC == true && product.txn_quantity < '1'" style="cursor: not-allowed;"  class="btn-hover color-8">Buy now</button>
+            <button type="button"  *ngIf="userC == false  && product.txn_quantity > '0'" (click)="rates(product);" class="btn-hover color-8" >Buy now</button>
+            <button type="button" *ngIf="userC == false && product.txn_quantity < '1'" style="cursor:not-allowed;"  class="btn-hover color-8">Buy now</button>
+           <button type="button"  class="btn-hover color-8" *ngIf="userC==false  && product.txn_quantity > '0'"  (click)="addToCart(product)" ><i
                class="fas fa-shopping-cart pr-2"> &nbsp;Add to cart</i></button> 
-               <button type="button"  class="add-to-cart-btn" *ngIf="userC==false &&  product.txn_quantity < '1'" style="cursor: not-allowed;"><i
+               <button type="button"  class="btn-hover color-8" *ngIf="userC==false &&  product.txn_quantity < '1'" style="cursor: not-allowed;"><i
                  class="fas fa-shopping-cart pr-2"> &nbsp;Add to cart</i></button> 
 
                  <span class="d-flex update-button" *ngIf="cart_check == true">
@@ -126,23 +133,22 @@
   
       </span>
 
-                 <button type="button" *ngIf="cart_check == false && userC==true" class="add-to-cart-btn"><i
+                 <button type="button" *ngIf="cart_check == false && userC==true" class="btn-hover color-8"><i
                    class="fas fa-shopping-cart pr-2" *ngIf="userC==true &&  product.txn_quantity > '0'" (click)="addToCart(product)"> &nbsp;Add to cart</i>
                    <i
                    class="fas fa-shopping-cart pr-2"  *ngIf="userC==true  && product.txn_quantity < '1'" style="cursor: not-allowed;"> &nbsp;Add to cart</i>
                    
-                 </button>  -->
-                </div>
-                <div class="col-md-4 d-flex">
-                 <button type="button" *ngIf="wishlist_check==false && product.txn_quantity > '0'"  class="add-to-cart-btn1"><i class="far fa-heart" matTooltip="add to wishlist"  (click)="addToWishlist(product)"></i></button> 
-                   <button type="button"  class="add-to-cart-btn1" *ngIf="wishlist_check==false && product.txn_quantity < '1'"><i class="far fa-heart " matTooltip="add to wishlist" style="cursor: not-allowed;"  (click)="addToWishlist(product)"></i></button> 
+                 </button> 
+                  
+                 <button type="button" style="border-radius: 50px;margin: 21px;height:50px" *ngIf="wishlist_check==false && product.txn_quantity > '0'"  class="btn btn-light btn-md mr-1 mb-2" ><i class="far fa-heart" matTooltip="add to wishlist"  (click)="addToWishlist(product)"></i></button> 
+                   <button type="button"  style="border-radius: 50px;margin: 21px;height:50px"class="btn btn-light btn-md mr-1 mb-2" *ngIf="wishlist_check==false && product.txn_quantity < '1'"><i class="far fa-heart " matTooltip="add to wishlist" style="cursor: not-allowed;"  (click)="addToWishlist(product)"></i></button> 
                     
-                   <button type="button"  class="add-to-cart-btn1" *ngIf="wishlist_check==true"><i class="far fa-heart text-danger"  (click)="deleteFromWishlist(wishlist_num)" matTooltip="remove from wishlist"></i></button> 
-                  </div>
+                   <button type="button" style="border-radius: 50px;margin: 21px;height:50px" class="btn btn-light btn-md mr-1 mb-2" *ngIf="wishlist_check==true"><i class="far fa-heart text-danger"  (click)="deleteFromWishlist(wishlist_num)" matTooltip="remove from wishlist"></i></button> 
+                   
+          </div> 
+          <div class="col-md-4">
+           
           </div>
-          <!-- <div class="col-md-4">
-         
-          </div> -->
         </div>
                   
         <div class="classic-tabs  rounded px-2 pt-1">
@@ -160,7 +166,7 @@
           </ul>
           <div class="tab-content mt-1" id="advancedTabContent">
             <div class="tab-pane fade show active project-discription" id="description" role="tabpanel" aria-labelledby="description-tab">
-              <h5 [innerHTML]="product.meta_description" class="project-discription"></h5> 
+              <h5 [innerHTML]="product.meta_description" style="font-size: 14px;" class="project-discription"></h5> 
             </div>
             <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="info-tab">
               <!-- <div *ngFor="let pspec of product_specification">
@@ -191,7 +197,7 @@
               </table>
             </div>
             <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-              <h5><span>1</span> review for <span>Fantasy T-shirt</span></h5>
+              <h5 style="font-size: 14px;"><span>1</span> review for <span>Fantasy T-shirt</span></h5>
               <!-- <div class="media mt-3 mb-4">
                 <img class="d-flex mr-3 z-depth-1" src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg" width="62" alt="Generic placeholder image">
                 <div class="media-body">
@@ -284,7 +290,7 @@
    
   
   
-  <!-- </section> -->
+  </section>
   <!-- Classic tabs -->
 
 <!-- Classic tabs -->
@@ -318,7 +324,7 @@
 
      
         <h1  class="show-status" *ngIf="userC == true && nprd2?.txn_quantity < '1'"> Out of stock</h1>
-        <h4 style="margin-left:20px; text-transform: capitaliz; font-weight: bold;font-family: Cinzel Semi Bold;">{{ (nprd2?.name.length>60)? (nprd2?.name | slice:0:60)+'...':(nprd2?.name) }}</h4>
+        <h4 style="margin-left:20px; text-transform: capitaliz; font-weight: bold;">{{ (nprd2?.name.length>60)? (nprd2?.name | slice:0:60)+'...':(nprd2?.name) }}</h4>
             <div  class="row mb-2"> 
               <div class="col-md-1 text-right ">
               <!-- <ul>
@@ -443,12 +449,7 @@
   
   
   </div>
-<!-- </div> -->
-
+</div>
 
 <!-- end -->
-
-<div><h2 class="text-center" style="color: lightgray; text-transform: capitalize;">Gallery product</h2></div>
-
-<app-gallery></app-gallery>
 <app-footer></app-footer>

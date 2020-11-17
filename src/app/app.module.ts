@@ -71,7 +71,7 @@ import { RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { GalleryModule } from 'ng-gallery';
 import { LightboxModule } from 'ng-gallery/lightbox';
-
+import { PinchZoomModule } from 'ngx-pinch-zoom';
 
 
 @NgModule({
@@ -113,7 +113,7 @@ import { LightboxModule } from 'ng-gallery/lightbox';
   ],
   imports: [
 
-   
+    PinchZoomModule ,
     GalleryModule,
     LightboxModule,
     
@@ -140,8 +140,7 @@ import { LightboxModule } from 'ng-gallery/lightbox';
     BrowserModule,
     BrowserAnimationsModule,
   
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
+ 
     FormsModule,
     
     HttpClientModule,

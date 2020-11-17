@@ -28,7 +28,8 @@ export class GalleryComponent implements OnInit {
     // Add custom gallery config to the lightbox (optional)
     lightboxRef.setConfig({
       imageSize: ImageSize.Cover,
-      thumbPosition: ThumbnailsPosition.Top
+      
+      thumbPosition: ThumbnailsPosition.Bottom
     });
 
     // Load items into the lightbox gallery ref

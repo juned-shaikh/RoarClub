@@ -76,25 +76,30 @@
         
         </div>
       
-        <a class="carousel-control-prev ml-1" href="#demo" data-slide="prev">
+        <a class="carousel-control-prev ml-1" href="#demo" style="background-color: black;top: 238px;height: 30px;width: 35px;border-radius: 36px;" data-slide="prev">
           <span class="carousel-control-prev-icon"><i class="fas fa-chevron-left"></i></span>
         </a>
-        <a class="carousel-control-next mr-1" href="#demo" data-slide="next">
+        <a class="carousel-control-next mr-1" href="#demo" style="background-color: black;top: 238px;height: 30px;width: 35px;border-radius: 36px;" data-slide="next">
           <span class="carousel-control-next-icon"><i class="fas fa-chevron-right"></i></span>
         </a>
       </div>
   
-      <!--       -->
-  
+     
+   <!-- new add 17-11-2020 -->
+   <div class="col-md-12 text-center">
+    <h2 class="title" style="font-family: Cinzel Semi Bold;">Shop by Categories</h2>
+  </div>
+  <!-- end -->
   
   <!-- brand gallary view by Aman Verma 05-11-2020 -->
   <div class="row justify-content-start mt-1" style="background-color: #202328;" >
-    <div class="col-md-2" *ngFor="let brand of brands | slice:0:6;">
-        <div class=" circular-image-brand" (click)="navigateCategory(brand.name,brand.brand_id)">
-          <img src="{{brand?.thumbnail_sml_location}}" onerror="this.src='https://ap2-prod-images.disco-api.com/2020/2/24/d4cfb8ac-9ee1-4af5-a175-81790d55ebb9.jpg';" class="brand-image" style="width: 100%;" height="150px">
+    <div class="col-md-2" *ngFor="let brand of brands | slice:0:6;" style="left: 450px;">
+        <div class=" circular-image-brand" (click)="navigateCategory(brand.name,brand.brand_id)" style="border-radius:112px;">
+          <img src="{{brand?.thumbnail_sml_location}}" onerror="this.src='https://ap2-prod-images.disco-api.com/2020/2/24/d4cfb8ac-9ee1-4af5-a175-81790d55ebb9.jpg';" class="brand-image" style="width: 100%;" height="190px ;">
         </div>
     </div>
   </div>
+ 
   <div class="row justify-content-end text-right pr-3 mt-1"  *ngIf="brands?.length > 6">
     <span class="more-brands" routerLink="/our-brand"> see more brands <i class="fas fa-chevron-right"></i></span>
      </div>
