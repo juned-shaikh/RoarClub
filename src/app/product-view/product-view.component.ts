@@ -1,4 +1,10 @@
+import { NgxImageZoomModule } from 'ngx-image-zoom';
+//import { LightboxModule } from "@ngx-gallery/lightbox";
+import { Gallery, GalleryItem, ImageItem, ThumbnailsPosition, ImageSize } from 'ng-gallery';
+import { Lightbox } from 'ng-gallery/lightbox';
+import { map } from 'rxjs/operators';
 
+import { NgxImgZoomService } from "ngx-img-zoom";
 import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
 import { RoarclubserviceService } from "../roarclubservice.service";
 import {MatSnackBar} from  '@angular/material/snack-bar'
@@ -35,7 +41,7 @@ import { Title, Meta } from "@angular/platform-browser";
 export class ProductViewComponent implements OnInit {
   public product_no = sessionStorage.getItem("pno");
   categories;
-  size_with_color=[];
+  size_with_color=[]; 
   estimate_count=0;
   loader;
   ship_ask=true;
@@ -53,9 +59,9 @@ export class ProductViewComponent implements OnInit {
   ratings = 0;
   coloring;
   otpForm: FormGroup;
-    items23=[];
+   items23=[];
 
-  // items23: GalleryItem[];
+  //items23: GalleryItem[];
   sizing;
   ratings_count = 0;
   reviews_count = 0;
@@ -91,6 +97,7 @@ export class ProductViewComponent implements OnInit {
   megaMenu = false;
   previewFlag = sessionStorage.getItem('previewFlag');
   constructor(
+    private ngxImgZoom: NgxImgZoomService,
     private snackbar: MatSnackBar,
     private route: ActivatedRoute,
     private _location: Location,
@@ -102,9 +109,20 @@ export class ProductViewComponent implements OnInit {
     private cookie: CookieService,
     private titleService: Title,
     private meta: Meta,
-    // public gallery: Gallery,
-    // public lightbox: LightboxModule
-  ) {}
+    public gallery: Gallery,
+     public lightbox: Lightbox,
+    
+    //public lightbox: LightboxModule
+  )
+   { 
+      this.ngxImgZoom.setZoomBreakPoints([
+    { w: 100, h: 100 },
+    { w: 150, h: 150 },
+    { w: 200, h: 200 },
+    { w: 250, h: 250 },
+    { w: 300, h: 300 }
+     ]);
+}
   // open(content) {
   //   this.modalService
   //     .open(content, { ariaLabelledBy: "modal-basic-title" })
@@ -576,22 +594,22 @@ if(this.userC==true){
           for(let y=0;y<this.product_image.length;y++){
             this.items23[y]={ src: this.product_image[y].image_link, thumb: this.product_image[y].image_link };
           }
-           // this.items23 = this.product_image.map(item => new ImageItem({ src: item.image_link, thumb: item.image_link }));
-          // this.items23 = this.product_image.map(
-                        // item => ({ src: item.image_link, thumb: item.image_link })
+           this.items23 = this.product_image.map(item => new ImageItem({ src: item.image_link, thumb: item.image_link }));
+          this.items23 = this.product_image.map(
+                        item => ({ src: item.image_link, thumb: item.image_link })
 
-          // );
+          );
 
         /** Lightbox */
 
-        // const lightboxRef = this.gallery.ref('lightbox');
-        // lightboxRef.setConfig({
-        //   imageSize: ImageSize.Cover,
-        //   thumbPosition: ThumbnailsPosition.Bottom
-        // });
-        // Load items into the lightbox gallery ref
+        const lightboxRef = this.gallery.ref('lightbox');
+        lightboxRef.setConfig({
+          imageSize: ImageSize.Cover,
+          thumbPosition: ThumbnailsPosition.Bottom
+        });
+       // Load items into the lightbox gallery ref
         console.log(this.items23);
-        // lightboxRef.load(this.items23);
+       lightboxRef.load(this.items23);
          
           
 
@@ -880,22 +898,22 @@ if(this.userC==true){
           console.log(this.items23);
           
           
-          // this.items23 = this.product_image.map(
-          //               item => ({ src: item.image_link, thumb: item.image_link })
+          this.items23 = this.product_image.map(
+                        item => ({ src: item.image_link, thumb: item.image_link })
 
-          // );
+          );
 
         /** Lightbox */
 
         // Get a lightbox gallery ref
-        // const lightboxRef = this.gallery.ref('lightbox');
-        // Add custom gallery config to the lightbox (optional)
-        // lightboxRef.setConfig({
-        //   imageSize: ImageSize.Cover,
-        //   thumbPosition: ThumbnailsPosition.Bottom
-        // });
-        // Load items into the lightbox gallery ref
-        // lightboxRef.load(this.items23);
+       const lightboxRef = this.gallery.ref('lightbox');
+      //  Add custom gallery config to the lightbox (optional)
+        lightboxRef.setConfig({
+          imageSize: ImageSize.Cover,
+          thumbPosition: ThumbnailsPosition.Bottom
+        });
+     //  Load items into the lightbox gallery ref
+       lightboxRef.load(this.items23);
          
           
 
@@ -2140,23 +2158,23 @@ updateCart3minus(cart_id,cart_inventory_id,rate_type_actual,qty2,qty_stock) {
 
   //end Priyangee 21/08/2020
 img_preview(){
-  // for(let y=0;y<this.product_image.length;y++){
-  //           this.items23[y]={ src: this.product_image[y].image_link, thumb: this.product_image[y].image_link };
-  //         }
-  //         // this.items23 = this.product_image.map(
-  //                       // item => ({ src: item.image_link, thumb: item.image_link })
+  for(let y=0;y<this.product_image.length;y++){
+            this.items23[y]={ src: this.product_image[y].image_link, thumb: this.product_image[y].image_link };
+          }
+          this.items23 = this.product_image.map(
+                        item => ({ src: item.image_link, thumb: item.image_link })
 
-  //         // );
+          );
 
   //       /** Lightbox */
 
   //       // Get a lightbox gallery ref
-        // const lightboxRef = this.gallery.ref('lightbox');
+         const lightboxRef = this.gallery.ref('lightbox');
   //       // Add custom gallery config to the lightbox (optional)
-        // lightboxRef.setConfig({
-        //   imageSize: ImageSize.Cover,
-        //   thumbPosition: ThumbnailsPosition.Bottom
-        // });
+         lightboxRef.setConfig({
+          imageSize: ImageSize.Cover,
+          thumbPosition: ThumbnailsPosition.Bottom
+        });
         // Load items into the lightbox gallery ref
         console.log(this.items23);
         // lightboxRef.load(this.items23);
@@ -3027,5 +3045,38 @@ if (
       });
   }
 
- // end for product analysis
+
+
+
+
+
+public imagePath;
+  imgURL: any;
+  public message: string;
+
+  enableZoom: Boolean = true;
+  previewImageSrc: any;
+  zoomImageSrc: any;
+
+  
+    
+
+  preview(files) {
+    if (files.length === 0) return;
+
+    var mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.message = "Only images are supported.";
+      return;
+    }
+
+    var reader = new FileReader();
+    this.imagePath = files;
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+      //this.imgURL = reader.result;
+      this.previewImageSrc = reader.result;
+      this.zoomImageSrc = reader.result;
+    };
+}
 }

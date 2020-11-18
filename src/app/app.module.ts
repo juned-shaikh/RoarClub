@@ -57,8 +57,26 @@ import { OrderViewDetailsComponent } from './order-view-details/order-view-detai
 import { AddressComponent } from './address/address.component';
 import { ClientaddressComponent } from './clientaddress/clientaddress.component';
 import { CustomerProfileComponent } from './customer-profile/customer-profile.component';
+//import { NgxImageZoomModule } from 'ngx-image-zoom';
+//import { NgxImgZoomService } from "ngx-img-zoom";
+import { NgxImgZoomModule  } from 'ngx-img-zoom';
+import { ZoomComponent } from './product-view/zoom.component';
+import { GalleryComponent } from './gallery/gallery.component';
+
+
+
+
+import { RouterModule } from '@angular/router';
+
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { GalleryModule } from 'ng-gallery';
+import { LightboxModule } from 'ng-gallery/lightbox';
+import { PinchZoomModule } from 'ngx-pinch-zoom';
+
+
 @NgModule({
   declarations: [
+    
     AppComponent,
     ClientaddressComponent,
     CustomerProfileComponent,
@@ -87,11 +105,19 @@ import { CustomerProfileComponent } from './customer-profile/customer-profile.co
     ProfilePageComponent,
    
     WishlistComponent,
-   
+       ZoomComponent,
+       GalleryComponent,
+      
 
 
   ],
   imports: [
+
+    PinchZoomModule ,
+    GalleryModule,
+    LightboxModule,
+    
+     FormsModule, NgxImgZoomModule ,
     BrowserModule,
     AppRoutingModule,
     MatTooltipModule,
@@ -114,8 +140,7 @@ import { CustomerProfileComponent } from './customer-profile/customer-profile.co
     BrowserModule,
     BrowserAnimationsModule,
   
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
+ 
     FormsModule,
     
     HttpClientModule,
