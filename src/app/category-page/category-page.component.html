@@ -262,20 +262,20 @@
               </div>
             </div>
             <div class="col-md-9">
-              <div class="card" style="background-color:#1A1C21;">
-                <div class="card-header">
+              <div class="card" style="background-color:darkgrey;">
+                <!-- <div class="card-header">
                   <div class="row">
                     <div class="col-md-5">
                       <div class="btn-group" role="group">
-                        <!-- <button type="button" class="btn btn-secondary active"><i class="fas fa-th"></i></button>
+                        <button type="button" class="btn btn-secondary active"><i class="fas fa-th"></i></button>
                         <button type="button" class="btn btn-secondary"><i class="fas fa-th-list"></i></button>
                         <button type="button" class="btn btn-secondary">
                           <i class="fas fa-sync-alt"></i>
                           <span>Product Compare (0)</span>
-                        </button> -->
+                        </button>
                       </div>
                     </div>
-                    <!-- <div class="col-md-4">
+                    <div class="col-md-4">
                       <div class="input-group">
                         <div class="input-group-prepend">
                           <span class="input-group-text">Sort By:</span>
@@ -311,14 +311,16 @@
                           <option value="">100</option>
                         </select>
                       </div>
-                    </div> -->
+                    </div>
                   </div>
-                </div>
-                <div class="card-body " style="background: #1A1C21;">
+                </div> -->
+                <div class="card-body " style="background: darkgrey">
           <div class="row">
             <div class="col-md-4 mb-4 box-card" *ngFor="let nprd of products" >
               <div class="card" style="height: 350px;">
+             
                 <div class="box-image">
+                  <h1  class="outofstockproduct" *ngIf="nprd.product.txn_quantity < '1'"> Out of stock</h1>
                 <img
                 class="card-img-top image  " 
                 src="{{ nprd.product_image.medium_thumbnail_link }}"
@@ -376,7 +378,7 @@
                     
                   </div>
                 </div>
-                <div class=" bottom-section">
+                <div class=" bottom-section" *ngIf="nprd.product.txn_quantity  > '1'">
                   <div *ngIf="nprd.product.txn_quantity > '0'" class="btn-group" role="group" style="left:20px">
                     <button type="button" class="btn btn-light" *ngIf="nprd.product.wishlist_check == false"  (click)="addToWishlist(nprd)" title="add to wishlist">
                       <i class="fas fa-heart"></i>

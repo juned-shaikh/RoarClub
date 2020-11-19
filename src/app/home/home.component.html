@@ -87,14 +87,15 @@
      
    <!-- new add 17-11-2020 -->
    <div class="col-md-12 text-center">
-    <h2 class="title" style="font-family: Cinzel Semi Bold;">Shop by Categories</h2>
+    <h2 class="title" style="font-family: Cinzel Semi Bold;">Shop by Brands</h2>
   </div>
   <!-- end -->
   
   <!-- brand gallary view by Aman Verma 05-11-2020 -->
   <div class="row justify-content-start mt-1" style="background-color: #202328;" >
-    <div class="col-md-2" *ngFor="let brand of brands | slice:0:6;" style="left: 450px;">
-        <div class=" circular-image-brand" (click)="navigateCategory(brand.name,brand.brand_id)" style="border-radius:112px;">
+    <div class="col-md-2" *ngFor="let brand of brands | slice:0:6;">
+     
+        <div class=" circular-image-brand" (click)="navigateCategory(brand.name,brand.brand_id)" >
           <img src="{{brand?.thumbnail_sml_location}}" onerror="this.src='https://ap2-prod-images.disco-api.com/2020/2/24/d4cfb8ac-9ee1-4af5-a175-81790d55ebb9.jpg';" class="brand-image" style="width: 100%;" height="190px ;">
         </div>
     </div>
@@ -120,7 +121,7 @@
         </span>
       </div>
       <div class="col-md-4 text-center">
-        <h2 class="title" style="font-family: Cinzel Semi Bold;">Top Selling Products</h2>
+        <h2 class="title">Top Selling Products</h2>
       </div>
       <div class="col-md-4 text-right ">
         <span class="page-item float-right " *ngIf="offsetSelling != pagesSelling">
@@ -140,7 +141,7 @@
          <div class="col-md-3" *ngFor="let nprd of topSelling">
            <div class="card newproduct_box" id="box-img1">
             <img src="{{ nprd?.gallery?.medium_thumbnail_link }}" id="img1" alt="New Product Image" class="image" (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)">
-            <h1  class="outofstockproduct" *ngIf="userC == true && nprd.txn_quantity < '1'"> Out of stock</h1>
+            <h1  class="outofstockproduct" *ngIf="nprd.txn_quantity < '1'"> Out of stock</h1>
             <ul class="add-to-cart_newproduct">
               <li><a *ngIf="nprd.wishlist_check == false" 
                 style="cursor:pointer"
@@ -261,7 +262,7 @@
       </li>
     </div>
     <div class="col-md-4 text-center">
-      <h2 class="title" style="font-family: Cinzel Semi Bold;">Latest Products</h2>
+      <h2 class="title" >Latest Products</h2>
     </div>
     <div class="col-md-4 text-right ">
       <li class="page-item float-right " *ngIf="offsetNew != pagesNew">
@@ -280,7 +281,7 @@
         <div class="col-md-3" *ngFor="let nprd of newproduct">
           <div class="card newproduct_box" id="box-img1">
            <img src="{{ nprd?.gallery?.medium_thumbnail_link }}" id="img1" alt="New Product Image" class="image" (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)">
-           <h1  class="outofstockproduct" *ngIf="userC == true && nprd.txn_quantity < '1'"> Out of stock</h1>
+           <h1  class="outofstockproduct" *ngIf="nprd.txn_quantity < '1'"> Out of stock</h1>
            <ul class="add-to-cart_newproduct">
              <li><a *ngIf="nprd.wishlist_check == false" 
                style="cursor:pointer"
@@ -403,7 +404,7 @@
       </li>
     </div>
     <div class="col-md-4 text-center">
-      <h2 class="title" style="font-family: Cinzel Semi Bold;">Top Discount Products</h2>
+      <h2 class="title" >Top Discount Products</h2>
     </div>
     <div class="col-md-4 text-right ">
       <li class="page-item float-right " *ngIf="offsetDisc != pagesDisc">
@@ -422,7 +423,7 @@
       <div class="col-md-3" *ngFor="let nprd of discountS">
         <div class="card newproduct_box" id="box-img1">
          <img src="{{ nprd?.gallery?.medium_thumbnail_link }}" id="img1" alt="New Product Image" class="image" (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)">
-         <h1  class="outofstockproduct" *ngIf="userC == true && nprd.txn_quantity < '1'"> Out of stock</h1>
+         <h1  class="outofstockproduct" *ngIf="nprd.txn_quantity < '1'"> Out of stock</h1>
          <ul class="add-to-cart_newproduct">
            <li><a *ngIf="nprd.wishlist_check == false" 
              style="cursor:pointer"

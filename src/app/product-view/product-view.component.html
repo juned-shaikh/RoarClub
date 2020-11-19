@@ -14,7 +14,7 @@
           >
             <a  
               data-target="#pic-1" 
-              matTooltip="more product image "
+              title="more product image "
               data-toggle="tab"
               (click)="Image(image.image_link)" class="p-0 select-image" 
               
@@ -45,7 +45,7 @@
         </div> -->
        <div >
         <pinch-zoom>
-  <img src="{{imageView}}" /> 
+  <img src="{{imageView}}" id="imgpro"/> 
 </pinch-zoom></div>
   
         </div>
@@ -140,10 +140,10 @@
                    
                  </button> 
                   
-                 <button type="button" style="border-radius: 50px;margin: 21px;height:50px" *ngIf="wishlist_check==false && product.txn_quantity > '0'"  class="btn btn-light btn-md mr-1 mb-2" ><i class="far fa-heart" matTooltip="add to wishlist"  (click)="addToWishlist(product)"></i></button> 
-                   <button type="button"  style="border-radius: 50px;margin: 21px;height:50px"class="btn btn-light btn-md mr-1 mb-2" *ngIf="wishlist_check==false && product.txn_quantity < '1'"><i class="far fa-heart " matTooltip="add to wishlist" style="cursor: not-allowed;"  (click)="addToWishlist(product)"></i></button> 
+                 <button type="button" class="btn-hover color-8" *ngIf="wishlist_check==false && product.txn_quantity > '0'"  ><i class="far fa-heart" title="add to wishlist"  (click)="addToWishlist(product)">&nbsp; add to wishlist</i></button> 
+                   <button type="button" class="btn-hover color-8" *ngIf="wishlist_check==false && product.txn_quantity < '1'"><i class="far fa-heart " title="add to wishlist" style="cursor: not-allowed;"  (click)="addToWishlist(product)">&nbsp; add to wishlist</i></button> 
                     
-                   <button type="button" style="border-radius: 50px;margin: 21px;height:50px" class="btn btn-light btn-md mr-1 mb-2" *ngIf="wishlist_check==true"><i class="far fa-heart text-danger"  (click)="deleteFromWishlist(wishlist_num)" matTooltip="remove from wishlist"></i></button> 
+                   <button type="button" class="btn-hover color-8" *ngIf="wishlist_check==true"><i class="far fa-heart text-danger"  (click)="deleteFromWishlist(wishlist_num)" title="remove from wishlist">&nbsp; Added in wishlist</i></button> 
                    
           </div> 
           <div class="col-md-4">
@@ -151,7 +151,7 @@
           </div>
         </div>
                   
-        <div class="classic-tabs  rounded px-2 pt-1">
+        <div class="classic-tabs  rounded px-2 pt-1 mt-1">
 
           <ul class="nav tabs-primary nav-justified border-bottom " id="advancedTab" role="tablist">
             <li class="nav-item">
@@ -332,12 +332,12 @@
                   <a *ngIf="nprd2?.wishlist_check == false" 
                     style="cursor:pointer"
                     (click)="addToWishlist(nprd2)"
-                    matTooltip="Add to WishList"
+                    title="Add to WishList"
                     > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i></a>
                   <a
                   style="cursor:pointer" *ngIf="nprd2.wishlist_check == true"
                   (click)="deleteFromWishlist(nprd2.wishlist_num)"
-                  matTooltip="Already exist in Wishlist"
+                  title="Already exist in Wishlist"
                   > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i>
               </a>
 
@@ -345,7 +345,7 @@
                  <a *ngIf="userC==false" 
                     style="cursor:pointer"
                     (click)="addToWishlistWL(nprd2)"
-                    matTooltip="Add to WishList"
+                    title="Add to WishList"
                     > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i>
                 </a>
                 <!-- for without login -->
@@ -385,7 +385,7 @@
             <a *ngIf="nprd2.cart_check == false "
             style="cursor:pointer"
             (click)="addToCart(nprd2)"
-            matTooltip="Add to Cart"
+            title="Add to Cart"
             > <i class="fa fa-cart-plus" style="color: green;"></i></a>
           </span>
           
@@ -393,7 +393,7 @@
           <a  *ngIf="userC==false"
             style="cursor:pointer"
             (click)="addToCart(nprd2)"
-            matTooltip="Add to Cart"
+            title="Add to Cart"
             > <i class="fa fa-cart-plus" style="color: green;"></i>
         </a>
         <!-- </li>

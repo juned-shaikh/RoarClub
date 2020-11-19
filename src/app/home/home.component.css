@@ -122,14 +122,25 @@ img {
    font-family: 'Cinzel', serif;
    font-size: 17px;
 }
-		
+	/* .brand-name-incircle{
+    position: absolute;
+    left: 44%;
+    top: 44%;
+    display: none;font-family: Cinzel Semi Bold;
+    font-weight: 600;
+  }	
+  .circular-image-brand:hover + .brand-name-incircle{
+
+display: block;    color: black;
+
+  }  */
 .circular-image-brand {
-  border-radius: 9.5px;
+  border-radius: 50%;
   overflow: hidden;
   background: white;
 }
 .circular-image-brand img{
-  border-radius: 9.5px;
+  border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
 }
@@ -726,15 +737,18 @@ input:focus{
   display: block;
 }
 .outofstockproduct{
-  top: 11px;
-    font-size: 18px;
-    left: 8px;
-    position: absolute;
-    font-weight: 500;
-    color: red;
-    text-shadow: -0.5px 0.5px orange;
-    /* font-weight: 400; */
-    text-align: center;
+  background: #20232859;
+  /* top: 11px; */
+  font-size: 18px;
+  width: 100%;
+  /* left: 8px; */
+  line-height: 12;
+  height: 100%;
+  position: absolute;
+  font-weight: 600;
+  color: red;
+  text-shadow: 1.5px -0.5px black;
+  text-align: center;
 }
 .buy-now-button{
   background: #FFFFFF;

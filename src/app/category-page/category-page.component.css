@@ -382,3 +382,18 @@ input:focus{
   visibility: visible;
   height: 14%;
 }
+.outofstockproduct{
+  background: #20232859;
+  /* top: 11px; */
+  font-size: 18px;
+  width: 100%;
+  z-index: 1111;
+  /* left: 8px; */
+  line-height: 12;
+  height: 100%;
+  position: absolute;
+  font-weight: 600;
+  color: red;
+  text-shadow: 1.5px -0.5px black;
+  text-align: center;
+}
