@@ -15,12 +15,12 @@
   <ul class="navbar-nav mr-auto flex-row"  id="js-menu">
 
     <li *ngFor="let category of categories2; let i = index" style="color: antiquewhite;padding:10px" class="nav-item dropdown has-megamenu">
-      <a class="nav-link sub-cat" href="#" data-toggle="dropdown" (click)="navigateCategory(category.name, category.category_no)"
+      <a class="nav-link sub-cat" href="#" data-toggle="dropdown" (click)="navigateCategory(category.name, category.category_no);hidesubcategoryclick()"
     style="font-family: 'Cinzel', serif;color: white;font-size: 18px;"
       >{{
       category.name
     }}  </a>
-        <div class="dropdown-menu megamenu" role="menu" *ngIf="category.name">
+        <div class="dropdown-menu megamenu" role="menu" *ngIf="category.sub_category && hidesubcategory">
                    <div class="row justify-content-center">
                  <div class="col-md-10 pl-5">
                   <div class="row">

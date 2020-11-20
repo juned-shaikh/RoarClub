@@ -27,6 +27,7 @@ export class HeaderComponent implements OnInit {
   nm;
   public showsearch =false;
   public showsearchr =false;
+  public hidesubcategory = true;
   searchFocus = false;
   megaMenu = false;
   public is_logged_in = false;
@@ -772,6 +773,9 @@ this.showsearch = !this.showsearch;
   gotoPage= function(pagename:string){
     this.router.navigateByUrl('/category-page');
     }
+    hidesubcategoryclick(){
+      this.hidesubcategory = !this.hidesubcategory;
+        }
 }
 
 

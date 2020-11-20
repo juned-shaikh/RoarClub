@@ -35,7 +35,7 @@
      
       <div class="preview-pic tab-content  p-3 col-md-5  " >
        <div id="box-imgpro" class="gallerize-example" class="lightbox">
-        <div class="lightbox" class="tab-pane active show-image1 shadow-lg cursor-pointer " id="pic-1 " gallerize>  
+        <div class="lightbox" class="tab-pane active show-image1 shadow-lg cursor-pointer " style="background: grey;" id="pic-1 " gallerize>  
         
           <!-- <img src="{{imageView}}" onerror="this.src='https://m.hindustantimes.com/rf/image_size_1200x900/HT/p2/2020/02/25/Pictures/_f1f79ea8-57b8-11ea-8541-e1442385f8f3.JPG';"  id="imgpro" class="img-1 "> -->
   
@@ -44,7 +44,7 @@
           <div #divZoomed class="img-zoom-result"  ></div>
         </div> -->
        <div >
-        <pinch-zoom>
+        <pinch-zoom >
   <img src="{{imageView}}" id="imgpro"/> 
 </pinch-zoom></div>
   
@@ -311,11 +311,12 @@
       <!-- Grid column -->
       <div class="col-md-6 col-lg-3 mb-5" *ngFor="let nprd2 of similarPro"> 
         <!-- Card -->
-        <div class="card" style="margin: auto; padding-right: 7px; padding-left: 7px; height:450px ;">
+        <div class="card" style="margin: auto; padding-right: 7px;  height:450px ;">
+          <h1  class="outofstockproduct" *ngIf="nprd2?.txn_quantity < '1'"> Out of stock</h1>
           <div class="card_image" >
             <div id="box-img1"> 
             <img
-            src="{{ nprd2?.gallery?.medium_thumbnail_link }}" w (click)="view_product(nprd2.meta_title, nprd2.product_no,nprd2.slug,nprd2.quick_product_check)"
+            src="{{ nprd2?.gallery?.medium_thumbnail_link }}"  (click)="view_product(nprd2.meta_title, nprd2.product_no,nprd2.slug,nprd2.quick_product_check)"
          
               id="img1"
             alt="Product Image"
@@ -323,9 +324,9 @@
         </div>
 
      
-        <h1  class="show-status" *ngIf="userC == true && nprd2?.txn_quantity < '1'"> Out of stock</h1>
+        
         <h4 style="margin-left:20px; text-transform: capitaliz; font-weight: bold;">{{ (nprd2?.name.length>60)? (nprd2?.name | slice:0:60)+'...':(nprd2?.name) }}</h4>
-            <div  class="row mb-2"> 
+            <div  class="row mb-2 mt-0 justify-content-between"> 
               <div class="col-md-1 text-right ">
               <!-- <ul>
                 <li> -->
@@ -355,7 +356,7 @@
                 
 
               
-            <div class="col-md-5 text-center " style="color: red;" >
+            <div class="col-md-5 text-right" style="color: red;" >
               
               <span
               class="fa fa-star checked"
@@ -367,7 +368,7 @@
             ></span>
           </span>
         </div>
-        <div class="col-md-5 text-right " >
+        <div class="col-md-4 text-right " >
           <div class="num-block skin-2"  *ngIf="nprd2?.cart_check == true">
             <div class="num-in" style="cursor: pointer;">
               <span class="minus dis" *ngIf="nprd2.cart_inventory.qty > 1 || nprd2.cart_inventory.qty > '1'"  (click)="updateCart3minus(nprd2.cart_inventory.cart_id,nprd2.cart_inventory.cart_inventory_id,nprd2.cart_inventory.rate_type,nprd2.cart_inventory.qty,nprd2.txn_quantity);"></span>
