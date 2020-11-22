@@ -1,0 +1,30 @@
+.bg-img{
+    background: url('https://assets.myntassets.com/w_980,c_limit,fl_progressive,dpr_2.0/assets/images/2020/11/20/d7fc27a3-9254-4e9c-976f-ab7a377872fa1605888011364-H-N_Desk_Banner.jpg');
+    width: 1500px;
+    height: 100vh;
+    background-size: cover;
+    /* opacity: 0.3; */
+    background-position: center;
+  }
+  /* .bg-img:after{
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.7);
+  } */
+  /* .content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 999;
+    text-align: center;
+    padding: 60px 32px;
+    width: 370px;
+    transform: translate(-50%,-50%);
+    background: rgba(255,255,255,0.04);
+    box-shadow: -1px 4px 28px 0px rgba(0,0,0,0.75);
+  }
+   */

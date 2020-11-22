@@ -17,7 +17,10 @@
 }
 
 
-
+.vl {
+  border-left: 2px solid green;
+  height: 210px;
+}
 
 .sub-cat{
   color: white!important;

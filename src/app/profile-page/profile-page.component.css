@@ -1,3 +1,12 @@
 .row{
 	color:white;
 }
+.bg-img{
+    
+	height: 100vh;
+	
+    background-size: cover;
+    /* opacity: 0.3; */
+    background-position: center;
+  }
+  

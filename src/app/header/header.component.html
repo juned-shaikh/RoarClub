@@ -20,16 +20,26 @@
       >{{
       category.name
     }}  </a>
-        <div class="dropdown-menu megamenu" role="menu" *ngIf="category.name">
+        <div class="dropdown-menu megamenu" role="menu" *ngIf="category.name" >
                    <div class="row justify-content-center">
-                 <div class="col-md-10 pl-5">
+                 <div class="col-md-10 pl-5" style="padding-bottom: 190px;">
                   <div class="row">
-                    <div class="col-md-4 " style="color: white;" *ngFor="let categoryi of category.sub_category" (click)="navigateCategory(category.name, category.category_no)"> 
+                    <div><h3>What's New</h3>  </div>
+                    <div style="position: absolute;padding-top: 35px;"><h3>Bestsellers</h3>   </div>
+                    <div style="position: absolute;padding-top: 75px;"><h3>Gifts for Her</h3>   </div>
+                    <div style="position: absolute;padding-top: 115px;"><h3>  Align Shop</h3>   </div>
+                    <div style="position: absolute;padding-top: 155px;"><h3> Wunder Under Shop</h3>   </div>
+                    <div style="position: absolute;padding-top: 194px;"><h3>Cold Weather Shop</h3>   </div>
+                    <div style="position: absolute;padding-top: 15px;left:190px;" class="vl"></div>
+                    <!-- <h3>Gifts for Her</h3><br/>
+                    <h3>Gifts for Her</h3><br/> -->
+                    <div class="col-md-4 " style="color: white;left: 90px;" *ngFor="let categoryi of category.sub_category" (click)="navigateCategory(category.name, category.category_no)"> 
                       <p class=""  (click)="navigateCategory(category.name, category.category_no)"  ><span class="sub-1-category"> {{categoryi.name}} </span></p>
-
+                     
+                    
                           <div *ngIf="categoryi.sub_category2">
                             <p *ngFor="let categoryj of categoryi.sub_category2">
-                              <a style="color: white;" class="sub-2-category project-discription " (click)="navigateCategory(category.name, category.category_no)">{{
+                              <a style="color: white;position: absolute;top: 30px;right: 300px;" class="sub-2-category project-discription " (click)="navigateCategory(category.name, category.category_no)">{{
                                 categoryj.name.length > 25
                                   ? (categoryj.name | slice: 0:25) + "..."
                                   : categoryj.name
@@ -46,7 +56,7 @@
                    </div> 
           </div> 
     </li>
-  </ul>
+  </ul> 
 <!-- end -->
 
       <ul style="display: contents; list-style: none;" class="ml-auto">
