@@ -325,7 +325,10 @@
      
         <h1  class="show-status" *ngIf="userC == true && nprd2?.txn_quantity < '1'"> Out of stock</h1>
         <h4 style="margin-left:20px; text-transform: capitaliz; font-weight: bold;">{{ (nprd2?.name.length>60)? (nprd2?.name | slice:0:60)+'...':(nprd2?.name) }}</h4>
-            <div  class="row mb-2"> 
+        <!-- <button type="button" class="btn btn-light" *ngIf="nprd.product.wishlist_check == false"  (click)="addToWishlist(nprd)" title="add to wishlist">
+          <i class="fas fa-heart"></i>
+        </button>    -->
+        <div  class="row mb-2"> 
               <div class="col-md-1 text-right ">
               <!-- <ul>
                 <li> -->
