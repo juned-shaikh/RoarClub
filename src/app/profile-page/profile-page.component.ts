@@ -51,6 +51,7 @@ cust_reg_enable=false;
     this.adminService.get_profile({access_token:this.access_token,user_num:this.user_num, comp_num:this.comp_num_new}).subscribe(data=>{
       if(data['status']==1){ 
         this.userdata = data['result'];
+        console.log(this.userdata);
         // this.userdata = data['current']['buisnessInfo'];  
         // this.pickupaddress = data['current']['pickupAddress'] ;
         // this.regaddress = data['current']['registerAddress']

@@ -153,7 +153,7 @@
                   
         <div class="classic-tabs  rounded px-2 pt-1 mt-1">
 
-          <ul class="nav tabs-primary nav-justified border-bottom " id="advancedTab" role="tablist">
+          <ul class="nav  nav-justified border-bottom " style="color: azure;" id="advancedTab" role="tablist">
             <li class="nav-item">
               <a class="nav-link active1  show project-heading"  id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Description</a>
             </li>
@@ -303,7 +303,7 @@
   
   <!-- Classic tabs -->
   <!--Section: Block Content-->
-  <section class="text-center">
+  <section class="text-center" *ngIf="similarPro !=null">
      <div><h3 class="text-center" style="color: lightgray; text-transform: capitalize;">similar product</h3></div>
     <!-- Grid row -->
     <div class="row">
@@ -325,7 +325,7 @@
 
      
         
-        <h4 style="margin-left:20px; text-transform: capitaliz; font-weight: bold;">{{ (nprd2?.name.length>60)? (nprd2?.name | slice:0:60)+'...':(nprd2?.name) }}</h4>
+        <h4 style="margin-left:20px; text-transform: capitaliz; font-weight: bold;" class="project-heading">{{ (nprd2?.name.length>60)? (nprd2?.name | slice:0:60)+'...':(nprd2?.name) }}</h4>
             <div  class="row mb-2 mt-0 justify-content-between"> 
               <div class="col-md-1 text-right ">
               <!-- <ul>

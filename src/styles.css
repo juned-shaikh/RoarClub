@@ -27,13 +27,7 @@ body { margin: 0;  }
   .project-discription{
     font-family: 'Raleway', sans-serif!important;
   }
-  .active1{
-      /* background: lightgrey; */
-      border-top: 1px solid grey;
-      border-left: 1px solid grey;
-      color: blue;
-      border-radius: 9px;
-  }
+ 
 
 
   lightbox {
