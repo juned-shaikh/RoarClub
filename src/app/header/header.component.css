@@ -17,7 +17,10 @@
 }
 
 
-
+.vl {
+  border-left: 2px solid green;
+  height: 210px;
+}
 
 .sub-cat{
   color: white!important;
@@ -379,7 +382,14 @@ li a:hover{
             border-radius: 0;
             padding-left: 0;
           } */
-          
+          .second-category-on{
+            display: none!important;
+            position: absolute;
+            right: 0;
+          }
+.first-category-on:hover + .second-category-on{
+  display: block!important;
+}
          
           
           .form-control::placeholder {
@@ -393,4 +403,10 @@ li a:hover{
             border-radius: 2px;
             width: 250px;
           }
-       
+       .category-name div p{
+         font-size: 15px!important;
+         cursor: pointer;
+       }
+       .category-name div{
+         cursor: pointer;
+       }

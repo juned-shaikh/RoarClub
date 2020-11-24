@@ -368,8 +368,8 @@ export class HeaderComponent implements OnInit {
         this.categories = data["result"];
         this.categoryresp = data["result"];
         let size = this.categories.length;
-        if (size > 4) {
-          for (let n = 0; n < 3; n++) {
+        if (size > 6) {
+          for (let n = 0; n < 5; n++) {
             this.more = true;
             this.categories2.push(this.categories[n]);
           }

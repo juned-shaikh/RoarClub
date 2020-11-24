@@ -2,7 +2,7 @@
 
 
 <hr>
-<div class="container bootstrap snippet card" style="min-height: 80vh; background: #636363;">
+<div  class="container bootstrap snippet card" style="min-height: 80vh; background: #262931;">
     <div class="row">
       <div class="col-sm-10"><h3>Hello, {{userdata?.name}}</h3></div>
       <div class="col-sm-2"><a href="/users" class="pull-right">
@@ -21,11 +21,11 @@
         <!-- <input type="file" class="text-center center-block file-upload"> -->
       </div>
       <h4 class="text-right" ><span><i class="fas fa-user-edit" (click)="edit()" style="cursor: pointer;" href="#home" data-toggle="tab"></i></span></h4>
-      <h3 class="mt-2" >Hello, {{userdata?.name}} </h3>
-      <h5 *ngIf="userdata?.mobile" class="d-flex"><i class="fas fa-phone-square-alt"></i>&nbsp; {{userdata?.mobile}}</h5> 
-      <h5 *ngIf="userdata?.email" class=""><i class="fas fa-envelope-open-text"></i>&nbsp; {{userdata?.email}}</h5> 
-      <h5 class="" href="#home" data-toggle="tab"><a  (click)="showchangepass()" ><i class="fas fa-cog"></i>&nbsp; account-setting</a></h5>
-            <h5 class=""><a  (click)="logout()" ><i class="fas fa-user-lock"></i>&nbsp; Logout</a></h5>
+      <h3 class="mt-2" >Hello, {{userdata.name}} </h3>
+      <h4 *ngIf="userdata.mobile" class="d-flex"><i class="fas fa-phone-square-alt"></i>&nbsp; {{userdata.mobile}}</h4> 
+      <h4 *ngIf="userdata.email" class=""><i class="fas fa-envelope-open-text"></i>&nbsp; {{userdata.email}}</h4> 
+      <h4 class="" href="#home" data-toggle="tab"><a  (click)="showchangepass()" ><i class="fas fa-cog"></i>&nbsp; account-setting</a></h4>
+            <h4 class=""><a  (click)="logout()" ><i class="fas fa-user-lock"></i>&nbsp; Logout</a></h4>
             
           <!-- </div> -->
           

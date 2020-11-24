@@ -1,6 +1,6 @@
 	
 <div class="header" style="background:#202328;">
-    <nav class="navbar" style="height: 70px; box-shadow: 0 0 3px lightgray;">
+    <nav class="navbar" style="height: 70px; ">
       <label class="navbar-toggle" id="js-navbar-toggle" for="chkToggle">
               <i class="fa fa-bars"></i>
           </label>
@@ -22,23 +22,79 @@
     }}  </a>
         <div class="dropdown-menu megamenu" role="menu" *ngIf="category.sub_category && hidesubcategory">
                    <div class="row justify-content-center">
-                 <div class="col-md-10 pl-5">
-                  <div class="row">
-                    <div class="col-md-4 " style="color: white;" *ngFor="let categoryi of category.sub_category" (click)="navigateCategory(category.name, category.category_no)"> 
-                      <p class=""  (click)="navigateCategory(category.name, category.category_no)"  ><span class="sub-1-category"> {{categoryi.name}} </span></p>
-
-                          <div *ngIf="categoryi.sub_category2">
-                            <p *ngFor="let categoryj of categoryi.sub_category2">
-                              <a style="color: white;" class="sub-2-category project-discription " (click)="navigateCategory(category.name, category.category_no)">{{
-                                categoryj.name.length > 25
-                                  ? (categoryj.name | slice: 0:25) + "..."
-                                  : categoryj.name
-                              }}</a>
-                            </p>
-                          </div>
-                    
-                    
+                 <div class="col-md-10 pl-5" >
+                  <div class="row category-name">
+                    <div class="col-md-2" style="border-right: 2px solid green;">
+                      <p class="project-heading">What's New</p>  
+                      <p class="project-heading">Bestsellers</p>   
+                    <p class="project-heading">Gifts for Her</p>   
+                      <p class="project-heading">  Align Shop</p>   
+                      <p class="project-heading"> Wunder Under Shop</p>   
+                      <p class="project-heading">Cold Weather Shop</p>  
                     </div>
+                    
+                    <!-- <h3>Gifts for Her</h3><br/>
+                    <h3>Gifts for Her</h3><br/> -->
+                  <div class="col-md-10">
+                    <div class="row">
+                      
+                      <div class="col-md-4 " style="color: white;" > 
+
+                        <div *ngFor="let categoryi of category.sub_category | slice:0:4;">
+                        <p class=""  (click)="navigateCategory(category.name, category.category_no)"  ><span class="sub-1-category first-category-on"> {{categoryi.name}} </span></p>
+                       
+                      
+                            <div *ngIf="categoryi.sub_category2" class="text-right second-category-on" >
+                              <p *ngFor="let categoryj of categoryi.sub_category2 | slice:0:4;">
+                                <a style="color: white;" class="sub-2-category project-discription " (click)="navigateCategory(category.name, category.category_no)">{{
+                                  categoryj.name.length > 25
+                                    ? (categoryj.name | slice: 0:25) + "..."
+                                    : categoryj.name
+                                }}</a>
+                              </p>
+                            </div>
+                          </div>
+                      
+                      </div>
+                          
+                      <div class="col-md-4 " style="color: white;" > 
+                        <div *ngFor="let categoryi of category.sub_category | slice:4:8;">
+                        <p class=""  (click)="navigateCategory(category.name, category.category_no)"  ><span class="sub-1-category"> {{categoryi.name}} </span></p>
+                       
+                      
+                            <div *ngIf="categoryi.sub_category2">
+                              <p *ngFor="let categoryj of categoryi.sub_category2 | slice:4:8;">
+                                <a style="color: white;" class="sub-2-category project-discription " (click)="navigateCategory(category.name, category.category_no)">{{
+                                  categoryj.name.length > 25
+                                    ? (categoryj.name | slice: 0:25) + "..."
+                                    : categoryj.name
+                                }}</a>
+                              </p>
+                            </div>
+                          </div>
+                      
+                      </div>
+                          
+                      <div class="col-md-4 " style="color: white;" > 
+                        <div *ngFor="let categoryi of category.sub_category | slice:8:12;">
+                        <p class=""  (click)="navigateCategory(category.name, category.category_no)"  ><span class="sub-1-category"> {{categoryi.name}} </span></p>
+                       
+                      
+                            <div *ngIf="categoryi.sub_category2">
+                              <p *ngFor="let categoryj of categoryi.sub_category2 | slice:8:12;">
+                                <a style="color: white;" class="sub-2-category project-discription " (click)="navigateCategory(category.name, category.category_no)">{{
+                                  categoryj.name.length > 25
+                                    ? (categoryj.name | slice: 0:25) + "..."
+                                    : categoryj.name
+                                }}</a>
+                              </p>
+                            </div>
+                          </div>
+                      
+                      </div>
+                      
+                    </div>
+                  </div>
                     
                    
                 </div>
@@ -46,13 +102,13 @@
                    </div> 
           </div> 
     </li>
-  </ul>
+  </ul> 
 <!-- end -->
 
       <ul style="display: contents; list-style: none;" class="ml-auto">
         <li style=" text-decoration: none; list-style: none!important;" class="">
           <div class="input-group  border area ">
-            <input type="search" placeholder="What're you searching for?" aria-describedby="button-addon3" class="form-control bg-none border-0">
+            <input type="search" placeholder="search for brand,product,and more..." aria-describedby="button-addon3" class="form-control bg-none border-0">
             <div class="input-group-append border-0 m-0">
               <button id="button-addon3" type="button" class="btn btn-link text-success"><i class="fa fa-search"></i></button>
             </div>
@@ -76,11 +132,13 @@
             >user</i
           > </a>
         </li>
-     &nbsp;&nbsp;
-<!-- <<<<<<< HEAD
-        <li style="list-style: none;" class="" routerLink="/cart">
-           <a style="padding: 15px;"> <i class="fas fa-shopping-cart text-center" >
-======= -->
+     
+
+<li style="list-style: none;" class="ml-2" *ngIf="is_logged_in">
+  <a class="nav-link" routerLink="/client-info"
+    ><i class="far fa-heart text-center text-success"></i>
+  </a>
+</li>
         <li style="list-style: none;" class="ml-2" routerLink="/cart">
            <a> <i class="fas fa-shopping-cart text-center" >
 

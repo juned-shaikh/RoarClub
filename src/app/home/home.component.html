@@ -110,7 +110,7 @@
     
       <div class="pagination  row mb-0">
         <div class="col-md-4  text-left">
-        <span class="page-item  float-left" *ngIf="offsetSelling != 1">
+        <span class="page-item  float-left prev-item" *ngIf="offsetSelling != 1">
           <span matTooltip="Previous"
             class="page-link page-previous"
             (click)="changeOffsetSell(offsetSelling - 1)"
@@ -121,10 +121,11 @@
         </span>
       </div>
       <div class="col-md-4 text-center">
-        <h2 class="title">Top Selling Products</h2>
+        <h2 class="title">Tran<span class="border-heading">ding Prod</span>ucts</h2>
+
       </div>
       <div class="col-md-4 text-right ">
-        <span class="page-item float-right " *ngIf="offsetSelling != pagesSelling">
+        <span class="page-item float-right next-item" *ngIf="offsetSelling != pagesSelling">
           <span  matTooltip="Next"
             class="page-link page-next"
             (click)="changeOffsetSell(offsetSelling + 1)"
@@ -245,13 +246,24 @@
        </div>
      </div>
   </section>
+
+  <div class="container-fluid d-none d-md-block d-lg-block d-xl-block mt-5" *ngIf="roarclubbannerdata">
+    <div class="row">
+      <div class="col-md-6 mt-2 banner-image-box-card pl-3" *ngIf="roarclubbannerdata[0] != null">
+        <img src="{{roarclubbannerdata[0].image_link}}" class="w-100 img-fluid img-banner"  >
+      </div>
+      <div class="col-md-6 mt-2 banner-image-box-card pr-3" *ngIf="roarclubbannerdata[1] != null">
+          <img src="{{roarclubbannerdata[1].image_link}}" class="w-100 img-fluid img-banner" >
+      </div>
+    </div>
+  </div>
   <!-- latest product view by Aman Verma 06-11-2020 -->
   <section class="mt-2">
     <div class="container-fluid">
     
      <div class="pagination   row mb-0">
       <div class="col-md-4 text-left">
-      <li class="page-item float-left" *ngIf="offsetNew != 1">
+      <li class="page-item float-left prev-item" *ngIf="offsetNew != 1">
         <a matTooltip="Previous"
           class="page-link page-previous"
           (click)="changeOffsetNew(offsetNew - 1)"
@@ -262,10 +274,10 @@
       </li>
     </div>
     <div class="col-md-4 text-center">
-      <h2 class="title" >Latest Products</h2>
+      <h2 class="title" >Lat<span class="border-heading">est Prod</span>ucts</h2>
     </div>
     <div class="col-md-4 text-right ">
-      <li class="page-item float-right " *ngIf="offsetNew != pagesNew">
+      <li class="page-item float-right next-item" *ngIf="offsetNew != pagesNew">
         <a  matTooltip="Next"
           class="page-link page-next"
           (click)="changeOffsetNew(offsetNew + 1)"
@@ -385,7 +397,24 @@
       </div>
     </div>
  </section>
-
+ 
+ 
+ <div class="container-fluid d-none d-md-block d-lg-block d-xl-block mt-5" *ngIf="roarclubbannerdata">
+  <div class="row">
+    <div class="col-md-6 mt-3 banner-image-box-card pl-3" *ngIf="roarclubbannerdata[2] != null">
+        <img src="{{roarclubbannerdata[2].image_link}}" class="w-100 img-fluid img-banner"  >
+    </div>
+    <div class="col-md-6 mt-3 banner-image-box-card pr-3" *ngIf="roarclubbannerdata[3] != null">
+        <img src="{{roarclubbannerdata[3].image_link}}" class="w-100 img-fluid img-banner" >
+    </div>
+    <div class="col-md-6 mt-3 banner-image-box-card pl-3" *ngIf="roarclubbannerdata[4] != null">
+        <img src="{{roarclubbannerdata[4].image_link}}" class="w-100 img-fluid img-banner"  >
+    </div>
+    <div class="col-md-6 mt-3 pr-3 banner-image-box-card" *ngIf="roarclubbannerdata[5] != null">
+        <img src="{{roarclubbannerdata[5].image_link}}" class="w-100 img-fluid img-banner"  >
+    </div>
+  </div>
+</div>
  <!-- Top discount product by Aman Verma 06-11-2020 -->
  <section class="mt-2">
   <div class="container-fluid">
@@ -393,7 +422,7 @@
  
     <div class="pagination   row  mb-0">
       <div class="col-md-4 text-left">
-      <li class="page-item float-left" *ngIf="offsetDisc != 1">
+      <li class="page-item float-left prev-item" *ngIf="offsetDisc != 1">
         <a matTooltip="Previous"
           class="page-link page-previous"
           (click)="changeOffsetDisc(offsetDisc - 1)"
@@ -404,10 +433,10 @@
       </li>
     </div>
     <div class="col-md-4 text-center">
-      <h2 class="title" >Top Discount Products</h2>
+      <h2 class="title" >Top Disc<span class="border-heading">ount Prod</span>ucts</h2>
     </div>
     <div class="col-md-4 text-right ">
-      <li class="page-item float-right " *ngIf="offsetDisc != pagesDisc">
+      <li class="page-item float-right next-item" *ngIf="offsetDisc != pagesDisc">
         <a  matTooltip="Next"
           class="page-link page-next"
           (click)="changeOffsetDisc(offsetDisc + 1)"
@@ -470,12 +499,12 @@
 
 
 <div class="row justify-content-start">
-<div class="col-md-12">
+<div class="col-md-12 ">
  <p style="color: rgb(131, 128, 128);margin-left:10px">
    <span *ngIf="nprd.rate[0].is_rent == '1'" 
    >{{ nprd.rate[0].name }} @ {{ nprd.rate[0].rate }}
  </span>
- <span *ngIf="nprd.rate[0].is_rent != '2'" class="newproduct_mrp"
+ <span *ngIf="nprd.rate[0].is_rent != '2'" class="newproduct_mrp "
    >₹ {{ nprd.rate[0].rate}} 
  </span> &nbsp;
  <span class="newproduct_mrp text-muted font-weight-500" *ngIf="nprd.rate[0].rate < nprd.mrp"
