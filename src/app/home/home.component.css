@@ -812,3 +812,93 @@ input:focus{
    visibility: visible;
    transition: 1s;
  }
+
+ /* banner code new */
+ .bannerItem{
+  margin-bottom:2500px !important; /* white below banner - delete it */
+  padding-top:10px; /* padding above the header */
+width:1000px;
+margin:auto;
+    margin-top:55px; /* white above banner - delete it */
+max-height:180px !important;
+}
+
+.banner-header{
+  margin: 0;     
+  color: #fff;
+  padding-top:0px;
+  font-size: 42px;  
+  font-family:lato;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top:-190px;
+  font-weigh:100;
+}
+
+.banner-text{
+  margin: 0;     
+  color: #fff;
+  margin-top:0px;
+  padding-bottom: 0px;
+  font-family: lato;
+  font-weight: 100;
+  font-size: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.bannerItem{
+  background: #333;    
+  text-align: center;
+  height: 100% !important;
+  border-radius: 6px; /* rounded corners */
+ background: linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(255,255,255,0.4) 100%), url("http://source.unsplash.com/1500x500/?adventure");
+background-width: 100%;
+background-attachment: fixed; 
+image-repeat: none;
+max-height: 0%;
+background-size:100%;
+}
+
+
+
+.banner-example{
+margin: 20px; /*padding around banner - delete for full width*/
+}
+
+
+/* button CSS */
+.btn.btn-outline{
+margin-top:10px;
+background-color:transparent;
+color: #fff;
+border-color: #fff;
+padding-left:90px;
+padding-right:90px;
+font-family:lato;
+font-weight:300;
+margin-bottom:40px;
+border-radius:0px;
+}
+.btn.btn-outline:hover{
+background-color:black;
+border-color:black;
+color: #fff;
+}
+.btn.btn-outline.a{
+background-color:black;
+border-color:black;
+color: #fff;
+}
+.btn.btn-outline:active{
+font-weight:300;
+font-size:20px;
+color: #fff;
+}
+
+.col col-3-12{
+  width: 400px;
+}
+.col-3-12{
+  width: 400px;
+}
