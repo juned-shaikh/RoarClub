@@ -368,14 +368,14 @@
                             *ngIf="cd.rate < cd.total_mrp_amount" class="text-muted font-weight-400">&nbsp;<del> ₹
                               {{ cd.total_mrp_amount }}</del></span> &nbsp; &nbsp;
                     </div>
-                    <p class="mb-0"> <strong><span
-                      *ngIf="cd.rate < cd.total_mrp_amount" class="text-success font-weight-500">
+                    <p class="mb-0" > <strong><span 
+                      *ngIf="cd.rate < cd.total_mrp_amount" class="text-success font-weight-500" style="padding-right: 376;">
                       {{cd.discount_percent | number: '1.0-0'}} % Off 
                     </span></strong></p>
                   </div>
                   <div class="d-flex justify-content-between align-items-center">
                     <div>
-                      <a  type="button" (click)="deleteFromCart(cd.cart_inventory_id)" class="card-link-secondary text-primary small text-uppercase mr-3"><i
+                      <a  type="button" (click)="deleteFromCart(cd.cart_inventory_id)" class="card-link-secondary text-success small text-uppercase mr-3"><i
                           class="fas fa-trash-alt mr-1"></i> Remove item </a>
                       <a href="#!" type="button" *ngIf="rentShow" class="card-link-secondary small text-uppercase" style="cursor: pointer;"  (click)="fetch_cart_specific(cd.cart_id,cd.cart_inventory_id);openXl(content2);"> Update Rate Type </a>
                     </div>
@@ -387,7 +387,7 @@
             <!-- <hr class="mb-4"> -->
             <hr *ngIf="i != (cart.cart_inventory.length-1)" />
           
-            <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i> Do not delay the purchase, adding
+            <p class="text-success mb-0"><i class="fas fa-info-circle mr-1"></i> Do not delay the purchase, adding
               items to your cart does not mean booking them.</p>
   
           </div>
@@ -477,7 +477,7 @@
               </li>
             </ul>
   
-            <button type="button" class="btn btn-primary btn-block waves-effect waves-light" (click)="checkout()">go to checkout</button>
+            <button  type="button" class="btn btn-success btn-block waves-effect waves-light" (click)="checkout()" >Place Order</button>
   
           </div>
         </div>

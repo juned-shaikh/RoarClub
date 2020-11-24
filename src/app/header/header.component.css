@@ -426,6 +426,9 @@ li a:hover{
               padding: 5px 40px 5px 20px;
           
           }
+          .search_input{
+            background-color: #202328;
+          }
           
           .search input:focus{
             /* border:none; */
