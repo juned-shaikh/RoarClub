@@ -27,6 +27,7 @@ export class HeaderComponent implements OnInit {
   nm;
   public showsearch =false;
   public showsearchr =false;
+  public hidesubcategory = true;
   searchFocus = false;
   megaMenu = false;
   public is_logged_in = false;
@@ -367,8 +368,8 @@ export class HeaderComponent implements OnInit {
         this.categories = data["result"];
         this.categoryresp = data["result"];
         let size = this.categories.length;
-        if (size > 4) {
-          for (let n = 0; n < 3; n++) {
+        if (size > 6) {
+          for (let n = 0; n < 5; n++) {
             this.more = true;
             this.categories2.push(this.categories[n]);
           }
@@ -772,6 +773,9 @@ this.showsearch = !this.showsearch;
   gotoPage= function(pagename:string){
     this.router.navigateByUrl('/category-page');
     }
+    hidesubcategoryclick(){
+      this.hidesubcategory = !this.hidesubcategory;
+        }
 }
 
 

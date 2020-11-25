@@ -741,6 +741,8 @@ this.compSettings(this.comp);
     }
    
   }
+  
+ 
   WtoutLoginCheckout() {
     this.snackbar.open("Please Login to Checkout ", "", {
       duration: 3000,
@@ -944,6 +946,7 @@ this.compSettings(this.comp);
     }
   
   }
+  
 
  updateCart3(cart_id,cart_inventory_id,rate_type_actual,qty,qty_stock) {
     // var qty = 1;

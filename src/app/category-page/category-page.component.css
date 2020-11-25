@@ -278,7 +278,7 @@ h1{text-align:center;}
 }
 .heading{
   font-weight: 600;
-  font-size: 16px;
+  font-size: 14px;
 }
 .brand-name{
   font-size: 13px;
@@ -381,4 +381,49 @@ input:focus{
 .box-card:hover .bottom-section{
   visibility: visible;
   height: 14%;
+}
+
+.top-section{
+  visibility: hidden;
+  position: absolute;
+  top: 12px;
+  /* left: 0; */
+  right: 8px;
+  /* background-color: white; */
+  /* box-shadow: 0 0 4px lightgrey; */
+  overflow: hidden;
+  width: 100%;
+  float: right;
+  z-index: 111;
+  /* height: 0; */
+  transition: .1s ease;
+}
+.top-section ul li{
+  list-style: none;
+  font-size: 18px;
+ text-align: end;
+}
+.box-card:hover .top-section{
+  visibility: visible;
+}
+.outofstockproduct{
+  background: #20232859;
+  /* top: 11px; */
+  font-size: 18px;
+  width: 100%;
+  z-index: 1111;
+  /* left: 8px; */
+  line-height: 12;
+  height: 100%;
+  position: absolute;
+  font-weight: 600;
+  color: red;
+  text-shadow: 1.5px -0.5px black;
+  text-align: center;
+}
+button{
+ border: none;
+ outline: none;
+ background: none;
+
 }
