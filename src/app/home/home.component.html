@@ -87,14 +87,15 @@
      
    <!-- new add 17-11-2020 -->
    <div class="col-md-12 text-center">
-    <h2 class="title" style="font-family: Cinzel Semi Bold;">Shop by Categories</h2>
+    <h2 class="title" style="font-family: Cinzel Semi Bold;">Shop by Brands</h2>
   </div>
   <!-- end -->
   
   <!-- brand gallary view by Aman Verma 05-11-2020 -->
   <div class="row justify-content-start mt-1" style="background-color: #202328;" >
-    <div class="col-md-2" *ngFor="let brand of brands | slice:0:6;" style="left: 450px;">
-        <div class=" circular-image-brand" (click)="navigateCategory(brand.name,brand.brand_id)" style="border-radius:112px;">
+    <div class="col-md-2" *ngFor="let brand of brands | slice:0:6;">
+     
+        <div class=" circular-image-brand" (click)="navigateCategory(brand.name,brand.brand_id)" >
           <img src="{{brand?.thumbnail_sml_location}}" onerror="this.src='https://ap2-prod-images.disco-api.com/2020/2/24/d4cfb8ac-9ee1-4af5-a175-81790d55ebb9.jpg';" class="brand-image" style="width: 100%;" height="190px ;">
         </div>
     </div>
@@ -109,7 +110,7 @@
     
       <div class="pagination  row mb-0">
         <div class="col-md-4  text-left">
-        <span class="page-item  float-left" *ngIf="offsetSelling != 1">
+        <span class="page-item  float-left prev-item" *ngIf="offsetSelling != 1">
           <span matTooltip="Previous"
             class="page-link page-previous"
             (click)="changeOffsetSell(offsetSelling - 1)"
@@ -120,10 +121,11 @@
         </span>
       </div>
       <div class="col-md-4 text-center">
-        <h2 class="title" style="font-family: Cinzel Semi Bold;">Top Selling Products</h2>
+        <h2 class="title">Tren<span class="border-heading">ding Prod</span>ucts</h2>
+
       </div>
       <div class="col-md-4 text-right ">
-        <span class="page-item float-right " *ngIf="offsetSelling != pagesSelling">
+        <span class="page-item float-right next-item" *ngIf="offsetSelling != pagesSelling">
           <span  matTooltip="Next"
             class="page-link page-next"
             (click)="changeOffsetSell(offsetSelling + 1)"
@@ -140,7 +142,7 @@
          <div class="col-md-3" *ngFor="let nprd of topSelling">
            <div class="card newproduct_box" id="box-img1">
             <img src="{{ nprd?.gallery?.medium_thumbnail_link }}" id="img1" alt="New Product Image" class="image" (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)">
-            <h1  class="outofstockproduct" *ngIf="userC == true && nprd.txn_quantity < '1'"> Out of stock</h1>
+            <h1  class="outofstockproduct" *ngIf="nprd.txn_quantity < '1'"> Out of stock</h1>
             <ul class="add-to-cart_newproduct">
               <li><a *ngIf="nprd.wishlist_check == false" 
                 style="cursor:pointer"
@@ -245,25 +247,23 @@
      </div>
   </section>
 
-  <section class="container" style="padding: 20px;">
-    <div class="row" >
-          <div class="col-6" >
-            <img src="https://assets.myntassets.com/w_980,c_limit,fl_progressive,dpr_2.0/assets/images/2020/11/20/f7a46121-8944-4404-9ddf-601ad1a834341605856164199-desktop-banner-unisex-withdiscount.jpg">
-          </div>
-        
-          <div class="col-6" >
-            <img src="https://assets.myntassets.com/w_980,c_limit,fl_progressive,dpr_2.0/assets/images/2020/11/20/f7a46121-8944-4404-9ddf-601ad1a834341605856164199-desktop-banner-unisex-withdiscount.jpg">
-          </div>
+  <div class="container-fluid d-none d-md-block d-lg-block d-xl-block mt-5" *ngIf="roarclubbannerdata">
+    <div class="row">
+      <div class="col-md-6 mt-2 banner-image-box-card pl-3" *ngIf="roarclubbannerdata[0] != null">
+        <img src="{{roarclubbannerdata[0].image_link}}" class="w-100 img-fluid img-banner"  >
+      </div>
+      <div class="col-md-6 mt-2 banner-image-box-card pr-3" *ngIf="roarclubbannerdata[1] != null">
+          <img src="{{roarclubbannerdata[1].image_link}}" class="w-100 img-fluid img-banner" >
+      </div>
     </div>
-  
-  </section>
+  </div>
   <!-- latest product view by Aman Verma 06-11-2020 -->
   <section class="mt-2">
     <div class="container-fluid">
     
      <div class="pagination   row mb-0">
       <div class="col-md-4 text-left">
-      <li class="page-item float-left" *ngIf="offsetNew != 1">
+      <li class="page-item float-left prev-item" *ngIf="offsetNew != 1">
         <a matTooltip="Previous"
           class="page-link page-previous"
           (click)="changeOffsetNew(offsetNew - 1)"
@@ -274,10 +274,10 @@
       </li>
     </div>
     <div class="col-md-4 text-center">
-      <h2 class="title" style="font-family: Cinzel Semi Bold;">Latest Products</h2>
+      <h2 class="title" >Lat<span class="border-heading">est Prod</span>ucts</h2>
     </div>
     <div class="col-md-4 text-right ">
-      <li class="page-item float-right " *ngIf="offsetNew != pagesNew">
+      <li class="page-item float-right next-item" *ngIf="offsetNew != pagesNew">
         <a  matTooltip="Next"
           class="page-link page-next"
           (click)="changeOffsetNew(offsetNew + 1)"
@@ -293,7 +293,7 @@
         <div class="col-md-3" *ngFor="let nprd of newproduct">
           <div class="card newproduct_box" id="box-img1">
            <img src="{{ nprd?.gallery?.medium_thumbnail_link }}" id="img1" alt="New Product Image" class="image" (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)">
-           <h1  class="outofstockproduct" *ngIf="userC == true && nprd.txn_quantity < '1'"> Out of stock</h1>
+           <h1  class="outofstockproduct" *ngIf="nprd.txn_quantity < '1'"> Out of stock</h1>
            <ul class="add-to-cart_newproduct">
              <li><a *ngIf="nprd.wishlist_check == false" 
                style="cursor:pointer"
@@ -399,28 +399,22 @@
  </section>
  
  
- <section class="container" style="padding: 20px;">
-  <div class="col-12-12" style="padding:0px 0px 10px 0px">
-    <div class="row" data-tkid="M_b2205114-c015-4e0a-947f-a27ec0d01452_9">
-          <div class="col col-3-12" data-tkid="M_b2205114-c015-4e0a-947f-a27ec0d01452_9.DF4F36G9ODCP">
-              <img src="https://rukminim1.flixcart.com/flap/480/480/image/961504bea58924f1.jpg">
-          </div>
-
-          <div class="col col-3-12" data-tkid="M_b2205114-c015-4e0a-947f-a27ec0d01452_9.59Z7XYJ6CKMT">
-            <img src="https://rukminim1.flixcart.com/flap/480/480/image/8cce25a66aceee84.jpg" alt="">
-          </div>
-
-          <div class="col col-3-12" data-tkid="M_b2205114-c015-4e0a-947f-a27ec0d01452_9.TW9RPCAI8VFN">
-              <img src="https://rukminim1.flixcart.com/flap/960/960/image/961504bea58924f1.jpg">
-          </div>
-
-          <div class="col col-3-12" data-tkid="M_b2205114-c015-4e0a-947f-a27ec0d01452_9.TW9RPCAI8VFN">
-            <img src="https://rukminim1.flixcart.com/flap/480/480/image/8cce25a66aceee84.jpg">
-        </div>
+ <div class="container-fluid d-none d-md-block d-lg-block d-xl-block mt-5" *ngIf="roarclubbannerdata">
+  <div class="row">
+    <div class="col-md-6 mt-3 banner-image-box-card pl-3" *ngIf="roarclubbannerdata[2] != null">
+        <img src="{{roarclubbannerdata[2].image_link}}" class="w-100 img-fluid img-banner"  >
     </div>
- </div>
-
-</section>
+    <div class="col-md-6 mt-3 banner-image-box-card pr-3" *ngIf="roarclubbannerdata[3] != null">
+        <img src="{{roarclubbannerdata[3].image_link}}" class="w-100 img-fluid img-banner" >
+    </div>
+    <div class="col-md-6 mt-3 banner-image-box-card pl-3" *ngIf="roarclubbannerdata[4] != null">
+        <img src="{{roarclubbannerdata[4].image_link}}" class="w-100 img-fluid img-banner"  >
+    </div>
+    <div class="col-md-6 mt-3 pr-3 banner-image-box-card" *ngIf="roarclubbannerdata[5] != null">
+        <img src="{{roarclubbannerdata[5].image_link}}" class="w-100 img-fluid img-banner"  >
+    </div>
+  </div>
+</div>
  <!-- Top discount product by Aman Verma 06-11-2020 -->
  <section class="mt-2">
   <div class="container-fluid">
@@ -428,7 +422,7 @@
  
     <div class="pagination   row  mb-0">
       <div class="col-md-4 text-left">
-      <li class="page-item float-left" *ngIf="offsetDisc != 1">
+      <li class="page-item float-left prev-item" *ngIf="offsetDisc != 1">
         <a matTooltip="Previous"
           class="page-link page-previous"
           (click)="changeOffsetDisc(offsetDisc - 1)"
@@ -439,11 +433,10 @@
       </li>
     </div>
     <div class="col-md-4 text-center">
-      
-      <h2 class="title" style="font-family: Cinzel Semi Bold;">Top Discount Products</h2>
+      <h2 class="title" >Top Disc<span class="border-heading">ount Prod</span>ucts</h2>
     </div>
     <div class="col-md-4 text-right ">
-      <li class="page-item float-right " *ngIf="offsetDisc != pagesDisc">
+      <li class="page-item float-right next-item" *ngIf="offsetDisc != pagesDisc">
         <a  matTooltip="Next"
           class="page-link page-next"
           (click)="changeOffsetDisc(offsetDisc + 1)"
@@ -459,7 +452,7 @@
       <div class="col-md-3" *ngFor="let nprd of discountS">
         <div class="card newproduct_box" id="box-img1">
          <img src="{{ nprd?.gallery?.medium_thumbnail_link }}" id="img1" alt="New Product Image" class="image" (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)">
-         <h1  class="outofstockproduct" *ngIf="userC == true && nprd.txn_quantity < '1'"> Out of stock</h1>
+         <h1  class="outofstockproduct" *ngIf="nprd.txn_quantity < '1'"> Out of stock</h1>
          <ul class="add-to-cart_newproduct">
            <li><a *ngIf="nprd.wishlist_check == false" 
              style="cursor:pointer"
@@ -506,12 +499,12 @@
 
 
 <div class="row justify-content-start">
-<div class="col-md-12">
+<div class="col-md-12 ">
  <p style="color: rgb(131, 128, 128);margin-left:10px">
    <span *ngIf="nprd.rate[0].is_rent == '1'" 
    >{{ nprd.rate[0].name }} @ {{ nprd.rate[0].rate }}
  </span>
- <span *ngIf="nprd.rate[0].is_rent != '2'" class="newproduct_mrp"
+ <span *ngIf="nprd.rate[0].is_rent != '2'" class="newproduct_mrp "
    >₹ {{ nprd.rate[0].rate}} 
  </span> &nbsp;
  <span class="newproduct_mrp text-muted font-weight-500" *ngIf="nprd.rate[0].rate < nprd.mrp"

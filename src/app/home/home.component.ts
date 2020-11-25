@@ -129,11 +129,36 @@ export class HomeComponent implements OnInit {
   nopreview = false;
   ecomtrails = false;
   ninetoys = false;
-
+  roarclubbannerdata;
   roarclub = false;
   mlm = false;
   serverlink;
   ngOnInit() {
+
+    this.adminservice.ninetoysBanner({access_token:this.access_token,user_num:this.user_num,comp_num:this.comp_num_new}).subscribe(data=>{
+      if(data['status']==1){ 
+        this.roarclubbannerdata = data['result']; 
+      
+        }  
+           
+        
+  		
+      // else if(data['status']==0){
+      // sessionStorage.clear();
+      //  this.snackbar.open('Slider Is Not Fetch. ','' ,{
+      //           duration: 3000,
+      //           horizontalPosition:'center',
+      //   });      
+     
+      // }
+      else{
+
+      }
+  	},
+  	error=>{
+  		
+    	}
+    );
     // let l = location.origin;
     // var c = l.split("//");
     // this.host_name = c[1];

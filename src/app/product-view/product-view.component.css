@@ -138,34 +138,42 @@ input[type=number]::-webkit-outer-spin-button {
       background: #008080;
     }
     .update-button{
-      border: 1px solid green;
-      background: lightgray;
-      border-radius: 5px;
-      margin: 4px 1px 8px 4px;
+      /* border: 1px solid; */
+      height: 42px;
+      background: #2e3842;
+      /* padding: initial; */
+      /* background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376); */
+      box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
+      color: white;
+      border-radius: 22px;
+      /* margin: 4px 1px 8px 4px; */
     }
     .box-update{
-      font-size:12px;
+      margin-top: 4px;
       width: 40px;
-      margin: auto;
-    /* position: relative; */
-    /* height: 31px; */
-    /* top: 4px; */
-    /* border-radius: 15px; */
+      border: none;
+      background: #2d3641;
+      
+      outline: none;
+      color: white;
     }
     .button-update{
-      color: black;
-    border: 1px solid lightgrey;
-    font-weight: 600;
-    text-align: center;
-    cursor: pointer;
-    line-height: 2.5;
-    width: 25px;
+      color: wheat;
+      /* border: 1px solid lightgrey; */
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      line-height: 2.5;
+      width: 29px;
     }
-
+  td, th, thead, tbody, tr{
+    border: none!important;
+    outline: none;
+  }
 
 
     .skin-2 .num-in {
-      background: #FFFFFF;
+      /* background: #FFFFFF; */
       box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
       border-radius: 25px;
       height: 40px;
@@ -263,14 +271,17 @@ input[type=number]::-webkit-outer-spin-button {
     
     }
     #box-img1{
-      height: 280px; width: 100%; background: transparent; margin: none;    position: relative;
+      height: 280px; width: 100%;  margin: none;    position: relative;
     }
     #imgpro{
       max-height: 470px; min-height: unset; height: -webkit-fill-available; -o-object-fit: contain;
       object-fit: contain;
-      margin: none; width: 99%;
+      margin: none; width: 100%;    background: #202328;
       text-align: center;
+      /* background: grey; */
+      /* background:#1a1c21 ; */
       vertical-align: middle;
+      /* background-color: #121317; */
       position: inherit;
     
     }
@@ -278,13 +289,17 @@ input[type=number]::-webkit-outer-spin-button {
       /* border: 1px solid white!important; */
       border-radius: 10px;
       /* background: #000000!important; */
-      background: #131111fa!important;
-      border-radius: 9px;
-      /* box-shadow: 1px 1px 4px 4px #414244; */
-      height: 480px; width: 100%; background: transparent; margin: none;    position: relative;
+      overflow: hidden;
+      /* background: grey!important; */
+      /* background:#1a1c21 ; */
+      /* background-color: #121317; */
+      /* border-radius: 9px; */
+      box-shadow: 1px 1px 1.5px 1.5px #191a1b;
+      height: 480px; width: 100%;  margin: none;    position: relative;
     }
     .tab-content{
       border-radius: 9px;
+      /* background: #1a1c21; */
     }
     .nav-tabs{
       border: none;
@@ -295,10 +310,11 @@ input[type=number]::-webkit-outer-spin-button {
       font-weight: bold;
     }
     .select-image{
-      box-shadow: 1px 1px 1px 1px #414244;
+      /* box-shadow: 1px 1px 1px 1px #414244; */
       border-radius: 9px;
       /* background: #202328; */
-      background: #000000!important;
+      /* background: #000000!important; */
+      background:#1a1c21 ;
       cursor: pointer;
     }
     li.active>.select-image{
@@ -309,8 +325,13 @@ input[type=number]::-webkit-outer-spin-button {
       padding-top: 10px;
       /* background: #202328; */
       /* background: #000000; */
-      background: #131111fa!important;
-      box-shadow: 2px 2px -2px -2px #414244;
+      /* background: grey!important; */
+      /* background:#1a1c21 ; */
+      border: none;
+
+      background: transparent;
+      
+      /* box-shadow: 2px 2px -2px -2px #414244; */
       height: 110px;
       width: 100%;
       border-radius: 9px!important;
@@ -367,13 +388,16 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .btn-hover {
-  width: 200px;
+  min-width: 200px;
+  cursor: pointer;
+  max-width: auto;
+  text-transform: capitalize;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 600!important;
   color: #fff;
   cursor: pointer;
-  margin: 20px;
-  height: 50px;
+  margin-left: 10px;
+  height: 40px; 
   text-align:center;
   border: none;
   background-size: 300% 100%;
@@ -384,6 +408,18 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-transition: all .4s ease-in-out;
   transition: all .4s ease-in-out;
 }
+.active1{
+  /* background: lightgrey; */
+  /* border-top: 1px solid grey; */
+  /* border-left: 1px solid grey; */
+  /* background-color: white; */
+  background: #2e3842;
+  color: white!important;
+  /* border-radius: 9px; */
+}
+/* .nav-item:hover {
+  background: red;
+} */
 
 .btn-hover:hover {
   background-position: 100% 0;
@@ -422,7 +458,7 @@ input[type=number]::-webkit-outer-spin-button {
   border-radius: 25px;
 }
 
-#description-tab{
+/* #description-tab{
   color: #FFFFFF;
 }
 #info-tab{
@@ -430,7 +466,57 @@ input[type=number]::-webkit-outer-spin-button {
 }
 #reviews-tab{
   color: #FFFFFF;
+} */
+.outofstockproduct{
+  background: #20232859;
+  /* top: 11px; */
+  font-size: 18px;
+  width: 100%;
+  z-index: 1111;
+  /* left: 8px; */
+  line-height: 12;
+  height: 60%;
+  position: absolute;
+  font-weight: 600;
+  color: red;
+  text-shadow: 1.5px -0.5px black;
+  text-align: center;
+}
+.nav>li>a {
+  position: relative;
+  display: block;
+  color: azure;
+  padding: 10px 15px;
+}
+ .nav > li > a:hover {
+  text-decoration: none;
+  background: transparent;
+  background-color: none!important;
 }
 
-
-/* new css by juned */
+.pre-size{
+  box-shadow: 0 0 4px whitesmoke;
+/* border-radius: 50%; */
+color: black;
+background-color: white;
+border: 1px solid lightgray;
+height: 50px;
+width: 100px;
+border-radius: 3px;
+margin: -15px;
+}
+.post-size{
+  /* border-radius: 50%; */
+  background: whitesmoke;
+  /* border: 1px solid black;
+   */
+   background: #1a1c21;
+  border-radius: 3px;
+  box-shadow: 0 0 3px white;
+  margin: -15px;
+  /* color: black; */
+  color: white;
+  text-transform: capitalize;
+  height: 50px;
+width: 50px;
+}

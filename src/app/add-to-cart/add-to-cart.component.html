@@ -32,7 +32,7 @@
             <div class="row mb-4 " *ngFor="let pr of products">
               <div class="col-md-5 col-lg-3 col-xl-3">
                 <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
-                  <img class="img-fluid " style="height: 150px; width: 100%;"
+                  <img class="img-fluid " style="height: 130px; width: 100%;"
                   src="{{
                     pr.product_image.medium_thumbnail_link
                   }}"  class="mb-1" (click)="view_product(pr.product.meta_title,pr.product.product_no,pr.product.slug,pr.product.quick_product_check)" alt="Sample">
@@ -103,12 +103,15 @@
                           &nbsp;<span *ngIf="pr.product_rate[0].rate<pr.product.mrp"
                             class="text-muted font-weight-400">&nbsp;<del>₹ {{ pr.product.mrp_qty }}</del></span> &nbsp;
         
-                          &nbsp;&nbsp;
+                          &nbsp;&nbsp; <strong><span *ngIf="pr.product_rate[0].rate_qty<pr.product.mrp_qty"
+                            class="text-success font-weight-600 pl-2">{{pr.product_rate[0].discount_percent | number: '1.0-0'}}
+                            %
+                            Off </span></strong>
                     </div>
-                    <p class="mb-0"><span><strong><span *ngIf="pr.product_rate[0].rate_qty<pr.product.mrp_qty"
+                    <!-- <p class="mb-0"><span><strong><span *ngIf="pr.product_rate[0].rate_qty<pr.product.mrp_qty"
                       class="text-success font-weight-600 pl-2">{{pr.product_rate[0].discount_percent | number: '1.0-0'}}
                       %
-                      Off </span></strong></span></p>
+                      Off </span></strong></span></p> -->
                   </div>
                 </div>
               </div>
@@ -208,7 +211,7 @@
 
             </ul>
   
-            <button type="button" class="btn btn-primary btn-block waves-effect waves-light" (click)="WtoutLoginCheckout()">go to checkout</button>
+            <button type="button" style="background: green; color: white;" class="btn  btn-block waves-effect waves-light" (click)="WtoutLoginCheckout()">Place Order</button>
   
           </div>
         </div>
@@ -312,12 +315,12 @@
                 <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0"  (click)="view_product(cd.product.meta_title, cd.product.product_no,cd.product.slug,cd.product.quick_product_check)">
                  
                   <img src="{{cd.product_image.medium_thumbnail_link}}" class=""
-                  style="height: 150px; width: 100%;" />
+                  style="height: 130px; width: 100%;" />
                   <a href="#!">
                     <div class="mask waves-effect waves-light">
                      
                       <img src="{{cd.product_image.medium_thumbnail_link}}" class=""
-                      style="height: 150px; width: 100%;" />
+                      style="height: 130px; width: 100%;" />
                       <div class="mask rgba-black-slight waves-effect waves-light"></div>
                     </div>
                   </a>
@@ -329,7 +332,7 @@
                     <div>
                       <h5>   {{ cd.product.name }}</h5>
                       <h6> {{ cd.product.subheading }}</h6>
-                      <p class="mb-3 text-muted text-uppercase small"><span *ngIf="cd.product.txn_quantity < '1' " class=" font-weight-500 " >
+                      <p class="mb-1 text-muted text-uppercase small"><span *ngIf="cd.product.txn_quantity < '1' " class=" font-weight-500 " >
                         <h6 class="text-danger">Out of Stock </h6>
                       </span></p>
                       <!-- <p class="mb-2 text-muted text-uppercase small">Color: blue</p> -->
@@ -361,25 +364,29 @@
                       </small>
                    </div>
                   </div>
-                  <div class="d-flex justify-content-between align-items-center">
+                  <div class="d-flex justify-content-between align-items-center mt-0">
                     <div>
                       <span *ngIf="cd.is_rent !='0'">{{ cd.rate_name }} </span>
                           <span class="font-weight-600">₹ {{ cd.rate }}</span><span
                             *ngIf="cd.rate < cd.total_mrp_amount" class="text-muted font-weight-400">&nbsp;<del> ₹
-                              {{ cd.total_mrp_amount }}</del></span> &nbsp; &nbsp;
+                              {{ cd.total_mrp_amount }}</del></span> &nbsp; &nbsp;  <strong><span
+                                *ngIf="cd.rate < cd.total_mrp_amount" class="text-success font-weight-500">
+                                {{cd.discount_percent | number: '1.0-0'}} % Off 
+                              </span></strong>
                     </div>
-                    <p class="mb-0" > <strong><span 
-                      *ngIf="cd.rate < cd.total_mrp_amount" class="text-success font-weight-500" style="padding-right: 376;">
-                      {{cd.discount_percent | number: '1.0-0'}} % Off 
-                    </span></strong></p>
+                  
                   </div>
                   <div class="d-flex justify-content-between align-items-center">
                     <div>
-                      <a  type="button" (click)="deleteFromCart(cd.cart_inventory_id)" class="card-link-secondary text-success small text-uppercase mr-3"><i
+                      <a  type="button" (click)="deleteFromCart(cd.cart_inventory_id)" style="color: white;" class="c small text-uppercase mr-3"><i
                           class="fas fa-trash-alt mr-1"></i> Remove item </a>
                       <a href="#!" type="button" *ngIf="rentShow" class="card-link-secondary small text-uppercase" style="cursor: pointer;"  (click)="fetch_cart_specific(cd.cart_id,cd.cart_inventory_id);openXl(content2);"> Update Rate Type </a>
                     </div>
-                    <p class="mb-0"><span><strong></strong></span></p>
+                    <p class="mb-0"><span><strong> <a  type="button"   (click)="addToWishlist(cd)" style="color: white;" class=" small text-uppercase mr-3"><i
+                      class="fas fa-heart mr-1"></i> Add to wishlist </a>
+                      <a  type="button" *ngIf="cd.product.wishlist_check == true"  (click)="deleteFromWishlist(cd.product.wishlist_num)" style="color: red;" class=" small text-uppercase mr-3"><i
+                        class="fas fa-heart mr-1"></i> Add to wishlist </a>
+                    </strong></span></p>
                   </div>
                 </div>
               </div>
@@ -392,38 +399,7 @@
   
           </div>
         </div>
-        <!-- Card -->
-  
-        <!-- Card -->
-        <!-- <div class="card mb-3"  >
-          <div class="card-body">
-  
-            <h5 class="mb-4">Expected shipping delivery</h5>
-  
-            <p class="mb-0"> Thu., 12.03. - Mon., 16.03.</p>
-          </div>
-        </div> -->
-        <!-- Card -->
-  
-        <!-- Card -->
-        <!-- <div class="card mb-3" >
-          <div class="card-body">
-  
-            <h5 class="mb-4">We accept</h5>
-  
-            <img class="mr-2" width="45px"
-              src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
-              alt="Visa">
-            <img class="mr-2" width="45px"
-              src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
-              alt="American Express">
-            <img class="mr-2" width="45px"
-              src="https://mdbootstrap.com/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
-              alt="Mastercard">
-            
-          </div>
-        </div> -->
-        <!-- Card -->
+     
   
       </div>
       <!--Grid column-->
@@ -477,7 +453,7 @@
               </li>
             </ul>
   
-            <button  type="button" class="btn btn-success btn-block waves-effect waves-light" (click)="checkout()" >Place Order</button>
+            <button type="button" style="background: green; color: white;" class="btn  btn-block waves-effect waves-light" (click)="checkout()">Place Order</button>
   
           </div>
         </div>

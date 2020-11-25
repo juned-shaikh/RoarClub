@@ -98,38 +98,46 @@ img {
 
 
 .newproduct_mrp{
-  font-size: 16px;
-  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  /* font-family: 'Cinzel', serif; */
+  /* font-family: 'Raleway', sans-serif!important; */
+  font-family: sans-serif;
   color: black;
   font-weight: bold;
 
 }
-.name1{
-  color: black;
-  margin-left:10px; margin-right: 10px;
-  font-weight: bold;
-   text-transform: capitaliz;
-   font-family: 'Cinzel', serif;
-}
+
 
 .newproduct_heading{
   color: black;
-  font-weight: bold;
-  right: 3px;
+  font-weight: bolder!important;
+  right: 7px;
+  cursor: pointer;
   left: 7px;
   position: relative;
-   text-transform: capitaliz;
+   text-transform: uppercase;
    font-family: 'Cinzel', serif;
-   font-size: 17px;
+   font-size: 14px;
 }
-		
+	/* .brand-name-incircle{
+    position: absolute;
+    left: 44%;
+    top: 44%;
+    display: none;font-family: Cinzel Semi Bold;
+    font-weight: 600;
+  }	
+  .circular-image-brand:hover + .brand-name-incircle{
+
+display: block;    color: black;
+
+  }  */
 .circular-image-brand {
-  border-radius: 9.5px;
+  border-radius: 50%;
   overflow: hidden;
   background: white;
 }
 .circular-image-brand img{
-  border-radius: 9.5px;
+  border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
 }
@@ -726,15 +734,18 @@ input:focus{
   display: block;
 }
 .outofstockproduct{
-  top: 11px;
-    font-size: 18px;
-    left: 8px;
-    position: absolute;
-    font-weight: 500;
-    color: red;
-    text-shadow: -0.5px 0.5px orange;
-    /* font-weight: 400; */
-    text-align: center;
+  background: #20232859;
+  /* top: 11px; */
+  font-size: 18px;
+  width: 100%;
+  /* left: 8px; */
+  line-height: 12;
+  height: 100%;
+  position: absolute;
+  font-weight: 600;
+  color: red;
+  text-shadow: 1.5px -0.5px black;
+  text-align: center;
 }
 .buy-now-button{
   background: #FFFFFF;
@@ -812,93 +823,96 @@ input:focus{
    visibility: visible;
    transition: 1s;
  }
+ 
+ .banner-image-box-card{
 
- /* banner code new */
- .bannerItem{
-  margin-bottom:2500px !important; /* white below banner - delete it */
-  padding-top:10px; /* padding above the header */
-width:1000px;
-margin:auto;
-    margin-top:55px; /* white above banner - delete it */
-max-height:180px !important;
+  height: 220px;  width: auto; padding: 0; overflow: hidden;
+  object-fit: fill;
+  cursor: pointer;
+  transform: scaleX(.99);
 }
 
-.banner-header{
-  margin: 0;     
-  color: #fff;
-  padding-top:0px;
-  font-size: 42px;  
-  font-family:lato;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top:-190px;
-  font-weigh:100;
+.banner-image-box-card:hover{
+  /* transform: scaleX(.99); */
+  transition: transform 2s;
+  cursor: pointer;
+  
 }
 
-.banner-text{
-  margin: 0;     
-  color: #fff;
-  margin-top:0px;
-  padding-bottom: 0px;
-  font-family: lato;
-  font-weight: 100;
-  font-size: 20px;
-  padding-left: 10px;
-  padding-right: 10px;
+.banner-image-box-card-mobile{
+  height: 140px;  width: auto; padding: 0; overflow: hidden;
+  object-fit: fill;
+  cursor: pointer;
+}
+.img-banner{
+  height: 100%;
+  border-radius: 9px;
+  width: 100%;
 }
 
-.bannerItem{
-  background: #333;    
-  text-align: center;
-  height: 100% !important;
-  border-radius: 6px; /* rounded corners */
- background: linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(255,255,255,0.4) 100%), url("http://source.unsplash.com/1500x500/?adventure");
-background-width: 100%;
-background-attachment: fixed; 
-image-repeat: none;
-max-height: 0%;
-background-size:100%;
+.next-item .page-link {
+  width: -webkit-fit-content;
+  position: absolute;
+  padding: 2px 8px 2px 8px;
+  background: none;
+  width: -moz-fit-content;
+  text-shadow: 0 0 5px #000000;
+  top: 150px;
+  font-size: 42px;
+  right: -19px;
+  border: none!important;
+  outline: none!important;
+  color: whitesmoke;
+  z-index: 222;
+  cursor: pointer;
+}
+.border-heading{
+  border-bottom: 2px solid green;
+}
+.prev-item .page-link {
+  width: -webkit-fit-content;
+    position: absolute;
+    padding: 2px 8px 2px 8px;
+    background: none;
+    left: -19px;
+    width: -moz-fit-content;
+    text-shadow: 0 0 5px #000000;
+    top: 150px;
+    font-size: 42px;
+    border: none!important;
+    outline: none!important;
+    color: whitesmoke;
+    z-index: 222;
+    cursor: pointer;
 }
 
 
+/* .page-item .page-link {
+  width: -webkit-fit-content;
+  position: absolute;
+  padding: 2px 8px 2px 8px;
+  background: none;
+  width: -moz-fit-content;
+  text-shadow: 0 0 5px #000000;
+  top: 150px;
+  font-size: 46px;
+  right: -19px;
+  border: none!important;
+  outline: none!important;
+  color: whitesmoke;
+  z-index: 222;
+  cursor: pointer;
+} */
 
-.banner-example{
-margin: 20px; /*padding around banner - delete for full width*/
-}
 
-
-/* button CSS */
-.btn.btn-outline{
-margin-top:10px;
-background-color:transparent;
-color: #fff;
-border-color: #fff;
-padding-left:90px;
-padding-right:90px;
-font-family:lato;
-font-weight:300;
-margin-bottom:40px;
-border-radius:0px;
-}
-.btn.btn-outline:hover{
-background-color:black;
-border-color:black;
-color: #fff;
-}
-.btn.btn-outline.a{
-background-color:black;
-border-color:black;
-color: #fff;
-}
-.btn.btn-outline:active{
-font-weight:300;
-font-size:20px;
-color: #fff;
+.main-slider{
+  margin-left: 1px;
+  margin-right: 1px;
 }
 
-.col col-3-12{
-  width: 400px;
+.main-slider:hover .carousel-control-prev{
+  visibility: visible;
 }
-.col-3-12{
-  width: 400px;
+.main-slider:hover .carousel-control-next{
+  visibility: visible;
 }

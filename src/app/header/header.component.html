@@ -1,6 +1,6 @@
 	
 <div class="header" style="background:#202328;">
-    <nav class="navbar" style="height: 70px; box-shadow: 0 0 3px lightgray;">
+    <nav class="navbar" style="height: 70px; ">
       <label class="navbar-toggle" id="js-navbar-toggle" for="chkToggle">
               <i class="fa fa-bars"></i>
           </label>
@@ -15,40 +15,86 @@
   <ul class="navbar-nav mr-auto flex-row"  id="js-menu">
 
     <li *ngFor="let category of categories2; let i = index" style="color: antiquewhite;padding:10px" class="nav-item dropdown has-megamenu">
-      <a class="nav-link sub-cat" href="#" data-toggle="dropdown" (click)="navigateCategory(category.name, category.category_no)"
+      <a class="nav-link sub-cat" href="#" data-toggle="dropdown" (click)="navigateCategory(category.name, category.category_no);hidesubcategoryclick()"
     style="font-family: 'Cinzel', serif;color: white;font-size: 18px;"
       >{{
       category.name
     }}  </a>
-        <div class="dropdown-menu megamenu" role="menu" *ngIf="category.name" >
+        <div class="dropdown-menu megamenu" role="menu" *ngIf="category.sub_category && hidesubcategory">
                    <div class="row justify-content-center">
-                 <div class="col-md-10 pl-5" style="padding-bottom: 190px;">
-                  <div class="row">
-                    <div><h3>What's New</h3>  </div>
-                    <div style="position: absolute;padding-top: 35px;"><h3>Bestsellers</h3>   </div>
-                    <div style="position: absolute;padding-top: 75px;"><h3>Gifts for Her</h3>   </div>
-                    <div style="position: absolute;padding-top: 115px;"><h3>  Align Shop</h3>   </div>
-                    <div style="position: absolute;padding-top: 155px;"><h3> Wunder Under Shop</h3>   </div>
-                    <div style="position: absolute;padding-top: 194px;"><h3>Cold Weather Shop</h3>   </div>
-                    <div style="position: absolute;padding-top: 15px;left:190px;" class="vl"></div>
+                 <div class="col-md-10 pl-5" >
+                  <div class="row category-name">
+                    <div class="col-md-2" style="border-right: 2px solid green;">
+                      <p class="project-heading">What's New</p>  
+                      <p class="project-heading">Bestsellers</p>   
+                    <p class="project-heading">Gifts for Her</p>   
+                      <p class="project-heading">  Align Shop</p>   
+                      <p class="project-heading"> Wunder Under Shop</p>   
+                      <p class="project-heading">Cold Weather Shop</p>  
+                    </div>
+                    
                     <!-- <h3>Gifts for Her</h3><br/>
                     <h3>Gifts for Her</h3><br/> -->
-                    <div class="col-md-4 " style="color: white;left: 90px;" *ngFor="let categoryi of category.sub_category" (click)="navigateCategory(category.name, category.category_no)"> 
-                      <p class=""  (click)="navigateCategory(category.name, category.category_no)"  ><span class="sub-1-category"> {{categoryi.name}} </span></p>
-                     
-                    
-                          <div *ngIf="categoryi.sub_category2">
-                            <p *ngFor="let categoryj of categoryi.sub_category2">
-                              <a style="color: white;position: absolute;top: 30px;right: 300px;" class="sub-2-category project-discription " (click)="navigateCategory(category.name, category.category_no)">{{
-                                categoryj.name.length > 25
-                                  ? (categoryj.name | slice: 0:25) + "..."
-                                  : categoryj.name
-                              }}</a>
-                            </p>
+                  <div class="col-md-10">
+                    <div class="row">
+                      
+                      <div class="col-md-4 " style="color: white;" > 
+
+                        <div *ngFor="let categoryi of category.sub_category | slice:0:4;">
+                        <p class=""  (click)="navigateCategory(category.name, category.category_no)"  ><span class="sub-1-category first-category-on"> {{categoryi.name}} </span></p>
+                       
+                      
+                            <div *ngIf="categoryi.sub_category2" class="text-right second-category-on" >
+                              <p *ngFor="let categoryj of categoryi.sub_category2 | slice:0:4;">
+                                <a style="color: white;" class="sub-2-category project-discription " (click)="navigateCategory(category.name, category.category_no)">{{
+                                  categoryj.name.length > 25
+                                    ? (categoryj.name | slice: 0:25) + "..."
+                                    : categoryj.name
+                                }}</a>
+                              </p>
+                            </div>
                           </div>
-                    
-                    
+                      
+                      </div>
+                          
+                      <div class="col-md-4 " style="color: white;" > 
+                        <div *ngFor="let categoryi of category.sub_category | slice:4:8;">
+                        <p class=""  (click)="navigateCategory(category.name, category.category_no)"  ><span class="sub-1-category"> {{categoryi.name}} </span></p>
+                       
+                      
+                            <div *ngIf="categoryi.sub_category2">
+                              <p *ngFor="let categoryj of categoryi.sub_category2 | slice:4:8;">
+                                <a style="color: white;" class="sub-2-category project-discription " (click)="navigateCategory(category.name, category.category_no)">{{
+                                  categoryj.name.length > 25
+                                    ? (categoryj.name | slice: 0:25) + "..."
+                                    : categoryj.name
+                                }}</a>
+                              </p>
+                            </div>
+                          </div>
+                      
+                      </div>
+                          
+                      <div class="col-md-4 " style="color: white;" > 
+                        <div *ngFor="let categoryi of category.sub_category | slice:8:12;">
+                        <p class=""  (click)="navigateCategory(category.name, category.category_no)"  ><span class="sub-1-category"> {{categoryi.name}} </span></p>
+                       
+                      
+                            <div *ngIf="categoryi.sub_category2">
+                              <p *ngFor="let categoryj of categoryi.sub_category2 | slice:8:12;">
+                                <a style="color: white;" class="sub-2-category project-discription " (click)="navigateCategory(category.name, category.category_no)">{{
+                                  categoryj.name.length > 25
+                                    ? (categoryj.name | slice: 0:25) + "..."
+                                    : categoryj.name
+                                }}</a>
+                              </p>
+                            </div>
+                          </div>
+                      
+                      </div>
+                      
                     </div>
+                  </div>
                     
                    
                 </div>
@@ -60,14 +106,22 @@
 <!-- end -->
 
       <ul style="display: contents; list-style: none; position: fixed;" class="ml-auto">
+        <!-- <li style=" text-decoration: none; list-style: none!important;" class="">
+          <div class="input-group  border area ">
+            <input type="search" placeholder="search for brand,product,and more..." aria-describedby="button-addon3" class="form-control bg-none border-0">
+            <div class="input-group-append border-0 m-0">
+              <button id="button-addon3" type="button" class="btn btn-link text-success"><i class="fa fa-search"></i></button>
+            </div>
+          </div>
+        </li> -->
         <li class="nav-item">
-          <div class="searchbar d-none d-lg-block d-md-block d-xl-block" style=" position: fixed;top: 0px;padding: 10px 14px; margin: 20px;
+          <div class="searchbar d-none d-lg-block d-md-block d-xl-block" style=" position: fixed;top: -9px;right: 90px;padding: 10px 14px; margin: 20px;
           font-family: Nunito;
-          font-size: 14px;
+          font-size: 18px;
           text-decoration: none;
-        
+        background-color: #202328;
           border-radius: 4px;
-          z-index: 125;">
+          z-index: 125;   ">
             <input
               class="search_input"
               type="text"
@@ -79,7 +133,7 @@
                 )
               "
               (focus)="searchFocus = !searchFocus"
-              placeholder="Search for brand product and more..."
+              placeholder="Search for brand, category, product more..."
               aria-label="search..."
             />
             <a class="search_icon"
@@ -96,7 +150,7 @@
             ></a>
             <div *ngIf="searchFocus" class="searchItems shadow-sm">
               <div
-                class="d-flex align-items-center mt-2 mb-1 cursor-pointer category-hover" style="background-color: #fff;"
+                class="d-flex align-items-center mt-2 mb-1 cursor-pointer category-hover"
                 *ngFor="let category of searchList.category | slice: 0:6"
               >
                 <i class="fa fa-search mr-3 ml-3"></i>
@@ -105,7 +159,7 @@
                     navigateCategory(category.name, category.category_no)
                   "
                 >
-                  <div style="font-size: 12px;">
+                  <div style="font-size: 12px">
                     in {{ category.name }}
                   </div>
                 </a>
@@ -146,6 +200,10 @@
           </div>
         </li>
 
+
+
+
+
         <li *ngIf="is_logged_out">
           <a routerLink="/login" style="list-style-type:none;" class="nav-links" style="color: green;"><i class="fas fa-user"></i></a>
         </li>
@@ -164,11 +222,13 @@
             >user</i
           > </a>
         </li>
-     &nbsp;&nbsp;
-<!-- <<<<<<< HEAD
-        <li style="list-style: none;" class="" routerLink="/cart">
-           <a style="padding: 15px;"> <i class="fas fa-shopping-cart text-center" >
-======= -->
+     
+
+<li style="list-style: none;" class="ml-2" *ngIf="is_logged_in">
+  <a class="nav-link" routerLink="/client-info"
+    ><i class="far fa-heart text-center text-success"></i>
+  </a>
+</li>
         <li style="list-style: none;" class="ml-2" routerLink="/cart">
            <a> <i class="fas fa-shopping-cart text-center" >
 

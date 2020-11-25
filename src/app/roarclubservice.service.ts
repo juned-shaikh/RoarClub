@@ -422,6 +422,11 @@ pincode_country_state_city_api(data){
     return this.https.post(this.baseUrl + "user/estimate_time_delivery", data);
 
   }
+  
+  ninetoysBanner(data){
+    return this.https.post(this.baseUrl + "user/fetch_all_content_slider",data);
+
+  }
   insert_product_visit_log(data){
     return this.https.post(this.baseUrl + "user/insert_product_visit_log", data);
 
