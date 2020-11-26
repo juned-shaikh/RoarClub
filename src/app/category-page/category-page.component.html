@@ -27,7 +27,7 @@
               <div class="card project-discription">
                 <div class="card-header">Filter</div>
                 <div class="card-body p-1">
-                  <div class="card border-0 b-3">
+                  <div class="card border-0 b-3" *ngIf="categoryNav">
                     <div class="card-header p-2 bg-white" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false">
                       <p class="m-0 h6 project-heading">Categories ({{categories?.length}})</p>
                     </div>
@@ -59,7 +59,7 @@
                       <ul class="list-group list-group-flush" style="height:200px;overflow:auto;">
                         <li class="list-group-item p-2 d-flex justify-content-between align-items-center" *ngFor="let categoryi of categories | slice:0:9;">
                           <div class="" (click)="navigateBrand(categoryi.name, categoryi.brand_id)">
-                            <label class="custom-control-label" >    {{ (categoryi.name.length>20)? (categoryi.name | slice:0:20)+'...':(categoryi.name) }}</label>
+                            <label class="custom-control-label" >   {{ (categoryi.name.length>20)? (categoryi.name | slice:0:20)+'...':(categoryi.name) }}</label>
                           </div>
                           <!-- <span class="badge badge-secondary badge-pill">14</span> -->
                         </li>

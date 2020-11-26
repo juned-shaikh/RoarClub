@@ -1359,7 +1359,45 @@ nav.replace(/\s+/g, "-") +
         
     }
   }
+  navigateBrand(name, id) {
 
+    this.adminservice
+      .fetch_product_list_check({
+        comp_num: sessionStorage.getItem("comp_num"),
+        brand_id: id
+      })
+      .subscribe(data => {
+        if (data["status"] == 1) {
+     let slug =
+      name.replace(/\s+/g, "-") +
+      "-?brand_id=" +
+      id +
+      "&marketplace=ECOMTRAILS";
+
+    // let slug = name.replace(/\s/, "-") + "-?" + id;
+    window.scroll(0, 0);
+    if(this.previewFlag == '1'){
+     this.router.navigate(["/Admin/preview/shop", "brand", slug]);
+    }else{
+       this.router.navigate(["/category-page", "brand", slug]);
+    }
+    
+        }  else if (data["status"] == 0) {
+           this.snackbar.open(
+            "No Products Found. ",
+            "",
+            {
+              duration: 3000,
+              horizontalPosition: "center"
+            }
+          );
+        }
+      });
+    
+    // this.router.navigate(['/category', id]);
+   
+    this.megaMenu = false;
+  }
 
   navigateCategory(name, id) {
      let re=" ";

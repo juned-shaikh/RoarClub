@@ -410,3 +410,58 @@ li a:hover{
        .category-name div{
          cursor: pointer;
        }
+
+
+       .search {
+        width: 330px!important;
+        position: relative;
+        z-index: 109;
+      }
+      
+      .search .mat-card {
+        padding: 0;
+        position: relative;
+        top: -10;
+        border: none;
+        outline: none;
+        box-shadow: none;
+      }
+      .search input{
+       
+        width: 100%;
+    border: .25px solid #781352;
+    font-size: 14px;
+    height: 38px;
+    border-radius: 3px;
+    font-family: 'Raleway', sans-serif!important;
+    padding: 5px 40px 5px 12px;
+      
+      }
+      
+      .search input:focus{
+      
+        outline: none;
+      }
+      
+      .search .mat-card .searchIcon{
+        font-size: 15px;
+        position: absolute;
+        color: green;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+      }
+      
+      .search .searchItems{
+
+        position: absolute;
+        /* font-family: 'Cinzel', serif!important; */
+        font-family: 'Raleway', sans-serif!important;
+        top:38px;
+        left: 0;
+        background-color: white;
+      }
+      .search .mat-card.searchItems > div{
+        padding: 0px 0px 0px 10px ;
+      }

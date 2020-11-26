@@ -27,10 +27,6 @@
                     <div class="col-md-2" style="border-right: 2px solid green;">
                       <p class="project-heading">What's New</p>  
                       <p class="project-heading">Bestsellers</p>   
-                    <p class="project-heading">Gifts for Her</p>   
-                      <p class="project-heading">  Align Shop</p>   
-                      <p class="project-heading"> Wunder Under Shop</p>   
-                      <p class="project-heading">Cold Weather Shop</p>  
                     </div>
                     
                     <!-- <h3>Gifts for Her</h3><br/>
@@ -40,7 +36,7 @@
                       
                       <div class="col-md-4 " style="color: white;" > 
 
-                        <div *ngFor="let categoryi of category.sub_category | slice:0:4;">
+                        <div *ngFor="let categoryi of category.sub_category | slice:0:8;">
                         <p class=""  (click)="navigateCategory(category.name, category.category_no)"  ><span class="sub-1-category first-category-on"> {{categoryi.name}} </span></p>
                        
                       
@@ -58,7 +54,7 @@
                       </div>
                           
                       <div class="col-md-4 " style="color: white;" > 
-                        <div *ngFor="let categoryi of category.sub_category | slice:4:8;">
+                        <div *ngFor="let categoryi of category.sub_category | slice:8:16;">
                         <p class=""  (click)="navigateCategory(category.name, category.category_no)"  ><span class="sub-1-category"> {{categoryi.name}} </span></p>
                        
                       
@@ -76,7 +72,7 @@
                       </div>
                           
                       <div class="col-md-4 " style="color: white;" > 
-                        <div *ngFor="let categoryi of category.sub_category | slice:8:12;">
+                        <div *ngFor="let categoryi of category.sub_category | slice:16:24;">
                         <p class=""  (click)="navigateCategory(category.name, category.category_no)"  ><span class="sub-1-category"> {{categoryi.name}} </span></p>
                        
                       
@@ -107,14 +103,85 @@
 
       <ul style="display: contents; list-style: none;" class="ml-auto">
         <li style=" text-decoration: none; list-style: none!important;" class="">
-          <div class="input-group  border area ">
-            <input type="search" placeholder="search for brand,product,and more..." aria-describedby="button-addon3" class="form-control bg-none border-0">
-            <div class="input-group-append border-0 m-0">
-              <button id="button-addon3" type="button" class="btn btn-link text-success"><i class="fa fa-search"></i></button>
-            </div>
+         
+          <div class="search searchFull"  >
+            <mat-card>
+              <input
+                type="search"
+                (keyup)="search($event.target.value)"
+                (keyup.enter)="
+                  navigateCategory(
+                    searchList.category[0].name,
+                    searchList.category[0].category_no
+                  )
+                "
+                (focus)="searchFocus = !searchFocus"
+                placeholder="Search for brand, category, product more..."
+                aria-label="search..."
+              />
+              <i
+                class="searchIcon fa fa-search "
+                title="search"
+                (click)="
+                  navigateCategory(
+                    searchList.category[0].name,
+                    searchList.category[0].category_no
+                  )
+                "
+              ></i>
+              <mat-card *ngIf="searchFocus" class="searchItems w-100">
+                <div
+                      class="d-flex align-items-center mt-2 mb-1 cursor-pointer category-hover"
+                      *ngFor="let category of searchList.category | slice: 0:6"
+                    >
+                      <i class="fa fa-search mr-3 ml-3"></i>
+                      <a
+                        (click)="
+                          navigateCategory(category.name, category.category_no)
+                        "
+                      >
+                        <div style="font-size: 12px">
+                          in {{ category.name }}
+                        </div>
+                      </a>
+                    </div>
+
+                    <div
+                      class="d-flex align-items-center cursor-pointer mt-1 category-hover"
+                      *ngFor="let brand of searchList.brand | slice: 0:6"
+                    >
+                      <i class="fa fa-search mr-3 ml-3"></i>
+                      <a (click)="navigateBrand(brand.name, brand.brand_id)">
+                        <div style="font-size: 12px">in {{ brand.name }}</div>
+                      </a>
+                    </div>
+
+                    <div 
+                      class="d-flex align-items-center category-hover text-success"
+                      *ngFor="let product of searchList.product | slice: 0:3"
+                    >
+                      <i class="fa fa-search mr-3 ml-3"></i>
+
+                      <a 
+                        routerLink="/product/{{
+                          getSlug(
+                            product.name,
+                            product.product_no,
+                            product.slug
+                          )
+                        }}"
+                      >
+                        <div style="font-size:13px" class="p-1 text-success">
+                          {{ product.name | slice: 0:40 }} |
+                          {{ product.model | slice: 0:40 }}
+                        </div>
+                      </a>
+                    </div>
+              </mat-card>
+            </mat-card>
           </div>
         </li>
-        <li *ngIf="is_logged_out">
+        <li *ngIf="is_logged_out" class="mr-2">
           <a routerLink="/login" style="list-style-type:none;" class="nav-links" style="color: green;"><i class="fas fa-user"></i></a>
         </li>
         <li *ngIf="is_logged_in" routerLink="/client-info" class="mr-3">
@@ -134,6 +201,11 @@
         </li>
      
 
+<li style="list-style: none;" class="ml-2" *ngIf="is_logged_out">
+  <a class="nav-link" routerLink="/login"
+    ><i class="far fa-heart text-center text-success"></i>
+  </a>
+</li>
 <li style="list-style: none;" class="ml-2" *ngIf="is_logged_in">
   <a class="nav-link" routerLink="/client-info"
     ><i class="far fa-heart text-center text-success"></i>
