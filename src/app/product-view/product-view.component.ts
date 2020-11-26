@@ -1464,6 +1464,7 @@ count=0;
       sessionStorage.getItem("user_num") == "" ||
       sessionStorage.getItem("user_num") == null
     ) {
+      
       this.router.navigate(["/login"]);
     } else {
       let post = {

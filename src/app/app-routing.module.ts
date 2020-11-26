@@ -12,7 +12,9 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { OurBrandComponent } from './our-brand/our-brand.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { OrderViewDetailsComponent } from './order-view-details/order-view-details.component';
-
+import { ReviewratingComponent } from './reviewrating/reviewrating.component';
+import { RatingComponent } from './rating/rating.component';
+import { RatingNowComponent } from './rating-now/rating-now.component';
  
 const routes: Routes = [
   { path: "",  pathMatch: "prefix", 
@@ -48,9 +50,14 @@ const routes: Routes = [
       }, {
         path: "order-details/:id",
         component:OrderViewDetailsComponent,
-      }
+      },
      
-
+      {
+        path : "reviewrating",
+        component:ReviewratingComponent
+      },
+      { path: "rating", component: RatingComponent},
+      { path: "rating-now", component: RatingNowComponent},
     ],
  },
 

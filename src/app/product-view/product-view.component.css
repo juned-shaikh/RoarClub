@@ -140,25 +140,32 @@ input[type=number]::-webkit-outer-spin-button {
     .update-button{
       /* border: 1px solid; */
       height: 42px;
-      background: #2e3842;
+      /* background: #2e3842; */
+      border: 2px solid green;
       /* padding: initial; */
+      background: rgb(43, 42, 42);
       /* background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376); */
       box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
-      color: white;
-      border-radius: 22px;
+      color: green;
+      font-weight: bold;
+      border-radius: 10px;
       /* margin: 4px 1px 8px 4px; */
     }
     .box-update{
       margin-top: 4px;
       width: 40px;
       border: none;
-      background: #2d3641;
-      
+      /* background: #2d3641; */
+      background: rgb(43, 42, 42);
       outline: none;
       color: white;
     }
+    .box-update:focus{
+      outline: none;
+      border: none;
+    }
     .button-update{
-      color: wheat;
+      color: green;
       /* border: 1px solid lightgrey; */
       font-weight: 600;
       text-align: center;
@@ -252,6 +259,7 @@ input[type=number]::-webkit-outer-spin-button {
     .card_image:hover .show-status{
       display: block;
     }
+   
     .buy-now-button{
       color: black!important;
         border: 1.5px solid grey;
@@ -348,6 +356,33 @@ input[type=number]::-webkit-outer-spin-button {
       text-transform: capitalize;
       font-size: 12px;
     }
+   .card12{
+     background: #1a1c21;
+   }
+
+.card-button{
+  background: rgb(43, 42, 42);
+  color: green;
+}
+
+.card-body{
+  background: #1a1c21;
+}
+
+.card1{
+  background: rgb(43, 42, 42);
+  border: none;
+  outline: none;
+}
+
+.checked {
+  color:green; }
+  .star-mobile{
+      font-size: 10px;
+  }
+ .unchecked{
+    color: greenyellow;
+ }
 
 
 
@@ -365,12 +400,24 @@ input[type=number]::-webkit-outer-spin-button {
 
 
 
-
-
-
-
-
-
+    .user-review-box{
+      max-height: 300px;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+  
+    .user-review-box::-webkit-scrollbar {
+      width: .45em;
+  }
+   
+  .user-review-box::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+   
+  .user-review-box::-webkit-scrollbar-thumb {
+    background-color: rgb(169, 169, 169);
+    outline: 1px solid rgb(144, 112, 114);
+  }
 
 
 
@@ -408,7 +455,7 @@ input[type=number]::-webkit-outer-spin-button {
   border: none;
   background-size: 300% 100%;
 
-  border-radius: 50px;
+  border-radius: 10px;
   moz-transition: all .4s ease-in-out;
   -o-transition: all .4s ease-in-out;
   -webkit-transition: all .4s ease-in-out;
@@ -433,11 +480,22 @@ input[type=number]::-webkit-outer-spin-button {
 
 
 .btn-hover.color-8 {
-  background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
+  /* background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376); */
+  /* background: green; */
+  /* background: grey; */
+  background: rgb(43, 42, 42);
+  border: 2px solid green;
+  color: green;
   box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
 }
 
-
+.wishlist_check{
+  position: absolute;
+  top: 17px;
+  right: 24px;
+  z-index: 111;
+  color: green;
+}
 .btn-circle {
   width: 30px;
   height: 30px;
@@ -495,11 +553,21 @@ input[type=number]::-webkit-outer-spin-button {
   text-decoration: none;
   /* background-color: black; */
   /* background: #1a1c21; */
-  background: #0d0e11;
+  /* background: #0d0e11; */
+  background: rgb(43, 42, 42);
+}
+.share-property{
+  color: gray;
+  text-decoration: none;
+}
+.share-property:hover{
+  color: #0076ad;
+  text-decoration: underline;
 }
 .active1{
   /* background:black; */
-  background: #0d0e11;
+  /* background: #0d0e11; */
+  background: rgb(43, 42, 42);
   color: white!important;
   /* border-radius: 9px; */
 }
@@ -508,17 +576,19 @@ input[type=number]::-webkit-outer-spin-button {
   /* box-shadow: 0 0 4px whitesmoke; */
 /* border-radius: 50%; */
 color: black;
-background-color: white;
-border: 2px dashed darkgray;
-height: 70px;
+background-color: grey;
+/* border: 2px dashed darkgray; */
+padding: 15px;
+height: 100px;
 width: 100px;
 /* border-radius: 3px; */
 margin: -15px;
 }
 .post-size{
   /* border-radius: 50%; */
-  background: whitesmoke;
-   border: 2px solid darkgray;
+  /* background: whitesmoke; */
+   border: 2px solid black;
+   padding: 15px;
    
    background: white;
   /* border-radius: 3px; */
@@ -527,6 +597,6 @@ margin: -15px;
   /* color: black; */
   color: black;
   text-transform: capitalize;
-  height: 70px!important;
+  height: 100px!important;
 width: 100px;
 }

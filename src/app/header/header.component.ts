@@ -588,7 +588,23 @@ export class HeaderComponent implements OnInit {
      
       this.router.navigate(["/Admin/preview/category-page", slug]);
     }else{
-      this.router.navigate(["/category-page", slug]);
+      
+
+      const currentRoute = this.router.url;
+
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate(["/category-page", slug]); // navigate to same route
+      }); 
+
+  // this.router
+  //     .navigateByUrl("/RefrshComponent", {
+  //       skipLocationChange: true,
+  //     })
+  //     .then(() => this.router.navigate(["/category-page", slug]));
+
+  // this.ngOnInit();
+  // window.location.reload();
+      // this.router.navigate(["/category-page", slug]);
 
     }
           
