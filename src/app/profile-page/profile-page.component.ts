@@ -80,6 +80,8 @@ cust_reg_enable=false;
      if(res){
       localStorage.setItem("flag1", "0");
       sessionStorage.clear();
+      // location.reload();
+      this.router.navigate(['/home']);
       var rtoken = sessionStorage.getItem('noti_token');
       var topic = "user_"+sessionStorage.getItem('user_num');
       

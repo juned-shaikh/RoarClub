@@ -614,53 +614,7 @@ export class HeaderComponent implements OnInit {
     //   .then(() => this.router.navigate(["/shop", slug]));
     this.megaMenu = false;
   }
-  navigateBrand(name, id) {
-
-    this.adminService
-      .fetch_product_list_check({
-        comp_num: sessionStorage.getItem("comp_num"),
-        brand_id: id
-      })
-      .subscribe(data => {
-        if (data["status"] == 1) {
-     let slug =
-      name.replace(/\s+/g, "-") +
-      "-?brand_id=" +
-      id +
-      "&marketplace=ECOMTRAILS";
-
-    // let slug = name.replace(/\s/, "-") + "-?" + id;
-    window.scroll(0, 0);
-    if(this.previewFlag == '1'){
-      this.router
-      .navigateByUrl("/RefreshComponent", {
-        skipLocationChange: true
-      })
-      .then(() => this.router.navigate(["/Admin/preview/category-page", "brand", slug]));
-    }else{
-      this.router
-      .navigateByUrl("/RefreshComponent", {
-        skipLocationChange: true
-      })
-      .then(() => this.router.navigate(["/category-page", "brand", slug]));
-    }
-    
-        }  else if (data["status"] == 0) {
-           this.snackbar.open(
-            "No Products Found. ",
-            "",
-            {
-              duration: 3000,
-              horizontalPosition: "center"
-            }
-          );
-        }
-      });
-    
-    // this.router.navigate(['/category', id]);
-   
-    this.megaMenu = false;
-  }
+  
   showsearchbar(){
 this.showsearch = !this.showsearch;
   }

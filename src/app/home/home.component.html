@@ -95,7 +95,7 @@
   <div class="row justify-content-start mt-1" style="background-color: #202328;" >
     <div class="col-md-2" *ngFor="let brand of brands | slice:0:6;">
      
-        <div class=" circular-image-brand" (click)="navigateCategory(brand.name,brand.brand_id)" >
+        <div class=" circular-image-brand" (click)="navigateBrand(brand.name,brand.brand_id)" >
           <img src="{{brand?.thumbnail_sml_location}}" onerror="this.src='https://ap2-prod-images.disco-api.com/2020/2/24/d4cfb8ac-9ee1-4af5-a175-81790d55ebb9.jpg';" class="brand-image" style="width: 100%;" height="190px ;">
         </div>
     </div>

@@ -53,21 +53,25 @@
       <div class="row mt-2 p-3">
         <div class="col-md-4 ">
           <div class="mat-card" > 
-            <img src="https://img.icons8.com/ios/100/000000/security-eye.png" height="50"/><br/>
-            <span>easy and secure payments</span>
+            <!-- <img src="https://img.icons8.com/ios/100/000000/security-eye.png" height="50"/> -->
+            <img src="assets/easy.png" height="50" > <br/>
+
+
+          
+           <span>easy and secure payments</span>
           </div>
         </div>
         <div class="col-md-4">
           <div class="mat-card">
-            <img src="https://img.icons8.com/wired/64/000000/checked.png" height="50"/>
+            <img src="assets/tick.svg" height="50"/>
              <br/>
             <span>100% genuine products</span>
           </div>
         </div>
         <div class="col-md-4">
           <div class="mat-card">
-            
-            <img src="https://img.icons8.com/wired/64/000000/checked-truck.png" height="50"/>
+          
+            <img src="assets/deliverd.png" height="50"/>
              <br/>
             <span class="project-discription">free shipping above rs. across india</span>
           </div>
@@ -98,16 +102,16 @@
          </div>
        </div>
 <div class="row">
-  <div class="col-md-7 ">
+  <div class="col-md-12 ">
     <div *ngIf="product_groups_color.length > 0" class=" row pl-4" style="cursor: pointer;">
-      <span class="font-weight-600 ">&nbsp;&nbsp; Color :</span>  <br/> <div class="ml-2"  *ngFor="let color of product_groups_color;let count=index"><div class= " cursor-pointer " style="display: inline-block;" *ngIf="color != '' && color != null">
+      <span class="font-weight-600 ">&nbsp;&nbsp; Color : &nbsp;&nbsp;&nbsp;&nbsp;</span>  <br/> <div class="ml-2"  *ngFor="let color of product_groups_color;let count=index"><div class= " cursor-pointer " style="display: inline-block;" *ngIf="color != '' && color != null">
 
 <!-- start for color image -->
 
         <div *ngIf="coloring == color"  (click)="colors(color)"  class="text-center">
           <!-- {{ product_groups_color_image[count] }} -->
 <img     src="{{ product_groups_color_image[count] }}"
-          class="img-fluid color-img-hover mat-card" style="height: 50px;width: 50px; border: 2px solid; padding: 1px;" /> <br/>
+          class="img-fluid color-img-hover " style="height: 80px;width: 70px; border: 2px solid white; padding: 1px;" /> <br/>
 
 
 <!-- end for color image -->
@@ -127,9 +131,11 @@
         
       </div>
   </div>
-  <div class="col-md-5">
+  <div class="col-md-12 mt-3 pl-5" *ngIf="product_groups_size.length > 0">
     <div *ngIf="product_groups_size.length > 0" class="">
-      <span class="font-weight-600">Size :</span>  <ul class="" style="display: inline-block; cursor: pointer;" *ngFor="let size of product_groups_size"><li class=" cursor-pointer" style="display: inline-block;" *ngIf="size != '' && size != null"><div *ngIf="sizing == size"  (click)="sizes(size)"  class=""><span class="post-size p-2">{{size}}</span></div>
+      <span class="font-weight-600">Size :</span> 
+      
+      <ul class="" style="display: inline-block; cursor: pointer;" *ngFor="let size of product_groups_size"><li class=" cursor-pointer" style="display: inline-block;" *ngIf="size != '' && size != null"><div *ngIf="sizing == size"  (click)="sizes(size)"  class=""><span class="post-size p-2">{{size}}</span></div>
         <div *ngIf="sizing != size" (click)="sizes(size)" class=""><span class="pre-size p-2">{{size}}</span></div></li></ul>
       </div>
   </div>
@@ -138,7 +144,7 @@
         
 
 
-        <div class="row">
+        <div class="row mt-1">
           <div class="col-md-8 d-flex">
             
          <button type="button"  *ngIf="userC == true  && product.txn_quantity > '0'" (click)="rates(product);" class="btn-hover color-8 " >Buy now</button>
@@ -197,7 +203,7 @@
           </div>
         </div>
                   
-        <div class="classic-tabs   px-2 pt-1 mt-1">
+        <div class="classic-tabs   px-2 pt-1 mt-3">
 
           <ul class="nav  nav-justified border-bottom "  id="advancedTab" role="tablist">
             <li class="nav-item">
@@ -219,31 +225,25 @@
                 <span class="font-weight-400 project-discription"> {{ pspec.spec_name }} : {{ pspec.spec_value }} </span>
               </div> -->
             
-              
-              <table class="table   mt-3">
-                <thead style="border: none;">
-                  <tr >
-                    <th  class="  h6 project-heading " style="width: 20%; color: white; border: none;">Model- </th>
-                    <td class="project-discription" style="color: white;"><em>{{ product.model }}</em></td>
-                  </tr>
-                  <tr >
-                    <th scope="row" class="  h6 project-heading " style=" color: white; border: none;">Brand -</th>
-                    <td class="project-discription" style="color: white;"><em>{{ product.brand_name }}</em></td>
-                  </tr>
-                </thead>
+                <div class="row">
+                  <div class="col-md-2 project-heading" style="font-weight: 600;">
+                    <span >Model</span>  <br/>
+                    <span>Brand </span> <br/>
+                    <span *ngIf="product.size">Size</span> 
+                  
+                  </div>
+                  <div class="col-md-10 project-discription pl-5">
+<span> {{ product.model }} </span><br/>
+<span> {{ product.brand_name }} </span><br/> <span style="font-family: sans-serif!important;">{{ product.size }}</span>
 
-                <tbody>
-                  <tr *ngFor="let pspec of product_specification">
-                    <th scope="row" class="  h6 project-heading " style=" color: white;">{{ pspec.spec_name }} -</th>
-                    <td class="project-discription" style="color: white;"><em>{{ pspec.spec_value }}</em></td>
-                  </tr>
 
-                
-
-               
-                </tbody>
-               
-              </table>
+                  </div>
+                  <div *ngFor="let pspec of product_specification | slice:1:30;" class="col-md-10"> 
+                    <div class="row"><span style="font-weight: 600;" class="project-heading col-md-3">{{ pspec.spec_name }} </span> <span class="project-discription col-md-9">&nbsp;&nbsp;{{ pspec.spec_value }}</span></div>
+                  </div> 
+                  
+                </div>
+            
             </div>
             <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
               <h5 style="font-size: 14px;"><span>1</span> review for <span>Fantasy T-shirt</span></h5>

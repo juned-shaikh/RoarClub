@@ -168,6 +168,9 @@ input[type=number]::-webkit-outer-spin-button {
     }
   td, th, thead, tbody, tr{
     border: none!important;
+    line-height: 15px;
+    padding: 0;
+    margin: 0;
     outline: none;
   }
 
@@ -322,11 +325,14 @@ input[type=number]::-webkit-outer-spin-button {
       border: #202328;
     }
     .mat-card{
+      padding-left: 0;
+      padding-right: 0;
       padding-top: 10px;
       /* background: #202328; */
       /* background: #000000; */
       /* background: grey!important; */
       /* background:#1a1c21 ; */
+      box-shadow: none;
       border: none;
 
       background: transparent;
@@ -408,15 +414,7 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-transition: all .4s ease-in-out;
   transition: all .4s ease-in-out;
 }
-.active1{
-  /* background: lightgrey; */
-  /* border-top: 1px solid grey; */
-  /* border-left: 1px solid grey; */
-  /* background-color: white; */
-  background: #2e3842;
-  color: white!important;
-  /* border-radius: 9px; */
-}
+
 /* .nav-item:hover {
   background: red;
 } */
@@ -488,35 +486,47 @@ input[type=number]::-webkit-outer-spin-button {
   color: azure;
   padding: 10px 15px;
 }
- .nav > li > a:hover {
+ /* .nav > li > a:focus .nav > li > a:hover {
   text-decoration: none;
   background: transparent;
   background-color: none!important;
+} */
+.nav>li>a:focus, .nav>li>a:hover {
+  text-decoration: none;
+  /* background-color: black; */
+  /* background: #1a1c21; */
+  background: #0d0e11;
+}
+.active1{
+  /* background:black; */
+  background: #0d0e11;
+  color: white!important;
+  /* border-radius: 9px; */
 }
 
 .pre-size{
-  box-shadow: 0 0 4px whitesmoke;
+  /* box-shadow: 0 0 4px whitesmoke; */
 /* border-radius: 50%; */
 color: black;
 background-color: white;
-border: 1px solid lightgray;
-height: 50px;
+border: 2px dashed darkgray;
+height: 70px;
 width: 100px;
-border-radius: 3px;
+/* border-radius: 3px; */
 margin: -15px;
 }
 .post-size{
   /* border-radius: 50%; */
   background: whitesmoke;
-  /* border: 1px solid black;
-   */
-   background: #1a1c21;
-  border-radius: 3px;
-  box-shadow: 0 0 3px white;
+   border: 2px solid darkgray;
+   
+   background: white;
+  /* border-radius: 3px; */
+  /* box-shadow: 0 0 3px white; */
   margin: -15px;
   /* color: black; */
-  color: white;
+  color: black;
   text-transform: capitalize;
-  height: 50px;
-width: 50px;
+  height: 70px!important;
+width: 100px;
 }

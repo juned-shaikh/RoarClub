@@ -383,7 +383,7 @@ this.compSettings_ratingOption();
   }
   colors(color){
     this.coloring=color;
-
+  location.reload;
     //start 1/09/2020
     //   var index =-1;
     //  if(this.sizing != null){
@@ -757,7 +757,7 @@ var upperLetter=term.toUpperCase();
         for(let y=0;y<this.product_groups.length;y++){
           // console.log(this.product_groups[y]);
           // console.log(this.product_groups[y].image);
-          console.log(this.product_groups[y].image[0]);
+          // console.log(this.product_groups[y].image[0]);
           // console.log(this.product_groups[y].image[0].small_thumbnail_link);
        
           if(this.product_groups[y].color==term){
