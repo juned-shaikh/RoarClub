@@ -219,13 +219,13 @@ display: flex;
       display: none;
   
     }
-    #searchInput{
+    /* #searchInput{
         outline: none;
         text-decoration: none;
         border-radius: 15px;
         
     }
-  
+   */
     .logo:hover,
     .nav-links:hover {
       color: #64E619;
@@ -410,3 +410,81 @@ li a:hover{
        .category-name div{
          cursor: pointer;
        }
+
+
+
+        /* search bar  */
+        li{
+          padding:3px;
+        }
+        .search {
+          width: 400px;
+          position: relative;
+          z-index: 109;
+        }
+
+        .search .mat-card {
+          padding: 0;
+          position: relative;
+          top: -10;
+          border: none;
+          outline: none;
+          box-shadow: none;
+        }
+        .search input{
+
+            width: 100%;
+            border: .25px solid #781352;
+            /* border: none; */
+            font-size: 14px;
+            height: 38px;
+            border-radius: 21px;
+            padding: 5px 40px 5px 20px;
+
+        }
+
+        .search input:focus{
+          /* border:none; */
+          /* box-shadow: none; */
+          outline: none;
+        }
+
+        .search .mat-card .searchIcon{
+          font-size: 15px;
+          position: absolute;
+          right: 15px;
+          top: 50%;
+          transform: translateY(-50%);
+          cursor: pointer;
+        }
+
+        .search .searchItems{
+          position: absolute;
+          top:30px;
+          left: 0;
+          background-color: white;
+        }
+        .search .mat-card.searchItems > div{
+          padding: 0px 0px 0px 10px ;
+        }
+        .search_input{
+          background-color: #202328;
+         width: 255px;
+         height: 40px;
+         right: 80px;
+        }
+
+        @media only screen and (max-width: 991px){
+        .search {
+          width: 80%;
+          margin-left: 15%;
+          top:-5px;
+        }
+
+        .search.searchFull {
+          width: 100%;
+          margin-left: 0;
+          position: fixed;
+          margin-top: 65px;
+        }
+        }

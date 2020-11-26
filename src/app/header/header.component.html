@@ -105,15 +105,105 @@
   </ul> 
 <!-- end -->
 
-      <ul style="display: contents; list-style: none;" class="ml-auto">
-        <li style=" text-decoration: none; list-style: none!important;" class="">
+      <ul style="display: contents; list-style: none; position: fixed;" class="ml-auto">
+        <!-- <li style=" text-decoration: none; list-style: none!important;" class="">
           <div class="input-group  border area ">
             <input type="search" placeholder="search for brand,product,and more..." aria-describedby="button-addon3" class="form-control bg-none border-0">
             <div class="input-group-append border-0 m-0">
               <button id="button-addon3" type="button" class="btn btn-link text-success"><i class="fa fa-search"></i></button>
             </div>
           </div>
+        </li> -->
+        <li class="nav-item">
+          <div class="searchbar d-none d-lg-block d-md-block d-xl-block" style=" position: fixed;top: -9px;right: 90px;padding: 10px 14px; margin: 20px;
+          font-family: Nunito;
+          font-size: 18px;
+          text-decoration: none;
+        background-color: #202328;
+          border-radius: 4px;
+          z-index: 125;   ">
+            <input
+              class="search_input"
+              type="text"
+              (keyup)="search($event.target.value)"
+              (keyup.enter)="
+                navigateCategory(
+                  searchList.category[0].name,
+                  searchList.category[0].category_no
+                )
+              "
+              (focus)="searchFocus = !searchFocus"
+              placeholder="Search for brand, category, product more..."
+              aria-label="search..."
+            />
+            <a class="search_icon"
+              ><i
+                class="fas fa-search"
+                title="search"
+                (click)="
+                  navigateCategory(
+                    searchList.category[0].name,
+                    searchList.category[0].category_no
+                  )
+                "
+              ></i
+            ></a>
+            <div *ngIf="searchFocus" class="searchItems shadow-sm">
+              <div
+                class="d-flex align-items-center mt-2 mb-1 cursor-pointer category-hover"
+                *ngFor="let category of searchList.category | slice: 0:6"
+              >
+                <i class="fa fa-search mr-3 ml-3"></i>
+                <a
+                  (click)="
+                    navigateCategory(category.name, category.category_no)
+                  "
+                >
+                  <div style="font-size: 12px">
+                    in {{ category.name }}
+                  </div>
+                </a>
+              </div>
+
+              <div
+                class="d-flex align-items-center cursor-pointer mt-1 category-hover"
+                *ngFor="let brand of searchList.brand | slice: 0:6"
+              >
+                <i class="fa fa-search mr-3 ml-3"></i>
+                <a (click)="navigateBrand(brand.name, brand.brand_id)">
+                  <div style="font-size: 12px">in {{ brand.name }}</div>
+                </a>
+              </div>
+
+              <div
+                class="d-flex align-items-center category-hover"
+                *ngFor="let product of searchList.product | slice: 0:3"
+              >
+                <i class="fa fa-search mr-3 ml-3"></i>
+
+                <a
+                  routerLink="/product/{{
+                    getSlug(
+                      product.name,
+                      product.product_no,
+                      product.slug
+                    )
+                  }}"
+                >
+                  <div style="font-size:14px" class="p-1">
+                    {{ product.name | slice: 0:40 }} |
+                    {{ product.model | slice: 0:40 }}
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
         </li>
+
+
+
+
+
         <li *ngIf="is_logged_out">
           <a routerLink="/login" style="list-style-type:none;" class="nav-links" style="color: green;"><i class="fas fa-user"></i></a>
         </li>

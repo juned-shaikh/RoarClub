@@ -3,10 +3,10 @@
 <div class="container-fluid" class="bg-img">
   <div class="row justify-content-center" >
     <div  class="col-sm-9 col-md-6 col-lg-4 mx-auto ml-auto mr-auto text-center" style="background-color:black;margin-top: 80px;">
-
-      <h5 class="card-header info-color white-text text-center  py-4 ">
-        <strong>Sign in</strong>
-      </h5>
+       <div  class="content ">
+      <h2>
+       Sign<span> In</span>
+      </h2>
       
     
       <div class="card-body px-lg-5 pt-0" *ngIf="signup  == 1" >
@@ -14,7 +14,7 @@
         <form class="text-center" style="color: #757575;" [formGroup]="loginuser">
     
           <div class="md-form">
-            <input type="email" id="materialLoginFormEmail" (keyup)="checkUserExist()" formControlName="username" class="form-control">
+            <input type="email" id="materialLoginFormEmail" (keyup)="checkUserExist()" formControlName="username"  class="form-control">
             <label for="materialLoginFormEmail">Enter Email or Phone Number</label>
           </div>
     
@@ -30,10 +30,10 @@
             </div>
           </div>
     
-          <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" (click)= "login()" *ngIf="pass==1" >Log in</button>
-          <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" *ngIf="pass==0" style="cursor: not-allowed!important;">Login/Signup</button>
+          <button class="btn btn-outline-success btn-rounded btn-block my-4 waves-effect z-depth-0" (click)= "login()" *ngIf="pass==1" >Log in</button>
+          <button class="btn btn-outline-success btn-rounded btn-block my-4 waves-effect z-depth-0" *ngIf="pass==0" style="cursor: not-allowed!important;">Login/Signup</button>
           <button class="btn btn-outline-secondary btn-rounded btn-block my-4 waves-effect z-depth-0"   *ngIf="pass==2" (click)= "onSubmitSign()"  type="submit">Get Otp</button>
-          <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" *ngIf="pass==1" (click)="openXl(codOtp)" >Login with Otp</button>
+          <button class="btn btn-outline-success btn-rounded btn-block my-4 waves-effect z-depth-0" *ngIf="pass==1" (click)="openXl(codOtp)" >Login with Otp</button>
     
         </form>
     
@@ -78,6 +78,7 @@
     
       </div>
     </div>
+  </div>
   </div>
 </div>
 
@@ -238,3 +239,46 @@
   </ng-template>
 
 
+
+ <!-- new card by juned -->
+ <!-- <div class="logo">
+ 
+</div>
+<div class="box bg-img" style="margin-left:530px">
+  <div class="content">
+
+    <h2>Sign<span> In</span></h2>
+
+    <div class="forms" *ngIf="signup  == 1">
+
+      <div class="user-input" [formGroup]="loginuser">
+        <input type="text" class="login-input" (keyup)="checkUserExist()" formControlName="username" placeholder="user name" id="name" required>
+        <i class="fas fa-user"></i>
+      </div>
+
+      
+      <div class="pass-input">
+        <input type="password" class="login-input" placeholder="password" id="my-password" required>
+
+        <span class="eye" onclick="myFunction()">
+          <i id="hide-1" class="fas fa-eye-slash"></i>
+          <i id="hide-2" class="fas fa-eye"></i>
+        </span>
+      </div>
+
+    </div>
+
+    <button class="login-btn">Sign In</button>
+
+    <p class="new-account">Not a member? <a href="#">Sign Up now!</a></p>
+
+    <br>
+
+    <p class="f-pass">
+      <a href="#">forgget password?</a>
+    </p>
+
+  </div>
+</div>
+
+<script src="https://kit.fontawesome.com/c0078485ae.js" crossorigin="anonymous"></script> -->
