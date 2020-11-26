@@ -219,13 +219,13 @@ display: flex;
       display: none;
   
     }
-    #searchInput{
+    /* #searchInput{
         outline: none;
         text-decoration: none;
         border-radius: 15px;
         
     }
-  
+   */
     .logo:hover,
     .nav-links:hover {
       color: #64E619;

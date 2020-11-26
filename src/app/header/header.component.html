@@ -180,17 +180,19 @@
               </mat-card>
             </mat-card>
           </div>
-        </li>
-        <li *ngIf="is_logged_out" class="mr-2">
+        </li> 
+      
+        <li *ngIf="is_logged_out" class="mr-1">
           <a routerLink="/login" style="list-style-type:none;" class="nav-links" style="color: green;"><i class="fas fa-user"></i></a>
         </li>
-        <li *ngIf="is_logged_in" routerLink="/client-info" class="mr-3">
+        <li *ngIf="is_logged_in" routerLink="/client-info" class="mr-2">
           <a routerLink="/" style="list-style-type:none;" class="nav-links" >  <i
             *ngIf="nm != null" 
-            class="fas fa-user text-center"
+            class="fas fa-user text-center " style="color: green;"
             title="{{ nm }}"
           >
-            {{ nm.length > 10 ? (nm | slice: 0:10) + "..." : nm }}</i
+            <!-- {{ nm.length > 10 ? (nm | slice: 0:10) + "..." : nm }} -->
+            </i
           >
           <i
             *ngIf="nm == null"
@@ -201,17 +203,17 @@
         </li>
      
 
-<li style="list-style: none;" class="ml-2" *ngIf="is_logged_out">
+<li style="list-style: none;" class="ml-1" *ngIf="is_logged_out">
   <a class="nav-link" routerLink="/login"
     ><i class="far fa-heart text-center text-success"></i>
   </a>
 </li>
-<li style="list-style: none;" class="ml-2" *ngIf="is_logged_in">
+<li style="list-style: none;" class="ml-1" *ngIf="is_logged_in">
   <a class="nav-link" routerLink="/client-info"
     ><i class="far fa-heart text-center text-success"></i>
   </a>
 </li>
-        <li style="list-style: none;" class="ml-2" routerLink="/cart">
+        <li style="list-style: none;" class="ml-1" routerLink="/cart">
            <a> <i class="fas fa-shopping-cart text-center" >
 
                <sup class="text-danger ">
