@@ -168,7 +168,7 @@
                    
                
                       <div  class="col-sm-8 text-center">
-                        <h6> <span class="checkout-register-otp font-weight-500" *ngIf="verify==true">{{otpFormLogin.controls.username.value}}</span>   <span matTooltip="edit " (click)="edit()" *ngIf="verify==true && !shownamebox" class="text-primary">(change)</span><span *ngIf="shownamebox" (click)="cancel()" class="text-danger">(cancel)</span> </h6>
+                        <h4> <span class="checkout-register-otp font-weight-500" *ngIf="verify==true">{{otpFormLogin.controls.username.value}}</span>   <span matTooltip="edit " (click)="edit()" *ngIf="verify==true && !shownamebox" class="text-success">(change)</span><span *ngIf="shownamebox" (click)="cancel()" class="text-danger">(cancel)</span> </h4>
                       </div>
                       <p class="font-weight-500" *ngIf="verify==true">A text with a code has been sent to the number or email above.</p>
                     
@@ -178,12 +178,13 @@
                 <div class="row justify-content-center mt-4" *ngIf="verify == true">
                   <div class="col-lg-6 text-center">
                     <mat-form-field  class="example-full-width" >
-                      <input
+                      <!-- <input
                         matInput type="number"
                         placeholder="Enter OTP"
                         formControlName="otp"
                         required
-                      />
+                      /> -->
+                      <input type="number" class="login-inpu" placeholder="Enter OTP" formControlName="otp"  required>
                     </mat-form-field>
                    
                   </div>
@@ -194,7 +195,7 @@
             >
             
             <button *ngIf="verify == true"
-            class="order-button btn btn-outline-success btn-rounded w-35"
+            class="order-button  btn-outline-success btn-rounded w-35"
             mat-raised-button
             matTooltip="Verify OTP"
             (click)="otpVerificationUser(); modal.close('Save click')" [disabled]="!loading"
@@ -204,7 +205,7 @@
           &nbsp; &nbsp;
            
               <button *ngIf="otpgeneration == true " [disabled]="!loading"
-              class="order-button bg-info text-white w-35"
+              class="order-button btn-outline-success btn-rounded w-35"
               mat-raised-button
               matTooltip="Resend OTP"
               (click)="resendOtpVerify()"
