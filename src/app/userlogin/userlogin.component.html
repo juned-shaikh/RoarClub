@@ -71,8 +71,8 @@
             </div>
           </div>
     
-          <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0"   (click)= "onSubmitOTP()">Verify</button>
-          <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0"   (click)= "onSubmitResendOtp()">Resend Otp</button>
+          <button class="btn btn-outline-success btn-rounded btn-block my-4 waves-effect z-depth-0"   (click)= "onSubmitOTP()">Verify</button>
+          <button class="btn btn-outline-success btn-rounded btn-block my-4 waves-effect z-depth-0"   (click)= "onSubmitResendOtp()">Resend Otp</button>
     
         </form>
     
@@ -84,9 +84,9 @@
 
   <ng-template #content2 let-modal >
     <div class="modal-header p-3" style="background-position: center;background-size: cover; background-image: url(https://images.pexels.com/photos/2387793/pexels-photo-2387793.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);" >
-      <h6 class="modal-title" id="modal-basic-title" align="center">
+      <h4 class="project-heading" id="modal-basic-title" align="center">
         Forgot Password
-      </h6>
+      </h4>
   
       <mat-icon
         (click)="modal.dismiss('Cross click')"
@@ -108,8 +108,8 @@
   
                 
                  <div class="input-group mb-1 mt-2 ">
-                           
-                            <input type="text"  class="form-control" formControlName="username" placeholder="Please Enter Email/Mobile" >
+                  <input type="text" class="login-input" formControlName="username" placeholder="Please Enter Email/Mobile" id="name" required>
+                            <!-- <input type="text"   class="form-control" formControlName="username" placeholder="Please Enter Email/Mobile" > -->
                         </div>
                
                 
@@ -120,7 +120,7 @@
            
             <div class="row justify-content-center mt-2 mb-3">
               <button
-                class="order-button text-black"
+                class=" btn-outline-success btn-rounded  waves-effect z-depth-0"
                 mat-raised-button
                 matTooltip="Send Password"
                 (click)="forgotPassword(); modal.close('Save click')"
@@ -194,7 +194,7 @@
             >
             
             <button *ngIf="verify == true"
-            class="order-button bg-info text-white w-35"
+            class="order-button btn btn-outline-success btn-rounded w-35"
             mat-raised-button
             matTooltip="Verify OTP"
             (click)="otpVerificationUser(); modal.close('Save click')" [disabled]="!loading"
@@ -213,7 +213,7 @@
             </button> 
               &nbsp; &nbsp;
               <button  *ngIf="verify == false && otpgeneration == false"
-              class="bg-danger text-white mb-3 w-35"
+              class=" btn-success btn-rounded mb-3 w-35"
               mat-raised-button
               matTooltip="cancel"
               (click)="modal.dismiss('Cross click')" [disabled]="!loading"
@@ -222,7 +222,7 @@
             </button>
             &nbsp;&nbsp;
               <button  *ngIf="verify == false"
-              class="order-button bg-info text-white mb-3 w-35"
+              class="order-button  btn-outline-success btn-rounded  mb-3 w-8"
               mat-raised-button
               matTooltip="Send OTP"
               (click)="otpGenerate()" [disabled]="!loading"

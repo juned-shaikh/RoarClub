@@ -38,6 +38,26 @@
   box-shadow: 5px 8px 5px rgba(0, 0, 0, 0.3);
       background-image: url("https://images.pexels.com/photos/2387793/pexels-photo-2387793.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
     }
+    .login-input {
+      color: white;
+      border-radius: 2px;
+      width:440px;
+      height: 44px;
+      border: none;
+      padding: 15px 20px;
+      background-color: rgba(65, 65, 65, 0.5);
+      margin-bottom: 24px;
+    }
+    
+    .login-input:focus {
+      outline: none;
+      border-bottom: 2px solid #06ff8c;
+    }
+    
+    .login-input:focus:invalid {
+      border-bottom: 2px solid #ffce00;
+    }
+    
      /* background: url('https://assets.myntassets.com/w_980,c_limit,fl_progressive,dpr_2.0/assets/images/2020/11/20/d7fc27a3-9254-4e9c-976f-ab7a377872fa1605888011364-H-N_Desk_Banner.jpg'); */
     /* width: 1500px; */
     /* background-size: cover; */
