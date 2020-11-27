@@ -82,8 +82,8 @@
   </div>
 </div>
 
-  <ng-template #content2 let-modal>
-    <div class="modal-header p-3"  >
+  <ng-template #content2 let-modal >
+    <div class="modal-header p-3" style="background-position: center;background-size: cover; background-image: url(https://images.pexels.com/photos/2387793/pexels-photo-2387793.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);" >
       <h6 class="modal-title" id="modal-basic-title" align="center">
         Forgot Password
       </h6>
@@ -95,12 +95,12 @@
       >
     </div>
   
-    <div class="modal-body ">
-      <div class="container-fluid">
+    <div class="modal-body " style="background-position: center;background-size: cover; background-image: url(https://images.pexels.com/photos/2387793/pexels-photo-2387793.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);" >
+      <div class="container-fluid" >
         <form [formGroup]="forgotForm">
           <div class=" ">
    
-   <div class="row justify-content-center mt-1">
+   <div class="row justify-content-center mt-1" >
      <div class="col-md-10">Enter Your Email or Mobile No.</div>
    </div>          
             <div class="row justify-content-center">
@@ -120,7 +120,7 @@
            
             <div class="row justify-content-center mt-2 mb-3">
               <button
-                class="order-button text-white"
+                class="order-button text-black"
                 mat-raised-button
                 matTooltip="Send Password"
                 (click)="forgotPassword(); modal.close('Save click')"
@@ -136,7 +136,7 @@
   
   
   <ng-template #codOtp let-modal>
-    <div class="modal-header p-3 justify-content-center">
+    <div class="modal-header p-3 justify-content-center" style="background-position: center;background-size: cover; background-image: url(https://images.pexels.com/photos/2387793/pexels-photo-2387793.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);" >
       <h4 class="modal-title font-weight-600" id="modal-basic-title" align="center" *ngIf="verify==false || shownamebox">
         Enter mobile number or email
       </h4>
@@ -146,7 +146,7 @@
   
      
     </div>
-    <div class="modal-body ">
+    <div class="modal-body " style="background-position: center;background-size: cover; background-image: url(https://images.pexels.com/photos/2387793/pexels-photo-2387793.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);" >
       <div class="container-fluid">
         <form [formGroup]="otpFormLogin">
        
