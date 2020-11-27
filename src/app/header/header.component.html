@@ -182,9 +182,36 @@
           </div>
         </li> 
       
-        <li *ngIf="is_logged_out" class="mr-1">
-          <a routerLink="/login" style="list-style-type:none;" class="nav-links" style="color: green;"><i class="fas fa-user"></i></a>
-        </li>
+        <li
+        class="nav-item dropdown apna-view d-none d-md-none d-lg-block"
+        *ngIf="is_logged_out"
+      >
+        <a
+          class="nav-link dropdown-toggle cursor-pointer"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <i class="fas fa-user text-center" ></i>
+        </a>
+        <div
+          class="dropdown-menu profile-dropdown"
+          aria-labelledby="navbarDropdown"
+          
+        >
+        
+
+          <a class="dropdown-item mb-3"
+            ><span class=" pt-2 pb-2 pl-3 pr-3 login-button-bar"
+              >
+             <button routerLink="/login" mat-raised-button class="project-heading login-button-for" >SignIn</button>
+              </span
+            ></a
+          >
+        </div>
+      </li>
         <li *ngIf="is_logged_in" routerLink="/client-info" class="mr-2">
           <a routerLink="/" style="list-style-type:none;" class="nav-links" >  <i
             *ngIf="nm != null" 

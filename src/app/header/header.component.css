@@ -233,7 +233,10 @@ display: flex;
   }
   
  
-
+  .login-button-for{
+    background: rgb(43, 42, 42);
+    color: green;
+  }
   /* new .searchbar start */
    
   /* .searchbar{
@@ -465,3 +468,13 @@ li a:hover{
       .search .mat-card.searchItems > div{
         padding: 0px 0px 0px 10px ;
       }
+      .dropdown-toggle:after { content: none }
+      .profile-dropdown{
+        background: #202328;
+      }
+      .dropdown-item:focus, .dropdown-item:hover {
+        color: #16181b;
+        text-decoration: none;
+        /* background-color: #f8f9fa; */
+        background: #202328;
+    }

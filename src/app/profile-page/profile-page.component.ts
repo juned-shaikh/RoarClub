@@ -78,23 +78,39 @@ cust_reg_enable=false;
   logout() {
     var res = confirm("Are you sure you want to logout.");
      if(res){
+      const currentRoute = this.router.url;
+
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate(["/home"]); 
+      }); 
       localStorage.setItem("flag1", "0");
       sessionStorage.clear();
       // location.reload();
-      this.router.navigate(['/home']);
+      //  const currentRoute = this.router.url;
+
+      // this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      //     this.router.navigate(["/home"]); 
+      // }); 
+      // this.router.navigate(['/home']);
       var rtoken = sessionStorage.getItem('noti_token');
       var topic = "user_"+sessionStorage.getItem('user_num');
       
       
       this.adminService.unsubscribe_topic({topic_name : topic , token : rtoken}).subscribe(data =>{
         if(data['status']=='1'){
-          console.log("topic unsubscribed successfully")
+          console.log("topic unsubscribed successfully");
+          location.reload();
+          const currentRoute = this.router.url;
+
+          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+              this.router.navigate(["/"]); 
+          }); 
   
         }else{
           console.log("topic not unsubscribed")
         }
       })
-      this.router.navigate(["/home"]);
+      this.router.navigate(["/"]);
      }
 
   }
