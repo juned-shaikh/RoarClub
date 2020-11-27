@@ -46,7 +46,7 @@
         <div class="row justify-content-center">
           <div class="col-lg-4">
             <!-- <button type="button" class="btn btn-primary btn-block waves-effect waves-light" (click)="WtoutLoginCheckout()">go to checkout</button> -->
-          <button type="button" class="btn btn-primary btn-block  waves-effect waves-light"   (click)="openXl(content)"> <mat-icon>add</mat-icon>&nbsp; Add Address</button>
+          <button type="button" class="btn btn-success btn-block  waves-effect waves-light"   (click)="openXl(content)"> <mat-icon>add</mat-icon>&nbsp; Add Address</button>
         </div>
         </div>
         <div class="row">
@@ -729,14 +729,14 @@
       <div class="row justify-content-end pt-3 pr-3 " *ngIf="forpaymenthide">
         <button *ngIf="makePaymenShip == true && makePaymenBill == true"
            (click)= "forpayment()"
-          type="button" class="btn btn-primary btn-block  waves-effect waves-light"
+          type="button" class="btn btn-success btn-block  waves-effect waves-light"
         >
           Make Payment
         </button>
 
         <button *ngIf="makePaymenShip == false || makePaymenBill == false" (click)= "forpayment2()" matTooltip="Please select Address"
            style="cursor:not-allowed"
-          type="button" class="btn btn-primary btn-block  waves-effect waves-light"
+          type="button" class="btn btn-outline-success btn-block  waves-effect waves-light"
         >
           Make Payment
         </button>
