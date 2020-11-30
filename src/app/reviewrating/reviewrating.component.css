@@ -1,0 +1,108 @@
+.card{
+    /* border-radius: 1px !important; */
+    background: #1a1c21;
+}
+.card-header{
+    /* background: white!important; */
+    background: #1a1c21;
+    color: white;
+    
+}
+.container-fluid{
+    /* background: #f7f7f7; */
+    background: #202328;
+    height: 100%;
+    color: white;
+}
+.card-button{
+    background: rgb(43, 42, 42);
+    color: green;
+  }
+
+ul{
+    display: inline;
+}
+ul li {
+    display: inline;
+    padding: 4px;
+    cursor: pointer;
+    font-size: 22px;
+    color: #f7f7f7f7;
+}
+ul li:hover{
+    color: green;
+    cursor: pointer;
+}
+ul li:visited{
+    color: green;
+}
+ul li:active{
+    color: green;
+}
+ul li.selected{
+    color: red;
+}
+ul li.selected:nth-child(even){
+    color: blue;
+}
+.example-full-width{
+    width: 100%;
+}
+textarea{
+    border: 1px solid lightgray;
+    padding-left: 9px;
+    padding-top: 9px;
+}
+textarea:focus{
+    outline: none;
+}
+button{
+    font-size: 20px;
+    font-family: sans-serif;
+}
+
+.rating {
+    float:left;
+}
+
+.rating:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+    clip:rect(0,0,0,0);
+}
+
+.rating:not(:checked) > label {
+    float:right;
+    width:1em;
+    padding:0.1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:200%;
+    line-height:1.2;
+    color:#ddd;
+}
+
+.rating:not(:checked) > label:before {
+    content: '★ ';
+}
+
+.rating > input:checked ~ label {
+    color: green;
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: green;
+}
+
+
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: green;
+}
+.order-button{
+    color: white;
+    background: linear-gradient(45deg, #6c0753, #d4474d);
+  }

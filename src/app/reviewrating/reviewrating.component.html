@@ -1,0 +1,111 @@
+<div class="container-fluid">
+    <div class="row pt-3 mb-3">
+        <div class="col-md-12 ">
+            <div class="card shadow-sm">
+<div class="row">
+    <div class="col-md-6"><h4 class="p-3 project-heading">Reviews & Rating</h4></div>
+    <div class="col-md-6 justify-content-end pt-2">
+<div class="row justify-content-end pr-5">
+    <!-- <h6>Mi Note 9 Pro Max.....</h6> -->
+    <h4 class="project-heading">{{product.name}}</h4    >
+</div>
+<div class="row justify-content-end pr-5">
+    <!-- <h6><span class="badge badge-info">4.3 <i class="fas fa-star"></i></span> <span class="text-muted"> (31,113)</span></h6> -->
+</div>
+    </div>
+</div></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <h4 class="project-heading">What makes a good review</h4>
+                </div>
+                <div class="card-body ">
+                    <h4 class="project-heading">Have you used this product?</h4>
+                    <p class="project-discription">Your review should be about your experience with the product.</p>
+
+                    <hr>
+                    <h4 class="project-heading">Why review a product?</h4>
+                    <p class="project-discription">Your valuable feedback will help fellow shoppers decide!</p>
+
+                    <hr>
+                    <h4 class="project-heading">How to review a product?</h4>
+                    <p class="project-discription">Your review should include facts. An honest opinion is always appreciated. If you have an issue with the product or service please contact us from the help centre.</p>
+
+                    
+                </div>
+            </div>
+        </div>
+        <div class="card-body col-md-9" *ngIf="rate == false">
+                    <!-- <h5>Review this product</h5> -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="">
+                                <h4 class="text-center project-discription">
+                                    
+                                    Sorry! You are not allowed to review this product since you haven't bought it .</h4>
+                            </div>
+                        </div>
+                    </div>
+                   <!--  <div class="row justify-content-end mr-2 mt-3" >
+                        <button mat-raised-button class="bg-warning text-white">Submit Review</button>
+                    </div> -->
+                </div>
+        <div class="col-md-9" *ngIf="rate == true">
+            <div class="card shadow-sm">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6">
+                            
+                            <h5 class="ml-3 project-heading">Rate this product</h5>
+                            
+                            <fieldset class="rating">                               
+                            
+                            <input type="radio" [name]="inputName" value="5" [checked]="rating===5" />
+                            <label title="Excellent" (click)='onClick(5)'>5 stars</label>
+                            <input type="radio" [name]="inputName" value="4" [checked]="rating===4" />
+                            <label title="Very Good" (click)='onClick(4)'>4 stars</label>
+                            <input type="radio" [name]="inputName" value="3" [checked]="rating===3" />
+                            <label title="Good" (click)='onClick(3)' >3 stars</label>
+                            <input type="radio" [name]="inputName" value="2" [checked]="rating===2" />
+                            <label title="Bad" (click)='onClick(2)'>2 stars</label>
+                            <input type="radio" [name]="inputName" value="1" [checked]="rating===1" />
+                            <label title="Very Bad" (click)='onClick(1)'>1 star</label>
+                           
+                                    
+                            </fieldset>
+                           
+                        </div> 
+                        
+                        <div class="col-md-6 text-right">
+                            <p *ngIf="ratingdone" class="pt-3 project-discription">Your rating has been saved</p>
+                        </div>
+                    </div> 
+
+                </div>
+                <div class="card-body" *ngIf="rate == true">
+                    <h5 class="project-heading">Review this product</h5>
+                    <div class="row">
+                        
+                        <div class="col-md-12">
+                             <form [formGroup]="registerForm2" >
+                            <div class="">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label style="color: white; padding-left: 10px; padding-top: 10px;">Description</mat-label>
+                                    <textarea matInput formControlName="review_message" rows="7" class="example-full-width pl-3 pt-3" placeholder="Description"></textarea>
+                                </mat-form-field>
+                            </div>
+                             </form>
+                        </div>
+                   
+                    </div>
+                    <div *ngIf="rate == true" class="row justify-content-end mr-2 mt-3" >
+                        <button mat-raised-button class=" card-button project-heading" (click)="insertMessage()">Submit Review</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

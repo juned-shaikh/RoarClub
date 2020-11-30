@@ -32,6 +32,10 @@
       </div>
      
       <div class="preview-pic tab-content  p-3 col-md-5  " >
+        <div class="pt-2 pl-3 wishlist_check">
+          <span *ngIf="wishlist_check==false && product.txn_quantity > '0'"><i class="far fa-heart fa-2x" title="add to wishlist" style="cursor: pointer;" (click)="addToWishlist(product)"> </i></span>
+         <span *ngIf="wishlist_check==false && product.txn_quantity < '1'"  ><i class="far fa-heart fa-2x" style="cursor: not-allowed;" title="add to wishlist"  > </i></span>
+<span *ngIf="wishlist_check==true"><i class="fas fa-heart  fa-2x"  (click)="deleteFromWishlist(wishlist_num)" style="cursor: pointer;" title="remove from wishlist"></i></span> </div>
        <div id="box-imgpro" class="gallerize-example" class="lightbox">
         <div class="lightbox" class="tab-pane active  shadow-lg cursor-pointer "  id="pic-1 " gallerize>  
         
@@ -81,10 +85,32 @@
       </div>
 
       <div class="col-md-6" style="color: white;">
-        <div class="" style="cursor: pointer;margin-left: 16px;" ><small class="text-muted brand-name project-discription">{{product?.brand_name}}</small> </div>
+        <div class="row" style="cursor: pointer;margin-left: 16px;" ><small class="text-muted brand-name project-discription col-md-10">{{product?.brand_name}}</small>   <div class="col-lg-2 col-md-2 text-right ">
+          <div class="share-property " matTooltip="share this product">
+        
+            <i class="fab fa-whatsapp text-success" ></i> <a
+          data-text="Take a look at this awesome website:"
+          class="wa_btn wa_btn_s share-property"
+          target="_blank"
+          href="https://api.whatsapp.com/send?text={{main}}{{
+            site
+          }}"
+          
+          data-action="share/whatsapp/share"
+          > Share</a
+        >
+      </div>
+        </div></div>
         <h1 class="product-title font-weight-600 pt-1 project-heading" style="margin-left: 16px;">{{ product?.name }}  <span  *ngIf="product.color != null || product.color != null" class="" >(<span *ngIf="product.color != null" ><span class="text-muted pl-2 pr-2" >{{ product.color }}</span></span> -<span *ngIf="product.size != null"> <span class="text-muted  pl-2 pr-2">{{ product.size }}</span></span>)</span> </h1>    
         <h5 class=" text-muted text-uppercase project-discription" style="position: relative; top: -12px;margin-left: 16px; font-weight: bold;">{{ product.subheading }}</h5>
       
+        <div *ngIf="ratings != 0 && rating_option==true" class="mb-3 mt-0 pt-0 project-discription pl-3">
+          <span *ngIf="ratings != 0" class="badge badge-success text-white pl-3 pr-3 pt-2 pb-2">{{ratings}} <i class="fas fa-star" style="font-size: 10px;"></i></span> &nbsp;
+          <span *ngIf="ratings_count != 0 && ratings_count != '0'" class="text-muted font-weight-600">{{ratings_count}} <span *ngIf="ratings_count > 2 || ratings_count > '2'">Ratings</span> <span *ngIf="ratings_count == 1 || ratings_count == '1'">Rating</span> </span> 
+      <span *ngIf="ratings_count != 0 && reviews_count != 0" class="text-muted font-weight-600">&nbsp; & </span>
+      <span class="text-muted font-weight-600" *ngIf="reviews_count != 0 && reviews_count != '0'">  {{reviews_count}} 
+      <span *ngIf="reviews_count > 2 || reviews_count > '2'">Reviews</span>
+      <span *ngIf="reviews_count == 1 || reviews_count == '1'">Review</span> </span></div>
         <div *ngFor="let prates of product_rate" class="d-flex  col-lg-12  ">
           <div  *ngIf=" prates.is_rent !='2'">
               <span class="">  
@@ -101,8 +127,8 @@
            </h4>
          </div>
        </div>
-<div class="row">
-  <div class="col-md-12 ">
+<div class="row" >
+  <div class="col-md-12 " *ngIf="product_groups_color.length > 1">
     <div *ngIf="product_groups_color.length > 0" class=" row pl-4" style="cursor: pointer;">
       <span class="font-weight-600 ">&nbsp;&nbsp; Color : &nbsp;&nbsp;&nbsp;&nbsp;</span>  <br/> <div class="ml-2"  *ngFor="let color of product_groups_color;let count=index"><div class= " cursor-pointer " style="display: inline-block;" *ngIf="color != '' && color != null">
 
@@ -121,7 +147,7 @@
         <div *ngIf="coloring != color" (click)="colors(color)"  class="text-center " >
 <!-- {{ product_groups_color_image[count] }} -->
 <img    src="{{ product_groups_color_image[count] }}"
-          class="img-fluid color-img-hover " style="height: 50px;width: 50px; "  /> <br/>
+          class="img-fluid color-img-hover " style="height: 80px;width: 70px; "  /> <br/>
 
 
 <!-- end for color image -->
@@ -167,7 +193,7 @@
                     title="remove" >-
                 </span>
   &nbsp;
-                  <input class=" form-control text-center box-update" type="number" matInput style="width: 40px;"
+                  <input class=" form-control text-center box-update mt-0" type="number" matInput style="width: 40px;"
                     placeholder="Quantity" value="{{cart_inventory.qty}}" required min="1"
                     (change)="updateCart3(cart_inventory.cart_id,cart_inventory.cart_inventory_id,cart_inventory.rate_type,$event.target.value,product.txn_quantity)"
                     (keyup)="updateCart3(cart_inventory.cart_id,cart_inventory.cart_inventory_id,cart_inventory.rate_type,$event.target.value,product.txn_quantity)">
@@ -187,10 +213,7 @@
                    class="fas fa-shopping-cart pr-2"  *ngIf="userC==true  && product.txn_quantity < '1'" style="cursor: not-allowed;"> &nbsp;Add to cart</i>
                    
                  </button> 
-                 <div class="pt-2 pl-3">
-                  <span *ngIf="wishlist_check==false && product.txn_quantity > '0'"><i class="far fa-heart fa-2x" title="add to wishlist" style="cursor: pointer;" (click)="addToWishlist(product)"> </i></span>
-                 <span *ngIf="wishlist_check==false && product.txn_quantity < '1'"  ><i class="far fa-heart fa-2x" style="cursor: not-allowed;" title="add to wishlist"  > </i></span>
-<span *ngIf="wishlist_check==true"><i class="far fa-heart text-danger fa-2x"  (click)="deleteFromWishlist(wishlist_num)" style="cursor: pointer;" title="remove from wishlist"></i></span> </div>
+       
 
                  <!-- <button type="button" class="" *ngIf="wishlist_check==false && product.txn_quantity > '0'"  ><i class="far fa-heart" title="add to wishlist"  (click)="addToWishlist(product)"> </i></button> 
                    <button type="button" class="" *ngIf="wishlist_check==false && product.txn_quantity < '1'"><i class="far fa-heart " title="add to wishlist" style="cursor: not-allowed;"  (click)="addToWishlist(product)"></i></button> 
@@ -207,20 +230,20 @@
 
           <ul class="nav  nav-justified border-bottom "  id="advancedTab" role="tablist">
             <li class="nav-item">
-              <a class="nav-link active1  show project-heading"  id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Description</a>
+              <a class="nav-link active1  active project-heading"  id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Description</a>
             </li>
             <li class="nav-item">
               <a class="nav-link project-heading active1" id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false">Specification</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link project-heading active1" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews (1)</a>
+              <a class="nav-link project-heading active1" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Ratings & Reviews</a>
             </li>
           </ul>
-          <div class="tab-content mt-2" id="advancedTabContent">
+          <div class="tab-content mt-4" id="advancedTabContent">
             <div class="tab-pane fade show active project-discription" id="description" role="tabpanel" aria-labelledby="description-tab">
               <h5 [innerHTML]="product.meta_description" style="font-size: 14px;" class="project-discription"></h5> 
             </div>
-            <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="info-tab">
+            <div class="tab-pane fade mt-4" id="info" role="tabpanel" aria-labelledby="info-tab">
               <!-- <div *ngFor="let pspec of product_specification">
                 <span class="font-weight-400 project-discription"> {{ pspec.spec_name }} : {{ pspec.spec_value }} </span>
               </div> -->
@@ -245,86 +268,160 @@
                 </div>
             
             </div>
-            <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-              <h5 style="font-size: 14px;"><span>1</span> review for <span>Fantasy T-shirt</span></h5>
-              <!-- <div class="media mt-3 mb-4">
-                <img class="d-flex mr-3 z-depth-1" src="https://mdbootstrap.com/img/Photos/Others/placeholder1.jpg" width="62" alt="Generic placeholder image">
-                <div class="media-body">
-                  <div class="d-sm-flex justify-content-between">
-                    <p class="mt-1 mb-2">
-                      <strong>Marthasteward </strong>
-                      <span>– </span><span>January 28, 2020</span>
-                    </p>
-                    <ul class="rating mb-sm-0">
-                      <li>
-                        <i class="fas fa-star fa-sm text-primary"></i>
-                      </li>
-                      <li>
-                        <i class="fas fa-star fa-sm text-primary"></i>
-                      </li>
-                      <li>
-                        <i class="fas fa-star fa-sm text-primary"></i>
-                      </li>
-                      <li>
-                        <i class="fas fa-star fa-sm text-primary"></i>
-                      </li>
-                      <li>
-                        <i class="far fa-star fa-sm text-primary"></i>
-                      </li>
-                    </ul>
+            <div class="tab-pane fade mt-4" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+              <div class="card mt-3 card12 " *ngIf="ratings == 0 && rating_option==true">
+                <div class="card-header justify-content-between d-flex">
+                <h4 class="project-heading">  Ratings & Reviews </h4> 
+
+            
+                <button *ngIf="rating_option==true" mat-raised-button class=" pl-4 pr-4 pt-1 pb-1 cursor-pointer project-heading card-button"  (click)="rating(product)"> Rate Product</button>
+                
+                </div>
+                
+                <div class="card-body">
+                  <div class="row justify-content-center ">
+                    <div class="col-md-5 col-6 text-center project-discription">
+                  No review yet
+                    </div>
+                  
                   </div>
-                  <p class="mb-0">Nice one, love it!</p>
+             
+              </div>
+              </div>
+
+
+              
+
+
+
+        
+              <div class="card mt-3  card12" *ngIf="ratings != 0 && rating_option==true">
+                <div class="card-header justify-content-between d-flex">
+                <h5>  Ratings & Reviews </h5> 
+
+            
+                <button *ngIf="rating_option==true" mat-raised-button class=" pl-4 pr-4 pt-1 pb-1 cursor-pointer card-button project-heading"  (click)="rating(product)"> Rate Product</button>
+
+                
+                </div>
+                
+                
+                <div class="card-body">
+
+                  <div class="row">
+                    <div class="col-xs-12 col-md-8">
+                        <div class="well well-sm card1 p-5" >
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6 text-center">
+                                    <h1 class="rating-num project-heading">
+                                        {{ratings | number}}</h1>
+                                    <div class="rating">
+                                        <span
+                                        class="fa fa-star checked"
+                                        *ngFor="let i of createRange2(ratings)"
+                                      ></span>
+                                      <span
+                                        class="fa fa-star"
+                                        *ngFor="let i of createRange2(5 - ratings)"
+                                      ></span>
+                                      
+                                    </div>
+                                    <div class="project-discription">
+                                        <span class="fas fa-user rating-descre " style="font-size: 14px;"></span> {{ratings_count}} total
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="row rating-desc">
+                                        <div class="col-xs-3 col-md-3 col-2 text-right d-flex">
+                                          <i class="fas fa-star rating-descre"  matTooltip="Ratings"></i> 5
+                                        </div>
+                                        <div class="col-xs-8 col-md-9 col-10" style="padding: 9px;">
+                                          <mat-progress-bar mode="determinate"  value="{{percentmain5}}" matTooltip="{{percentmain5}}"></mat-progress-bar>
+                                        </div>
+                                        <!-- end 5 -->
+                                        <div class="col-xs-3 col-md-3 col-2 text-right d-flex">
+                                          <span class="fas fa-star rating-descre"  matTooltip="Ratings"></span> 4
+                                        </div>
+                                        <div class="col-xs-8 col-md-9 col-10" style="padding: 9px;">
+                                          <mat-progress-bar mode="determinate" value="{{percentmain4}}" matTooltip="{{percentmain4}}"></mat-progress-bar>
+                                        </div>
+                                        <!-- end 4 -->
+                                        <div class="col-xs-3 col-md-3 col-2 text-right  d-flex">
+                                          <i class="fas fa-star rating-descre"  matTooltip="Ratings"></i>  3
+                                        </div>
+                                        <div class="col-xs-8 col-md-9 col-10" style="padding: 9px;">
+                                          <mat-progress-bar mode="determinate" value="{{percentmain3}}" matTooltip="{{percentmain3}}"></mat-progress-bar>
+                                        </div>
+                                        <!-- end 3 -->
+                                        <div class="col-xs-3 col-md-3 col-2 text-right d-flex">
+                                          <i class="fas fa-star rating-descre"  matTooltip="Ratings"></i> 2
+                                        </div>
+                                        <div class="col-xs-8 col-md-9 col-10" style="padding: 9px;">
+                                          <mat-progress-bar mode="determinate" color="accent" class="cursor-pointer" value="{{percentmain2}}" matTooltip="{{percentmain2}}"></mat-progress-bar>
+                                        </div>
+                                        <!-- end 2 -->
+                                        <div class="col-xs-3 col-md-3 col-2 text-right d-flex">
+                                          <i class="fas fa-star rating-descre"  matTooltip="Ratings"></i> 1
+                                        </div>
+                                        <div class="col-xs-8 col-md-9 col-10 " style="padding: 9px;">
+                                           
+                                            <mat-progress-bar mode="determinate" color="warn" value="{{percentmain1 }}" class="cursor-pointer" matTooltip="{{percentmain1}}"></mat-progress-bar>
+                                            
+                                        </div>
+                                        <!-- end 1 -->
+                                    </div>
+                                    <!-- end row -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                  <!-- <div class="row justify-content-center ">
+                  
+                    <div class="col-md-5 col-6 pl-3">
+                      <div *ngIf="all_ratings != []">
+                          <div *ngFor="let all_ratings of all_ratings">
+                            <div  class="row">
+                              <p class="">{{all_ratings.ratings}}   <i class="fas fa-star" style="color:green" matTooltip="Ratings"></i></p>
+                          &nbsp;  by &nbsp;
+                                  <h6 *ngIf="all_ratings.count == 1" >{{all_ratings.count}} user</h6>
+                                  <h6 *ngIf="all_ratings.count > 1" >{{all_ratings.count}} users</h6>
+                                
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-5"> <div >  <span *ngIf="ratings != 0" class="badge badge-success text-white p-2">{{ratings}} <i class="fas fa-star"></i></span> &nbsp;
+                      <span *ngIf="ratings_count != 0" class="text-muted font-weight-500">{{ratings_count}} <span *ngIf="ratings_count > 2">Ratings</span> <span *ngIf="ratings_count == 1">Rating</span> </span> 
+                  <span *ngIf="ratings_count != 0 && reviews_count != '0'" class="text-muted font-weight-500">&nbsp; & &nbsp;</span>
+                  <span class="text-muted font-weight-500" *ngIf="reviews_count != 0">  {{reviews_count}} 
+                  <span *ngIf="reviews_count > 2">Reviews</span>
+                  <span *ngIf="reviews_count == 1">Review</span> </span></div></div>
+                  </div> -->
+                <hr>
+              <div class="user-review-box">
+
+              
+                <div class="" *ngFor="let reviews of reviews">
+                            <div class="row justify-content-center">
+                              <div class="col-md-11 project-discription">
+                              <span *ngIf="reviews.ratings != 0" class="badge badge-success" >
+                                {{reviews.ratings}}
+                              <i  class="fas fa-star" matTooltip="Ratings"></i>
+                              </span> &nbsp;&nbsp;
+                              <span [innerHTML]="reviews.review_message" > &nbsp;&nbsp;{{reviews.review_message}}</span><br>
+                              <p class="text-muted mt-2"><i class="far fa-check-circle text-muted"></i>  Certified Buyer, {{reviews.name}} </p>
+                              </div></div>
+                            
+                          
+                    
+                
+                            </div>
                 </div>
               </div>
-              <hr>
-              <h5 class="mt-4">Add a review</h5>
-              <p>Your email address will not be published.</p>
-              <div class="my-3">
-                <ul class="rating mb-0">
-                  <li>
-                    <a href="#!">
-                      <i class="fas fa-star fa-sm text-primary"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#!">
-                      <i class="fas fa-star fa-sm text-primary"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#!">
-                      <i class="fas fa-star fa-sm text-primary"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#!">
-                      <i class="fas fa-star fa-sm text-primary"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#!">
-                      <i class="far fa-star fa-sm text-primary"></i>
-                    </a>
-                  </li>
-                </ul>
               </div>
-              <div>
-                <div class="md-form md-outline">
-                  <textarea id="form76" class="md-textarea form-control pr-6" rows="4"></textarea>
-                  <label for="form76">Your review</label>
-                </div>
-                <div class="md-form md-outline">
-                  <input type="text" id="form75" class="form-control pr-6">
-                  <label for="form75">Name</label>
-                </div>
-                <div class="md-form md-outline">
-                  <input type="email" id="form77" class="form-control pr-6">
-                  <label for="form77">Email</label>
-                </div>
-                <div class="text-right pb-2">
-                  <button type="button" class="btn btn-primary">Add a review</button>
-                </div>
-              </div> -->
             </div>
           </div>
         

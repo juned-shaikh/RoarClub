@@ -473,4 +473,54 @@ fetchBrandsEcom(data) {
 changeProductList(list) {
   this.productSource.next(list);
 }
+cancel_order_by_user(data){
+  return this.https.post(this.baseUrl + "order_vendor/cancel_order_by_user", data);
+
+}
+// start return
+complete_with_refund(data){
+  return this.https.post(this.baseUrl + "order_vendor/complete_with_refund", data);
+
+}
+update_return_initiate(data){
+  return this.https.post(this.baseUrl + "order_vendor/update_return_initiate", data);
+
+}
+returnInitiate(data) {
+  return this.https.post(this.baseUrl + "admin/return_initiate", data);
+}
+
+returnIntransit(data) {
+  return this.https.post(this.baseUrl + "admin/return_intransit", data);
+}
+
+returnAccept(data) {
+  return this.https.post(this.baseUrl + "admin/return_accepted", data);
+}
+
+returnReject(data) {
+  return this.https.post(this.baseUrl + "admin/return_reject", data);
+}
+
+returnReceived(data) {
+  return this.https.post(this.baseUrl + "admin/return_completed", data);
+}
+returnComplete(data) {
+  return this.https.post(this.baseUrl + "admin/return_completed_full", data);
+}
+returnDispute(data) {
+  return this.https.post(this.baseUrl + "admin/return_disputed", data);
+}
+// getproduct(data){
+//   return this.https.post(this.NodeBaseUrl+"barcode/get_product_with_stock",data);
+//     }
+// end return
+updateOrderStatusMulti(data){
+      return this.https.post(this.baseUrl + "order_vendor/updateOrderStatusMulti", data);
+
+}
+add_dimension_parcel(data){
+  return this.https.post(this.baseUrl + "order_vendor/add_dimension_parcel", data);
+
+}
 }

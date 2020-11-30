@@ -1379,7 +1379,16 @@ nav.replace(/\s+/g, "-") +
     if(this.previewFlag == '1'){
      this.router.navigate(["/Admin/preview/shop", "brand", slug]);
     }else{
-       this.router.navigate(["/category-page", "brand", slug]);
+      //  this.router.navigate(["/category-page", "brand", slug]);
+
+
+
+        // save current route first
+        const currentRoute = this.router.url;
+    
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.router.navigate(["/category-page", "brand", slug]); // navigate to same route
+        }); 
     }
     
         }  else if (data["status"] == 0) {

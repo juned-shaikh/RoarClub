@@ -433,6 +433,7 @@ this.compSettings(this.comp);
   deleteFromCart(id) {
     var res = confirm("Are you sure you want to delete this cart.");
     if (res) {
+      location.reload();
       this.loader = false;
       this.isLoggedIn = true;
       var postData = {
@@ -1832,7 +1833,9 @@ if(this.cookie.get("product_id2") != null && this.cookie.get("product_id2") != '
 
 //end for qty update without login
 deleteFromCartWithoutLogin(product_no){
-  console.log(product_no);
+  // console.log(product_no);
+  location.reload();
+
  var res = confirm("Are you sure you want to delete this product from cart.");
     if (res) { if(this.cookie.get("product_id2") != null && this.cookie.get("product_id2") != ''){
         var getCookie=this.cookie.get("product_id2");//product cookie string

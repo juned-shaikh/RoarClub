@@ -91,3 +91,11 @@
 .shadow-none {
   box-shadow: none!important;
 }
+.card-button{
+  background: rgb(43, 42, 42);
+  color: green;
+  border: 2px solid green;
+}
+.example-full-width{
+  width: 60%;
+}

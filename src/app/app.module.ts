@@ -62,25 +62,29 @@ import { CustomerProfileComponent } from './customer-profile/customer-profile.co
 import { NgxImgZoomModule  } from 'ngx-img-zoom';
 import { ZoomComponent } from './product-view/zoom.component';
 import { GalleryComponent } from './gallery/gallery.component';
-
-
-
-
+import { ReviewratingComponent } from './reviewrating/reviewrating.component';
+import { RatingComponent } from './rating/rating.component';
+import { RatingNowComponent } from './rating-now/rating-now.component';
+// import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { GalleryModule } from 'ng-gallery';
 import { LightboxModule } from 'ng-gallery/lightbox';
 import { PinchZoomModule } from 'ngx-pinch-zoom';
-
+import { OrderHistoryComponent } from './order-history/order-history.component';
 
 @NgModule({
   declarations: [
-    
+    ReviewratingComponent,
+    RatingNowComponent,
+    RatingComponent,
     AppComponent,
     ClientaddressComponent,
     CustomerProfileComponent,
     HeaderComponent,
+    OrderHistoryComponent,
     AddressComponent,
     // ChangePasswordComponent,
     HomeComponent,
@@ -118,9 +122,11 @@ import { PinchZoomModule } from 'ngx-pinch-zoom';
     LightboxModule,
     
      FormsModule, NgxImgZoomModule ,
+     RouterModule,
     BrowserModule,
     AppRoutingModule,
     MatTooltipModule,
+    MatToolbarModule,
     MatIconModule,
     MatCardModule,
     MatRadioModule,
@@ -139,10 +145,10 @@ import { PinchZoomModule } from 'ngx-pinch-zoom';
     MatSnackBarModule,
     BrowserModule,
     BrowserAnimationsModule,
-  
+    MatProgressBarModule,
  
     FormsModule,
-    
+    MatProgressSpinnerModule,
     HttpClientModule,
     AppRoutingModule,
     NgbModule,

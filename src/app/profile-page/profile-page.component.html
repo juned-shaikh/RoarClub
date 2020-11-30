@@ -106,143 +106,149 @@ box-shadow: 5px 8px 5px rgba(0, 0, 0, 0.3);background-position: center;
 
  -->
 
- <div class="container">
 
-  <!-- Breadcrumb -->
-  <nav aria-label="breadcrumb" class="main-breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-      <li class="breadcrumb-item"><a href="javascript:void(0)">User</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Profile Settings</li>
-    </ol>
-  </nav>
-  <!-- /Breadcrumb -->
+<div class="container-fluid">
+  <div class="container-fluid">
+    <div class="container-fluid">
 
-  <div class="row gutters-sm">
-    <div class="col-md-4 d-none d-md-block">
-      <div class="card" style=" border-radius: 12px;
-      box-shadow: 5px 8px 5px rgba(0, 0, 0, 0.3);">
-        <div class="card-body">
-          <nav class="nav flex-column nav-pills nav-gap-y-1">
-            <a href="#profile" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded active">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user mr-2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>PROFILE SETTINGS
-            </a>
-            <a href="#account" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
-              <i class="fa fa-shopping-cart" aria-hidden="true">&nbsp;&nbsp;</i>ORDER DETAILS
-            </a>
-            <a href="#security" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
-             <i class="fas fa-shield-alt">&nbsp;&nbsp;</i>Security
-            </a>
-            <a href="#notification" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
-              <i class="fas fa-address-card">&nbsp;&nbsp;</i>ADDRESS
-            </a>
-            <a href="#billing" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
-             <i class="fas fa-heart">&nbsp;&nbsp;</i>MY WHISHLIST
-            </a>
-          </nav>
+      <!-- Breadcrumb -->
+      <nav aria-label="breadcrumb" class="main-breadcrumb">
+        <ol class="breadcrumb project-discription">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <!-- <li class="breadcrumb-item"><a href="javascript:void(0)">User</a></li> -->
+          <li class="breadcrumb-item active" aria-current="page">My Account</li>
+        </ol>
+      </nav>
+      <!-- /Breadcrumb -->
+    
+      <div class="row gutters-sm">
+        <div class="col-md-3 d-none d-md-block">
+          <div class="card" style=" border-radius: 9px;
+          box-shadow: 5px 8px 5px rgba(0, 0, 0, 0.3);">
+            <div class="card-body project-heading">
+              <nav class="nav flex-column nav-pills nav-gap-y-1">
+                <a href="#profile" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded active">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user mr-2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Profile
+                </a>
+                <a href="#account" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+                  <i class="fa fa-shopping-cart" aria-hidden="true">&nbsp;&nbsp;</i>Order Details
+                </a>
+                <a href="#security" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+                 <i class="fas fa-shield-alt">&nbsp;&nbsp;</i>Account Setting
+                </a>
+                <a href="#notification" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+                  <i class="fas fa-address-card">&nbsp;&nbsp;</i>Manage Address
+                </a>
+                <!-- <a href="#billing" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+                 <i class="fas fa-heart">&nbsp;&nbsp;</i>MY WHISHLIST
+                </a> -->
+              </nav>
+            </div>
+          </div>
         </div>
+        <div class="col-md-9">
+          <div class="card" style=" border-radius: 9px;
+          box-shadow: 5px 8px 5px rgba(0, 0, 0, 0.3);" >
+            <div class="card-header border-bottom mb-3 d-flex d-md-none">
+              <ul class="nav nav-tabs card-header-tabs nav-gap-x-1" role="tablist">
+                <li class="nav-item">
+                  <a href="#profile" data-toggle="tab" class="nav-link has-icon active"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></a>
+                </li>
+                <li class="nav-item">
+                  <a href="#account" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></a>
+                </li>
+                <li class="nav-item">
+                  <a href="#security" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></a>
+                </li>
+                <li class="nav-item">
+                  <a href="#notification" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg></a>
+                </li>
+                <li class="nav-item">
+                  <a href="#billing" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg></a>
+                </li>
+              </ul>
+            </div>
+            <div class="card-body tab-content">
+              <div class="tab-pane active" id="profile">
+<div class="mat-card" *ngIf="!shownamebox">
+  <div class="row">
+    <div class="col-sm-3">
+              
+       
+      <div class="text-center">
+        <img 
+        src="{{userdata?.profile_image}}" onerror="this.src='http://ssl.gstatic.com/accounts/ui/avatar_2x.png'"
+        class="avatar img-circle img-thumbnail" alt="avatar">
+
+       
       </div>
-    </div>
-    <div class="col-md-8">
-      <div class="card" style=" border-radius: 12px;
-      box-shadow: 5px 8px 5px rgba(0, 0, 0, 0.3);" >
-        <div class="card-header border-bottom mb-3 d-flex d-md-none">
-          <ul class="nav nav-tabs card-header-tabs nav-gap-x-1" role="tablist">
-            <li class="nav-item">
-              <a href="#profile" data-toggle="tab" class="nav-link has-icon active"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></a>
-            </li>
-            <li class="nav-item">
-              <a href="#account" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></a>
-            </li>
-            <li class="nav-item">
-              <a href="#security" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></a>
-            </li>
-            <li class="nav-item">
-              <a href="#notification" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg></a>
-            </li>
-            <li class="nav-item">
-              <a href="#billing" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg></a>
-            </li>
-          </ul>
+     
+            
+                 
+               
+          
+          
         </div>
-        <div class="card-body tab-content">
-          <div class="tab-pane active" id="profile">
-            <h3>YOUR PROFILE INFORMATION</h3>
-            <hr>
-            <form>
-              <div class="text-center">
-                <img 
-                src="{{userdata?.profile_image}}" onerror="this.src='http://ssl.gstatic.com/accounts/ui/avatar_2x.png'"
-                class="avatar img-circle img-thumbnail" alt="avatar">
-        
+        <div class="col-md-8">
+          <h4 class="text-right" ><span><i class="fas fa-user-edit" (click)="edit()" style="cursor: pointer;" href="#home" data-toggle="tab"></i></span></h4>
+          <h3 class="mt-2 project-heading" >Hello, {{userdata.name}} </h3>
+          <h4 *ngIf="userdata.mobile" class="d-flex project-discription"><i class="fas fa-phone-square-alt"></i>&nbsp; {{userdata.mobile}}</h4> 
+          <h4 *ngIf="userdata.email" class="project-discription"><i class="fas fa-envelope-open-text"></i>&nbsp; {{userdata.email}}</h4> 
+         
+        </div>
+  </div>
+</div>
+                <div class="mat-card " *ngIf="shownamebox" style=" background: rgb(43, 42, 42); ">
+                  <div class="row " >
+                   
+                    <div class="col-md-6 pt-3 pl-3 col-7">
+                          <form [formGroup]="updateprofile" style="padding: 10px;">
+                              <mat-label class="project-heading pb-3" style="position: relative;
+                              color: white;
+                              top: -7px;">User Name :</mat-label>&nbsp;&nbsp;
+                          <mat-form-field class="example-full-width mt-2"  >
+                              <input matInput   formControlName="name" value="{{userdata?.name}}" style="border-radius: 7px; color: white; border: 1px solid whitesmoke; padding: 5px 10px 10px 10px;">
+                          </mat-form-field>
+                        
+                          
+                          <br/>
+                          <button mat-raised-button class="  mt-2 card-button project-heading" style="margin-left: 17%; " (click)="update()">Update</button>
+                          </form>
+                    </div>
+                    <div class="col-md-3 p-3 col-2">
+                        <span class=" p-1 text-uppercase card-button project-heading" style="    font-size: 10px;
+                        font-weight: 600; " (click)="cancel()" title="Cancel">cancel</span>
+                    </div>
+              
+                </div>
+                </div>
+               
+              <app-account-info *ngIf="changepasssbox"></app-account-info>
+              </div>
+
+              <div class="tab-pane" id="account">
+                <h3>ORDER DETAILS</h3>
+                <hr>
+                <app-order-history></app-order-history>
+                
+                
                
               </div>
-              <div class="text-center">
-              <h4 class="text-center"><span><i class="fas fa-user-edit" (click)="edit()" style="cursor: pointer;" href="#home" data-toggle="tab"></i></span></h4>
-              <h3 class="mt-2" >Hello, {{userdata.name}} </h3>
-              <h4  *ngIf="userdata.mobile" class=""><i class="fas fa-phone-square-alt"></i>&nbsp; {{userdata.mobile}}</h4> 
-              <h4 *ngIf="userdata.email" class=""><i class="fas fa-envelope-open-text"></i>&nbsp; {{userdata.email}}</h4> 
-              <h4 class="" href="#home" data-toggle="tab"><a  (click)="showchangepass()" ><i class="fas fa-cog"></i>&nbsp; account-setting</a></h4>
-                    <h4 class=""><a  (click)="logout()" ><i class="fas fa-user-lock"></i>&nbsp; Logout</a></h4>
-              </div>  
-                         
-                       
-                  
-                  
+              <div class="tab-pane" id="security">
+               
+                <app-account-info ></app-account-info>
+              </div>
+              <div class="tab-pane" id="notification">
                 
-            </form>
-          </div>
-          <div class="tab-pane" id="account">
-            <h3>ORDER DETAILS</h3>
-            <hr>
-            <app-order></app-order>
-            
-           
-          </div>
-          <div class="tab-pane" id="security">
-            <h3>SECURITY SETTINGS</h3>
-            <hr>
-            <div class="mat-card " *ngIf="shownamebox" style="background: #000000;">
-              <div class="row " >
-                <div class="col-md-1 p-3 col-3">
-                   
-                </div>
-                <div class="col-md-8 pt-3 pl-3 col-7">
-                      <form [formGroup]="updateprofile" style="background: grey;padding: 10px;">
-                          <mat-label  >User Name :</mat-label>&nbsp;&nbsp;
-                      <mat-form-field class="example-full-width " >
-                          <input matInput placeholder="User Name"  formControlName="name" value="{{userdata?.name}}" >
-                      </mat-form-field>
-                    
-                      
-                      <br/>
-                      <button mat-raised-button class=" order-button mt-2 " style="margin-left: 15%;" (click)="update()">Update</button>
-                      </form>
-                </div>
-                <div class="col-md-3 p-3 col-2">
-                    <span class="border p-1 text-uppercase cursor-pointer" style="    font-size: 10px;
-                    font-weight: 600;" (click)="cancel()" title="update">cancel</span>
-                </div>
-          
+                <app-clientaddress></app-clientaddress>
+              </div>
+             
             </div>
-            </div>
-            <app-account-info *ngIf="changepasssbox"></app-account-info>
-              
-          </div>
-          <div class="tab-pane" id="notification">
-            <h3>NOTIFICATION SETTINGS</h3>
-            <hr>
-            <app-clientaddress></app-clientaddress>
-          </div>
-          <div class="tab-pane" id="billing">
-            <h3>MY WISHLIST</h3>
-            <hr>
-            <app-wishlist></app-wishlist>
-              
+
           </div>
         </div>
       </div>
+    
     </div>
   </div>
-
 </div>

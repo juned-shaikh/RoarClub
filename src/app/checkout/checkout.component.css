@@ -89,16 +89,23 @@
   overflow: hidden;
   /* border-radius: 8px!important; */
 }
+.button-for-address{
+  background: rgb(43, 42, 42);
+  color: green;
+  border: 2px solid green;
+  border-radius: 6px;
+}
 .stepper-for-order{
-  color: #6c0753;
+  /* color: #6c0753; */
+  color: gray;
   font-weight: 600;
-  font-size: 16px !important;
+  font-size: 14px !important;
 }
 .add-font, div, p, h6, h5  {
   font-size: 14px!important;
 }
 .mayment-border{
-  border-bottom: 2px solid #d4474d;
+  border-bottom: 2px solid green;
   margin-bottom: 6px;
 }
 @media only screen and (max-width:768px){

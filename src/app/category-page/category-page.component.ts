@@ -991,7 +991,17 @@ this.ngOnInit();
       //   skipLocationChange: true
       // })
       // .then(() =>
-       this.router.navigate(["/category-page", slug]);
+
+      const currentRoute = this.router.url;
+
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate(["/category-page", slug]); // navigate to same route
+      }); 
+      
+      //  this.router.navigate(["/category-page", slug]);
+
+
+    
 
     }
     
@@ -1041,13 +1051,27 @@ this.ngOnInit();
       })
       .then(() => this.router.navigate(["/Admin/preview/category-page", "brand", slug]));
 
+      // const currentRoute = this.router.url;
+
+      // this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      //     this.router.navigate(["/category-page", slug]); 
+      // }); 
+
+
     }else{
       // this.router
       // .navigateByUrl("/RefreshComponent", {
       //   skipLocationChange: true
       // })
       // .then(() =>
-       this.router.navigate(["/category-page", "brand", slug]);
+      const currentRoute = this.router.url;
+
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate(["/category-page","brand", slug]); // navigate to same route
+      }); 
+
+      // location.reload();
+      //  this.router.navigate(["/category-page", "brand", slug]);
       
     }
           

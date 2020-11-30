@@ -12,7 +12,11 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { OurBrandComponent } from './our-brand/our-brand.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { OrderViewDetailsComponent } from './order-view-details/order-view-details.component';
-
+import { ReviewratingComponent } from './reviewrating/reviewrating.component';
+import { RatingComponent } from './rating/rating.component';
+import { RatingNowComponent } from './rating-now/rating-now.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
+import { OrderHistoryComponent } from './order-history/order-history.component';
  
 const routes: Routes = [
   { path: "",  pathMatch: "prefix", 
@@ -34,6 +38,10 @@ const routes: Routes = [
         path:"our-brand", component:OurBrandComponent
       },
       {
+        path:"wishlist",
+        component:WishlistComponent
+      },
+      {
         path:"cart",
         component:AddToCartComponent
       },
@@ -48,9 +56,18 @@ const routes: Routes = [
       }, {
         path: "order-details/:id",
         component:OrderViewDetailsComponent,
-      }
+      },
      
-
+     {
+       path:"order-history",
+       component:OrderHistoryComponent,
+     },
+      {
+        path : "reviewrating",
+        component:ReviewratingComponent
+      },
+      { path: "rating", component: RatingComponent},
+      { path: "rating-now", component: RatingNowComponent},
     ],
  },
 
