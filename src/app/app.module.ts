@@ -73,7 +73,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { GalleryModule } from 'ng-gallery';
 import { LightboxModule } from 'ng-gallery/lightbox';
 import { PinchZoomModule } from 'ngx-pinch-zoom';
-
+import { OrderHistoryComponent } from './order-history/order-history.component';
 
 @NgModule({
   declarations: [
@@ -84,6 +84,7 @@ import { PinchZoomModule } from 'ngx-pinch-zoom';
     ClientaddressComponent,
     CustomerProfileComponent,
     HeaderComponent,
+    OrderHistoryComponent,
     AddressComponent,
     // ChangePasswordComponent,
     HomeComponent,

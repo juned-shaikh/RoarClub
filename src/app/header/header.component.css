@@ -456,6 +456,18 @@ li a:hover{
         cursor: pointer;
       }
       
+
+      .navbar .profile-dropdown {
+        position: absolute !important;
+        margin-top: 0;
+        left: -63px;
+    }
+.login-button-bar2 a{
+  color: white!important;
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+}
       .search .searchItems{
 
         position: absolute;

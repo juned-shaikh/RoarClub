@@ -512,22 +512,43 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    localStorage.setItem("flag1", "0");
-    sessionStorage.clear();
-    var rtoken = sessionStorage.getItem('noti_token');
-    var topic = "user_"+sessionStorage.getItem('user_num');
-    
-    
-    this.adminService.unsubscribe_topic({topic_name : topic , token : rtoken}).subscribe(data =>{
-      if(data['status']=='1'){
-        console.log("topic unsubscribed successfully")
+    var res = confirm("Are you sure you want to logout.");
+     if(res){
+      const currentRoute = this.router.url;
 
-      }else{
-        console.log("topic not unsubscribed")
-      }
-    })
-    // location.reload();
-    this.router.navigate(["/home"]);
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate(["/home"]); 
+      }); 
+      localStorage.setItem("flag1", "0");
+      sessionStorage.clear();
+      // location.reload();
+      //  const currentRoute = this.router.url;
+
+      // this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      //     this.router.navigate(["/home"]); 
+      // }); 
+      // this.router.navigate(['/home']);
+      var rtoken = sessionStorage.getItem('noti_token');
+      var topic = "user_"+sessionStorage.getItem('user_num');
+      
+      
+      this.adminService.unsubscribe_topic({topic_name : topic , token : rtoken}).subscribe(data =>{
+        if(data['status']=='1'){
+          console.log("topic unsubscribed successfully");
+          location.reload();
+          const currentRoute = this.router.url;
+
+          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+              this.router.navigate(["/"]); 
+          }); 
+  
+        }else{
+          console.log("topic not unsubscribed")
+        }
+      })
+      this.router.navigate(["/"]);
+     }
+
   }
   redirectTo(url: string) {
     throw new Error("Method not implemented.");

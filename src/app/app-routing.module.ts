@@ -15,6 +15,8 @@ import { OrderViewDetailsComponent } from './order-view-details/order-view-detai
 import { ReviewratingComponent } from './reviewrating/reviewrating.component';
 import { RatingComponent } from './rating/rating.component';
 import { RatingNowComponent } from './rating-now/rating-now.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
+import { OrderHistoryComponent } from './order-history/order-history.component';
  
 const routes: Routes = [
   { path: "",  pathMatch: "prefix", 
@@ -36,6 +38,10 @@ const routes: Routes = [
         path:"our-brand", component:OurBrandComponent
       },
       {
+        path:"wishlist",
+        component:WishlistComponent
+      },
+      {
         path:"cart",
         component:AddToCartComponent
       },
@@ -52,6 +58,10 @@ const routes: Routes = [
         component:OrderViewDetailsComponent,
       },
      
+     {
+       path:"order-history",
+       component:OrderHistoryComponent,
+     },
       {
         path : "reviewrating",
         component:ReviewratingComponent

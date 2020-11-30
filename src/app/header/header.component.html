@@ -183,11 +183,11 @@
         </li> 
       
         <li
-        class="nav-item dropdown apna-view d-none d-md-none d-lg-block"
+        class="nav-item dropdown apna-view d-none d-md-none d-lg-block m-0 mr-0 ml-2"
         *ngIf="is_logged_out"
       >
         <a
-          class="nav-link dropdown-toggle cursor-pointer"
+          class="dropdown-toggle cursor-pointer nav-link"
           id="navbarDropdown"
           role="button"
           data-toggle="dropdown"
@@ -199,26 +199,62 @@
         <div
           class="dropdown-menu profile-dropdown"
           aria-labelledby="navbarDropdown"
-          
         >
-        
-
           <a class="dropdown-item mb-3"
             ><span class=" pt-2 pb-2 pl-3 pr-3 login-button-bar"
               >
-             <button routerLink="/login" mat-raised-button class="project-heading login-button-for" >SignIn</button>
+             <button routerLink="/login" mat-raised-button class="project-heading login-button-for" ><i class="fas fa-fingerprint"></i> SignIn</button>
               </span
             ></a
           >
         </div>
       </li>
-        <li *ngIf="is_logged_in" routerLink="/client-info" class="mr-2">
+
+      <li
+      class="nav-item dropdown apna-view d-none d-md-none d-lg-block"
+      *ngIf="is_logged_in"
+    >
+      <a
+        class="nav-link dropdown-toggle cursor-pointer"
+        id="navbarDropdown"
+        role="button"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="fas fa-user text-center" ></i>
+      </a>
+      <div
+        class="dropdown-menu profile-dropdown"
+        aria-labelledby="navbarDropdown"
+      >
+        <a class="dropdown-item mb-3"
+          ><span class="  login-button-bar2"
+            >
+            <a class="nav-link project-heading" routerLink="/client-info"
+            ><i class="far fa-user text-center text-success"></i> Account
+          </a>
+          <a class="nav-link project-heading" routerLink="/wishlist"
+          ><i class="far fa-heart text-center text-success"></i> WishList
+        </a>
+        <a class="nav-link project-heading" (click)="logout()"
+        ><i class="fas fa-user-lock text-center text-success"></i> Logout
+      </a>
+
+           <!-- <button routerLink="/login" mat-raised-button class="project-heading login-button-for" >SignIn</button> -->
+            </span
+          ></a
+        >
+      </div>
+    </li>
+
+
+        <!-- <li *ngIf="is_logged_in" routerLink="/client-info" class="mr-2">
           <a routerLink="/" style="list-style-type:none;" class="nav-links" >  <i
             *ngIf="nm != null" 
             class="fas fa-user text-center " style="color: green;"
             title="{{ nm }}"
           >
-            <!-- {{ nm.length > 10 ? (nm | slice: 0:10) + "..." : nm }} -->
             </i
           >
           <i
@@ -227,19 +263,19 @@
             title="user"
             >user</i
           > </a>
-        </li>
+        </li> -->
      
 
-<li style="list-style: none;" class="ml-1" *ngIf="is_logged_out">
+<li style="list-style: none;" class="ml-0" *ngIf="is_logged_out">
   <a class="nav-link" routerLink="/login"
     ><i class="far fa-heart text-center text-success"></i>
   </a>
 </li>
-<li style="list-style: none;" class="ml-1" *ngIf="is_logged_in">
+<!-- <li style="list-style: none;" class="ml-1" *ngIf="is_logged_in">
   <a class="nav-link" routerLink="/client-info"
     ><i class="far fa-heart text-center text-success"></i>
   </a>
-</li>
+</li> -->
         <li style="list-style: none;" class="ml-1" routerLink="/cart">
            <a> <i class="fas fa-shopping-cart text-center" >
 
