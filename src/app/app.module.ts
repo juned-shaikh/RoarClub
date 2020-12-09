@@ -18,9 +18,9 @@ import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
 import { ReactiveFormsModule, FormsModule }    from '@angular/forms';
 import { AlertService, AuthenticationService, UserService} from './_services';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-   import { MatInputModule } from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
+import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
    import {MatTooltipModule} from '@angular/material/tooltip';
    import {MatCardModule} from '@angular/material/card';
@@ -48,6 +48,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { CheckoutStatusComponent } from './checkout-status/checkout-status.component';
 
 import {MatButtonModule} from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+
 
 import { OurBrandComponent } from './our-brand/our-brand.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
@@ -62,18 +64,25 @@ import { CustomerProfileComponent } from './customer-profile/customer-profile.co
 import { NgxImgZoomModule  } from 'ngx-img-zoom';
 import { ZoomComponent } from './product-view/zoom.component';
 import { GalleryComponent } from './gallery/gallery.component';
+import { MatNativeDateModule } from '@angular/material/core';
 import { ReviewratingComponent } from './reviewrating/reviewrating.component';
 import { RatingComponent } from './rating/rating.component';
 import { RatingNowComponent } from './rating-now/rating-now.component';
+// import {MatNativeDateModule} from '@angular/material';
+// import { MatMomentDateModule } from "@angular/material-moment-adapter";
 // import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { GalleryModule } from 'ng-gallery';
 import { LightboxModule } from 'ng-gallery/lightbox';
 import { PinchZoomModule } from 'ngx-pinch-zoom';
 import { OrderHistoryComponent } from './order-history/order-history.component';
+import { MemberBankDetailsComponent } from './member-bank-details/member-bank-details.component';
+import { MemberProfileComponent } from './member-profile/member-profile.component';
+import { MemberRegistrationDetailsComponent } from './member-registration-details/member-registration-details.component';
+import { MemberLoginSignupFormComponent } from './member-login-signup-form/member-login-signup-form.component';
 
 @NgModule({
   declarations: [
@@ -111,6 +120,10 @@ import { OrderHistoryComponent } from './order-history/order-history.component';
     WishlistComponent,
        ZoomComponent,
        GalleryComponent,
+       MemberBankDetailsComponent,
+       MemberProfileComponent,
+       MemberRegistrationDetailsComponent,
+       MemberLoginSignupFormComponent,
       
 
 
@@ -120,9 +133,11 @@ import { OrderHistoryComponent } from './order-history/order-history.component';
     PinchZoomModule ,
     GalleryModule,
     LightboxModule,
-    
+    MatTableModule,
+    MatSelectModule,
      FormsModule, NgxImgZoomModule ,
      RouterModule,
+     MatDatepickerModule,
     BrowserModule,
     AppRoutingModule,
     MatTooltipModule,
@@ -131,6 +146,7 @@ import { OrderHistoryComponent } from './order-history/order-history.component';
     MatCardModule,
     MatRadioModule,
     BrowserModule,
+    MatNativeDateModule,
     //MatTooltipModule,
     AppRoutingModule,
     MatFormFieldModule,
@@ -165,7 +181,7 @@ import { OrderHistoryComponent } from './order-history/order-history.component';
     AlertService,
     AuthGuard,
     AuthenticationService,
-
+    MatDatepickerModule,  
     UserService,
    // MessagingService,
     AsyncPipe,

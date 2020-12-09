@@ -20,10 +20,19 @@ export class AccountInfoComponent implements OnInit {
   public comp_id = sessionStorage.getItem('comp_num');
   public data = {access_token:this.access_token, comp_num:this.comp_num}
   userdata;
+  public is_confirm = false;
   public changepasssbox =false;
   public shownamebox = false;
   Changepassword:FormGroup;
- 
+  public visibility = true;
+  public visiblityoff = false;
+
+  public visibility2 = true;
+  public visiblityoff2 = false;
+
+  public visibility3 = true;
+  public visiblityoff3 = false;
+  
  
   constructor(	 private adminService: RoarclubserviceService,
     private router:Router,
@@ -44,11 +53,28 @@ export class AccountInfoComponent implements OnInit {
     return this.Changepassword.controls;
     
   }
+  checkConfirmPassword() {
+  
+
+    if(this.Changepassword.controls.confirm_password.value != this.Changepassword.controls.new_password.value){
+      this.is_confirm=true;
+    }
+    else if(this.Changepassword.controls.confirm_password.value == null){
+      this.is_confirm=false;
+    }
+    else{
+      this.is_confirm=false;
+    }
+  }
   ChangePassword(){
     let data = this.Changepassword.value;
     data.access_token = this.access_token;
     data.user_num = this.user_num;
-    if(this.Changepassword.invalid){
+    if(this.Changepassword.controls.new_password.value!=this.Changepassword.controls.confirm_password.value){
+      this.snackbar.open("Confirm password doesn't match with new password.","",{
+     duration:3000,
+      })}
+    else if(this.Changepassword.invalid){
       this.snackbar.open("please fill required field ","",{
         duration:3000,
          });

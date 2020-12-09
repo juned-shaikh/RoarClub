@@ -1,0 +1,64 @@
+mat-card, .mat-card{
+    background: rgb(43, 42,42);
+    color: white;
+}
+.example-full-width{
+    width: 100%;
+}
+/* mat-form-field{
+background: rgb(14, 13, 13);
+border-radius: 12px;
+padding: 0px 0px 10px 15px;
+height: 60px;
+color: whitesmoke;
+} */
+mat-select-value-text {
+    white-space: nowrap;
+    overflow: hidden;
+    color: aliceblue;
+}
+mat-hint, mat-icon{
+    color: goldenrod;
+}
+mat-label{
+    color: whitesmoke;
+}
+input{
+    color: whitesmoke;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: darkgray;
+    opacity: 1; /* Firefox */
+  }
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: darkgray;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: darkgray;
+  }
+  ::value{
+      color:white;
+  }
+  :value{
+      color: white;
+  }
+  /* .mat-option{
+      color: white;
+  } */
+  /* mat-select, mat-option{
+      color: white;
+  } */
+  /* mat-form-field-appearance-fill .mat-form-field-infix {
+    padding: .25em 0 .75em 0;
+} */
+
+mat-form-field-infix {
+    display: block;
+    position: relative;
+    flex: auto;
+    min-width: 0;
+    height: 12px;
+    border: none;
+    width: 180px;
+}

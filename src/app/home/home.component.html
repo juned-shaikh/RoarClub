@@ -87,7 +87,7 @@
      
    <!-- new add 17-11-2020 -->
    <div class="col-md-12 text-center">
-    <h2 class="title" style="font-family: Cinzel Semi Bold;">Shop by Brands</h2>
+    <h2 class="title" style="font-family: Cinzel Semi Bold;">Shop <span class="border-heading">by</span> Brands</h2>
   </div>
   <!-- end -->
   
@@ -96,13 +96,13 @@
     <div class="col-md-2" *ngFor="let brand of brands | slice:0:6;">
      
         <div class=" circular-image-brand" (click)="navigateBrand(brand.name,brand.brand_id)" >
-          <img src="{{brand?.thumbnail_sml_location}}" onerror="this.src='https://ap2-prod-images.disco-api.com/2020/2/24/d4cfb8ac-9ee1-4af5-a175-81790d55ebb9.jpg';" class="brand-image" style="width: 100%;" height="190px ;">
+          <img src="{{brand?.thumbnail_sml_location}}" onerror="this.src='assets/no-img.png';" class="brand-image" style="width: 100%;" height="190px ;">
         </div>
     </div>
   </div>
  
   <div class="row justify-content-end text-right pr-3 mt-1"  *ngIf="brands?.length > 6">
-    <span class="more-brands" routerLink="/our-brand"> see more brands <i class="fas fa-chevron-right"></i></span>
+    <span class="more-brands text-success" routerLink="/our-brand"> see more brands <i class="fas fa-chevron-right"></i></span>
      </div>
 <!-- top selling product by Aman Verma 06-11-2020 -->
   <section class="mt-2">
@@ -142,18 +142,18 @@
          <div class="col-md-3" *ngFor="let nprd of topSelling">
            <div class="card newproduct_box" id="box-img1">
             <img src="{{ nprd?.gallery?.medium_thumbnail_link }}" id="img1" alt="New Product Image" class="image" (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)">
-            <h1  class="outofstockproduct" *ngIf="nprd.txn_quantity < '1'"> Out of stock</h1>
+            <h1  class="outofstockproduct" *ngIf="nprd?.txn_quantity < '1'" (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)"> Out of stock</h1>
             <ul class="add-to-cart_newproduct">
               <li><a *ngIf="nprd.wishlist_check == false" 
                 style="cursor:pointer"
                 (click)="addToWishlist(nprd)"
                 matTooltip="Add to WishList"
-                > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i></a>
+                > <i class="fa fa-heart-o" aria-hidden="true"  ></i></a>
               <a
               style="cursor:pointer" *ngIf="nprd.wishlist_check == true"
               (click)="deleteFromWishlist(nprd.wishlist_num)"
               matTooltip="Already exist in Wishlist"
-              > <i class="fas fa-heart" aria-hidden="true" style="color: red;" ></i>
+              > <i class="fas fa-heart" aria-hidden="true"  ></i>
           </a>
         
             <!-- for withouyt login -->
@@ -161,14 +161,14 @@
                 style="cursor:pointer"
                 (click)="addToWishlistWL(nprd)"
                 matTooltip="Add to WishList"
-                > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i>
+                > <i class="fa fa-heart-o" aria-hidden="true"  ></i>
             </a></li>
               <li class="mt-1"><span *ngIf="userC==true">
                 <a *ngIf="nprd.cart_check == false "
                 style="cursor:pointer"
                 (click)="addToCart(nprd)"
                 matTooltip="Add to Cart"
-                > <i class="fa fa-cart-plus" style="color: green;"></i></a>
+                > <i class="fa fa-cart-plus" ></i></a>
                 </span>
                 
                 
@@ -176,14 +176,14 @@
                 style="cursor:pointer"
                 (click)="addToCart(nprd)"
                 matTooltip="Add to Cart"
-                > <i class="fa fa-cart-plus" style="color: green;"></i>
+                > <i class="fa fa-cart-plus" ></i>
                 </a></li>
             </ul>
-            <div class="overlay">
+            <div class="overlay" >
               <div class="text ">
 <div class="row">
   <div class="col-md-12 ">
-    <span class="newproduct_heading " >{{ (nprd.name.length>60)? (nprd.name | slice:0:60)+'...':(nprd.name) }}</span>
+    <span class="newproduct_heading " (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)">{{ (nprd.name.length>60)? (nprd.name | slice:0:60)+'...':(nprd.name) }}</span>
   </div>
 </div>
 
@@ -293,18 +293,18 @@
         <div class="col-md-3" *ngFor="let nprd of newproduct">
           <div class="card newproduct_box" id="box-img1">
            <img src="{{ nprd?.gallery?.medium_thumbnail_link }}" id="img1" alt="New Product Image" class="image" (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)">
-           <h1  class="outofstockproduct" *ngIf="nprd.txn_quantity < '1'"> Out of stock</h1>
+           <h1  class="outofstockproduct" *ngIf="nprd.txn_quantity < '1'" (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)"> Out of stock</h1>
            <ul class="add-to-cart_newproduct">
              <li><a *ngIf="nprd.wishlist_check == false" 
                style="cursor:pointer"
                (click)="addToWishlist(nprd)"
                matTooltip="Add to WishList"
-               > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i></a>
+               > <i class="fa fa-heart-o" aria-hidden="true"  ></i></a>
              <a
              style="cursor:pointer" *ngIf="nprd.wishlist_check == true"
              (click)="deleteFromWishlist(nprd.wishlist_num)"
              matTooltip="Already exist in Wishlist"
-             > <i class="fas fa-heart" aria-hidden="true" style="color: red;" ></i>
+             > <i class="fas fa-heart" aria-hidden="true"  ></i>
          </a>
        
            <!-- for withouyt login -->
@@ -312,14 +312,14 @@
                style="cursor:pointer"
                (click)="addToWishlistWL(nprd)"
                matTooltip="Add to WishList"
-               > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i>
+               > <i class="fa fa-heart-o" aria-hidden="true"  ></i>
            </a></li>
              <li class="mt-1"><span *ngIf="userC==true">
                <a *ngIf="nprd.cart_check == false "
                style="cursor:pointer"
                (click)="addToCart(nprd)"
                matTooltip="Add to Cart"
-               > <i class="fa fa-cart-plus" style="color: green;"></i></a>
+               > <i class="fa fa-cart-plus" ></i></a>
                </span>
                
                
@@ -327,14 +327,14 @@
                style="cursor:pointer"
                (click)="addToCart(nprd)"
                matTooltip="Add to Cart"
-               > <i class="fa fa-cart-plus" style="color: green;"></i>
+               > <i class="fa fa-cart-plus" ></i>
                </a></li>
            </ul>
-           <div class="overlay">
+           <div class="overlay" >
              <div class="text ">
 <div class="row">
  <div class="col-md-12 ">
-   <span class="newproduct_heading " >{{ (nprd.name.length>60)? (nprd.name | slice:0:60)+'...':(nprd.name) }}</span>
+   <span class="newproduct_heading " (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)">{{ (nprd.name.length>60)? (nprd.name | slice:0:60)+'...':(nprd.name) }}</span>
  </div>
 </div>
 
@@ -452,18 +452,18 @@
       <div class="col-md-3" *ngFor="let nprd of discountS">
         <div class="card newproduct_box" id="box-img1">
          <img src="{{ nprd?.gallery?.medium_thumbnail_link }}" id="img1" alt="New Product Image" class="image" (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)">
-         <h1  class="outofstockproduct" *ngIf="nprd.txn_quantity < '1'"> Out of stock</h1>
+         <h1  class="outofstockproduct" *ngIf="nprd.txn_quantity < '1'" (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)"> Out of stock</h1>
          <ul class="add-to-cart_newproduct">
            <li><a *ngIf="nprd.wishlist_check == false" 
              style="cursor:pointer"
              (click)="addToWishlist(nprd)"
              matTooltip="Add to WishList"
-             > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i></a>
+             > <i class="fa fa-heart-o" aria-hidden="true"  ></i></a>
            <a
            style="cursor:pointer" *ngIf="nprd.wishlist_check == true"
            (click)="deleteFromWishlist(nprd.wishlist_num)"
            matTooltip="Already exist in Wishlist"
-           > <i class="fas fa-heart" aria-hidden="true" style="color: red;" ></i>
+           > <i class="fas fa-heart" aria-hidden="true"  ></i>
        </a>
      
          <!-- for withouyt login -->
@@ -471,14 +471,14 @@
              style="cursor:pointer"
              (click)="addToWishlistWL(nprd)"
              matTooltip="Add to WishList"
-             > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i>
+             > <i class="fa fa-heart-o" aria-hidden="true"  ></i>
          </a></li>
            <li class="mt-1"><span *ngIf="userC==true">
              <a *ngIf="nprd.cart_check == false "
              style="cursor:pointer"
              (click)="addToCart(nprd)"
              matTooltip="Add to Cart"
-             > <i class="fa fa-cart-plus" style="color: green;"></i></a>
+             > <i class="fa fa-cart-plus" ></i></a>
              </span>
              
              
@@ -486,14 +486,14 @@
              style="cursor:pointer"
              (click)="addToCart(nprd)"
              matTooltip="Add to Cart"
-             > <i class="fa fa-cart-plus" style="color: green;"></i>
+             > <i class="fa fa-cart-plus" ></i>
              </a></li>
          </ul>
-         <div class="overlay">
+         <div class="overlay" >
            <div class="text ">
 <div class="row">
 <div class="col-md-12 ">
- <span class="newproduct_heading " >{{ (nprd.name.length>60)? (nprd.name | slice:0:60)+'...':(nprd.name) }}</span>
+ <span class="newproduct_heading " (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)">{{ (nprd.name.length>60)? (nprd.name | slice:0:60)+'...':(nprd.name) }}</span>
 </div>
 </div>
 
@@ -565,5 +565,4 @@
   
     
            
-  <app-footer></app-footer>
   <!-- end -->

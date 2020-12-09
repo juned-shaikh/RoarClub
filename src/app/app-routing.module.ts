@@ -17,6 +17,14 @@ import { RatingComponent } from './rating/rating.component';
 import { RatingNowComponent } from './rating-now/rating-now.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
+import { CheckoutStatusComponent } from './checkout-status/checkout-status.component';
+import { ClientaddressComponent } from './clientaddress/clientaddress.component';
+import { AccountInfoComponent } from './account-info/account-info.component';
+import { CustomerProfileComponent } from './customer-profile/customer-profile.component';
+import { MemberLoginSignupFormComponent } from './member-login-signup-form/member-login-signup-form.component';
+import { MemberRegistrationDetailsComponent } from './member-registration-details/member-registration-details.component';
+import { MemberProfileComponent } from './member-profile/member-profile.component';
+import { MemberBankDetailsComponent } from './member-bank-details/member-bank-details.component';
  
 const routes: Routes = [
   { path: "",  pathMatch: "prefix", 
@@ -31,6 +39,16 @@ const routes: Routes = [
       {
         path : "login", component:UserloginComponent
       },
+      {
+        path: "member-bank-update", component:MemberBankDetailsComponent
+      },
+      {
+        path : "member-login", component:MemberLoginSignupFormComponent
+      },
+      {
+        path : "member-registration-form", component:MemberRegistrationDetailsComponent
+      },
+    
       {
         path:"register", component:RegistrationComponent
       },
@@ -50,8 +68,13 @@ const routes: Routes = [
         component:CheckoutComponent
       },
       {
+        path:"checkout-status",
+        component:CheckoutStatusComponent
+      },
+      {
         path:"client-info",
         component:ProfilePageComponent,
+    
        
       }, {
         path: "order-details/:id",
@@ -68,6 +91,45 @@ const routes: Routes = [
       },
       { path: "rating", component: RatingComponent},
       { path: "rating-now", component: RatingNowComponent},
+
+      { path: "my-account", 
+      component:ProfilePageComponent,
+    children: [
+
+      {path : '', component : CustomerProfileComponent},
+      {path : 'profile', component : CustomerProfileComponent},
+      {
+        path: "member-profile", component:MemberProfileComponent
+      },
+     
+    //  {path : 'orders', 
+    //  loadChildren: () =>
+    //  import('./order/order.module').then(m => m.OrderModule)
+    // },
+    {
+        path: "order-history",
+       component:OrderHistoryComponent
+
+      },
+     { path: "wishlist",
+      component:WishlistComponent
+       },
+
+     {path: "manage-address", 
+      component:ClientaddressComponent
+    
+    },
+    {path: "account-setting", 
+    component:AccountInfoComponent
+   
+   },
+    {
+      path: "order-details/:id" ,
+   component:OrderViewDetailsComponent
+    },
+    ],
+ },
+
     ],
  },
 

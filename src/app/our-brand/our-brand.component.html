@@ -3,7 +3,7 @@
 <section style="min-height: 80vh;">
 
 <div class="container-fluid">
-  <h4 class="font-weight-600 pl-2 mb-2 mt-2" style="color: white;">EXPLORE TOP BRANDS</h4>
+  <h4 class="font-weight-600 pl-2 mb-2 mt-2 project-heading" style="color: white;">EXPLORE TOP <span class="border-heading">BRANDS</span></h4>
   <div class="row">
     <div class="col-md-4 col-lg-2 col-sm-4 col-6 text-center mt-4" *ngFor="let brand of brands" >
 <mat-card  class="mat-box">
@@ -11,8 +11,8 @@
       <img  src="{{brand.thumbnail_sml_location}}" onerror="this.src='https://cdn.iconscout.com/icon/free/png-256/404-page-not-found-456876.png';" class="brand-image">
   </div>
  
-  <p (click)="navigateCategory(brand.name,brand.brand_id)" class="brand-text font-weight-600 mt-1">   {{ (brand.name.length>15)? (brand.name | slice:0:15)+'...':(brand.name) }}</p>
-  <p class="addition_details">  {{ (brand.addition_details.length>20)? (brand.addition_details | slice:0:20)+'...':(brand.addition_details)  | titlecase }} </p>
+  <p (click)="navigateCategory(brand.name,brand.brand_id)" class="brand-text font-weight-600 mt-1 project-heading">   {{ (brand.name.length>15)? (brand.name | slice:0:15)+'...':(brand.name) }}</p>
+  <p class="addition_details project-discription">  {{ (brand.addition_details.length>20)? (brand.addition_details | slice:0:20)+'...':(brand.addition_details)  | titlecase }} </p>
 </mat-card>
 </div>
 </div>
@@ -23,9 +23,8 @@
 
 
 
-<div *ngIf="ecomtrails">
-  <app-footer></app-footer>
+<!-- <div *ngIf="ecomtrails">
 </div>
 <div *ngIf="ninetoys">
   <app-ninetoys-footer></app-ninetoys-footer>
-</div>
+</div> -->

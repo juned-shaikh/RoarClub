@@ -1,0 +1,67 @@
+.example-full-width{
+    width: 100%;
+}
+.mat-datepicker-toggle{
+  /*//background: blueviolet;*/
+  z-index:111111;
+}
+
+::ng-deep .datepickerOne {
+  /*background:lightblue;*/
+   z-index:111111;
+}
+
+::ng-deep .datepickerOne .mat-calendar-body-today:not(.mat-calendar-body-selected){
+  /*border-color:darkblue;*/
+   z-index:111111;
+}
+/* select:focus{
+    border: 1px solid indianred;
+    outline: none;
+}
+select, textarea {
+    margin: 0;
+    font-family: inherit;
+    border: 1px solid indianred;
+    font-size: inherit;
+    line-height: inherit;
+    padding: 3px;
+    color: #8c3669;
+    font-size: 14px;
+    border-radius: 7px;
+} */
+
+mat-card{
+  overflow: hidden;
+  background: rgb(43,42,42);
+  color: white;
+}
+
+input{
+  text-transform: capitalize;
+  color: white;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: darkgray;
+    opacity: 1; /* Firefox */
+  }
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: darkgray;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: darkgray;
+  }
+  ::value{
+      color:white;
+  }
+  :value{
+      color: white;
+  }
+  mat-label{
+      color: white;
+  }
+  mat-icon{
+      color: green;
+  }

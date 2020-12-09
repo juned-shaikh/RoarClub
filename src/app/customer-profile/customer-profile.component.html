@@ -1,121 +1,60 @@
 
 
-<div class="container-fluid">
-    <!-- <div class="row border-bottom" *ngIf="!shownamebox">
-        <div class="col-md-3 p-3 col-3">
-            <div  *ngIf="userdata?.profile_image ==null || userdata?.profile_image =='default.png'" class="card" style="border: none;">
-                <img src="../../assets/facebook1.png" height="150" width="150"/>
-            </div>
-            <div  *ngIf="userdata?.profile_image !=null && userdata?.profile_image !='default.png'" class="card" class="user-profile">
-                <img src="{{userdata?.profile_image}}" height="175" width="175" class="img-fluid">
-            </div>
-        </div>
-        <div class="col-md-7 pt-5 pl-3 col-7">
-                <h3 *ngIf="userdata?.name">{{userdata?.name | titlecase}}</h3>
-                <h6 *ngIf="userdata?.email"  class="pl-1">{{userdata?.email}}</h6>
-                <h6 *ngIf="userdata?.mobile" class="pl-1">{{userdata?.mobile}}</h6>
-        </div>
-        <div class="col-md-2 p-3 col-2">
-            <span class="border p-1 text-uppercase cursor-pointer" style="    font-size: 10px;
-            font-weight: 600;" (click)="edit()" title="update">edit profile</span>
-        </div>
-    </div> -->
-    <div class="row border-bottom" *ngIf="shownamebox">
-        <div class="col-md-3 p-3 col-3">
-            <!-- <div class="card" style="border: none;">
-                <img src="../../assets/img/customer-profile.png" height="150" width="150"/>
-            </div> -->
-            <div  *ngIf="userdata?.profile_image ==null || userdata?.profile_image =='default.png'"  style="border: none;">
-                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" height="150" width="150"/>
-            </div>
-            <div  *ngIf="userdata?.profile_image !=null && userdata?.profile_image !='default.png'"  class="user-profile">
-                <img src="{{userdata?.profile_image}}" height="175" width="175" class="img-fluid">
-            </div>
-        </div>
-        <div class="col-md-7 pt-5 pl-3 col-7">
-            <form [formGroup]="updateprofile">
-                <mat-label  >User Name</mat-label>&nbsp;&nbsp;
-            <mat-form-field class="example-full-width " >
-                <input matInput placeholder="User Name"  formControlName="name" value="{{userdata?.name}}" >
-            </mat-form-field>
+       
+<div class="mat-card" *ngIf="!shownamebox">
+  <div class="row">
+    <div class="col-sm-3">
+              
+       
+      <div class="text-center">
+        <img 
+        src="{{userdata?.profile_image}}" onerror="this.src='http://ssl.gstatic.com/accounts/ui/avatar_2x.png'"
+        class="avatar img-circle img-thumbnail" alt="avatar">
+
+       
+      </div>
+     
+            
+                 
+               
           
-            
-            <br/>
-            <button mat-raised-button class=" order-button mt-2" (click)="update()">Update</button>
-            </form>
+          
         </div>
-        <div class="col-md-2 p-3 col-2">
-            <span class="border p-1 text-uppercase cursor-pointer" style="    font-size: 10px;
-            font-weight: 600;" (click)="cancel()" title="update">cancel</span>
+        <div class="col-md-8" style="color: white;">
+          <h4 class="text-right" ><span><i class="fas fa-user-edit" (click)="edit()" title="update profile" style="cursor: pointer; color: green;"  data-toggle="tab"></i></span></h4>
+          <h3 class="mt-2 project-heading"  >{{userdata.name}} </h3>
+          <h4 *ngIf="userdata.mobile" class="d-flex project-heading"><i class="fas fa-phone-square-alt" style="color: green;"></i>&nbsp; {{userdata.mobile}}</h4> 
+          <h4 *ngIf="userdata.email" class="project-discription"><i class="fas fa-envelope-open-text" style="color: green;"></i>&nbsp; {{userdata.email}}</h4> 
+         
         </div>
-  
-    </div>
-
-    <!-- <div class="row justify-content-center" *ngIf="changepasssbox">
-        <div class="col-md-11 mt-2 mb-1 col-11">
-            <div class="row  justify-content-between pb-2 cursor-pointer" >
-                <h6 class="font-weight-500  pl-2 text-primary cursor-pointer" matTooltip="Change Password">Change Password</h6>  
-                <span (click)="showchangepass()" class="border  pl-2 pr-2 border" matTooltip="cancel">cancel</span>
-            </div>
-            <form [formGroup]= "Changepassword">
-            <div class="row mt-2" *ngIf="changepasssbox">
-                <mat-form-field appearance="fill" class="example-full-width">
-                    <mat-label>Enter Current Password</mat-label>
-                    <input matInput  required formControlName="old_password" type="password">
-                  <mat-icon matSuffix>lock</mat-icon>
-                </mat-form-field>
-            </div>
-            <div class="row" *ngIf="changepasssbox">
-                <mat-form-field appearance="fill" class="example-full-width">
-                    <mat-label>Enter New Password</mat-label>
-                    <input matInput  required formControlName="new_password" type="password">
-                  <mat-icon matSuffix>lock</mat-icon>
-                </mat-form-field>
-            </div>
-            <div class="row" *ngIf="changepasssbox">
-                <mat-form-field appearance="fill" class="example-full-width">
-                    <mat-label>Re-Enter New Password</mat-label>
-
-                    <input matInput  required formControlName="confirm_password" type="password">
-                  <mat-icon matSuffix>lock</mat-icon>
-                </mat-form-field>
-            </div>
-           
-            <div class="row mb-2" *ngIf="changepasssbox">
-                <button mat-raised-button class="order-button cursor-pointer" (click)="ChangePassword()">Change Password</button>
-            </div>
-        </form>
-        </div>
-    </div> -->
-
-
-    <!-- <div class="row">
-        <div class="col-md-4 mt-2 mb-2">
-            <div class="card text-center p-2 cursor-pointer card-box-mover" routerLink="/home_profile/orders">
-                <img src="https://img.icons8.com/windows/64/000000/box-other.png" width="60" height="60" class="text-center mr-auto ml-auto mt-3"/>
-                <h6 class="font-weight-600 mt-1">Orders</h6>
-                <p class="text-muted">check your order status</p> 
-            </div>
-        </div>
-        <div class="col-md-4 mt-2 mb-2">
-            <div class="card text-center card-box-mover p-2 cursor-pointer" routerLink="/home_profile/wishlist">
-                <img src="https://img.icons8.com/ios-filled/50/000000/wish-list.png" width="60" height="60" class="text-center mr-auto ml-auto mt-3"/>
-                <h6 class="font-weight-600 mt-1">WishList</h6>
-                <p class="text-muted">check your wishlist</p> 
-            </div>
-        </div>
-        <div class="col-md-4 mt-2 mb-2 " (click)="showchangepass()">
-            <div class="card text-center card-box-mover p-2 cursor-pointer">
-            
-                <img src="https://img.icons8.com/windows/64/000000/--folder-settings.png" width="60" height="60" class="text-center mr-auto ml-auto mt-3"/>
-                <h6 class="font-weight-600 mt-1">Acoount Setting</h6>
-                <p class="text-muted">change your password</p> 
-            </div>
-        </div>
-    </div> -->
+  </div>
 </div>
-
-
+                <div class="mat-card " *ngIf="shownamebox" style=" background: rgb(43, 42, 42); ">
+                  <div class="row " >
+                   
+                    <div class="col-md-6 pt-3 pl-3 col-7">
+                          <form [formGroup]="updateprofile" style="padding: 10px;">
+                              <mat-label class="project-heading pb-3" style="position: relative;
+                              color: white;
+                              top: -7px;">User Name :</mat-label>&nbsp;&nbsp;
+                          <mat-form-field class="example-full-width mt-2"  >
+                              <input matInput   formControlName="name" value="{{userdata?.name}}" style="border-radius: 7px; color: white; border: 1px solid whitesmoke; padding: 5px 10px 10px 10px;">
+                          </mat-form-field>
+                        
+                          
+                          <br/>
+                          <button mat-raised-button class="  mt-2 project-button project-heading" style="margin-left: 17%; " (click)="update()">Update</button>
+                          </form>
+                    </div>
+                    <div class="col-md-3 p-3 col-2">
+                        <span class=" p-1 text-uppercase project-button project-heading" style="    font-size: 10px;
+                        font-weight: 600; " (click)="cancel()" title="Cancel">cancel</span>
+                    </div>
+              
+                </div>
+                </div>
+               
+            
 
  <!-- <div class="container-fluid  mb-3">
     <div class="row justify-content-center">

@@ -1,0 +1,88 @@
+/* .bg-img{
+   
+    height: 100vh;
+  } */
+
+  .content {
+    text-align: center;
+  }
+  
+  /* #materialLoginFormEmail{
+    color: white;
+    border-radius: 2px;
+    width: 240px;
+    height: 44px;
+    border: none;
+    padding: 15px 20px;
+    background-color: rgba(65, 65, 65, 0.5);
+    margin-bottom: 24px;
+  } */
+  .content h2 {
+    padding: 15px 0px 15px;
+    font-size: 2em;
+    color: aliceblue;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+  span {
+    /* color: green; */
+    color: #B89D4E;
+  }
+  .modal-content{
+    background: rgb(43, 42, 42);
+    /* background-image: url("https://images.pexels.com/photos/2387793/pexels-photo-2387793.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"); */
+  }
+    .col-sm-9{   
+        background-position: center;
+        background-size: cover;
+      border-radius: 12px;
+      background: rgb(43, 42, 42);
+  box-shadow: 5px 8px 5px rgba(0, 0, 0, 0.3);
+      /* background-image: url("https://images.pexels.com/photos/2387793/pexels-photo-2387793.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"); */
+    }
+    
+input{
+  color: white!important;
+}
+::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: 0.4em 0px !important;}
+::ng-deep .mat-form-field-label-wrapper { top: -1.5em; }
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+    transform: translateY(-1.1em) scale(.75);
+    width: 133.33333%;
+}
+input{
+  /* border-bottom: 2px solid green; */
+  color: white!important;
+}
+input>:focus{
+  border-bottom: 2px solid green!important;
+}
+
+.form-control{
+    background: rgb(43, 42, 42);
+    border-bottom: 2px solid white!important;
+    border-radius: 1px;
+    border: none;
+}
+.form-control:focus{
+    outline: none!important;
+    /* border: none!important; */
+    box-shadow: none;
+}
+
+.example-full-width{
+  width: 100%;
+}
+mat-icon{
+  color: green;
+}
+mat-label{
+    color: white;
+}
+.box-login-with{
+    background: rgb(43, 42, 42);
+    box-shadow: 0 0 9px rgba(0, 0, 0, 0.384);
+    border-radius: 9px;
+}

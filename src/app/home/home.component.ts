@@ -22,6 +22,7 @@ import { Location } from "@angular/common";
 export class HomeComponent implements OnInit {
   isShow: boolean;
   qty_set;
+  
   qty;
   brands;
   rating_option=true;
@@ -998,19 +999,21 @@ this.count = this.count+1;
      // name.replace(re,"-");
     // let slug = name.replace(/\s+/g, '-') + "-?product_no=" + id  + "&marketplace=ECOMTRAILS";
         if(this.previewFlag == '1'){
-          // this.router
-          // .navigateByUrl("/RefreshComponent", {
-          //   skipLocationChange: true
-          // })
-          // .then(() => 
-          this.router.navigate(["/Admin/preview/product-view", slug]);
+          const currentRoute = this.router.url;
+          this.router
+          .navigateByUrl("/RefreshComponent", {
+            skipLocationChange: true
+          })
+          .then(() => 
+          this.router.navigate(["/Admin/preview/product-view", slug]));
         }else{
-          // this.router
-          // .navigateByUrl("/RefreshComponent", {
-          //   skipLocationChange: true
-          // })
-          // .then(() => 
-          this.router.navigate(["/product-view", slug]);
+          const currentRoute = this.router.url;
+          this.router
+          .navigateByUrl("/", {
+            skipLocationChange: true
+          })
+          .then(() => 
+          this.router.navigate(["/product-view", slug]));
 
         }
     }

@@ -1,206 +1,428 @@
-<div class="container-fluid">
-<div class="row justify-content-center">
-  <div class="col-md-8 card" style="background: grey;">
-    <div class="row justify-content-center mt-1">
-      <div class="col-md-12">
-        <h6 class=" font-weight-600" style="font-weight: 600; font-size: 15px;"><i class="fab fa-first-order-alt"></i> Order No.  {{orderDetails.order_number}}</h6>
-      </div>
+
+ <div class="container-fluid card">
+  <div class="row justify-content-center " >
+    
+    <div class="col-md-5 border-bottom pt-2 bg-muted row-top" >
+       <h6 class="text-success project-heading font-weight-600"> <i class="far fa-arrow-alt-circle-left cursor-pointer" title="back" routerLink="/my-account/order-history"></i> &nbsp;    <i class="fab fa-first-order-alt"></i> Order No.  {{orderDetails?.order_number}}</h6>
     </div>
-    <div class="row justify-content-center">
-     <div class="col-md-12 col-lg-12 mt-1" *ngFor="let orderDetail of orderDetails.order_inventory;let n=index">
-      <div  class=" card " style="background: #000000;">
-
-        <div class="row mt-2 ">
-
-       <div class="col-lg-3">
-           <div class="cursor-pointer p-2" style="height: 160px; overflow: hidden;"  (click)="view_product2(orderDetail.product.meta_title, orderDetail.product.product_no,orderDetail.product.slug,orderDetail.product.quick_product_check);modal.dismiss('Cross click')" title="View Product">
-             <img
-               src="{{ orderDetail.product_image.image_link }}"
-               height="120"
-               width="120" class=""
-               onerror="this.src='assets/img/favicon1.png';"
-             />
-           </div>
-       </div>
-       <div class="col-lg-5">
-         <!-- <div class="row justify-content-center">
-           <div class="col-md-12">
-           <h6 class="text-muted">Product Detail</h6>
-         </div>
-         </div> -->
-         <div class="row">
-           <div class="col-lg-12 " title="{{ orderDetail.product.name }}">
-             <span class=" details font-weight-600"> {{ (orderDetail.product.name.length>40)? (orderDetail.product.name | slice:0:40)+'...':(orderDetail.product.name) }} </span
-             >
-
-            
-           </div>
-         </div>
-         <div class="row">
-           <div class="col-lg-12 " title="{{ orderDetail.product.heading }}">
-             <span class=" details1  text-muted">   {{ (orderDetail.product.heading.length>40)? (orderDetail.product.heading | slice:0:40)+'...':(orderDetail.product.heading) }} </span
-             > 
-          
-             
-           </div>
-         </div>
-         <div class="row">
-           <div class="col-lg-6 details">
-             <div
-             class=""
-             click="view_product(orderDetail.product.product_no,orderDetail.product.quick_product_check)"
-           >
-          
-           
-             <div>
-               <span class="details">Quantity :</span>
-               {{ orderDetail.qty }}
-             </div>
-             <div>
-               <span class="details">Model :</span>
-               {{ orderDetail.product.model }}
-             </div>
-           
-             <div>
-               <span class="details">HSN Code :</span>
-               {{ orderDetail.product.hsncode }}
-             </div>
-             <!-- <div>
-               <span class="details">Type: </span
-               >{{ orderDetail.product_rate.name }}
-             </div> -->
-             <div class="">
-               <span class="details d-flex">Shipping Charge :  ₹  {{ orderDetail.product_rate.pro_shipping_amt }}</span> 
-              
-             </div>
-           </div>
-           </div>
-           <!-- <div class="col-lg-6">
-           
-
-             <div class="">
-               <span class="details">MRP : </span> ₹
-               {{ orderDetail.product.mrp }}
-             </div>
-             <div class="">
-               <span class="details"> Tax Rate : </span>
-               {{ orderDetail.product.tax_rate }}%
-             </div>
-             <div class="">
-               <span class="details">Amount : </span> ₹
-               {{ orderDetail.product_rate.rate }}
-             </div>
-            
-             <div class="">
-               <span class="details">Discount  : </span> ₹
-               {{ orderDetail.product_rate.discount_amt }}
-             </div>
-           
-           </div> -->
-         </div>
+    <div class="col-md-7 border-bottom pt-2 row-top" >
      
-       </div>
-       <div class="col-lg-4 details" >
-         <div
-           class=""
-         >
-           <h6 class="">Price Detail</h6>
-
-         
-           <!-- <div>
-             <span class="details">Type: </span
-             >{{ orderDetail.product_rate.name }}
-           </div> -->
-           <!-- <div>
-             <span class="details">Qty:</span> {{ orderDetail.qty }}
-           </div> -->
-
-           <div class="">
-             <span class="details">Total MRP : </span> ₹ {{ orderDetail.product_rate.total_mrp }}
-           </div>
-           <div class="">
-             <span class="details">Total Amount : </span> ₹
-             {{ orderDetail.product_rate.inventory_total_amt }}
-           </div>
-
-           <div class="">
-             <span class="details">Discount  : </span> ₹
-             {{ orderDetail.product_rate.discount_total_amt }}
-           </div>
-            <div *ngIf="orderDetail.product_rate.promo_code_discount!=0 && orderDetail.product_rate.promo_code_discount!=null" class=""> <span class="details">Promo Code Discount : </span> ₹{{ orderDetail.product_rate.promo_code_discount }}</div>
-          
-           <div class="">
-             <span class="details">Net Amount : </span> ₹
-             {{ orderDetail.product_rate.net_amt }}
-           </div>
-           <!-- <div class="">
-             <span class="details">Shipping Charge : </span> ₹
-             {{ orderDetail.product_rate.shipping_amt }}
-           </div> -->
-           <br />
-
-         </div>
-       </div>
-     
-       <!-- <hr width="50%" size="8" align="center"> -->
-       <br>
-     </div>
-     </div>
-     </div>
-    </div>
-      <div class="row justify-content-center mt-2">
-      <div class="col-lg-12 " style="color: black;">
-        <!-- <h5 class="p-1">Address Details:</h5> -->
-
-<div class="row justify-content-center">
-<div class="col-md-10 border-bottom border-top pt-2 pb-2">
-  <h6 class="order-status font-weight-400">Updated sent to</h6>
- 
-     <h5 class="font-weight-400"><i class="fas fa-phone "></i> {{ orderDetails.billing_address.contact_no }}</h5>
-     <h6 class="font-weight-400"><i class="far fa-envelope"></i> {{ orderDetails.billing_address.email }}</h6>
-</div>
-</div>
-<div class="row justify-content-center" *ngIf="orderDetails.billing_address">
-<div class="col-lg-10 border-bottom pt-2 pb-2">
-  <h6 class="order-status font-weight-400 pb-2"><i class="fas fa-location-arrow"></i> Billing Address</h6>
-  <h6 class="font-weight-600">
-    {{ orderDetails.billing_address.receiver_name }}
-  </h6>
-  <h6 class="font-weight-400">
-    {{ orderDetails.billing_address.line1 }},{{
-      orderDetails.billing_address.line2
-    }}<br />
-    {{ orderDetails.billing_address.city }},
-    {{ orderDetails.billing_address.state }}<br />
-    {{ orderDetails.billing_address.country }}
-  </h6>
-</div>
-</div>
-
-<div class="row justify-content-center" *ngIf="orderDetails.shipping_address">
-<div class="col-lg-10 border-bottom pt-2 pb-2">
-  <h6 class="order-status font-weight-400 pb-2"><i class="fas fa-street-view"></i> Shipping Address</h6>
-  <h6 class="font-weight-600">
-    {{ orderDetails.shipping_address.receiver_name }}
-  </h6>
-  <h6 class="font-weight-400">
-    {{ orderDetails.shipping_address.line1 }},{{
-      orderDetails.shipping_address.line2
-    }}<br />
-    {{ orderDetails.shipping_address.city }},
-    {{ orderDetails.shipping_address.state }}<br />
-    {{ orderDetails.shipping_address.country }}
-  </h6>
-</div>
-</div>
-
-        
+      <div class="row justify-content-end">
+        <div class="col-md-10"> <h6 class=" font-weight-600 text-muted Address project-heading">Updates sent to</h6></div>
       </div>
+      <div class="row justify-content-end mt-1">
+        <div class="col-md-4">
+          <h6 class="font-weight-400 update-sent"><i class="fas fa-phone text-muted"></i> {{ orderDetails?.billing_address?.contact_no }}  </h6>
+        </div>
+        <div class="col-md-6">
+          <h6 class="font-weight-400 update-sent project-discription"> <i class="far fa-envelope"></i> {{ orderDetails?.billing_address?.email }}</h6>
+        </div>
+      </div>
+    
+   
+    
     </div>
   </div>
-</div>
+  <div class="row mt-1 border-bottom pb-2">
+    <div class="col-md-6" *ngIf="orderDetails?.billing_address">
+    <h6 class="text-muted font-weight-600 pb-1 Address project-heading"><i class="fas fa-location-arrow"></i> Billing Address</h6>
+    <h6 class="font-weight-500 Address project-discription">
+      {{ orderDetails?.billing_address?.receiver_name }}
+    </h6>
+    <h6 class="font-weight-400 Address project-discription">
+      {{ orderDetails?.billing_address?.line1 }},{{
+        orderDetails?.billing_address?.line2
+      }}<br />
+      {{ orderDetails?.billing_address?.city }},
+      {{ orderDetails?.billing_address?.state }}<br />
+      {{ orderDetails?.billing_address?.country }}
+    </h6>
+  </div>
+    <div class="col-md-6" *ngIf="orderDetails?.shipping_address">
+      <h6 class="text-muted font-weight-600 pb-1 Address project-heading"><i class="fas fa-street-view"></i> Shipping Address</h6>
+      <h6 class="font-weight-500 Address project-discription">
+        {{ orderDetails?.shipping_address?.receiver_name }}
+      </h6>
+      <h6 class="font-weight-400 Address project-discription">
+        {{ orderDetails?.shipping_address?.line1 }},{{
+          orderDetails?.shipping_address?.line2
+        }}<br />
+        {{ orderDetails?.shipping_address?.city }},
+        {{ orderDetails?.shipping_address?.state }}<br />
+        {{ orderDetails?.shipping_address?.country }}
+      </h6>
+    </div>
+  </div>
+  <div class="row ">
+  
+  <div class="border-top col-md-12" style="width: 100%;"  *ngFor="let orderDetailParcel of orderDetails?.parcel_inventory;let parcelsi=index">
+  
+   
+  
+        <div class="row justify-content-end  ">
+        
+        
+          
+         
+
+          <div *ngIf="cancel_policy==1 && order_inventory.cancel==true && (this.minDate.getFullYear() == orders.order_year) && ((this.minDate.getMonth()+1) == orders.order_month) && ((this.minDate.getDate()==orders.order_dates))"
+           class="col-md-5 text-right mr-2 pt-1">
+           <span class="order-button-status text-success" *ngIf="orderDetailParcel.order_inventory.length==1"
+          (click)=" update_cancel_initiate(orderDetailParcel,orderDetails.order_id,orderDetailParcel.parcel_no)">Cancel</span>
+      
+          <span class="order-button-status text-success" *ngIf="cancel_policy==2 && order_inventory.cancel==true" 
+          (click)=" parcelsSplit(orderDetailParcel,'cancel','multi');openXl(contentSplit)">Cancel</span>
+          </div>
+
+          <div *ngIf="orderDetailParcel.order_inventory.length>1" class="col-md-5 text-right mr-2 pt-1">
+            <span class="order-button-status text-success" *ngIf="orderDetailParcel.order_inventory.length==1"
+            (click)=" update_cancel_initiate(orderDetailParcel,orderDetails.order_id,orderDetailParcel.parcel_no)">Cancel</span>
+            <span class="order-button-status text-success" *ngIf="orderDetailParcel.order_inventory.length>1"
+              (click)=" parcelsSplit(orderDetailParcel,'cancel','multi');openXl(contentSplit)">Cancel</span>
+            
+          </div>
+          
+
+          
+          <div *ngIf="return_policy==true && order_inventory.rtd==true && order_inventory.product.return_days!=null && (this.minDate.getFullYear() == orders.order_year) && ((this.minDate.getMonth()+1) == orders.order_month) && ((this.minDate.getDate()-orders.order_dates) <= order_inventory.product.return_days)" 
+  
+          
+          class="col-md-5 text-right mr-2 pt-1">
+          <span class="order-button-status text-success" *ngIf="orderDetailParcel.order_inventory.length>1"
+            (click)="parcelsSplit(orderDetailParcel,'return','multi');openXl(contentSplit)">Return</span>
+          <span class="order-button-status text-success" *ngIf="orderDetailParcel.order_inventory.length==1"
+          (click)="return_start(orderDetails.order_id,orderDetailParcel.order_inventory,orderDetailParcel.order_inventory[0].product.name,orderDetails.order_number);openXl(contentReturn)" >Return</span>
 
 
+          </div>
+
+      
+       </div>
+  <div class="row ">
+     
+      <!-- Parcel No. : {{orderDetailParcel.parcel_no}} -->
+      <div class="col-md-6 col-lg-6 mt-1 " style="box-sizing: border-box; border: 1px solid #b89d4e; border-radius: 6px;" *ngFor="let orderDetail of orderDetailParcel.order_inventory;let n=index">
+     <!-- <div  class="  cursor-pointer border " > -->
+
+       <div class="row ">
+
+      <div class="col-lg-2 pt-3">
+          <div class="cursor-pointer"   (click)="view_product2(orderDetail.product.meta_title, orderDetail.product.product_no,orderDetail.product.slug,orderDetail.product.quick_product_check);modal.dismiss('Cross click')" title="View Product">
+            <img
+              src="{{ orderDetail.product_image.image_link }}" 
+             
+              onerror="this.src='assets/no-img.png';"
+            />
+          </div>
+      </div>
+      <div class="col-lg-5 pt-2 pb-2">
+       <h6 class="sub-heading-of-order font-weight-600 project-discription" title="{{orderDetail.product.name}}" click="view_product(orderDetail.product.product_no,orderDetail.product.quick_product_check)"> {{ (orderDetail.product.name?.length>20)? (orderDetail.product.name | slice:0:20)+'...':(orderDetail.product.name) }}</h6>
+       
+        <h6 class="sub-heading-of-order project-discription" style="text-transform: capitalize!important"> {{ (orderDetail.product.heading?.length>35)? (orderDetail.product.heading | slice:0:35)+'...':(orderDetail.product.heading) }} </h6>
+   
+        <h6 class="sub-heading-of-order project-discription">
+         Qty. :  {{ orderDetail.qty }} 
+        </h6>
+        <h6 class="sub-heading-of-order project-discription" *ngIf="orderDetail.product.model">Model : {{ orderDetail.product.model }}</h6>
+        <h6 class="sub-heading-of-order project-discription">HSN Code :  {{ orderDetail.product.hsncode }}</h6>
+       
+
+       
     
-
+      </div>
+      <div class="col-lg-5 pt-2 pb-2" >
+        <h6 class="sub-heading-of-order project-discription">
+          Shipping Charge :  ₹  {{ orderDetail.product_rate.pro_shipping_amt }}
+        </h6>
+        <h6 class="sub-heading-of-order ">Total MRP : ₹ {{ orderDetail.product_rate.total_mrp }}</h6>
+        <h6 class="sub-heading-of-order ">Total Amount : ₹ {{ orderDetail.product_rate.inventory_total_amt }}</h6>
+        <h6 class="sub-heading-of-order ">Discount : ₹ {{ orderDetail.product_rate.discount_total_amt }}</h6>
+        <h6 class="sub-heading-of-order project-discription" *ngIf="orderDetail.product_rate.promo_code_discount!=0 && orderDetail.product_rate.promo_code_discount!=null">Promo code discount : ₹{{ orderDetail.product_rate.promo_code_discount }}</h6>
+        <h6 class="sub-heading-of-order ">Net Amount : ₹
+          {{ orderDetail.product_rate.net_amt }}</h6>
+       
+      </div>
+ 
+      
+    </div>
+    <!-- <div class="row justify-content-end mb-1 ">
+      <div class="col-md-5">
+        <button  mat-raised-button  class="order-button ">Cancel</button>
+      </div>
+      <div class="col-md-5">
+        <button mat-raised-button class="order-button " type="button">return</button>
+      </div>
+    </div> -->
+    <!-- </div> -->
+      </div>
+    </div>
+   <!-- </div> -->
+   </div>
 </div>
+</div>
+
+
+
+
+<!-- start model for split -->
+
+<ng-template #contentSplit let-modal>
+  <div class="">
+    <div class="row">
+      <h3 class="project-heading col-md-8  pt-2" id="modal-basic-title" >
+      &nbsp;  Orders
+     </h3>
+ <div class="col-md-4 text-right  pt-2">
+     <mat-icon
+       title="close modal"
+       class="cursor-pointer"
+       (click)="modal.dismiss('Cross click')"
+       >close</mat-icon
+     > &nbsp;
+   </div>
+    </div>
+    
+  </div>
+  <!-- modal body starts -->
+  <div class="modal-body ">
+    <div class="container-fluid">
+    <!-- start table -->
+  <form [formGroup]="myFormSplit" >
+                <mat-table [dataSource]="dataSourceSplit" #table class="mat-elevation-z8  " matSort>
+               
+                    <ng-container matColumnDef="ids">
+                   <mat-header-cell *matHeaderCellDef mat-sort-header>
+                      <input
+                      type="checkbox"
+                      (change)="masterToggleSplit($event.target.checked)"
+                      [checked]="selectionSplit.hasValue() && isAllSelectedSplit()"
+                      [indeterminate]="selectionSplit.hasValue() && !isAllSelectedSplit()"
+                      />
+                   </mat-header-cell>
+                   <mat-cell *matCellDef="let row">
+ <span class="mobile-label">
+  checkbox : 
+ </span>
+
+                      <input
+                      type="checkbox"
+                      (click)="$event.stopPropagation()"
+                      (change)="
+                      onChangeDemoSplit(row.order_item_id, $event.target.checked)
+                      "
+                      [checked]="selectionSplit.isSelected(row)"
+                      />
+                   </mat-cell>
+                </ng-container>
+                   <!--  ===============================Multiple Select and All Select================================ -->
+                   
+                   <ng-container matColumnDef="ordernos">
+                      <mat-header-cell *matHeaderCellDef style="font-size: 15px; " class="project-heading" mat-sort-header>
+                         S No.
+                      </mat-header-cell>
+                      
+                      <mat-cell
+                      *matCellDef="let count = index"
+                      class=" text-white"
+                      
+                      >
+                      <span class="mobile-label">S No. :</span>
+                     <span >
+                     {{count+1}}</span> 
+                      </mat-cell>
+                   </ng-container>
+                   <ng-container matColumnDef="images">
+                     <mat-header-cell *matHeaderCellDef style="font-size: 15px; " class="project-heading" mat-sort-header>
+                        Image
+                     </mat-header-cell>
+                     
+                     <mat-cell
+                     *matCellDef="let element0"
+                     >
+                     <span class="mobile-label">Image :</span>
+
+                    <span *ngIf="element0.product_image !=null && element0.product_image !=''">
+
+                     <img src="{{ element0.product_image.small_thumbnail_link }}"  onerror="this.src='assets/img/favicon1.png';" style="height: 60px;"
+                     >
+                    </span> 
+                    <span *ngIf="element0.product_image == '' ||  element0.product_image ==''">
+
+                     <img src='assets/no-img.png' style="height: 60px;"
+                     >
+                    </span> 
+
+                     </mat-cell>
+                  </ng-container>
+
+                   <ng-container matColumnDef="productinfos">
+                      <mat-header-cell *matHeaderCellDef class="head-heading project-heading" mat-sort-header>
+                         Product Detail
+                      </mat-header-cell>
+                      <mat-cell *matCellDef="let element0" class="project-discription">
+                        <span class="mobile-label">Product Details :</span>
+                         <span *ngIf="element0.product != null"  title="{{element0.product.name}}" class="heading-of-order1">
+                        
+                         <!-- {{ (element0.product.name.length>18)? (element0.product.name | slice:0:18)+'...':(element0.product.name) }} -->
+                         {{ (element0.product.name.length>18)? (element0.product.name | slice:0:18)+'...':(element0.product.name) }}
+                         <br/>
+                         </span>
+                      
+                      </mat-cell>
+                   </ng-container>
+                   <ng-container matColumnDef="quantitys">
+                      <mat-header-cell *matHeaderCellDef class="head-heading" mat-sort-header class="project-heading">
+                         Quantity
+                      </mat-header-cell>
+                      <mat-cell *matCellDef="let element0" class="text-center">
+                        <span class="mobile-label">Quantity :</span>
+                        {{ element0.qty }}</mat-cell>
+                   </ng-container>
+                  
+                   <mat-header-row *matHeaderRowDef="displayedColumnsSplit"></mat-header-row>
+                   <mat-row *matRowDef="let row; columns: displayedColumnsSplit;"></mat-row>
+                </mat-table>
+               
+             </form>
+         <div class="row mt-2">
+                   <div class="col-md-12 text-right "> 
+                       <button *ngIf="method_method=='cancel'"
+                         mat-raised-button
+                         class="project-button text-white"
+                         (click)="CancelSelected(myFormSplit.value)"
+                         >
+                 Order  Cancel 
+                      </button>
+                      <button *ngIf="method_method=='return'"
+                      mat-raised-button
+                      class="project-button text-white self-accept"
+                     
+                      (click)="modal.dismiss('Cross click');openXl(contentReturn)" 
+          
+                      >
+                Order   Return 
+                   </button>
+                      
+                   </div>
+                
+                </div>
+    <!-- end table -->
+    </div>
+  </div>
+</ng-template>
+ <!-- end for split model -->
+
+
+<!-- start for deducted amount model -->
+
+<ng-template #contentReturn let-modal>
+  <div class="row">
+   <h5 class="col-md-8 pt-2 project-heading" id="modal-basic-title" >
+   &nbsp;  Return Reason
+   </h5>
+  
+  
+   <!-- <h6 class="modal-title" id="modal-basic-title" align="center">
+     Order ID : {{myFormReturn.controls.order_number.value}}
+   </h6> -->
+   <!-- <h6 class="modal-title" id="modal-basic-title" align="center">
+    Product : {{myFormReturn.controls.product_name.value}}
+   </h6> -->
+  
+  <div class="col-md-4 text-right pt-2">&nbsp; <mat-icon
+    title="close modal"
+    class="cursor-pointer"
+    (click)="modal.dismiss('Cross click')"
+    >close</mat-icon
+  ></div>
+  </div>
+  <!-- modal body starts -->
+  <div class="modal-body ">
+   <!-- start table -->
+  <form [formGroup]="myFormReturn" >
+  
+     
+     <div class="row">
+       <div  *ngIf="return_reason==0 || return_choose.length==0" class="col-lg-6 text-center">
+          <mat-form-field appearance="fill" class="example-full-width">
+            <mat-label class="mat-label">Reason</mat-label>
+            <input 
+              matInput
+              placeholder="Reason"
+              formControlName="reason"
+              required
+            />
+            <mat-icon matSuffix>toc</mat-icon>
+          </mat-form-field>
+        </div>
+  
+        <div  *ngIf="return_reason==1 && return_choose.length > 0" class="col-lg-6 text-center">
+         <!-- <mat-form-field appearance="fill" class="example-full-width">
+           <mat-label class="mat-label">Reason</mat-label>
+           <mat-select  id="category" formControlName="reason" >
+             <mat-option [value]="return_choose2.reason" *ngFor="let return_choose2 of return_choose;i as index;">{{return_choose2.reason}}</mat-option>
+            
+           </mat-select>
+           <mat-icon matSuffix>toc</mat-icon>
+         </mat-form-field> -->
+         <div class="dropdown">
+           <label class="mat-label">Reason</label>
+           <select
+            
+             id="category"
+             formControlName="reason"
+             placeholder="Reason"
+           >
+             <option
+               *ngFor="let return_choose2 of return_choose"
+               [value]="return_choose2.reason"
+               >{{return_choose2.reason}}
+             </option>
+           </select>
+           
+         </div>
+       </div>
+     
+       <div class="col-lg-6 text-center">
+         <mat-form-field appearance="fill" class="example-full-width">
+           <mat-label class="mat-label">Comment Section</mat-label>
+           <!-- <input 
+            
+        
+             matInput
+             placeholder="Comment"
+             formControlName="return_comment"
+             
+           /> -->
+           <textarea
+           matInput
+           rows="6"
+           placeholder="Comment"
+           formControlName="return_comment"
+           required
+         >
+       </textarea>
+           <mat-icon matSuffix>toc</mat-icon>
+         </mat-form-field>
+       </div>
+     </div>
+   
+  
+    </form>
+        <div class="row mt-2">
+                  <div class="col-md-8 "> 
+                      <button 
+                        mat-raised-button
+                        class="project-button text-white self-accept"
+                        (click)="update_return_initiate()"
+                        >
+                     Save 
+                     </button>
+                     
+                  </div>
+               
+               </div>
+  
+  </div>
+  </ng-template>
+    <!-- end for deducted amount modal -->

@@ -10,8 +10,568 @@ color: white;
 }
 h6{
     font-size: 15px;
+    color: white;
 }
 .order-status{
     font-size: 17px;
     color: white;
 }
+.card{
+    background: rgb(43, 42, 42);
+}
+h5{
+    color: white;
+}
+.update-sent{
+    font-size: 13px;
+}
+.heading-of-order{
+    margin: 0;
+    padding: 0;
+    font-size:10px;
+    text-transform: capitalize;
+}
+.heading-of-order1{
+    margin: 0;
+    padding: 0;
+    font-size:10px;
+    text-transform: uppercase;
+}
+
+.sub-heading-of-order{
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif!important; */
+    margin: 0;
+    text-transform: capitalize;
+    font-weight: 500!important;
+    font-size: 13px;
+    padding: 0;
+}
+/* .row-top{
+    background: rgb(247, 245, 245);
+} */
+.Address{
+    font-size: 14px;
+    margin: 0;
+    /* color: green; */
+    padding: 0;
+}
+.order-button{
+    border: none;
+    /* font-size: 13px; */
+}
+img{
+height: 65px;
+width: 70px;
+}
+/* @media only screen and (min-width:992px){
+    .mat-column-ids {
+        justify-content: start;
+        word-wrap: break-word !important;
+        white-space: unset !important;
+        flex: 0 0 12% !important;
+        width: 14% !important;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-word;
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+      }
+    
+} */
+.mobile-label{
+    display: none;
+}
+.order-button-status{
+    /* color: blue; */
+    font-size: 13px; position: relative;
+    /* top: 4px; */
+    margin-right: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    font-weight: 600;
+    /* right: 12px; */
+}
+.highlight{
+    background: #dddddd; /* green */
+  }
+  .mat-tab-label {
+      height: 184px!important;
+      padding: 0 33px;
+      cursor: pointer;
+      box-sizing: border-box;
+      opacity: 1;
+      width: 200px!important;
+      text-align: center;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      white-space: nowrap;
+      position: relative;
+    }
+    /* .mat-column-productinfos {
+        justify-content: start;
+        word-wrap: break-word !important;
+        white-space: unset !important;
+        flex: 0 0 18% !important;
+        width: 18% !important;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-word;
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+      } */
+    .order_table_heading{
+      font-size: 13px;
+    }
+    .order_table_subheading{
+      font-size: 12px;
+    }
+    .font_table_row{
+      font-size: 13px;
+    }
+    mat-table{
+        background: rgb(43, 42, 42);
+        /* text-align: center; */
+        color: white!important;
+    }
+   
+    mat-header-cell, mat-cell{
+     color: white;
+     /* text-align: center; */
+    }
+    .mat-column-id {
+        word-wrap: break-word !important;
+        white-space: unset !important;
+        flex: 0 0 4% !important;
+        width: 4% !important;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-word;
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+      }
+    .mat-column-sno {
+      justify-content: center;
+      word-wrap: break-word !important;
+      white-space: unset !important;
+      flex: 0 0 6% !important;
+      width: 6% !important;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+
+    .mat-column-orderno {
+      cursor: pointer;
+      justify-content: center;
+      word-wrap: break-word !important;
+      white-space: unset !important;
+      flex: 0 0 7% !important;
+      width: 8% !important;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+    .mat-column-parcelno {
+     cursor: pointer;
+      justify-content: center;
+      word-wrap: break-word !important;
+      white-space: unset !important;
+      flex: 0 0 8% !important;
+      width: 8% !important;
+      
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+   
+    .mat-column-image {
+      padding: 3px;
+      justify-content: center;
+      word-wrap: break-word !important;
+      white-space: unset !important;
+      flex: 0 0 11% !important;
+      width: 11% !important;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+
+    .mat-column-productinfo {
+      justify-content: start;
+      word-wrap: break-word !important;
+      white-space: unset !important;
+      flex: 0 0 13% !important;
+      width: 13% !important;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+    
+    .mat-column-buyerdetails {
+      justify-content: start;
+      word-wrap: break-word !important;
+      white-space: unset !important;
+      flex: 0 0 9% !important;
+      width: 10% !important;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+  
+    .mat-column-quantity {
+      justify-content: center;
+      word-wrap: break-word !important;
+      white-space: unset !important;
+      flex: 0 0 9% !important;
+      width:9% !important;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+    .mat-column-mrp {
+      word-wrap: break-word !important;
+      white-space: unset !important;
+      flex: 0 0 9% !important;
+      width: 9% !important;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+   
+   
+    .mat-column-status {
+      justify-content: center;
+      word-wrap: break-word !important;
+      white-space: unset !important;
+      flex: 0 0 12% !important;
+      width: 12% !important;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+
+     .mat-column-courierMethod {
+       width: 8% !important;
+      justify-content: center;
+      word-wrap: break-word !important;
+      white-space: unset !important;
+      flex: 0 0 9% !important;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+    .mat-column-paymentType { 
+      justify-content: center;
+      word-wrap: break-word !important;
+      white-space: unset !important;
+      flex: 0 0 9% !important;
+      width: 9% !important;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+    /* .mat-column-action {
+      word-wrap: break-word !important;
+      justify-content: flex-end;
+      justify-items: self-end;
+      white-space: unset !important;
+      flex: 0 0 9% !important;
+      width: 9% !important;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    } */
+
+
+
+    .mat-column-snoa {
+      justify-content: center;
+      word-wrap: break-word !important;
+      white-space: unset !important;
+      flex: 0 0 6% !important;
+      width: 6% !important;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+  
+    .mat-column-ordernoa {
+      cursor: pointer;
+      justify-content: center;
+      word-wrap: break-word !important;
+      white-space: unset !important;
+      flex: 0 0 11% !important;
+      width: 11% !important;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+   
+    .mat-column-productinfoa {
+      justify-content: start;
+      word-wrap: break-word !important;
+      white-space: unset !important;
+      flex: 0 0 15% !important;
+      width: 17% !important;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+    .mat-column-productinfon {
+      justify-content: start;
+      word-wrap: break-word !important;
+      white-space: unset !important;
+      flex: 0 0 16% !important;
+      width: 17% !important;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+    
+    .mat-column-buyerdetailsa {
+      justify-content: start;
+      word-wrap: break-word !important;
+      white-space: unset !important;
+      flex: 0 0 11% !important;
+      width: 11% !important;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+    .mat-column-productinfos {
+      justify-content: start;
+      word-wrap: break-word !important;
+      white-space: unset !important;
+      flex: 0 0 38% !important;
+      width: 38% !important;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+    .mat-column-buyerdetailsn {
+      justify-content: start;
+      word-wrap: break-word !important;
+      white-space: unset !important;
+      flex: 0 0 12% !important;
+      width: 12% !important;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+    .mat-column-ids {
+      justify-content: start;
+      word-wrap: break-word !important;
+      white-space: unset !important;
+      flex: 0 0 12% !important;
+      width: 14% !important;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+  
+    .mat-column-quantitya {
+      justify-content: center;
+      word-wrap: break-word !important;
+      white-space: unset !important;
+      flex: 0 0 9% !important;
+      width:10% !important;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+  .mat-column-mrpa {
+      justify-content: center;
+      word-wrap: break-word !important;
+      white-space: unset !important;
+      flex: 0 0 10% !important;
+      width: 10% !important;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+    .mat-column-paymentTypec { 
+      justify-content: start;
+      word-wrap: break-word !important;
+      /* justify-content: flex-end; */
+      white-space: unset !important;
+      flex: 0 0 9% !important;
+      width: 9% !important;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+
+    .mat-column-mrpa {
+      justify-content: center;
+      word-wrap: break-word !important;
+      white-space: unset !important;
+      flex: 0 0 10% !important;
+      width: 10% !important;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+    .mat-column-paymentTypec { 
+      justify-content: start;
+      word-wrap: break-word !important;
+      /* justify-content: flex-end; */
+      white-space: unset !important;
+      flex: 0 0 10% !important;
+      width: 10% !important;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+    .mat-column-paymentTypedc { 
+      justify-content: start;
+      word-wrap: break-word !important;
+      /* justify-content: flex-end; */
+      white-space: unset !important;
+      flex: 0 0 10% !important;
+      width: 10% !important;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+
+    .mat-column-paymentTypea { 
+      justify-content: start;
+      word-wrap: break-word !important;
+      /* justify-content: flex-end; */
+      white-space: unset !important;
+      flex: 0 0 17% !important;
+      width: 18% !important;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+    .mat-column-paymentTypen { 
+      justify-content: start;
+      word-wrap: break-word !important;
+      /* justify-content: flex-end; */
+      white-space: unset !important;
+      flex: 0 0 13% !important;
+      width: 14% !important;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      word-break: break-word;
+      -ms-hyphens: auto;
+      -moz-hyphens: auto;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }

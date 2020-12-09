@@ -1,22 +1,22 @@
-	
-<div class="header" style="background:#202328;">
-    <nav class="navbar" style="height: 70px; ">
-      <label class="navbar-toggle" id="js-navbar-toggle" for="chkToggle">
+
+
+<div class="header " style="background:#202328; ">
+    <nav class="navbar " style="height: 70px; ">
+      <!-- <label class="navbar-toggle" id="js-navbar-toggle" for="chkToggle">
               <i class="fa fa-bars"></i>
-          </label>
-     <!--  <a href="#" class="logo">logo</a> -->
-  <!--    <img src="list.png" width=40px" style="color: white"> -->
+          </label> -->
+    
   
      <img src="./assets/1.png" width="120px" height="60px" routerLink="/" style="padding: 10px;">
-      <input type="checkbox" id="chkToggle">
+      <!-- <input type="checkbox" id="chkToggle"> -->
       
       
      
-  <ul class="navbar-nav mr-auto flex-row"  id="js-menu">
+  <ul class="navbar-nav mr-auto flex-row mt-0 pt-0"  id="js-menu">
 
     <li *ngFor="let category of categories2; let i = index" style="color: antiquewhite;padding:10px" class="nav-item dropdown has-megamenu">
       <a class="nav-link sub-cat" href="#" data-toggle="dropdown" (click)="navigateCategory(category.name, category.category_no);hidesubcategoryclick()"
-    style="font-family: 'Cinzel', serif;color: white;font-size: 18px;"
+    style="font-family: 'Cinzel', serif;color: white;font-size: 16px;"
       >{{
       category.name
     }}  </a>
@@ -24,7 +24,7 @@
                    <div class="row justify-content-center">
                  <div class="col-md-10 pl-5" >
                   <div class="row category-name">
-                    <div class="col-md-2" style="border-right: 2px solid green;">
+                    <div class="col-md-2" style="border-right: 2px solid #b89d4e;">
                       <p class="project-heading">What's New</p>  
                       <p class="project-heading">Bestsellers</p>   
                     </div>
@@ -184,11 +184,11 @@
       
         <li
         class="nav-item dropdown apna-view d-none d-md-none d-lg-block m-0 mr-0 ml-2"
-        *ngIf="is_logged_out"
+        *ngIf="is_logged_out" routerLink="/login"
       >
         <a
           class="dropdown-toggle cursor-pointer nav-link"
-          id="navbarDropdown"
+          id="navbarDropdown" 
           role="button"
           data-toggle="dropdown"
           aria-haspopup="true"
@@ -196,18 +196,7 @@
         >
           <i class="fas fa-user text-center" ></i>
         </a>
-        <div
-          class="dropdown-menu profile-dropdown"
-          aria-labelledby="navbarDropdown"
-        >
-          <a class="dropdown-item mb-3"
-            ><span class=" pt-2 pb-2 pl-3 pr-3 login-button-bar"
-              >
-             <button routerLink="/login" mat-raised-button class="project-heading login-button-for" ><i class="fas fa-fingerprint"></i> SignIn</button>
-              </span
-            ></a
-          >
-        </div>
+       
       </li>
 
       <li
@@ -231,10 +220,10 @@
         <a class="dropdown-item mb-3"
           ><span class="  login-button-bar2"
             >
-            <a class="nav-link project-heading" routerLink="/client-info"
+            <a class="nav-link project-heading" routerLink="/my-account"
             ><i class="far fa-user text-center text-success"></i> Account
           </a>
-          <a class="nav-link project-heading" routerLink="/wishlist"
+          <a class="nav-link project-heading" routerLink="my-account/wishlist"
           ><i class="far fa-heart text-center text-success"></i> WishList
         </a>
         <a class="nav-link project-heading" (click)="logout()"
@@ -279,7 +268,7 @@
         <li style="list-style: none;" class="ml-1" routerLink="/cart">
            <a> <i class="fas fa-shopping-cart text-center" >
 
-               <sup class="text-danger ">
+               <sup class="text-success ">
               {{ cart }}
             </sup></i
           >

@@ -4,7 +4,7 @@
   style="margin-top: 10%;"
 >
   <div class="col-md-4 text-center">
-    <img src="assets/img/loader.gif" height="200" width="200" />
+    <img src="assets/loader.gif" height="200" width="200" />
   </div>
 </div>
 <div *ngIf="loader">
@@ -16,11 +16,11 @@
   <div class="col-md-11">
     <div class="row mt-3 mb-3" *ngIf="!forpaymentshow">
       <div class="col-lg-7 pl-3">
-        <h4 class="font-weight-600 text-white project-heading">Order Sum<span style="border-bottom: 2px solid green;">mary</span></h4>
+        <h5 class="font-weight-600 project-heading" style="color: white;">Order Sum<span class="border-heading">mary</span> </h5>
       </div>
       <div class="col-lg-5">
-        <div class="row justify-content-center project-heading"><div class="col-md-11  text-center pt-1">
-          <span class="stepper-for-order"><i class="fas fa-shopping-cart"></i>&nbsp; Your Cart  --------  </span>  <span class="stepper-for-order"> <i class="fas fa-file-invoice"></i>&nbsp; Order Summary -------- </span>  <span class="" style="color: green;"> <i class="far fa-credit-card"></i>&nbsp; Payment </span> 
+        <div class="row justify-content-center"><div class="col-md-11  text-center pt-1">
+          <span class="stepper-for-order"><i class="fas fa-shopping-cart"></i>&nbsp; Your Cart  --------  </span>  <span class="stepper-for-order text-green"> <i class="fas fa-file-invoice"></i>&nbsp; Order Summary -------- </span>  <span class="text-muted "> <i class="far fa-credit-card "></i>&nbsp; Payment </span> 
         </div></div>
       </div>
     </div>
@@ -28,11 +28,11 @@
 
 <div class="row mt-3 mb-3" *ngIf="forpaymentshow">
   <div class="col-lg-7 pl-3">
-    <h4 class="font-weight-600 text-white project-heading">Payment Details</h4>
+    <h4 class="font-weight-600 project-heading">Payment Det<span class="border-heading">ails</span></h4>
   </div>
   <div class="col-lg-5">
-    <div class="row justify-content-center project-heading"><div class="col-md-11  text-center pt-1"> 
-      <span class="stepper-for-order"><i class="fas fa-shopping-cart"></i>&nbsp; Your Cart  --------  </span>  <span class="stepper-for-order"> <i class="fas fa-file-invoice"></i>&nbsp; Order Summary -------- </span>  <span class="stepper-for-order"> <i class="far fa-credit-card"></i>&nbsp; Payment </span> 
+    <div class="row justify-content-center"><div class="col-md-11  text-center pt-1"> 
+      <span class="stepper-for-order"><i class="fas fa-shopping-cart"></i>&nbsp; Your Cart  --------  </span>  <span class="stepper-for-order"> <i class="fas fa-file-invoice"></i>&nbsp; Order Summary -------- </span>  <span class="stepper-for-order text-green"> <i class="far fa-credit-card"></i>&nbsp; Payment </span> 
     </div></div>
   </div>
 </div>
@@ -43,12 +43,9 @@
   <div class="row">
     <div class="col-lg-7" >
       <mat-card *ngIf="shipAddShow == false" style="overflow: hidden;">
-        <div class="row justify-content-start pl-3">
-          <div class="col-lg-4">
-            <!-- <button type="button" class="btn btn-primary btn-block waves-effect waves-light" (click)="WtoutLoginCheckout()">go to checkout</button> -->
-
-          <button type="button" class=" button-for-address project-heading "   (click)="openXl(content)"> <mat-icon>add</mat-icon><span class="pb-2">Add Address</span> </button>
-
+        <div class="row justify-content-center">
+          <div class="col-lg-11">
+          <button mat-raised-button class="project-button "    (click)="openXl(content)"> <mat-icon>add</mat-icon>&nbsp; Add Address</button>
         </div>
         </div>
         <div class="row">
@@ -65,12 +62,14 @@
                   <div class="row  pt-1 mb-1" >
                     <div class="col-md-11 col-6 cursor-pointer  font-weight-400">
                        
-                        <div class="form-check" >
-                          <label class="form-check-label" >
-                            <mat-radio-button  (click)="addBillingAddress2(i)"
-                              matTooltip="send Bill here" class="project-heading" style="color: green;"
+                        <div class="form-check">
+                          <label class="form-check-label">
+                            <mat-radio-button [checked]="address.address_no==this.sendDataToAPI.billing_address_no?true:false"  (click)="addBillingAddress2(i)"
+                              matTooltip="Billing Address" class="project-heading text-green"
                               value="{{ address.address_no }}"
-                              > Send Bill & Deliver Here 
+                              > <p *ngIf="bill_as_ship==false" >Billing and Shipping Address</p>
+                              <p *ngIf="bill_as_ship==true">Billing Address</p>
+                              
                             </mat-radio-button>
                           </label>
                         </div>
@@ -113,7 +112,7 @@
                   </div>
                   <div class="row pl-3">
                     <h6 class="font-weight-500 project-heading">{{ address.receiver_name }}</h6>
-                    <h5 class="font-weight-400 ml-5 ">{{ address.contact_no }}</h5>
+                    <h5 class="font-weight-400 ml-5">{{ address.contact_no }}</h5>
                   </div>
                   <div class="row pl-3">
                     <p class="font-weight-400 project-discription">
@@ -125,7 +124,7 @@
                     </p>
                   </div>
                   <div class="row pl-3">
-                      <p class="project-discription">{{ address.email }}</p>
+                      <p>{{ address.email }}</p>
                   </div>
                   <div class="row pl-3" >
                     
@@ -164,7 +163,7 @@
       <mat-card *ngIf="shipAddShow == true">
         <div class="row justify-content-center">
           <div class="col-md-11">
-            <button type="button" class="btn btn-primary btn-block  waves-effect waves-light"  (click)="openXl(content)"> <mat-icon>add</mat-icon>&nbsp; Add Address</button>
+            <button mat-raised-button class="project-button"  (click)="openXl(content)"> <mat-icon>add</mat-icon>&nbsp; Add Address</button>
           </div>
         </div>
         <div class="row">
@@ -177,12 +176,12 @@
                 class="row mt-3" style="width: 98%;"  *ngFor="let address1 of address; let i = index"
                 
               >
-                <div class="col-md-12  add-more" style="background: #f7f7f7; border-radius: 12px;">
+                <div class="col-md-12  add-more" style=" border-radius: 12px;">
                   <div class="row cursor-pointer    font-weight-400 mt-1 mb-1" >
                    <div class="col-md-11 col-6" >
                     <div class="form-check ">
                       <label class="form-check-label">
-                        <mat-radio-button   class="text-info"
+                        <mat-radio-button   class="project-heading"
                           matTooltip="Billing Address "
                           [checked]="true"
                           >  Billing Address 
@@ -227,7 +226,7 @@
                   </div>
                 </div>
                   <div class="row pl-3">
-                    <h6 class="font-weight-500">
+                    <h6 class="font-weight-500 project-heading">
                       {{ address1.receiver_name }}
                     </h6>
                     <h5 class="font-weight-400 ml-5">
@@ -235,7 +234,7 @@
                     </h5>
                   </div>
                   <div class="row pl-3">
-                    <p class="font-weight-400">
+                    <p class="font-weight-400 project-discription">
                       {{ address1.line1 }},{{ address1.line2 }},
                       {{ address1.city }}, <br />{{ address1.state }},
                       {{ address1.country }} -<span class="font-weight-500"
@@ -257,15 +256,15 @@
                 class="row mt-3" style="width: 98%;"
                 *ngFor="let address of addresses; let i = index" 
               >
-                <div class="col-md-12  add-more" style="background: #f7f7f7; border-radius: 12px;">
+                <div class="col-md-12  add-more" style=" border-radius: 12px;">
                   <div class="row cursor-pointer    font-weight-400 mt-1 mb-1" >
                    <div class="col-md-11 col-6" >
                     <div class="form-check ">
                       <label class="form-check-label">
-                        <mat-radio-button   (click)="addShippingAddress(i)" class="text-info"
-                          matTooltip="Deliver Here "
+                        <mat-radio-button   (click)="addShippingAddress(i)" class="text-green project-heading"
+                       [checked]="address.address_no==this.sendDataToAPI.shipping_address_no?true:false"   matTooltip="Shipping Address"
                           value="{{ address.address_no }}"
-                          >  Deliver Here 
+                          >  Shipping Address 
                         </mat-radio-button>
                       </label>
                     </div>
@@ -307,7 +306,7 @@
                   </div>
                 </div>
                   <div class="row pl-3">
-                    <h6 class="font-weight-500">
+                    <h6 class="font-weight-500 project-heading">
                       {{ address.receiver_name }}
                     </h6>
                     <h5 class="font-weight-400 ml-5">
@@ -315,7 +314,7 @@
                     </h5>
                   </div>
                   <div class="row pl-3">
-                    <p class="font-weight-400">
+                    <p class="font-weight-400 project-discription">
                       {{ address.line1 }},{{ address.line2 }},
                       {{ address.city }}, <br />{{ address.state }},
                       {{ address.country }} -<span class="font-weight-500"
@@ -350,7 +349,10 @@
       </mat-card>
       <!-- end for shipping -->
       <!--  statrt for cart-->
-        <mat-card class="mb-2 mt-3 col-lg-12 mycart-scroll">
+       <div class="col-lg-7 pl-3">
+        <h5 class="font-weight-600 mt-2 project-heading" style="color: white;">Order Invent<span class="border-heading">ories</span></h5>
+      </div>
+        <mat-card class="mb-2 mt-2 col-lg-12 mycart-scroll">
          
           <div
             class=""
@@ -358,26 +360,43 @@
           >
             <div class="row">
               <div class="col-md-3 col-4">
-                <div class="row p-3 justify-content-center cursor-pointer" (click)="view_product(cd.product.meta_title, cd.product.product_no,cd.product.slug,cd.product.quick_product_check)" matTooltip="View Product">
+                <div (click)="view_product(cd.product.meta_title, cd.product.product_no,cd.product.slug,cd.product.quick_product_check)" matTooltip="View Product" class="row p-3 justify-content-center cursor-pointer" >
                   
               
-                  <img
-                    src="{{cd.product_image.medium_thumbnail_link}}"
+                  <img 
+                    src="{{cd.product_image?.medium_thumbnail_link}}"
                     
-                    class="" style="height: 150px; width: 100%;"
+                    class="" style="max-width: 100%; max-height: 140px; min-height: 140px;"
                   />
                 </div>
               </div>
               <div class="col-md-9 pt-3 col-8">
               <div class="row cursor-pointer" style="cursor: pointer;" >
-                  <h6 class="text-titlecase font-weight-600 project-heading">
+                  <h6 class="text-titlecase font-weight-600 project-heading ">
                   {{ cd.product.name }}
                   </h6>
               </div>
-              <div class="row" style="cursor: pointer;" (click)="view_product(cd.product.meta_title,cd.product.product_no,cd.product.slug,cd.product.quick_product_check)" title="View Product">
-                  <h6 class="text-titlecase font-weight-500 project-discription">
+              <div class="row" style="cursor: pointer;"  title="View Product">
+                  <h6 class="text-titlecase font-weight-500 project-discription col-md-8 m-0">
                   {{ cd.product.subheading }}
                   </h6>
+                  <div *ngIf="buy_now==true" class="col-md-4">
+
+                    <div class="num-block skin-2">
+                      <div class="num-in" style="cursor: pointer;">
+                        <span class="minus dis" *ngIf="cd.quantity > 1 || cd.quantity > '1'"  (click)="updateCart3minusl(cd.quantity,cd.product.txn_quantity,cd.product.product_no);"></span>
+                        <span class="minus dis" *ngIf="cd.quantity == 1 || cd.quantity == '1'"  (click)="deleteFromCartWithoutLogin(cd.product.product_no)"></span>
+                        <input type="number" class="in-num"   value="{{cd.quantity}}" required min="1"
+                        (change)="updateCart3l(cd.quantity,cd.product.txn_quantity,$event.target.value,cd.product.product_no)"
+                        (keyup)="updateCart3l(cd.quantity,cd.product.txn_quantity,$event.target.value,cd.product.product_no)">
+                        <span class="plus" *ngIf="cd.product.txn_quantity>cd.quantity" (click)="updateCart3plusl(cd.quantity,cd.product.txn_quantity,cd.product.product_no)"></span>
+                        <span class="plus" *ngIf="cd.quantity >= cd.product.txn_quantity"  title="Reached limit" [disabled]=true></span>
+                      </div>
+                    </div>
+          
+          
+          
+                  </div>
               </div>
 
               <div  class="row text-titlecase">
@@ -400,18 +419,22 @@
     Quantity : 
   &nbsp;&nbsp;{{ cd.qty }}</span>
 </div>
-                <div class="row " *ngIf="ship_ask==true">
-                  <h6 *ngIf="cd.shipping_amt!=null && cd.shipping_amt!=0 && cd.shipping_amt!='0'" class="text-titlecase project-discription font-weight-400 text-info">
+                <div class="row project-discription" *ngIf="ship_ask==true">
+                  <h6 *ngIf="cd.shipping_amt!=null && cd.shipping_amt!=0 && cd.shipping_amt!='0'" class="text-titlecase font-weight-400 text-success">
                     Shipping Charge : {{cd.shipping_amt}}
                   </h6>
 
-                  <h6 *ngIf="cd.shipping_amt==null || cd.shipping_amt==0 || cd.shipping_amt=='0'" class="text-success project-discription text-titlecase font-weight-400 text-info">
+                  <h6 *ngIf="cd.shipping_amt==null || cd.shipping_amt==0 || cd.shipping_amt=='0'" class="text-success text-titlecase font-weight-400 text-info">
                     Free Shipping
                   </h6>
                 </div>
+                    <!-- start buy now qty -->
+     
+<!-- end buy now qty -->
                
               </div>
             </div>
+        
         <div *ngIf="buy==false">
             <hr *ngIf="i != (cart.cart_inventory.length-1)"/>
           </div>
@@ -427,11 +450,11 @@
         <div class="row border-bottom ">
           <h6 class="text-titlecase ml-3 font-weight-600 project-heading">Payment details</h6>
           &nbsp;&nbsp;
-           <div *ngIf="buy_now==false" class="project-heading">
-          (Item {{cart?.cart_inventory.length}} & Total Qty {{total_entity}})
+           <div *ngIf="buy_now==false">
+          (Products {{cart?.cart_inventory.length}} & Total Qty {{total_entity}})
         </div>
          <div *ngIf="buy_now==true">
-          (Item 1 & Total Qty {{total_entity}})
+          (Product 1 & Total Qty {{total_entity}})
          </div>
         </div>
         <div class="row price-details mt-2">
@@ -439,22 +462,22 @@
           <!-- //s tart for cart-->
           
        </div>
-        <div class="row price-details">
+        <div *ngIf="(cart?.total_mrp_amount-cart?.inventory_total_amt)>0 && (cart?.total_mrp_amount-cart?.inventory_total_amt)>'0'" class="row price-details">
           <div *ngIf="buy_now==false" class="col-md-8 col-8">
-            <p class="project-discription" >Total MRP </p>
+            <p class="project-heading" >Total MRP </p>
            
           </div>
           <!-- end for cart -->
           <!-- start for buy now -->
 <div *ngIf="buy_now==true"  class="col-md-8 col-8">
-<p class="project-discription" >Total MRP </p>
+<p class="project-heading" >Total MRP </p>
 </div>
           <!-- end for buy now -->
           <div class="col-md-4 col-4 text-right">
             <p>₹ {{ cart?.total_mrp_amount }}</p>
           </div>
         </div>
-         <div class="row  price-details">
+         <div *ngIf="(cart?.total_mrp_amount-cart?.inventory_total_amt)>0 && (cart?.total_mrp_amount-cart?.inventory_total_amt)>'0'" class="row  price-details">
           <div class="col-md-8 col-8">
             <p class="project-discription">Discount </p>
           </div>
@@ -465,11 +488,15 @@
 
         <div class="row price-details">
           <div *ngIf="buy_now==false" class="col-md-8 col-8">
-            <p class="project-discription">Price (item {{cart?.cart_inventory.length}})</p>
-          </div>
+           <!--  <p>Price (item {{cart?.cart_inventory.length}})</p>
+          -->
+ <p class="project-discription">Price </p>
+         
+           </div>
           <!-- start for buy now -->
           <div *ngIf="buy_now==true" class="col-md-8 col-8">
-            <p>Price (item 1)</p>
+           <!--  <p>Price (item 1)</p> -->
+          <p class="project-discription">Price </p>
           </div>
           <!-- end for buy now -->
           <div class="col-md-4 col-4 text-right">
@@ -480,7 +507,7 @@
         <!-- promo code start -->
          <div class="row  price-details" *ngIf="promo_cod">
           <div class="col-md-8 col-8">
-            <p>Promo Code Offer </p>
+            <p class="project-discription">Promo Code Offer </p>
           </div>
           <div class="col-md-4 col-4 text-right">
            <p>- ₹ {{ (cart?.inventory_total_amt-promo_cod2) | number}}</p>
@@ -526,17 +553,17 @@
           </div>
         </div>
         <!-- end promo cod -->
-        <div *ngIf="promo_cod==false" class="row border-top pt-3">
+        <div *ngIf="promo_cod==false && (cart?.total_mrp_amount-cart?.inventory_total_amt)>0 && (cart?.total_mrp_amount-cart?.inventory_total_amt)>'0'" class="row border-top pt-3">
           <div class="col-md-12 text-right">
-            <h6 class="text-success">
+            <h6 class="text-success project-discription">
               You Will save ₹ {{ cart?.total_mrp_amount-cart?.inventory_total_amt }} 
             </h6>
           </div>
         </div>
 
-         <div *ngIf="promo_cod" class="row border-top pt-3">
+         <div *ngIf="promo_cod && ((cart?.inventory_total_amt-promo_cod2)+(cart?.total_mrp_amount-cart?.inventory_total_amt))>0 && ((cart?.inventory_total_amt-promo_cod2)+(cart?.total_mrp_amount-cart?.inventory_total_amt))>'0'" class="row border-top pt-3">
           <div class="col-md-12 text-right">
-            <h6 class="text-success">
+            <h6 class="text-success project-discription">
               You Will save ₹ {{ (cart?.inventory_total_amt-promo_cod2)+(cart?.total_mrp_amount-cart?.inventory_total_amt) }} 
             </h6>
           </div>
@@ -545,16 +572,21 @@
       </mat-card>
 <!-- end for cart -->
 <!-- for payment option -->
-<div *ngIf="forpaymentshow">
-  <!-- coupon start 31/08/2020 -->
-<form #couponform = "ngForm" *ngIf="buy_now==false">
-      <input type="text" placeholder="apply coupon code" name="coupon" [(ngModel)]="coupon" class="coupon-box">
+
+  <!-- coupon start 31/08/2020 *ngIf="buy_now==false" -->
+<mat-card class="mt-3">
+  <div   class="project-discription p-0 m-0" style="color: #b89d4e; cursor: pointer;">
+   <p class="row" (click)="opencoupenu()" *ngIf="!opencoupen"><span class="col-md-10">apply coupen code?</span>  <span class=" text-right col-md-2"><i class="fas fa-angle-up"></i></span>  </p>
+   <p class="row"  *ngIf="opencoupen"><span class="col-md-10">apply coupen code</span>  <span class=" text-right col-md-2" (click)="opencoupenu()"><i class="fas fa-angle-down"></i></span></p>
+  </div>
+<form #couponform = "ngForm" *ngIf="opencoupen">
+      <input type="text" placeholder="enter coupon code" name="coupon" [(ngModel)]="coupon" class="coupon-box">
       <button *ngIf="coupon_count==1"
             mat-raised-button
             class=""
             (click)="coupon_code(couponform)"
             type="submit"
-            class="bg-success text-white "
+            class="project-button text-white "
             style="margin: 1em;"
           >
             Apply
@@ -564,20 +596,22 @@
             
             (click)="disab()"
             type="submit"
-            class="bg-info text-white"
+            class="project-button-disable text-white"
             style="margin: 1em;"
           >
             Remove
           </button>
       <br>
     </form>
+  </mat-card>
   <!-- coupon end 31/08/2020-->
+<div *ngIf="forpaymentshow">
 <mat-card class="mt-3">
   <div class=" mt-3">
     <div class=" paymentOptions1 ">
       <div class="d-flex mayment-border">
       
-        <h6 class=" paymenttype font-weight-600 project-heading">Choose a Payment Mode.</h6>
+        <h6 class=" paymenttype font-weight-600">Choose a Payment Mode.</h6>
 
       </div>
 
@@ -588,7 +622,7 @@
             (click)="getPaymentDetails(option.payment_method_id)"
             class=" mt-2 paymentmode project-discription"
           >
-            Proceed Payment
+            <!-- Proceed Payment -->Pay Online
           </mat-radio-button>
            <mat-radio-button *ngIf="option.payment_method_id==1 ||option.payment_method_id=='1'"
             value="{{ option.payment_method_id }}"
@@ -676,48 +710,55 @@
 <div class="row justify-content-end pt-3 pr-3 ">
   <!-- <span *ngIf="placeOrder2"> -->
   <button
-  *ngIf="placeOrder2codY" mat-raised-button
-  type="button" class="button-for-address project-heading"
+  *ngIf="placeOrder2codN"
+  mat-raised-button
+  class="project-button w-50 pt-1 pb-1"
   (click)="userNamefield(); openXl1(codOtp)"
   type="submit"
 >
-  Place Order
+Make Payment
+  <!-- Place Order -->
 </button>
 <button
-  *ngIf="placeOrder2codN"
-  type="button" class="button-for-address project-heading" mat-raised-button
+  *ngIf="placeOrder2codY"
+  mat-raised-button
+  class="project-button w-50 pt-1 pb-1"
   (click)="payment()"
   type="submit"
 >
-  Place Order
+Make Payment
+  <!-- Place Order -->
 </button>
 <!-- </span> -->
 <button
   *ngIf="placeOrder"
-  type="button" class="button-for-address project-heading" mat-raised-button
+  mat-raised-button
+  class="project-button w-50 pt-1 pb-1"
   (click)="paymentRazorpay()"
   type="submit"
 >
-  Place Order
+Make Payment
+  <!-- Place Order -->
 </button>
 
 
 <button
   *ngIf="!visibledisabled"
   mat-raised-button
-  class="button-for-address project-heading" style="cursor: not-allowed;"
+  class="project-button-disable w-50 pt-1 pb-1" style="cursor: not-allowed;"
 >
-  Place Order
+Make Payment
+ <!--  Place Order -->
 </button>
 
 
-  <button  (click)="form.submit();navigateTo2();check(form)"  *ngIf="placeOrderPayumoney  " mat-raised-button type="button" class="project-heading button-for-address  waves-effect waves-light"
-  type="submit">Place Order</button>
+  <button  (click)="form.submit();navigateTo2();check(form)"  *ngIf="placeOrderPayumoney " mat-raised-button class="project-button w-50 pt-1 pb-1" 
+  type="submit">Make Payment<!-- Place Order --></button>
 
-  <button id="rzp-button1" *ngIf="placeOrderPaytm" type="button" class="btn btn-primary btn-block  waves-effect waves-light"
+  <button id="rzp-button1" *ngIf="placeOrderPaytm" mat-raised-button class="project-button w-50 pt-1 pb-1" 
   (click)="form.submit();navigateTo2()"  
 
-      type="submit">Place Order</button>
+      type="submit">Make Payment<!-- Place Order --></button>
 
  
 </div>
@@ -728,27 +769,40 @@
 
 
 
-      <div class="row justify-content-end pt-3 pr-3 pl-3" *ngIf="forpaymenthide">
+      <div class="row justify-content-end pt-3 pr-3 " *ngIf="forpaymenthide">
         <button *ngIf="makePaymenShip == true && makePaymenBill == true"
-
-           (click)= "forpayment()" mat-raised-button
-          type="button" class="button-for-address  project-heading" style="width: 98%;"
-
+          mat-raised-button (click)= "forpayment()"
+          class="project-button w-50 pt-1 pb-1" 
         >
-          Make Payment
+          Place Order
         </button>
-
-        <button *ngIf="makePaymenShip == false || makePaymenBill == false" (click)= "forpayment2()" matTooltip="Please select Address"
-
-           style="cursor:not-allowed" mat-raised-button
-          type="button" class="button-for-address  project-heading " style="width: 98%;"
-
+<!-- for both -->
+        <button *ngIf="makePaymenShip == false && makePaymenBill == false" (click)= "forpayment2('1')" matTooltip="Please select Address"
+          mat-raised-button style="cursor:not-allowed"
+          class="project-button-disable w-50 pt-1 pb-1" 
         >
-          Make Payment
+          Place Order
         </button>
+        <!-- for both address -->
+<!-- for billing -->
+         <button *ngIf="makePaymenShip == true && makePaymenBill == false" (click)= "forpayment2('2')" matTooltip="Please select Address"
+          mat-raised-button style="cursor:not-allowed"
+          class="project-button-disable w-50 pt-1 pb-1" 
+        >
+          Place Order
+        </button>
+        <!-- for billing -->
+<!-- for shippin -->
+         <button *ngIf="makePaymenShip == false && makePaymenBill == true" (click)= "forpayment2('3')" matTooltip="Please select Address"
+          mat-raised-button style="cursor:not-allowed"
+          class="project-button-disable w-50 pt-1 pb-1" 
+        >
+          Place Order
+        </button>
+        <!-- for shipping -->
       </div>
       <div class="row  mt-3 justify-content-end">
-      <div class="col-md-6 text-left project-discription"> 
+      <div class="col-md-6 text-left "> 
         <ul>
           <li class="text-success">
             Safe and Secure Payments.
@@ -771,467 +825,457 @@
 </div>
 
 
-
-
-
-
-
-
-
-
   
-  <div *ngIf="loader" style="position: absolute;z-index: 100;width: 100%">
-    <app-footer></app-footer>
-  </div>
+<div *ngIf="loader" style="position: absolute;z-index: 100;width: 100%">
+</div>
 </div>
 
 <!-- start add address -->
 
 <ng-template #content let-modal>
-  <div class="modal-header">
-    <h6 class="modal-title" id="modal-basic-title" align="center">
-      Add Address
-    </h6>
+<div class="modal-header">
+  <h6 class="modal-title" id="modal-basic-title" align="center">
+    Add Address
+  </h6>
 
-    <mat-icon
-      class="text-danger cursor-pointer"
-      title="close"
-      (click)="modal.dismiss('Cross click')"
-      >close</mat-icon
-    >
-  </div>
-  <!-- modal body starts -->
-  <div class="modal-body ">
-    <div class="container">
-      <form [formGroup]="registerForm">
-        <div class="row">
-          <div class="col-md-6">
-            <mat-form-field appearance="fill" class="example-full-width">
-              <mat-label>Contact Person Name</mat-label>
-              <input
-                matInput
-                placeholder="Contact Person Name"
-                formControlName="receiver_name"
-                required
-              />
-              <mat-icon matSuffix>how_to_reg</mat-icon>
-            </mat-form-field>
-          </div>
-          <div  class="col-md-6">
-            <mat-form-field appearance="fill" class="example-full-width">
-              <mat-label>Contact No.</mat-label>
-              <input
-                matInput
-                placeholder="Contact No."
-                formControlName="contact_no"  type="number"
-                required
-              />
-              <mat-icon matSuffix>call</mat-icon>
-            </mat-form-field>
-          </div>
-
-         
+  <mat-icon
+    class="text-danger cursor-pointer"
+    title="close"
+    (click)="modal.dismiss('Cross click')"
+    >close</mat-icon
+  >
+</div>
+<!-- modal body starts -->
+<div class="modal-body ">
+  <div class="container">
+    <form [formGroup]="registerForm">
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field appearance="fill" class="example-full-width">
+            <mat-label>Contact Person Name</mat-label>
+            <input
+              matInput
+              placeholder="Contact Person Name"
+              formControlName="receiver_name"
+              required
+            />
+            <mat-icon matSuffix>how_to_reg</mat-icon>
+          </mat-form-field>
         </div>
+        <div  class="col-md-6">
+          <mat-form-field appearance="fill" class="example-full-width">
+            <mat-label>Contact No.</mat-label>
+            <input
+              matInput
+              placeholder="Contact No."
+              formControlName="contact_no"  type="number"
+              required
+            />
+            <mat-icon matSuffix>call</mat-icon>
+          </mat-form-field>
+        </div>
+
+       
+      </div>
+    
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field appearance="fill" class="example-full-width">
+            <mat-label>Address Line1</mat-label>
+            <input
+              matInput
+              placeholder="Address Line1"
+              formControlName="line1"
+              required
+            />
+            <mat-icon matSuffix>streetview</mat-icon>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+            <mat-form-field appearance="fill" class="example-full-width">
+              <mat-label>Address Line2</mat-label>
+              <input
+                matInput
+                placeholder="Address Line2"
+                formControlName="line2"
+                
+              />
+              <mat-icon matSuffix>streetview</mat-icon>
+            </mat-form-field>
+          </div>
+      </div>
       
-        <div class="row">
-          <div class="col-md-6">
-            <mat-form-field appearance="fill" class="example-full-width">
-              <mat-label>Address Line1</mat-label>
-              <input
-                matInput
-                placeholder="Address Line1"
-                formControlName="line1"
-                required
-              />
-              <mat-icon matSuffix>streetview</mat-icon>
-            </mat-form-field>
-          </div>
-          <div class="col-md-6">
-              <mat-form-field appearance="fill" class="example-full-width">
-                <mat-label>Address Line2</mat-label>
-                <input
-                  matInput
-                  placeholder="Address Line2"
-                  formControlName="line2"
-                  
-                />
-                <mat-icon matSuffix>streetview</mat-icon>
-              </mat-form-field>
-            </div>
+       <div class="row">
+        <div class="col-md-6">
+          <mat-form-field appearance="fill" class="example-full-width">
+            <mat-label>Pin Code</mat-label>
+            <input (keyup)="pincode_api($event.target.value)"
+              matInput type="number"
+              placeholder="Pin Code"
+              formControlName="pin_code"
+              required
+            />
+            <mat-icon matSuffix>fiber_pin</mat-icon>
+          </mat-form-field>
         </div>
-        
-         <div class="row">
-          <div class="col-md-6">
-            <mat-form-field appearance="fill" class="example-full-width">
-              <mat-label>Pin Code</mat-label>
-              <input (keyup)="pincode_api($event.target.value)"
-                matInput type="number"
-                placeholder="Pin Code"
-                formControlName="pin_code"
-                required
-              />
-              <mat-icon matSuffix>fiber_pin</mat-icon>
-            </mat-form-field>
-          </div>
-          <div class="col-md-6">
-            <mat-form-field appearance="fill" class="example-full-width">
-              <mat-label>Landmark</mat-label>
-              <input
-                matInput
-                placeholder="Landmark"
-                formControlName="landmark"
-                
-              />
-              <mat-icon matSuffix>streetview</mat-icon>
-            </mat-form-field>
-          </div>
+        <div class="col-md-6">
+          <mat-form-field appearance="fill" class="example-full-width">
+            <mat-label>Landmark</mat-label>
+            <input
+              matInput
+              placeholder="Landmark"
+              formControlName="landmark"
+              
+            />
+            <mat-icon matSuffix>streetview</mat-icon>
+          </mat-form-field>
         </div>
-        <div class="row">
-          <div class="col-md-6">
-            
-              <mat-form-field appearance="fill" class="example-full-width">
-              <mat-label>State</mat-label>
-              <input
-                matInput
-                placeholder="State"
-                formControlName="state"
-                required 
-              />
-              <mat-icon matSuffix>streetview</mat-icon>
-            </mat-form-field>
-          </div>
-
-          <div class="col-md-6">
+      </div>
+      <div class="row">
+        <div class="col-md-6">
           
-                       <mat-form-field appearance="fill" class="example-full-width">
-              <mat-label>City</mat-label>
-              <input
-                matInput
-                placeholder="City"
-                formControlName="city"
-                required 
-              />
-              <mat-icon matSuffix>streetview</mat-icon>
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="row">
-         
-          <div *ngIf="flagEmail==1" class="col-md-6 ">
             <mat-form-field appearance="fill" class="example-full-width">
-              <mat-label>Email</mat-label>
-              <input
-                matInput
-                placeholder="Email"
-                formControlName="email"
-                
-              />
-              <mat-icon matSuffix>email</mat-icon>
-            </mat-form-field>
-          </div>
-
-           <div *ngIf="flagEmail==0" class="col-md-6 mt-4">
-            <mat-form-field appearance="fill" class="example-full-width">
-              <mat-label>Email</mat-label>
-              <input
-                matInput
-                placeholder="Email"
-                formControlName="email" 
-                
-              />
-              <mat-icon matSuffix>email</mat-icon>
-            </mat-form-field>
-          </div>
+            <mat-label>State</mat-label>
+            <input
+              matInput
+              placeholder="State"
+              formControlName="state"
+              required 
+            />
+            <mat-icon matSuffix>streetview</mat-icon>
+          </mat-form-field>
         </div>
 
-        <div class="modal-footer text-center ml-auto mr-auto">
-          <button
-            class=" text-white order-button"
-            (click)="addAddress(); "
-            mat-raised-button
-            
-          >
-            Add
-          </button>
+        <div class="col-md-6">
+        
+                     <mat-form-field appearance="fill" class="example-full-width">
+            <mat-label>City</mat-label>
+            <input
+              matInput
+              placeholder="City"
+              formControlName="city"
+              required 
+            />
+            <mat-icon matSuffix>streetview</mat-icon>
+          </mat-form-field>
         </div>
-      </form>
-    </div>
+      </div>
+      <div class="row">
+       
+        <div *ngIf="flagEmail==1" class="col-md-6 ">
+          <mat-form-field appearance="fill" class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              placeholder="Email"
+              formControlName="email"
+              
+            />
+            <mat-icon matSuffix>email</mat-icon>
+          </mat-form-field>
+        </div>
+
+         <div *ngIf="flagEmail==0" class="col-md-6 mt-4">
+          <mat-form-field appearance="fill" class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              placeholder="Email"
+              formControlName="email" 
+              
+            />
+            <mat-icon matSuffix>email</mat-icon>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="modal-footer text-center ml-auto mr-auto">
+        <button
+          class="  project-button"
+          (click)="addAddress(); "
+          mat-raised-button
+          
+        >
+          Add
+        </button>
+      </div>
+    </form>
   </div>
+</div>
 </ng-template>
 <!-- End add address -->
 <!-- Start update address -->
 
 <ng-template #content2 let-modal>
-  <div class="modal-header">
-    <h6 class="modal-title" id="modal-basic-title" align="center">
-      Update Address
-    </h6>
+<div class="modal-header">
+  <h6 class="modal-title" id="modal-basic-title" align="center">
+    Update Address
+  </h6>
 
-    <mat-icon
-      (click)="modal.dismiss('Cross click')"
-      class="text-danger cursor-pointer"
-      >close</mat-icon
-    >
-  </div>
-  <!-- modal body starts -->
-  <div class="modal-body ">
-    <div class="container">
-      <form [formGroup]="registerForm2">
-        <div class="row">
-          <div class="col-md-6">
-            <mat-form-field appearance="fill" class="example-full-width">
-              <mat-label>Contact Person Name</mat-label>
-              <input
-                matInput
-                placeholder="Contact Person Name"
-                formControlName="receiver_name"
-                required
-              />
-              <mat-icon matSuffix>how_to_reg</mat-icon>
-            </mat-form-field>
-          </div>
-          <div  class="col-md-6">
-            <mat-form-field appearance="fill" class="example-full-width">
-              <mat-label>Contact No.</mat-label>
-              <input
-                matInput
-                placeholder="Contact No."
-                formControlName="contact_no"  type="number"
-                required
-              />
-              <mat-icon matSuffix>call</mat-icon>
-            </mat-form-field>
-          </div>
-
-         
+  <mat-icon
+    (click)="modal.dismiss('Cross click')"
+    class="text-danger cursor-pointer"
+    >close</mat-icon
+  >
+</div>
+<!-- modal body starts -->
+<div class="modal-body ">
+  <div class="container">
+    <form [formGroup]="registerForm2">
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field appearance="fill" class="example-full-width">
+            <mat-label>Contact Person Name</mat-label>
+            <input
+              matInput
+              placeholder="Contact Person Name"
+              formControlName="receiver_name"
+              required
+            />
+            <mat-icon matSuffix>how_to_reg</mat-icon>
+          </mat-form-field>
         </div>
+        <div  class="col-md-6">
+          <mat-form-field appearance="fill" class="example-full-width">
+            <mat-label>Contact No.</mat-label>
+            <input
+              matInput
+              placeholder="Contact No."
+              formControlName="contact_no"  type="number"
+              required
+            />
+            <mat-icon matSuffix>call</mat-icon>
+          </mat-form-field>
+        </div>
+
+       
+      </div>
+    
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field appearance="fill" class="example-full-width">
+            <mat-label>Address Line1</mat-label>
+            <input
+              matInput
+              placeholder="Address Line1"
+              formControlName="line1"
+              required
+            />
+            <mat-icon matSuffix>streetview</mat-icon>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+            <mat-form-field appearance="fill" class="example-full-width">
+              <mat-label>Address Line2</mat-label>
+              <input
+                matInput
+                placeholder="Address Line2"
+                formControlName="line2"
+                
+              />
+              <mat-icon matSuffix>streetview</mat-icon>
+            </mat-form-field>
+          </div>
+      </div>
       
-        <div class="row">
-          <div class="col-md-6">
-            <mat-form-field appearance="fill" class="example-full-width">
-              <mat-label>Address Line1</mat-label>
-              <input
-                matInput
-                placeholder="Address Line1"
-                formControlName="line1"
-                required
-              />
-              <mat-icon matSuffix>streetview</mat-icon>
-            </mat-form-field>
-          </div>
-          <div class="col-md-6">
-              <mat-form-field appearance="fill" class="example-full-width">
-                <mat-label>Address Line2</mat-label>
-                <input
-                  matInput
-                  placeholder="Address Line2"
-                  formControlName="line2"
-                  
-                />
-                <mat-icon matSuffix>streetview</mat-icon>
-              </mat-form-field>
-            </div>
+       <div class="row">
+        <div class="col-md-6">
+          <mat-form-field appearance="fill" class="example-full-width">
+            <mat-label>Pin Code</mat-label>
+            <input (keyup)="pincode_api($event.target.value)"
+              matInput type="number"
+              placeholder="Pin Code"
+              formControlName="pin_code"
+              required
+            />
+            <mat-icon matSuffix>fiber_pin</mat-icon>
+          </mat-form-field>
         </div>
+        <div class="col-md-6">
+          <mat-form-field appearance="fill" class="example-full-width">
+            <mat-label>Landmark</mat-label>
+            <input
+              matInput
+              placeholder="Landmark"
+              formControlName="landmark"
+              
+            />
+            <mat-icon matSuffix>streetview</mat-icon>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          
+            <mat-form-field appearance="fill" class="example-full-width">
+            <mat-label>State</mat-label>
+            <input
+              matInput
+              placeholder="State"
+              formControlName="state"
+              required 
+            />
+            <mat-icon matSuffix>streetview</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6">
         
-         <div class="row">
-          <div class="col-md-6">
-            <mat-form-field appearance="fill" class="example-full-width">
-              <mat-label>Pin Code</mat-label>
-              <input (keyup)="pincode_api($event.target.value)"
-                matInput type="number"
-                placeholder="Pin Code"
-                formControlName="pin_code"
-                required
-              />
-              <mat-icon matSuffix>fiber_pin</mat-icon>
-            </mat-form-field>
-          </div>
-          <div class="col-md-6">
-            <mat-form-field appearance="fill" class="example-full-width">
-              <mat-label>Landmark</mat-label>
-              <input
-                matInput
-                placeholder="Landmark"
-                formControlName="landmark"
-                
-              />
-              <mat-icon matSuffix>streetview</mat-icon>
-            </mat-form-field>
-          </div>
+                     <mat-form-field appearance="fill" class="example-full-width">
+            <mat-label>City</mat-label>
+            <input
+              matInput
+              placeholder="City"
+              formControlName="city"
+              required 
+            />
+            <mat-icon matSuffix>streetview</mat-icon>
+          </mat-form-field>
         </div>
-        <div class="row">
-          <div class="col-md-6">
-            
-              <mat-form-field appearance="fill" class="example-full-width">
-              <mat-label>State</mat-label>
-              <input
-                matInput
-                placeholder="State"
-                formControlName="state"
-                required 
-              />
-              <mat-icon matSuffix>streetview</mat-icon>
-            </mat-form-field>
-          </div>
+      </div>
+      <div class="row">
+       
+        <div *ngIf="flagEmail==1" class="col-md-6 ">
+          <mat-form-field appearance="fill" class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              placeholder="Email"
+              formControlName="email"
+              
+            />
+            <mat-icon matSuffix>email</mat-icon>
+          </mat-form-field>
+        </div>
 
-          <div class="col-md-6">
-          
-                       <mat-form-field appearance="fill" class="example-full-width">
-              <mat-label>City</mat-label>
-              <input
-                matInput
-                placeholder="City"
-                formControlName="city"
-                required 
-              />
-              <mat-icon matSuffix>streetview</mat-icon>
-            </mat-form-field>
-          </div>
+         <div *ngIf="flagEmail==0" class="col-md-6 mt-4">
+          <mat-form-field appearance="fill" class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              placeholder="Email"
+              formControlName="email" 
+              
+            />
+            <mat-icon matSuffix>email</mat-icon>
+          </mat-form-field>
         </div>
-        <div class="row">
-         
-          <div *ngIf="flagEmail==1" class="col-md-6 ">
-            <mat-form-field appearance="fill" class="example-full-width">
-              <mat-label>Email</mat-label>
-              <input
-                matInput
-                placeholder="Email"
-                formControlName="email"
-                
-              />
-              <mat-icon matSuffix>email</mat-icon>
-            </mat-form-field>
-          </div>
-
-           <div *ngIf="flagEmail==0" class="col-md-6 mt-4">
-            <mat-form-field appearance="fill" class="example-full-width">
-              <mat-label>Email</mat-label>
-              <input
-                matInput
-                placeholder="Email"
-                formControlName="email" 
-                
-              />
-              <mat-icon matSuffix>email</mat-icon>
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="modal-footer text-center ml-auto mr-auto">
-          <button
-            class="order-button"
-            (click)="updateAddress(); "
-            mat-raised-button
-          
-          >
-            update
-          </button>
-        </div>
-      </form>
-    </div>
+      </div>
+      <div class="modal-footer text-center ml-auto mr-auto">
+        <button
+          class="order-button"
+          (click)="updateAddress(); "
+          mat-raised-button
+        
+        >
+          update
+        </button>
+      </div>
+    </form>
   </div>
+</div>
 </ng-template>
 <!-- End update address -->
 
 <!-- // for cod otp start-->
 
 <ng-template #codOtp let-modal>
-  <div class="modal-header">
-    <h5 class="modal-title" id="modal-basic-title" align="center">
-      Veirfy mobile no./email
-    </h5>
+<div class="modal-header ">
+  <h5 class="modal-title project-heading text-left" id="modal-basic-title" >
+    Veirfy mobile no./email
+  </h5>
 
-    <mat-icon
-      title="close modal"
-      class="cursor-pointer"
-      (click)="modal.dismiss('Cross click')"
-      >close</mat-icon
-    >
-  </div>
-  <!-- modal body starts -->
-  <div class="modal-body ">
-    <div class="container-fluid">
-      <form [formGroup]="otpForm">
-        <div class=" ">
-          <div class="row ">
-            <div class="col-md-12">
-              <div class="row mt-4">
-                <div class=" col-lg-12">
-                  <div appearance="fill" class="example-full-width">
-                    <div class="row justify-content-center">
-                      <h6> <span class="checkout-register-otp">{{register}}</span></h6>
-                    </div>
-                    
+  <mat-icon
+    title="close modal"
+    class="cursor-pointer text-right"
+    (click)="modal.dismiss('Cross click')"
+    >close</mat-icon
+  >
+</div>
+<!-- modal body starts -->
+<div class="modal-body ">
+  <div class="container-fluid">
+    <form [formGroup]="otpForm">
+      <div class=" ">
+        <div class="row ">
+          <div class="col-md-12">
+            <div class="row mt-4">
+              <div class=" col-lg-12">
+                <div appearance="fill" class="example-full-width">
+                  <div class="row justify-content-center">
+                    <h6> <span class="checkout-register-otp">{{register}}</span></h6>
                   </div>
-                </div>
-              </div>
-              <div class="row justify-content-center mt-4" *ngIf="verify == true">
-                <div class="col-lg-8 text-center">
-                  <mat-form-field appearance="fill" class="example-full-width text-center">
-                    <mat-label>OTP</mat-label>
-                    <input
-                      matInput type="number"
-                      placeholder="OTP"
-                      formControlName="otp"
-                      required
-                    />
-                    <mat-icon matSuffix>library_books</mat-icon>
-                  </mat-form-field>
-                 
+                  
                 </div>
               </div>
             </div>
+            <div class="row justify-content-center mt-4" *ngIf="verify == true">
+              <div class="col-lg-8 text-center">
+                <mat-form-field appearance="fill" class="example-full-width text-center">
+                  <mat-label>OTP</mat-label>
+                  <input
+                    matInput type="number"
+                    placeholder="OTP"
+                    formControlName="otp"
+                    required
+                  />
+                  <mat-icon matSuffix>library_books</mat-icon>
+                </mat-form-field>
+               
+              </div>
+            </div>
           </div>
-          <div
-            class="row justify-content-center mt-3"
-          >
-          
-          <button [disabled]="!loading" *ngIf="verify == true"
-          class="order-button"
-          mat-raised-button
-          matTooltip="Verify OTP"
-          (click)="otpVerificationUser(); modal.close('Save click')"
-        >
-          Verify
-        </button>
-        &nbsp;
-            <button [disabled]="!loading" *ngIf="otpgeneration == true"
-              class="order-button"
-              mat-raised-button
-              matTooltip="Resend OTP"
-              (click)="resendOtpVerify()"
-            >
-              Resend OTP
-            </button>
-            &nbsp;
-            <button [disabled]="!loading"  *ngIf="verify == false"
-            class="order-button"
-            mat-raised-button
-            matTooltip="Send OTP"
-            (click)="otpGenerate()"
-          >
-            Send OTP
-          </button>
-        
-          </div>
-        
-         
         </div>
-      </form>
-    </div>
+        <div
+          class="row justify-content-center mt-3"
+        >
+        
+        <button [disabled]="!loading" *ngIf="verify == true"
+        class="project-button"
+        mat-raised-button
+        matTooltip="Verify OTP"
+        (click)="otpVerificationUser(); modal.close('Save click')"
+      >
+        Verify
+      </button>
+      &nbsp;
+          <button [disabled]="!loading" *ngIf="otpgeneration == true"
+            class="project-button"
+            mat-raised-button
+            matTooltip="Resend OTP"
+            (click)="resendOtpVerify()"
+          >
+            Resend OTP
+          </button>
+          &nbsp;
+          <button [disabled]="!loading"  *ngIf="verify == false"
+          class="project-button"
+          mat-raised-button
+          matTooltip="Send OTP"
+          (click)="otpGenerate()"
+        >
+          Send OTP
+        </button>
+      
+        </div>
+      
+       
+      </div>
+    </form>
   </div>
+</div>
 </ng-template>
 <!-- for cod otp verify end -->
 <!-- start 15/08/2020 Priyangee -->
 <ng-template #codOtpN  let-modal>
-  <div>
-  <!-- 
-    the SITE_KEY is the sitekey from your admin console.
-    use form control for validation
-  -->
-  <re-captcha (resolved)="resolved($event)" 
-              siteKey="6LeoLb8ZAAAAACW7uM2KMQlKK-2EIVHgmQXNVe7P
+<div>
+<!-- 
+  the SITE_KEY is the sitekey from your admin console.
+  use form control for validation
+-->
+<re-captcha (resolved)="resolved($event)" 
+            siteKey="6LeoLb8ZAAAAACW7uM2KMQlKK-2EIVHgmQXNVe7P
 ">  
-  </re-captcha>
+</re-captcha>
 </div>
-  </ng-template>
-  <!-- end 15/08/2020 Priyangee -->
+</ng-template>

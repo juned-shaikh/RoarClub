@@ -2,8 +2,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RoarclubserviceService } from "../roarclubservice.service";
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from "@angular/material/snack-bar";
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { first } from 'rxjs/operators';
 
 import {
   FormControl,
@@ -14,18 +15,29 @@ import {
   FormGroupDirective,
   NgForm
 } from "@angular/forms";
+import { saveAs } from 'file-saver'; 
+
+// declare var require: any
+// const FileSaver = require('file-saver');
+
 @Component({
   selector: 'app-order-history',
   templateUrl: './order-history.component.html',
   styleUrls: ['./order-history.component.css']
 })
 export class OrderHistoryComponent implements OnInit {
-public orders: any = null;
+public orders=[];
   public order_id: any;
-  public vieworder = false;
   public order_inventory=[];
+  return_choose=[];
+  comp_num=sessionStorage.getItem("comp_num_new");
   public loader=false;
+  invoice_gen=0;
   order_status;
+  awb_no;
+  track;
+  track_more=false;
+  courier_method_id;
   orderDetails;
   discount_amount;
   
@@ -38,12 +50,13 @@ status_product_name;
   rating_option=true;
   public access_token = sessionStorage.getItem("access_token");
   public user_num = sessionStorage.getItem("user_num");
-  public comp_num = sessionStorage.getItem("comp_num");
+  // public comp_num = sessionStorage.getItem("comp_num");
  
   return_policy=false;
   cancel_policy=0;
   minDate = new Date();
   dates:any;
+  return_reason=0;
 
   myFormReturn: FormGroup;
 
@@ -57,7 +70,7 @@ status_product_name;
     private modalService: NgbModal,
     private fb: FormBuilder,) { }
    openXl(content) {
-      this.modalService.open(content, { size: 'xl' });
+      this.modalService.open(content, { size: 'md' });
     }
      private getDismissReason(reason: any): string { 
       if (reason === ModalDismissReasons.ESC) {
@@ -84,7 +97,7 @@ status_product_name;
     this.compSettings_ratingOption();
     this.compSettings_cancelOption();
     this.compSettings_returnOption();
-
+this.compSettingsInvoice();
     this.getOrdersHistory();
     
   }
@@ -94,8 +107,8 @@ status_product_name;
    
     sessionStorage.setItem('order_id',order_id);
     // sessionStorage.setItem('order_item_id', order_item_id)
-    this.router.navigate(['/order-details',orderRandomId]);
-   this.vieworder = true;
+    this.router.navigate(['/my-account/order-details',orderRandomId]);
+
 
 }
 
@@ -113,10 +126,11 @@ getOrdersHistory() {
       data => {
 
 
-       this.loader=true;
+      //  this.loader=true;
         if (data["status"] == "1") {
           
             this.orders = data["result"];
+            this.loader=true;
             for(let i=0;i<this.orders.length;i++){
             	for (let j=0;j<this.orders[i].order_inventory.length;j++){
                 this.orders[i].order_inventory[j].order_number=this.orders[i].order_number;
@@ -151,7 +165,7 @@ getOrdersHistory() {
          this.loader=true;
       }
     );
-    this.loader=true;
+    // this.loader=true;
   }
  
   getImage(image): string {
@@ -351,6 +365,14 @@ return_start(order_id,order_item_id,product_name,order_number){
 
 }
   update_return_initiate(){
+    if (this.myFormReturn.invalid ) {
+      this.snackbar.open("* fields are required. ", "", {
+        duration: 3000
+      });
+        
+
+      }  
+      else{
     var order_item_id=[];
     order_item_id.push(this.myFormReturn.controls.order_item_id.value);
       this.adminservice
@@ -386,6 +408,7 @@ return_start(order_id,order_item_id,product_name,order_number){
         }
       
       });
+    }
     
    }
    compSettings_returnOption() {
@@ -404,21 +427,187 @@ return_start(order_id,order_item_id,product_name,order_number){
            ;
                 console.log(fullD);
                 this.dates=fullD;
+                this.compSettings_return_reason_Option();
+               
          }
        
          
         } 
       });
   }
+   // start for reason
+   compSettings_return_reason_Option() {
+    this.adminservice
+      .fetch_particular_company_registry_with_sno({ comp_num: sessionStorage.getItem("comp_num_new"),s_no:28 })
+      .subscribe(data => {
+        if (data["status"] == 1) {
+         let d = data['data'];
+         let v = JSON.parse(d.value);
+         if(v== "1"){
+           this.return_reason=1;
+           console.log(3);
+           this.reason_dropdown();
+           
+               
+         }
+       
+         
+        } 
+      });
+  }
+  reason_dropdown(){
+    this.adminservice
+    .reason_dropdown({ user_num: this.user_num,access_token:this.access_token })
+    .subscribe(data => {
+      if (data["status"] == 1) {
+       this.return_choose=data['result'];
+       this.myFormReturn.get('reason').setValue(this.return_choose[0].reason);
+       console.log(33);
+       
+      } 
+    });
+
+  }
+
+                // end for reason
   
   // end for rating option
   // end for return
   // track detail
-trackStatus(status,name,order_number){
+trackStatus(status,name,order_number,awb_no,courier_method_id){
+  this.track_more=false;
 this.status_flow=status;
 this.status_order_number=order_number;
 this.status_product_name=name;
+this.awb_no=awb_no;
+console.log(this.awb_no);
+this.courier_method_id=courier_method_id;
+// console.log(this.courier_method_id);
+// this.awb_no=1430910705434;
+// console.log(this.awb_no);
+// this.courier_method_id=2;
+// console.log(this.courier_method_id);
 }
   //track detail
+  shipyari_awb_track_lifecycle(){
+    this.track_more=false;
+    this.adminservice
+    .shipyari_awb_track_lifecycle({ user_num: this.user_num,access_token:this.access_token,comp_num:this.comp_num,awb_no:this.awb_no })
+    .subscribe(data => {
+      if (data["status"] == 1) {
+        this.track_more=true;
+       this.track=data['result'];
+     
+       
+      } 
+    });
+  }
+  // invoice
+compSettingsInvoice() {
+    this.adminservice
+      .fetch_particular_company_registry_with_sno({ comp_num: sessionStorage.getItem("comp_num_new"),s_no:27 })
+      .subscribe(data => {
+        if (data["status"] == 1) {
+
+          let d = data['data'];
+          let v = d.value;
+          if (v == '1') {
+            this.invoice_gen = 1;
+          }
+          
+        }
+      });
+  }
+ 
+  print_invoice(courier_no,dd){
+  let checkboxes=true;
+  console.log(courier_no);
+       let post={
+          access_token: this.access_token,
+          user_num: this.user_num,
+          comp_num: sessionStorage.getItem("comp_num_new"),
+          parcel_no:courier_no
+        }
+         console.log(post);
+         if(dd=="single"){
+       let y=[];
+       y.push(courier_no);
+       post['parcel_no']=y;
+         }
+         else{
+          if(courier_no.length==0){
+            checkboxes=false;
+              alert("No Data");
+         
+          }
+          else{
+           let invoice_array=[];
+  
+            let invoice_check=false;
+              for(let i=0;i<courier_no.length;i++){
+                 
+                  for(let s=0;s<invoice_array.length;s++){
+                    if(invoice_array[s]==courier_no[i]['parcel_no']){
+                      invoice_check=true;
+                    }
+                  }
+                  if(invoice_check==false){
+                    invoice_array.push(courier_no[i]['parcel_no']);
+                  }
+              }
+    
+                
+    
+             post['parcel_no']=invoice_array;
+          }
+         }
+         checkboxes=true;
+         console.log(post);
+         const formData = new FormData();
+         formData.append("comp_num", post.comp_num);
+         formData.append("parcel_no", JSON.stringify(post['parcel_no']));
+         formData.append("user_num", post.user_num);
+         formData.append("access_token", post.access_token);
+         console.log(formData);
+         if(checkboxes==true){
+
+          console.log(checkboxes);
+       this.adminservice.print_invoice(post).subscribe(
+         data => {
+            console.log(1);
+            this.loader = true;
+            console.log(data);
+           
+               console.log(data['body']);
+             
+
+               var blob :any= new Blob([data['body']], { type: "application/pdf" });
+               console.log(blob);
+              saveAs(blob, "invoice.pdf");
+             if (data['headers'].get("content-type").search("pdf") != -1) {
+              // var blob = new Blob([data['body']], { type: "application/pdf" });
+              // saveAs(blob, "invoice.pdf");
+            } else {
+  
+              this.snackbar.open("NO Data Available ", "", {
+                duration: 5000
+              });
+              // this.router
+              //   .navigateByUrl("/RefreshComponent", { skipLocationChange: true })
+              //   .then(() => this.router.navigate(["Admin/dashboard-reports"]));
+            }
+  
+             
+          
+}   
+,
+      error => {
+        console.log(error['headers']);
+         console.log(error);
+      }      
+        );
+      }
+   }
+  //print invoice
 
 }

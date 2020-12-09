@@ -1,3 +1,25 @@
 .example-full-width{
   width: 100%;
 }
+.card-button{
+  background: rgb(43, 42, 42);
+  color: green;
+  border: 2px solid green;
+}
+mat-label{
+  color: whitesmoke;
+}
+mat-icon{
+  color: green;
+}
+.border-1{
+  border-bottom: 2px solid green;
+
+}
+input{
+  color: whitesmoke;
+}
+.card{
+  background: rgb(43, 42, 42);
+  border: none;
+}

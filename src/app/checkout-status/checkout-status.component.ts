@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RoarclubserviceService } from "../roarclubservice.service";
-import {MatSnackBar} from  '@angular/material/snack-bar';
 import {
   switchMap,
   takeUntil,
@@ -43,6 +42,9 @@ export class CheckoutStatusComponent implements OnInit {
     sessionStorage.removeItem("product_no2");
     sessionStorage.removeItem("rate_buy");
     this.adminService.buy=false;
+    this.cookie.set('buy_now_product',"false");
+
+    
     
   	this.getPaymentStatus();
   	
@@ -52,32 +54,36 @@ export class CheckoutStatusComponent implements OnInit {
 
   getPaymentStatus() {
    
-     this.api = interval(3000).pipe(startWith(0), switchMap(() => this.adminService.payment_status_check(this.data)));
-    // }
+     this.api = interval(7000).pipe(startWith(0), switchMap(() => this.adminService.payment_status_check(this.data)));
+    // this.api=setInterval(() => {this.adminService.payment_status_check(this.data)}, 5000);
      
-      if(this.counts<50){
+      // if(this.counts<50){
     this.subscription = this.api.subscribe(data => {
        this.counts++;
-     
         if (data["status"] == 1) {
             this.paymentStatus = "Success";
-             if( this.paymentStatus == "Success" || this.counts > 30){
+            sessionStorage.setItem("buy_variable", 'false');
+             // if( this.paymentStatus == "Success" || this.counts > 70){
+               if( this.paymentStatus == "Success" ){
+             
                this.subscription.unsubscribe();
             }
             setTimeout(()=>{
               if(this.previewFlag == '1'){
+                const currentRoute = this.router.url;
                 this.router
-                .navigateByUrl("/RefrshComponent", {
+                .navigateByUrl("/", {
                   skipLocationChange: true
                 })
-                .then(() => this.router.navigate(["/Admin/preview/home_profile/orders"]));
+                .then(() => this.router.navigate(["/Admin/preview/my-account/order-history"]));
 
               }else{
+                const currentRoute = this.router.url;
                 this.router
-                .navigateByUrl("/RefrshComponent", {
+                .navigateByUrl("/", {
                   skipLocationChange: true
                 })
-                .then(() => this.router.navigate(["/client-info"]));
+                .then(() => this.router.navigate(["/my-account/order-history"]));
 
               }
                    
@@ -86,13 +92,15 @@ export class CheckoutStatusComponent implements OnInit {
       
         } else if (data["status"] == 0) {
             this.paymentStatus = "Pending";
-            if(  this.counts > 25){
-              this.subscription.unsubscribe();
-            }
+            // if(  this.counts > 50){
+            //   this.subscription.unsubscribe();
+            // }
          
         } else {
           this.paymentStatus = "Failed";
-           if( this.paymentStatus == "Failed" || this.counts > 30){
+           if( this.paymentStatus == "Failed"){
+          
+           // if( this.paymentStatus == "Failed" || this.counts > 30){
              this.subscription.unsubscribe();
           }
          
@@ -100,18 +108,20 @@ export class CheckoutStatusComponent implements OnInit {
            setTimeout(()=>{
               
             if(this.previewFlag == '1'){
+              const currentRoute = this.router.url;
               this.router
-              .navigateByUrl("/RefrshComponent", {
+              .navigateByUrl("/", {
                 skipLocationChange: true
               })
-              .then(() => this.router.navigate(["/Admin/preview/home_profile/orders"]));
+              .then(() => this.router.navigate(["/Admin/preview/my-account/order-history"]));
 
             }else{
+              const currentRoute = this.router.url;
               this.router
-              .navigateByUrl("/RefrshComponent", {
+              .navigateByUrl("/", {
                 skipLocationChange: true
               })
-              .then(() => this.router.navigate(["/home_profile/orders"]));
+              .then(() => this.router.navigate(["/my-account/order-history"]));
 
             }
               
@@ -122,25 +132,35 @@ export class CheckoutStatusComponent implements OnInit {
       if(this.flag==1) {
           setTimeout(()=>{
             if(this.previewFlag == '1'){
+              const currentRoute = this.router.url;
               this.router
-              .navigateByUrl("/RefrshComponent", {
+              .navigateByUrl("/", {
                 skipLocationChange: true
               })
-              .then(() => this.router.navigate(["/Admin/preview/home_profile/orders"]));
+              .then(() => this.router.navigate(["/Admin/preview/my-account/order-history"]));
 
             }else{
+              const currentRoute = this.router.url;
               this.router
-              .navigateByUrl("/RefrshComponent", {
+              .navigateByUrl("/", {
                 skipLocationChange: true
               })
-              .then(() => this.router.navigate(["/home_profile/orders"]));
+              .then(() => this.router.navigate(["/my-account/order-history"]));
 
             }
           },4000);
       }
      
     });
+  // }
   }
-  }
+ngOnDestroy() {
+  sessionStorage.setItem("buy_variable", 'false');
+  // setTimeout(()=>{});
+    this.subscription.unsubscribe();
 
+  // if (this.api) {
+    // clearInterval(this.subscription);
+  // }
+}
 }

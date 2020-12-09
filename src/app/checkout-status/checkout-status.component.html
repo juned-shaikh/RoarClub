@@ -1,6 +1,6 @@
 <div *ngIf="!loader" class="row justify-content-center" style="margin-top: 10%;">
   <div class="col-md-4 text-center">
-  <img src="assets/img/loader.gif" height="200" width="200">
+  <img src="assets/loader.gif" height="200" width="200">
   </div>
   </div>
 
@@ -9,31 +9,31 @@
 
 
 <div *ngIf="loader">
-    <div style="background-color:#fff;" >
+    <div  >
       <div class="text-center" style="padding: 10% 0;">
         <mat-card-content *ngIf = "paymentStatus == 'Pending'">
-          <img style="height:90px;width:185px;" src="assets/img/waiting.gif">
-          <h4 class="pt-3" style="font-weight:600;" >Waiting...!</h4>
-          <h6>Waiting For Response From Payment Gateway....</h6>
+          <img style="height:170px;width:185px;" src="assets/waiting.gif">
+          <h4 class="pt-3 project-heading" style="font-weight:600; color: orange;" >Waiting...!</h4>
+          <h5 class="project-discription" style="color: white;">Waiting For Response From Payment Gateway....</h5>
           <div class="example-button-row pt-4 ">
             <button mat-raised-button class="bg-primary-color" routerLink="/">Back To Home</button>
           </div>
         </mat-card-content>
         <mat-card-content *ngIf = "paymentStatus == 'Success'">
-          <img style="height:90px;width:185px;" src="assets/img/success.gif">
-          <h4 class="pt-3" style="font-weight:600;">Success.!</h4>
+          <img style="height:170px;width:185px;" src="assets/success.gif">
+          <h4 class="pt-3 project-heading" style="font-weight:600; color: green;">Success.!</h4>
 
 
-          <h6>Order Placed SuccessFully.</h6>
+          <h5 class="project-discription" style="color: white;">Order Placed SuccessFully.</h5>
 
           <div class="example-button-row pt-4 ">
             <button mat-raised-button class="bg-primary-color" routerLink="/">Back To Home</button>
           </div>
         </mat-card-content>
         <mat-card-content *ngIf = "paymentStatus == 'Failed'">
-          <img src="https://img.icons8.com/officel/80/000000/high-importance.png" height="90" width="185"/>
-          <h4 class="pt-3" style="font-weight:600;">Failed.!</h4>
-          <h6>The Transaction Failed.</h6>
+          <img src="assets/failed.png" height="170" width="185"/>
+          <h4 class="pt-3 project-heading" style="font-weight:600; color: orangered;">Failed.!</h4>
+          <h6 class="project-discription">The Transaction Failed.</h6>
           <div class="example-button-row pt-4 ">
             <button mat-raised-button class="bg-primary text-white" routerLink="/">Back To Home</button>
           </div>

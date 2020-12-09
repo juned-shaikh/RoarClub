@@ -582,6 +582,7 @@ this.makePaymenShip=true;
               duration: 3000,
               horizontalPosition: "center"
             });
+            location.reload();
             if(this.address_exist==false){
               this.getAddresses();
             }
@@ -602,7 +603,7 @@ this.makePaymenShip=true;
               }
             } else {
               this.router
-                .navigateByUrl("/RefreshComponent", {
+                .navigateByUrl("/", {
                   skipLocationChange: true
                 })
                 .then(() => this.router.navigate(["/checkout"]));
