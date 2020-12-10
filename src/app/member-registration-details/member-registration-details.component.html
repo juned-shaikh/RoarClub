@@ -1,0 +1,428 @@
+<div class="container-fluid mt-4">
+    <!-- <div class="row justify-content-center">
+      <div class="col-md-10">
+        <h2 class="project-heading text-white" >
+          Member Registration<span style="border-bottom:2px solid green;">Details</span>
+        </h2>
+      </div>
+    
+    </div> -->
+       <div class="row justify-content-center">
+           <div class="col-md-10">
+  <!-- <mat-card> -->
+    <form [formGroup]="form">
+    
+  <mat-card class="p-3 mt-3" *ngIf="buis_update==false && referral_ask==true && skip_refer==false" >
+       <!-- start for referral code -->
+       <div *ngIf="buis_update==false && referral_ask==true "  >
+  
+         <a *ngIf="referral_compulsory==false && skip_refer==false" (click)="skip_referral()" class=" mt-4 p-3 text-green cursor-pointer" title="Skip">Skip >> Referral Code
+                     
+                    </a>
+       <!--  <div  class=" mt-4 p-3">
+          Skip >> Referral Code
+        </div> -->
+   <div *ngIf="skip_refer==false"  class=" mt-1 p-1">
+    <span *ngIf="referral_verification==false" class="project-discription">Would you like to use Referral Code :</span> 
+    <div class="row">
+    <div class="col-md-4">
+          <mat-form-field appearance="fill" class="example-full-width">
+              <mat-label  >Referral Code</mat-label>
+              <input [readonly]="referral_verification?true:false" formControlName="referral_code" 
+                   matInput placeholder="Referral Code"  >
+              <mat-icon matSuffix>library_books</mat-icon>
+            </mat-form-field>
+        </div>
+   <!-- <div class="col-md-2">
+   </div> -->
+        <div class="col-md-6 mt-2" *ngIf="referral_verification==true && skip_refer==false">
+         <h4 class="project-discription"> Referral Name: {{refer?.receiver_name}} &nbsp;{{refer?.receiver_last_name}}
+        </h4>
+    </div>
+    <!-- start for otp -->
+    <div class=" col-md-2 " *ngIf="verify == true && referral_verification==false">
+                  <!-- <div class="col-lg-8 text-center"> -->
+                    <mat-form-field appearance="fill" class="example-full-width text-center">
+                      <mat-label>OTP</mat-label>
+                      <input
+                        matInput type="number"
+                        placeholder="OTP"
+                        formControlName="otp"
+                        
+                      />
+                      <mat-icon matSuffix>library_books</mat-icon>
+                    </mat-form-field>
+                   
+                  
+              </div>
+              <div *ngIf="referral_verification==false && buis_update==false"
+              class="mt-2 justify-content-center col-md-4 "
+            >
+            
+            <button [disabled]="!loading" *ngIf="verify == true"
+            class="project-button"
+            mat-raised-button
+            matTooltip="Verify OTP"
+            (click)="otpVerificationUser();referral_details(form.controls.referral_code.value) "
+          >
+            Verify
+          </button>
+          &nbsp;
+              <button [disabled]="!loading" *ngIf="otpgeneration == true"
+                class="project-button"
+                mat-raised-button
+                matTooltip="Resend OTP"
+                (click)="resendOtpVerify()"
+              >
+                Resend OTP
+              </button>
+              &nbsp;
+              <button [disabled]="!loading"  *ngIf="verify == false"
+              class="project-button"
+              mat-raised-button
+              matTooltip="Send OTP"
+              (click)="otpGenerate()"
+            >
+              Send OTP
+            </button>
+          
+            </div>
+            </div>
+          <!-- </div> -->
+        </div>
+
+
+        <!-- <div *ngIf=" " class=" mt-1 p-3">
+         
+           </div> -->
+           
+    <!-- end for otp -->
+  </div>
+        <!-- end for referral code -->
+      </mat-card>
+      <div class="row" *ngIf="(buis_update==true ||  referral_ask==false || referral_verification==true)">
+        <div class="col-md-6">
+            <h4 class="project-heading text-white">Personal Det<span class="border-heading">ails</span> </h4>
+        </div>
+    </div>
+      <div class="row"  *ngIf="(buis_update==true ||  referral_ask==false || referral_verification==true)">
+        <!-- <h6 *ngIf="referral_verification==true && skip_refer==false">
+          Referral Name: {{refer?.receiver_name}}
+        </h6> -->
+        <div class="col-md-12 mat-card p-3 ">
+         
+        
+        <div class="row">
+          <div class="col-md-4">
+            <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label  >First Name</mat-label>
+                <input style="text-transform: capitalize;" required formControlName="receiver_name" [readonly]="buisness_verify?true:false" matInput placeholder="First Name"  >
+                <mat-icon matSuffix>library_books</mat-icon>
+              </mat-form-field>
+          </div>
+          <div class="col-md-4">
+            <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label  >Last Name</mat-label>
+                <input style="text-transform: capitalize;"  [readonly]="buisness_verify?true:false" formControlName="receiver_last_name" matInput placeholder="Last Name"  >
+                <mat-icon matSuffix>library_books</mat-icon>
+              </mat-form-field>
+          </div>
+          <div class="col-md-4 ">
+            <!-- start for rating -->
+          
+              <mat-form-field  class="example-full-width" appearance="fill">
+                 <mat-label>Gender</mat-label>
+      
+                 <mat-select  [disabled]="buisness_verify?true:false" formControlName="gender"  >
+                   <mat-option value="male">Male</mat-option>
+                   <mat-option value="female">Female</mat-option>
+                   <mat-option value="other">Other</mat-option>
+                 </mat-select>
+               </mat-form-field>
+          </div>
+          <div class="col-md-4">
+            <!-- <mat-form-field appearance="fill">
+              <mat-label>Input disabled</mat-label>
+              <input matInput [matDatepicker]="dp3" disabled>
+              <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+              <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+            </mat-form-field> -->
+  
+            <mat-form-field
+              appearance="fill"
+              class="example-full-width "
+              
+            >
+            <mat-label>Date Of Birth</mat-label>
+              <input [readonly]="buisness_verify?true:false"
+                matInput
+                [matDatepicker]="picker"
+                autocomplete="off"
+                disabled
+                 [max]="minDate"
+                (dateInput)="addEvent($event)"
+                (dateChange)="addEvent($event)"
+                placeholder="DOB"
+                formControlName="dob"
+                required
+              />
+              <mat-datepicker-toggle
+                [disabled]="buisness_verify?true:false"  matSuffix
+                [for]="picker" class="text-success"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker disabled="false" class="text-info"></mat-datepicker>
+              <mat-hint  style="font-size: 11px;">(Only 18 year and above can enroll) </mat-hint>
+            </mat-form-field>
+          </div>
+          <div *ngIf="contact_disable" class="col-md-4">
+            <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label  >Mobile</mat-label>
+                <input  formControlName="contact_no" type="number" required 
+                     matInput placeholder="Mobile" >
+                <mat-icon matSuffix>library_books</mat-icon>
+              </mat-form-field>
+          </div>
+  
+          <div *ngIf="!contact_disable" class="col-md-4">
+            <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label  >Mobile</mat-label>
+                <input  formControlName="contact_disable" type="number"
+                     matInput placeholder="Mobile" >
+                <mat-icon matSuffix>library_books</mat-icon>
+              </mat-form-field>
+          </div>
+          <div *ngIf="!email_disable"  class="col-md-4">
+            <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label  >Email</mat-label>
+                <input matInput placeholder="Email" formControlName="email_disable"  class="text-lowercase" >
+                <mat-icon matSuffix>library_books</mat-icon>
+              </mat-form-field>
+          </div>
+  
+           <div *ngIf="email_disable" class="col-md-4">
+            <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label  >Email</mat-label>
+                <input matInput placeholder="Email" formControlName="email" required="" class="text-lowercase" >
+                <mat-icon matSuffix>library_books</mat-icon>
+              </mat-form-field>
+          </div>
+          <!-- <div class="col-md-4">
+            <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label  >UserName</mat-label>
+                <input matInput placeholder="UserName"  >
+                <mat-icon matSuffix>library_books</mat-icon>
+              </mat-form-field>
+          </div>
+          <div class="col-md-4">
+            <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label  >Password</mat-label>
+                <input matInput placeholder="Password"  >
+                <mat-icon matSuffix>library_books</mat-icon>
+              </mat-form-field>
+          </div>
+          <div class="col-md-4">
+            <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label  >Confirm Password</mat-label>
+                <input matInput placeholder="Confirm Password"  >
+                <mat-icon matSuffix>library_books</mat-icon>
+              </mat-form-field>
+          </div> -->
+         
+        </div>
+           
+      <div class="row mt-3">
+    
+        <div class="col-md-6">
+          <mat-form-field appearance="fill" class="example-full-width">
+              <mat-label  >Address 1</mat-label>
+              <input style="text-transform: capitalize;" formControlName="line1" [readonly]="buisness_verify?true:false"
+                  required matInput placeholder="Address 1"  >
+              <mat-icon matSuffix>library_books</mat-icon>
+            </mat-form-field>
+        </div>
+    
+        <div class="col-md-6">
+          <mat-form-field appearance="fill" class="example-full-width">
+              <mat-label  >Address 2</mat-label>
+              <input style="text-transform: capitalize;" formControlName="line2" [readonly]="buisness_verify?true:false"
+                   matInput placeholder="Address 2"  >
+              <mat-icon matSuffix>library_books</mat-icon>
+            </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+       
+        <div  class="col-md-4">
+        
+          <mat-form-field appearance="fill" class="example-full-width">
+              <mat-label  >PAN</mat-label>
+              <input style="text-transform: uppercase;"formControlName="pan"
+              [readonly]="buisness_verify?true:false"
+               matInput placeholder="PAN">
+              <mat-icon matSuffix>library_books</mat-icon>
+               <mat-hint >Eg. ABCDE1234Z</mat-hint>
+                          
+            </mat-form-field>
+  </div>
+    <div class="col-md-4">
+              <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>Landmark (Optional)</mat-label>
+                <input [readonly]="buisness_verify?true:false"  style="text-transform: capitalize;"
+                  matInput
+                  placeholder="Landmark"
+                  formControlName="landmark"
+                  
+                />
+                <mat-icon matSuffix>streetview</mat-icon>
+              </mat-form-field>
+            </div>
+            <div class="col-md-4">
+              <mat-form-field appearance="fill" class="example-full-width">
+                  <mat-label  >Postal Zip</mat-label>
+                  <input matInput (keyup)="pincode_api($event.target.value)" [readonly]="buisness_verify?true:false"
+                      matInput type="number"
+                      placeholder="Pin Code"
+                      formControlName="pin_code"
+                      required  >
+                  <mat-icon matSuffix>library_books</mat-icon>
+                </mat-form-field>
+            </div>
+      
+    </div>
+          <div class="row">
+          <div class="col-md-4">
+            <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label  >City</mat-label>
+                <input formControlName="city" matInput placeholder="City"  >
+                <mat-icon matSuffix>library_books</mat-icon>
+              </mat-form-field>
+          </div>
+          <div class="col-md-4">
+            <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label  >State</mat-label>
+                <input formControlName="state" matInput placeholder="State"  >
+                <mat-icon matSuffix>library_books</mat-icon>
+              </mat-form-field>
+          </div>
+          <div class="col-md-4">
+            <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label  >Country</mat-label>
+                <input formControlName="country" matInput placeholder="Country"  >
+                <mat-icon matSuffix>library_books</mat-icon>
+              </mat-form-field>
+          </div>
+        
+  
+        </div>
+  
+        
+  
+  <div class="row ">
+    <div class="col-md-4">
+        <!-- <div class="row" > -->
+           
+  
+            <div *ngIf="buisness_verify==false" class="col-md-6 pl-2 pr-4">
+              &nbsp;&nbsp; <mat-label >Profile Image*</mat-label> <br/>
+              <input  type="file" formControlName="image"  (change)="onFileChanged1($event)" />                                       
+            </div> 
+              
+             &nbsp;&nbsp;<mat-label *ngIf="buisness_verify==true" >Profile Image</mat-label> <br/>
+            <div class="col-md-6" *ngIf="previewUrl"  >
+                <img [src]="previewUrl" height="70" class="" />                 
+            </div>
+  
+           
+        <!-- </div> -->
+       
+    </div>
+  
+    <div class="col-md-4 pr-4">
+         
+  
+          <div *ngIf="buisness_verify==false" class=" ">
+            &nbsp;&nbsp; <mat-label >Address Proof*</mat-label> <br/>
+            <input  type="file" formControlName="address_proof"  (change)="onFileChangedAddress($event)" />                                       
+          </div> 
+            
+           &nbsp;&nbsp;&nbsp;<br/>
+     </div>
+     <div class="col-md-4 pr-4">
+  
+     <div *ngIf="buisness_verify==false" class=" ">
+      &nbsp;&nbsp; <mat-label *ngIf="pan_necessory=='1'" >PAN Proof*</mat-label>
+      <mat-label *ngIf="pan_necessory!='1'" >PAN Proof</mat-label> <br/>
+      <input  type="file" formControlName="pan_image"  (change)="onFileChangedPan($event)" />                                       
+    </div> 
+      
+     &nbsp;&nbsp;&nbsp;<br/>
+    
+   </div>
+    <div class="col-md-12 m-0 text-success" *ngIf="buisness_verify==false">
+      <p  style="font-weight: 100px; font-size: 12px;  padding-left: 15px;"> (Note : Image Width must be less than 1000px and Height must be less than 1000px)</p>
+      
+    </div>
+   </div>
+  
+  
+        </div>
+      </div>
+      <div class="row mb-0 mt-2" *ngIf="(buis_update==true ||  referral_ask==false || referral_verification==true)">
+        <div class="col-md-6">
+            <h4 class="project-heading text-white m-0">Business Details : (Optional)</h4>
+        </div>
+    </div>
+       <div class="row mt-0" >
+         <div *ngIf="(buis_update==true ||  referral_ask==false || referral_verification==true)" class="col-md-12 mat-card  p-3">
+  
+        
+        <div class="row">
+            <div class="col-md-4">
+                <mat-form-field appearance="fill" class="example-full-width">
+                    <mat-label  >Buisness Name</mat-label>
+                    <input style="text-transform: capitalize;"formControlName="buisness_name" matInput placeholder="Buisness Name" >
+                    <mat-icon matSuffix>library_books</mat-icon>
+                  </mat-form-field>
+            </div>
+       
+                 <div  class="col-md-4">
+          
+              <mat-form-field appearance="fill" class="example-full-width">
+                    <mat-label  >GST</mat-label>
+                   
+                     <input style="text-transform: uppercase;" matInput placeholder="GST" formControlName="gst">
+                    <mat-icon matSuffix>library_books</mat-icon>
+                     <mat-hint >Eg. .29AAGCB7383J1Z4</mat-hint>
+                  </mat-form-field>
+            </div>
+           
+            <div class="col-md-4">
+                <mat-form-field appearance="fill" class="example-full-width">
+                    <mat-label  >TAN</mat-label>
+                    <input style="text-transform: uppercase;"formControlName="tan" matInput placeholder="TAN"  >
+                    <mat-icon matSuffix>library_books</mat-icon>
+                    <mat-hint >Eg. ABCD81234Z</mat-hint>
+                  </mat-form-field>
+            </div>
+        </div>
+         </div>
+       </div>
+      
+    </form>
+  <!-- </mat-card> -->
+  <div  class="row mt-2 mb-2" *ngIf="(buis_update==true ||  referral_ask==false || referral_verification==true)">
+      <div *ngIf="buis_update==false" class="col-md-12 text-right">
+          <button [disabled]="!loading" (click)="add_customer_registration()" mat-raised-button class="project-button text-white">Submit</button>
+      </div>
+  
+      <div *ngIf="buis_update==true" class="col-md-12 text-right">
+          <button [disabled]="!loading" (click)="update_customer_registration()" mat-raised-button class="project-button text-white">Submit</button>
+      </div>
+           </div>
+       </div>
+     </div>
+    
+  </div>
+  
+  
+  

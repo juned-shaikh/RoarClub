@@ -14,16 +14,13 @@ import {
 } from "@angular/common/http";
 import { first } from "rxjs/operators";
 import { RoarclubserviceService } from "../roarclubservice.service";
-import {MatSnackBar} from  '@angular/material/snack-bar';
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatTableDataSource } from "@angular/material/table";
-// import { Matcard } from './@angular/material/card';
-import {MatCard} from '@angular/material/card';
 import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
 import {  MatStepper } from "@angular/material/stepper";
 import { WindowRefService } from "../window-ref.service";
 import { CookieService } from "ngx-cookie-service";
 import { environment } from "../../environments/environment";
-import { from } from 'rxjs';
 
 @Component({
   selector: "app-checkout",
@@ -33,6 +30,7 @@ import { from } from 'rxjs';
 })
 export class CheckoutComponent implements OnInit {
   disabled = true;
+  bill_as_ship=false;
   cod_otp_enable=true;
   billingDone = false;
   total_entity=0;
@@ -57,6 +55,7 @@ save_promo2;
   public stepShippingAddress = false;
   public stepReviewOrder = false;
   public stepSelectedProducts = true;
+  public opencoupen = false;
   public placeOrder = false;
   public placeOrder2 = false;
   placeOrder2codY=false;
@@ -65,6 +64,9 @@ save_promo2;
   public placeOrderPaytm = false;
   public stockCheck = false;
   billingArr; 
+   flag = localStorage.getItem("flag");
+  flag1 = localStorage.getItem("flag1");
+ 
   makePaymenShip=false;
   makePaymenBill=false;
   merchant_key;
@@ -96,6 +98,7 @@ save_promo2;
   public totalPrice: any;
   public loader = true;
   public forpaymentshow =false;
+  // opencoupen;
   public forpaymenthide =true;
   buy_now=false;
   product_no: any;
@@ -119,7 +122,7 @@ save_promo2;
   temp_amt;
   visibledisabled;
   previewFlag = sessionStorage.getItem("previewFlag");
-
+  buy_variable=sessionStorage.getItem("buy_variable");
   public sendDataToAPI = {
     user_num: sessionStorage.getItem("user_num"),
     access_token: sessionStorage.getItem("access_token"),
@@ -135,6 +138,7 @@ save_promo2;
   fees;
   flagEmail=0;
   flagMobile=0;
+  phone;
   public sendDataToAPIRazorpay = {
     user_num: sessionStorage.getItem("user_num"),
     access_token: sessionStorage.getItem("access_token"),
@@ -258,15 +262,33 @@ save_promo2;
   // }
 
   ngOnInit() {
+    if (
+      sessionStorage.getItem("user_num") &&
+      sessionStorage.getItem("user_num") != null && sessionStorage.getItem("user_num") != ''
+    ) {
+      
+     if (this.flag == "1") {
+      localStorage.clear();
+      window.location.reload();
+    }
+    if (this.flag1 == "0") {
+      localStorage.clear();
+      window.location.reload();
+    }
+  }
+    this.phone = new RegExp(/^(\+\d{1,3}[- ]?)?\d{10}$/);
+    
+    // /^(\+\d{1,3}[- ]?)?\d{10}$/
+    // this.phone = new RegExp(/^[0-9]{10}$/);
      this.cookie.set('buy_now_product',"false");
 
-    if(this.adminservice.buy == true){
+    if(this.adminservice.buy == true || this.buy_variable=='true'){
       this.buy_now=true;
     }
 
-    this.adminservice.buy=false;
+    // this.adminservice.buy=false;
             this.compSettings2();
-
+this.compSettingsBillShip();
      this.cookie.delete("product_id2");
     this.cookie.delete("rate_type");
      this.cookie.delete("quantity");
@@ -297,7 +319,8 @@ save_promo2;
     this.otpForm = this.formBuilder.group({
       username: [""],
       otp: [""],
-      subject:["COD"]
+      subject:["COD"],
+      comp_num:sessionStorage.getItem("comp_num_new") 
     });
     this.registerForm2 = this.formBuilder.group({
       address_no: [""],
@@ -391,25 +414,34 @@ save_promo2;
     this.stepper.selectedIndex = 1;
   }
   addBillingAddress2(id) {
+    console.log(id);
     this.sendDataToAPI.billing_address_no = this.addresses[id].address_no;
     this.sendDataToAPIRazorpay.billing_address_no = this.addresses[
       id
     ].address_no;
     this.makePaymenBill=true;
-    this.billingDone = true;
-    // this.billingArr = id;//21/08/2020 for no shipping address ask
+ if(this.bill_as_ship==true){
+    
+    this.billingArr = id;
+  }
+
+  //21/08/2020 for no shipping address ask
   //start 21/08/2020 Priyangee for no shipping address ask this.sendDataToAPI.shipping_address_no = this.addresses[id].address_no;
     // this.otpForm.billing_address_no = this.addresses[id].address_no;
-    this.sendDataToAPIRazorpay.shipping_address_no = this.addresses[
-      id
-    ].address_no;
+    if(this.bill_as_ship==false){
+      console.log(this.bill_as_ship);
+    this.sendDataToAPIRazorpay.shipping_address_no =this.addresses[id].address_no;
     this.sendDataToAPIRazorpay.email = this.addresses[id].email;
     this.sendDataToAPIRazorpay.mobile = this.addresses[id].contact_no;
     this.sendDataToAPIRazorpay.name = this.addresses[id].receiver_name;
-
+ this.sendDataToAPI.shipping_address_no = this.addresses[id].address_no;
+   
     this.stepBillingAddress = true;
     this.stepShippingAddress = true;
     this.makePaymenShip=true;
+       
+  }
+  this.billingDone = true;
   }
 
   // addBillingAddress(id, stepper: MatStepper) {
@@ -441,6 +473,9 @@ save_promo2;
     ].address_no;
     this.makePaymenBill=true;
     this.billingDone = true;
+     // if(this.bill_as_ship==false){
+   
+    
  //end 21/08/2020
     this.sendDataToAPI.shipping_address_no = this.addresses[id].address_no;
     // this.otpForm.billing_address_no = this.addresses[id].address_no;
@@ -454,6 +489,7 @@ save_promo2;
     this.stepBillingAddress = true;
     this.stepShippingAddress = true;
     this.makePaymenShip=true;
+  // }
     // this.stepper.selectedIndex = 4;
     // setTimeout(() => stepper.next(), 300);
     // setTimeout(() => stepper.next(), 300);
@@ -481,9 +517,23 @@ this.makePaymenShip=true;
   this.sendDataToAPI["coupon_log_id"] =this.coupon_log_id;
      
     if (this.buy_now == true) {
+      
+       this.sendDataToAPI["buy_now_qty"] = sessionStorage.getItem("buy_now_quant");
+     
       this.sendDataToAPI["product_no"] = sessionStorage.getItem("product_no2");
       this.sendDataToAPI["rate_type"] = sessionStorage.getItem("rate_buy");
     }
+    var res=false;
+    if(this.cod_otp_enable==true){
+     res=  confirm("Are you sure to Checkout this order against COD payment.");
+    }
+    else{
+      res=true;
+       this.loader = true;
+       
+    }
+
+     if(res){
     this.adminservice.payment(this.sendDataToAPI).subscribe(data => {
       if (data["status"] == "1") {
         // sessionStorage.getItem("productinfo");
@@ -504,24 +554,27 @@ this.makePaymenShip=true;
         if (this.previewFlag == "1") {
           if ((sessionStorage.getItem("comp_num_new") == "0") && (this.host_name != "localhost:4209")) {
           // if ((sessionStorage.getItem("comp_num_new") == "0") && (this.host_name != "www.ecomtrails.com")) {
+            const currentRoute = this.router.url;
               this.router
-                .navigateByUrl("/RefreshComponent", {
+                .navigateByUrl("/", {
                   skipLocationChange: true
                 })
                 .then(() => this.router.navigate(["/Admin/preview/home"]));
           } else {
+            const currentRoute = this.router.url;
             this.router
-              .navigateByUrl("/RefreshComponent", {
+              .navigateByUrl("/", {
                 skipLocationChange: true
               })
-              .then(() => this.router.navigate(["/home"]));
+              .then(() => this.router.navigate(["/"]));
           }
         } else {
+          const currentRoute = this.router.url;
           this.router
-            .navigateByUrl("/RefreshComponent", {
+            .navigateByUrl("/", {
               skipLocationChange: true
             })
-            .then(() => this.router.navigate(["/home"]));
+            .then(() => this.router.navigate(["/"]));
         }
       } else {
         this.loader = true;
@@ -529,24 +582,27 @@ this.makePaymenShip=true;
           if (this.previewFlag == "1") {
              if ((sessionStorage.getItem("comp_num_new") == "0") && (this.host_name != "localhost:4209")) {
           // if ((sessionStorage.getItem("comp_num_new") == "0") && (this.host_name != "www.ecomtrails.com")) {
+            const currentRoute = this.router.url;
                 this.router
-                  .navigateByUrl("/RefreshComponent", {
+                  .navigateByUrl("/", {
                     skipLocationChange: true
                   })
                   .then(() => this.router.navigate(["/Admin/preview/home"]));
               } else {
+                const currentRoute = this.router.url;
                 this.router
-                  .navigateByUrl("/RefreshComponent", {
+                  .navigateByUrl("/", {
                     skipLocationChange: true
                   })
-                  .then(() => this.router.navigate(["/home"]));
+                  .then(() => this.router.navigate(["/"]));
               }
           } else {
+            const currentRoute = this.router.url;
             this.router
-              .navigateByUrl("/RefreshComponent", {
+              .navigateByUrl("/", {
                 skipLocationChange: true
               })
-              .then(() => this.router.navigate(["/home"]));
+              .then(() => this.router.navigate(["/"]));
           }
         }
       }
@@ -558,13 +614,21 @@ this.makePaymenShip=true;
             duration: 3000
           });
         });
+    }
   }
 
   addAddress() {
+     console.log(this.phone.test(this.registerForm.controls.contact_no.value)
+   );
     if (this.registerForm.invalid) {
       alert("* fields are required.");
       // return;
     } 
+     else if(  !this.phone.test(this.registerForm.controls.contact_no.value)
+   ){
+      alert('Mobile no. must have 10 digits.');
+
+    }
     else if( this.registerForm.controls.state.value=="" ||
 
           this.registerForm.controls.city.value==""
@@ -591,24 +655,28 @@ this.makePaymenShip=true;
             if (this.previewFlag == "1") {
                if ((sessionStorage.getItem("comp_num_new") == "0") && (this.host_name != "localhost:4209")) {
           // if ((sessionStorage.getItem("comp_num_new") == "0") && (this.host_name != "www.ecomtrails.com")) {
+            const currentRoute = this.router.url;
                   this.router
-                    .navigateByUrl("/RefreshComponent", {
+                    .navigateByUrl("/", {
                       skipLocationChange: true
                     })
-                    .then(() => this.router.navigate(["/Admin/preview/home_profile/client-address"]));
+                    .then(() => this.router.navigate(["/Admin/preview/checkout"]));
               } else {
-                this.router
-                  .navigateByUrl("/RefreshComponent", {
+                const currentRoute = this.router.url;
+                this.router.navigateByUrl("/", {
                     skipLocationChange: true
                   })
-                  .then(() => this.router.navigate(["/home_profile/client-address"]));
+                  .then(() =>
+                   this.router.navigate(["/checkout"])
+                   );
               }
             } else {
+              const currentRoute = this.router.url;
               this.router
-                .navigateByUrl("/RefreshComponent", {
+                .navigateByUrl("/", {
                   skipLocationChange: true
                 })
-                .then(() => this.router.navigate(["/home_profile/client-address"]));
+                .then(() => this.router.navigate(["/checkout"]));
             }
           } else {
             this.snackbar.open("Unable to add Address,Please try again.", "", {
@@ -626,10 +694,18 @@ this.makePaymenShip=true;
   }
 
   updateAddress() {
+    console.log(this.registerForm.controls.contact_no.value);
+    console.log(this.phone.test(this.registerForm.controls.contact_no.value)
+   );
     if (this.registerForm2.invalid) {
       alert("* fields are required.");
       // return;
     } 
+    else if(  !this.phone.test(this.registerForm2.controls.contact_no.value)
+   ){
+      alert('Mobile no. must have 10 digits.');
+
+    }
     else if( this.registerForm2.controls.state.value=="" ||
 
          this.registerForm2.controls.city.value==""
@@ -839,21 +915,24 @@ this.makePaymenShip=true;
             if (this.previewFlag == "1") {
               if ((sessionStorage.getItem("comp_num_new") == "0") && (this.host_name != "localhost:4209")) {
           // if ((sessionStorage.getItem("comp_num_new") == "0") && (this.host_name != "www.ecomtrails.com")) {
+            const currentRoute = this.router.url;
                 this.router
-                  .navigateByUrl("/RefreshComponent", {
+                  .navigateByUrl("/", {
                     skipLocationChange: true
                   })
                   .then(() => this.router.navigate(["/Admin/preview/home"]));
               } else {
+                const currentRoute = this.router.url;
                 this.router
-                  .navigateByUrl("/RefreshComponent", {
+                  .navigateByUrl("/", {
                     skipLocationChange: true
                   })
                   .then(() => this.router.navigate(["/home"]));
               }
             } else {
+              const currentRoute = this.router.url;
               this.router
-                .navigateByUrl("/RefreshComponent", {
+                .navigateByUrl("/", {
                   skipLocationChange: true
                 })
                 .then(() => this.router.navigate(["/home"]));
@@ -876,11 +955,7 @@ this.makePaymenShip=true;
           this.flagEmail=1;
             this.flagMobile=1;
 
-             this.sendDataToAPI.shipping_address_no = this.addresses[0].address_no;
-    // this.otpForm.billing_address_no = this.addresses[id].address_no;
-    this.sendDataToAPIRazorpay.shipping_address_no = this.addresses[
-      0
-    ].address_no;
+           
     this.sendDataToAPIRazorpay.email = this.addresses[0].email;
     this.sendDataToAPIRazorpay.mobile = this.addresses[0].contact_no;
     this.sendDataToAPIRazorpay.name = this.addresses[0].receiver_name;
@@ -891,12 +966,22 @@ this.makePaymenShip=true;
       0
     ].address_no;
     this.stepBillingAddress = true;
+    // if(this.bill_as_ship==false){
+        this.sendDataToAPI.shipping_address_no = this.addresses[0].address_no;
+    // this.otpForm.billing_address_no = this.addresses[id].address_no;
+    this.sendDataToAPIRazorpay.shipping_address_no = this.addresses[
+      0
+    ].address_no;
     this.stepShippingAddress = true;
     this.makePaymenShip=true;
+  // }
      this.makePaymenBill=true;
       }
       else{
         this.address_exist=false;
+      }
+      if(this.bill_as_ship==true){
+       this.billingDone = true;
       }
     
     });
@@ -930,6 +1015,12 @@ this.makePaymenShip=true;
       }
     }
     else if(mode == 3){
+
+
+
+      this.placeOrder2codY=false;
+    
+      this.placeOrder2codN=false;
       this.placeOrder = false;
        this.placeOrderPayumoney = true;
        this.placeOrderPaytm=false;
@@ -952,6 +1043,9 @@ this.makePaymenShip=true;
        this.placeOrderPayumoney = false;
        this.placeOrderPaytm=true;
       this.placeOrder2 = false;
+      this.placeOrder2codY=false;
+    
+      this.placeOrder2codN=false;
       this.paymentPaytm();
     //   let postData = {
     //   user_num: sessionStorage.getItem("user_num"),
@@ -970,12 +1064,18 @@ this.makePaymenShip=true;
        this.placeOrderPayumoney = false;
        this.placeOrderPaytm=false;
       this.placeOrder = true;
+      this.placeOrder2codY=false;
+    
+      this.placeOrder2codN=false;
     }
      else {
       this.placeOrder2 = false;
        this.placeOrderPayumoney = false;
        this.placeOrderPaytm=false;
       this.placeOrder = true;
+      this.placeOrder2codY=false;
+    
+      this.placeOrder2codN=false;
     }
 
     this.loader = true;
@@ -1014,6 +1114,8 @@ this.makePaymenShip=true;
       this.sendDataToAPIRazorpay["product_no"] = sessionStorage.getItem(
         "product_no2"
       );
+      this.sendDataToAPIRazorpay["buy_now_qty"] = sessionStorage.getItem("buy_now_quant");
+     
       this.sendDataToAPIRazorpay["rate_type"] = sessionStorage.getItem(
         "rate_buy"
       );
@@ -1021,7 +1123,7 @@ this.makePaymenShip=true;
         postData2.product_no = sessionStorage.getItem(
         "product_no2"
       );;
-         postData2['quantity']=1;
+         postData2['quantity']=sessionStorage.getItem('buy_now_quant');
         postData2.comp_num = sessionStorage.getItem("comp_num_new");
 
         this.adminservice.fethcProductWishlist(postData2).subscribe(data => {
@@ -1029,11 +1131,11 @@ this.makePaymenShip=true;
           if (data["status"] == "1") {
             
             this.cart = data["wishlist"];
-            this.total_entity=1;
+            this.total_entity=JSON.parse(sessionStorage.getItem('buy_now_quant'));
              this.c = this.cart;
              this.c.shipping_amt=data["total_shipping"];
-             this.c.qty=1;
-             this.c[0].qty=1;
+             this.c.qty=sessionStorage.getItem('buy_now_quant');
+             this.c[0].qty=sessionStorage.getItem('buy_now_quant');
 
             this.discount_promo=data["total_discount"];
 
@@ -1095,14 +1197,16 @@ this.makePaymenShip=true;
           if(this.previewFlag == '1'){
             if ((sessionStorage.getItem("comp_num_new") == "0") && (this.host_name != "localhost:4209")) {
           // if ((sessionStorage.getItem("comp_num_new") == "0") && (this.host_name != "www.ecomtrails.com")) {
+            const currentRoute = this.router.url;
                   this.router
-                  .navigateByUrl("/RefreshComponent", {
+                  .navigateByUrl("/", {
                     skipLocationChange: true
                   })
                   .then(() => this.router.navigate(["/Admin/preview/login"]));
             }else{
+              const currentRoute = this.router.url;
               this.router
-              .navigateByUrl("/RefreshComponent", {
+              .navigateByUrl("/", {
                 skipLocationChange: true
               })
               .then(() => this.router.navigate(["/login"]));
@@ -1142,8 +1246,9 @@ this.makePaymenShip=true;
                 }
   
             }else{
+              const currentRoute = this.router.url;
               this.router
-              .navigateByUrl("/RefreshComponent", {
+              .navigateByUrl("/", {
                 skipLocationChange: true
               })
               .then(() => this.router.navigate(["/login"]));
@@ -1282,6 +1387,11 @@ this.makePaymenShip=true;
     this.loader = false;
     
     if (this.buy_now == true) {
+      this.sendDataToAPIRazorpay["buy_now_qty"] = sessionStorage.getItem("buy_now_quant");
+     
+       // this.sendDataToAPIRazorpay["product_no"] = sessionStorage.getItem(
+        // "product_no2"
+      // );
       this.sendDataToAPIRazorpay["product_no"] = sessionStorage.getItem(
         "product_no2"
       );
@@ -1426,6 +1536,8 @@ paymentPayumoney2(e,r){
       this.sendDataToAPIRazorpay["rate_type"] = sessionStorage.getItem(
         "rate_buy"
       );
+      this.sendDataToAPIRazorpay["buy_now_qty"] = sessionStorage.getItem("buy_now_quant");
+     
     }
     this.adminservice.payment(this.sendDataToAPI).subscribe(data => {
       this.loader = true;
@@ -1578,6 +1690,8 @@ paymentPayumoney2(e,r){
       this.sendDataToAPIRazorpay["rate_type"] = sessionStorage.getItem(
         "rate_buy"
       );
+      this.sendDataToAPIRazorpay["buy_now_qty"] = sessionStorage.getItem("buy_now_quant");
+     
     }
     this.adminservice.payment(this.sendDataToAPIRazorpay).subscribe(data => {
       this.loader = true;
@@ -1830,11 +1944,26 @@ paymentPayumoney2(e,r){
     this.forpaymentshow = true;
     this.forpaymenthide = false;
   }
-  forpayment2(){
-    alert("Please add address");
+  forpayment2(e){
+    if(e=='1'){
+     alert("Please select/add Address");
+    }
+    else if(e=='2'){
+       alert("Please select/add Billing Address");
+    }
+    else if(e=='3'){
+       alert("Please select/add Shipping Address");
+    }
+    else{
+       alert("Please add address");
+    }
+   
   }
 
   coupon_code(couponform){
+     this.sendDataToAPI.coupon_log_id = '';
+    this.sendDataToAPIRazorpay.coupon_log_id = '';
+     
     if(couponform.value.coupon==null){
       this.snackbar.open("ENTER COUPON CODE","",{duration: 5000,horizontalPosition: "center"});
     }
@@ -1861,6 +1990,9 @@ paymentPayumoney2(e,r){
         this.promo_cod2=data['disc_price'];
         this.coupon_log_id=data['id'];
         this.promo_cod=true;
+        console.log(this.coupon_log_id);
+        this.sendDataToAPI.coupon_log_id = data['id'];
+    this.sendDataToAPIRazorpay.coupon_log_id = data['id'];
         //console.log(this.shipping_amt);
 
         //console.log(JSON.parse(this.shipping_amt));
@@ -1901,6 +2033,9 @@ disab(){
     this.coupon_count=1;
     this.fees = this.temp_amt;
     this.promo_cod=false;
+     this.sendDataToAPI.coupon_log_id = '';
+    this.sendDataToAPIRazorpay.coupon_log_id = '';
+    
   }
   //start Priyangee 15/08/2020
    compSettings2() {
@@ -1960,9 +2095,350 @@ disab(){
          }
       });
   }
+
+
+
+ compSettingsBillShip() {
+    this.adminservice
+      .fetch_particular_company_registry_with_sno({ comp_num: sessionStorage.getItem("comp_num_new"), s_no:24})
+      .subscribe(data => {
+     
+
+
+        if (data["status"] == 1) {
+          // if(data['data'].length>0){
+          //   for(let k=0;k<data['data'].length;k++){
+              // if(data['data'].s_no==13 || data['data'].s_no=='13'){
+                if(data['data'].value==0 || data['data'].value=='0'){
+                  this.bill_as_ship=true;
+                }
+              // }
+          //   }
+          // }
+         }
+      });
+  }
 //   resolved(captchaResponse: string, res) {
 //   //console.log(`Resolved response token: ${captchaResponse}`);
 //  this.payment();
 // }
   //end Priyangee 15/08/2020
+  //start for qty update without login
+
+updateCart3minusl(qty2,qty_stock,product_no) {
+    // var qty = 1;
+    var qty=parseInt(qty2)-1;
+    if (qty < 1) {
+      this.snackbar.open("Choose Valid quantity.", "", {
+        duration: 3000
+      });
+      this.ngOnInit();
+    }
+      else if (qty >= 1) {
+        // start 
+
+       // if(this.alreadyCart == true){
+         //console.log(strings2);
+      //console.log(strings2Q);
+      let k=sessionStorage.getItem('buy_now_quant');
+      let k2=(JSON.parse(k)-1).toString();
+        console.log(k2);
+      
+      sessionStorage.setItem("buy_now_quant", k2);
+  
+
+      
+
+        //start fetch product
+        
+        //var dnQ =
+var dnQ = sessionStorage.getItem('buy_now_quant'); 
+        //en for qty
+        var postData2 = { product_no: "", comp_num: "" };
+        postData2.product_no = sessionStorage.getItem('product_no2');
+        postData2['quantity']=dnQ;
+        postData2.comp_num = sessionStorage.getItem("comp_num_new");
+        //console.log(postData2);
+        // end
+     
+
+      this.adminservice.fethcProductWishlist(postData2).subscribe(data => {
+         this.loader = false;
+        if (data["status"] == "1") {
+          this.loader = true;
+          
+          // this.updateCartCount();
+            this.products = data["wishlist"];
+          
+           this.snackbar.open("Update Successfully", "", {
+            duration: 3000
+          });
+          const currentRoute = this.router.url;
+            this.router
+            .navigateByUrl("/", {
+              skipLocationChange: true
+            })
+            .then(() => this.router.navigate(["/checkout"]));
+    
+           // this.ngOnInit();
+          if(this.previewFlag == '1'){
+            if ((sessionStorage.getItem("comp_num_new") == "0") && (this.host_name != "localhost:4209")) {
+            }else{
+              
+            }
+  
+          }else{
+           
+          }
+        } else if (data["status"] == "10") {
+         
+        } else {
+          this.loader = true;
+          this.snackbar.open("This cart is not update..!", "", {
+            duration: 3000
+          });
+         
+        }
+        this.loader = true;
+      });
+    } else {
+      this.loader = true;
+
+      this.snackbar.open("This quantity is not available.", "", {
+        duration: 3000
+      });
+      this.ngOnInit();
+    }
+  }
+   updateCart3plusl(qty2,qty_stock,product_no) {
+    // var qty = 1;
+    // this.isLoggedIn = true;
+    var qty=parseInt(qty2)+1;
+    if (qty < 1) {
+      this.snackbar.open("Choose Valid quantity.", "", {
+        duration: 3000
+      });
+      this.ngOnInit();
+    }
+    else if(qty > parseInt(qty_stock)){
+      let msg="Quantity limit exceed.";
+      // let msg="only "+qty_stock+" quantity available.";
+       this.snackbar.open(msg, "", {
+        duration: 3000
+      });
+        this.ngOnInit();
+    } else if (qty >= 1) {
+      // start 
+
+       // if(this.alreadyCart == true){
+         //console.log(strings2);
+      //console.log(strings2Q);
+       let k=sessionStorage.getItem('buy_now_quant');
+      let k2=(JSON.parse(k)+1).toString();
+        console.log(k2);
+      
+      sessionStorage.setItem("buy_now_quant", k2);
+  
+     
+        //var dnQ =
+var dnQ = sessionStorage.getItem('buy_now_quant');
+// quotesQ.replace(/,""/g, "");
+        //en for qty
+        var postData2 = { product_no: "", comp_num: "" };
+        postData2.product_no = sessionStorage.getItem('product_no2');
+        postData2['quantity']=dnQ;
+        postData2.comp_num = sessionStorage.getItem("comp_num_new");
+        //console.log(postData2);
+        // end
+
+      this.adminservice.fethcProductWishlist(postData2).subscribe(data => {
+        // this.isLoggedOut = false;
+        // this.isLoggedIn = true;
+        this.loader = false;
+        if (data["status"] == "1") {
+          this.loader = true;
+         
+            this.products = data["wishlist"];
+            // this.total_mrp=data["total_mrp"];
+            // this.total_discount=data["total_discount"];
+
+            // this.total_shipp=data["total_shipping"];
+            // this.total_nett=data["total_net"];
+            //  this.net_amount =this.total_nett-this.total_shipp;
+
+            this.snackbar.open("Update Successfully", "", {
+            duration: 3000
+          });
+          const currentRoute = this.router.url;
+             this.router
+            .navigateByUrl("/", {
+              skipLocationChange: true
+            })
+            .then(() => this.router.navigate(["/checkout"]));
+    
+            // this.ngOnInit();
+          if(this.previewFlag == '1'){
+            if ((sessionStorage.getItem("comp_num_new") == "0") && (this.host_name != "localhost:4209")) {
+            }else{
+             
+            }
+    
+  
+          }else{
+           
+          }
+        } else if (data["status"] == "10") {
+          
+        } else {
+          this.loader = true;
+          this.snackbar.open("This cart is not update..!", "", {
+            duration: 3000
+          });
+          
+        }
+        this.loader = true;
+      });
+    } else {
+      this.loader = true;
+
+      this.snackbar.open("This quantity is not available.", "", {
+        duration: 3000
+      });
+      this.ngOnInit();
+    }
+  }
+
+ updateCart3l(qty2,qty_stock,qty,product_no) {
+    // var qty = 1;
+    // this.isLoggedIn = true;
+
+    if (qty < 1) {
+      this.snackbar.open("Choose Valid quantity.", "", {
+        duration: 3000
+      });
+      this.ngOnInit();
+    }
+    else if(qty > parseInt(qty_stock)){
+      let msg="Quantity limit exceed.";
+      // let msg="only "+qty_stock+" quantity available.";
+       this.snackbar.open(msg, "", {
+        duration: 3000
+      });
+        this.ngOnInit();
+    }
+     else if (qty >= 1) {
+       // start 
+  let k=sessionStorage.getItem('buy_now_quant');
+      let k2=(JSON.parse(k)-1).toString();
+        console.log(k2);
+      
+      sessionStorage.setItem("buy_now_quant", qty);
+  
+       // if(this.alreadyCart == true){
+         //console.log(strings2);
+      //console.log(strings2Q);
+     
+        //var dnQ =
+var dnQ = sessionStorage.getItem('buy_now_quant'); 
+//quotesQ.replace(/,""/g, "");
+        //en for qty
+        var postData2 = { product_no: "", comp_num: "" };
+        postData2.product_no = sessionStorage.getItem('product_no2');
+        postData2['quantity']=dnQ;
+        postData2.comp_num = sessionStorage.getItem("comp_num_new");
+        //console.log(postData2);
+        // end
+      this.adminservice.fethcProductWishlist(postData2).subscribe(data => {
+        // this.isLoggedOut = false;
+        // this.isLoggedIn = true;
+        this.loader = false;
+        if (data["status"] == "1") {
+          this.loader = true;
+          
+          // this.updateCartCount();
+            // this.products = data["wishlist"];
+            // this.total_mrp=data["total_mrp"];
+            // this.total_discount=data["total_discount"];
+
+            // this.total_shipp=data["total_shipping"];
+            // this.total_nett=data["total_net"];
+            //  this.net_amount =this.total_nett-this.total_shipp;
+
+           this.snackbar.open("Update Successfully", "", {
+            duration: 3000
+          });
+          const currentRoute = this.router.url;
+            this.router
+            .navigateByUrl("/", {
+              skipLocationChange: true
+            })
+            .then(() => this.router.navigate(["/checkout"]));
+    
+           // this.ngOnInit();
+          if(this.previewFlag == '1'){
+             if ((sessionStorage.getItem("comp_num_new") == "0") && (this.host_name != "localhost:4209")) {
+             }else{
+            
+              }
+  
+          }else{
+            
+          }
+        } else if (data["status"] == "10") {
+          const currentRoute = this.router.url;
+          this.router
+            .navigateByUrl("/", {
+              skipLocationChange: true
+            })
+            .then(() => this.router.navigate(["/expired"]));
+        } else {
+          this.loader = true;
+          this.snackbar.open("This cart is not update..!", "", {
+            duration: 3000
+          });
+          if (sessionStorage.getItem("access_token") == "") {
+            const currentRoute = this.router.url;
+            this.router
+              .navigateByUrl("/", {
+                skipLocationChange: true
+              })
+              .then(() => this.router.navigate(["/expired"]));
+          }
+        }
+        this.loader = true;
+      });
+    } else {
+      this.loader = true;
+
+      this.snackbar.open("This quantity is not available.", "", {
+        duration: 3000
+      });
+      this.ngOnInit();
+    }
+  }
+
+//end for qty update without login
+ view_product(name, id,slug,quick) {
+    if(quick=='N'){
+    // let slug = name.replace(/\s/, "-") + "-?" + id;
+    // this.router
+    //   .navigateByUrl("/RefreshComponent", {
+    //     skipLocationChange: true
+    //   })
+    //   .then(() => this.router.navigate(["/product-view", slug]));
+
+
+
+      const currentRoute = this.router.url;
+
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+          this.router.navigate(["/product-view", slug]); // navigate to same route
+      });
+
+  }
+  }
+  opencoupenu(){
+    this.opencoupen=!this.opencoupen;
+  }
+ 
 }

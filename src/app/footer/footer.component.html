@@ -4,14 +4,14 @@
   
       <div class="col-md-6 mt-6 ml-6">
         <ul style="color: white;text-decoration: none;list-style: none; font-size: 15px;font-family: Cinzel Semi Bold;">
-         <li><p class="text-white" style="font-size: 15px;">{{compd?.email}}</p></li> 
+         <li><p class="text-white project-discription" style="font-size: 15px;">{{compd?.email}}</p></li> 
        
-            <li class="text-white"><p style="font-size: 15px;">{{compd?.contact_no}} (Mon-Fri, excluding Holidays 11am-4pm)</p></li>
+            <li class="text-white project-heading"><p style="font-size: 15px;">{{compd?.contact_no}} (Mon-Fri, excluding Holidays 11am-4pm)</p></li>
             
-            <li class="text-white"><p style="font-size: 15px;">  {{compd?.line1}}, {{compd?.line2}}, {{compd?.landmark}}, {{compd?.city}},
+            <li class="text-white project-discription"><p style="font-size: 15px;">  {{compd?.line1}}, {{compd?.line2}}, {{compd?.landmark}}, {{compd?.city}},
               {{compd?.state}}, {{compd?.country}} -{{compd?.pin_code}}.</p></li>
             <br> 
-            <li> <p style="font-size: 15px;">FAQ's&nbsp;&nbsp;&nbsp;&nbsp;   Privacy &nbsp;&nbsp;&nbsp;&nbsp;    PolicyTerms of Use  </p></li>
+            <li> <p style="font-size: 15px;" class="project-discription">FAQ's&nbsp;&nbsp;&nbsp;&nbsp;   Privacy &nbsp;&nbsp;&nbsp;&nbsp;    PolicyTerms of Use &nbsp;&nbsp;&nbsp;&nbsp; <span class="project-heading text-success cursor-pointer" routerLink="/member-login">Member Registration</span> </p></li>
       
             </ul>
       
@@ -20,7 +20,7 @@
       <div class="col-md-6 mt-6 ml-6" >
         <div class="row">
           <div class="col-md-3">
-            <h6 class="text-white" id="text" style="color:white;margin-left: 20px;font-size: 15px;font-family: Cinzel Semi Bold;">follow us</h6>
+            <h6 class="text-white project-heading" id="text" style="color:white;margin-left: 20px;font-size: 15px;">follow us</h6>
             <a  target="_blank" class="facebook"
             href="{{ data?.facebook }}"
             ><img src="./assets/facebook1.png"   width="50px"> </a>
@@ -43,7 +43,7 @@
        </div>
        <div class="row">
         
-        <div class="col-md-12 mt-6" style="color: white;margin-top: 10px;font-family: Cinzel Semi Bold;"  >Copyright © 2020 RoarClub All rights reserved.</div>
+        <div class="col-md-12 mt-6 project-discription text-success" style="margin-top: 10px;"  >Copyright © 2020 RoarClub All rights reserved.</div>
       </div>
            </div>
 

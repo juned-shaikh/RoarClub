@@ -57,14 +57,14 @@ export class WishlistComponent implements OnInit {
               .navigateByUrl("/RefreshComponent", {
                 skipLocationChange: true
               })
-              .then(() => this.router.navigate(["/Admin/preview/wishlist"]));
+              .then(() => this.router.navigate(["/Admin/home_profile/wishlist"]));
               
             }else{
               this.router
               .navigateByUrl("/RefreshComponent", {
                 skipLocationChange: true
               })
-              .then(() => this.router.navigate(["/wishlist"]));
+              .then(() => this.router.navigate(["/home_profile/wishlist"]));
 
             }
           
@@ -198,14 +198,14 @@ count=0;
               .navigateByUrl("/RefreshComponent", {
                 skipLocationChange: true
               })
-              .then(() => this.router.navigate(["/Admin/preview/wishlist"]));
+              .then(() => this.router.navigate(["/Admin/preview/my-cart"]));
               
             }else{
               this.router
               .navigateByUrl("/RefreshComponent", {
                 skipLocationChange: true
               })
-              .then(() => this.router.navigate(["/wishlist"]));
+              .then(() => this.router.navigate(["/my-cart"]));
 
             }
           

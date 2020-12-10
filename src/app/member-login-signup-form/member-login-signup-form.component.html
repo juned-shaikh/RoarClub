@@ -1,0 +1,268 @@
+<link href="https://fonts.googleapis.com/css?family=Raleway|Roboto+Condensed&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Girassol&display=swap" rel="stylesheet">
+<!-- <body> -->
+   
+    <div class="container-fluid " style="min-height: 50vh;">
+      <!-- <div class=" no-pdding login-box"> -->
+          <div class="row no-margin w-100 bklmj justify-content-center mt-4">
+              <div class="col-lg-4 col-md-4 box-login-with log-det col-10  pl-5 pr-5 pt-2 pb-2 m-5">
+                   <div class="text-center">
+                  <h2 class="mb-4 login-heading project-heading text-white ">Sign <span class="text-green">IN</span></h2> 
+                </div>
+                  <div class="row no-margin past mt-2">
+                  </div>
+                  <div class="text-box-cont" *ngIf="signup  == 1">
+                    <form [formGroup]="loginuser">
+                      <!-- <mat-form-field class="example-full-width mt-2" >
+                        <mat-label>Enter Email or Phone Number</mat-label>
+                        <input (keyup)="checkUserExist()" type="text" matInput  formControlName="username"  >
+                      </mat-form-field> -->
+
+                      <div class="mb-3">
+                          <input class="form-control login-input-box" placeholder="Email or Phone Number" (keyup)="checkUserExist()" type="text" formControlName="username" />
+
+                         
+                      </div>
+                      <mat-form-field *ngIf="pass  == 1" class="example-full-width" >
+                        <mat-label>Enter Password</mat-label>
+                        <input matInput type="password"  id="myInput" class="pl-2"   formControlName="password" >
+                        <mat-icon onclick="myFunction()" (click)="passvible()" matSuffix *ngIf="visibility" class="cursor-pointer">visibility</mat-icon>
+                        <mat-icon onclick="myFunction()" (click)="passvible()" matSuffix *ngIf="!visibility" class="cursor-pointer">visibility_off</mat-icon>
+                      </mat-form-field>
+                   
+                      <div  class="right-bkij mb-2 mt-3 justify-content-around row">
+                          <button *ngIf="pass==1" mat-raised-button class=" project-button col-6"(click)= "login()" ><a  style="color: white;">Log In</a></button>
+
+                          <button *ngIf="pass==0" class="project-button-disable col-6" mat-raised-button style="color: white;cursor:not-allowed"><a   matTooltip="Please enter email/mobile">Enter</a></button>
+                       
+                         <button *ngIf="pass==2" [disabled]="!loading" mat-raised-button class="project-button col-6"(click)= "onSubmitSign()" ><a  style="color: white;">Get OTP</a></button>
+                        
+  <button mat-raised-button *ngIf="pass==1 && referral_ask==true" class="project-button col-6" (click)="openXl(codOtp)" ><a  style="color: white;" class="pl-2 pr-2">Login with OTP</a></button>
+
+                      </div> 
+                      <div *ngIf="pass  == 1" class="row no-margin text-center">
+                        <p class="forget-p text-center" 
+                        style="font-size: 13px; color: wheat;cursor:pointer; padding-left: 3px;"> <span (click)="openXl(content2)">Forgot Password ?</span>
+                      </p>
+                    </div>
+                      <br> 
+                    </form>
+                  </div>
+
+
+                  <!-- register start -->
+                   <div *ngIf="signup == 2">
+                 
+                 
+                  
+                  <div class="text-box-cont">
+                    <form [formGroup]="otpForm">
+                      
+                      <mat-form-field class="w-100">
+                        <mat-label>Enter OTP</mat-label>
+                        <input matInput required  formControlName="otp" type="number">
+                      </mat-form-field>
+                      <mat-form-field class="w-100">
+                        <mat-label>Enter Password</mat-label>
+                        <input   id="myInput" matInput required   formControlName="password" type="password">
+                        <mat-icon onclick="myFunction()" (click)="passvible()" matSuffix *ngIf="visibility" class="cursor-pointer">visibility</mat-icon>
+                        <mat-icon onclick="myFunction()" (click)="passvible()" matSuffix *ngIf="!visibility" class="cursor-pointer">visibility_off</mat-icon>
+                      </mat-form-field>
+                     
+                      <mat-form-field class="w-100">
+                        <mat-label>Confirm Password</mat-label>
+                        <input id="myInput3" matInput required  (keyup)="checkConfirmPassword()"   formControlName="confirmPassword" type="password" >
+                        <mat-icon onclick="myFunction3()" (click)="passvibleconfirm()" matSuffix *ngIf="visibilityconfirm" class="cursor-pointer">visibility</mat-icon>
+                        <mat-icon onclick="myFunction3()" (click)="passvibleconfirm()" matSuffix *ngIf="!visibilityconfirm" class="cursor-pointer">visibility_off</mat-icon>  
+                        <mat-hint class="text-danger" *ngIf="is_confirm">Confirm Password do not match with Password</mat-hint>
+                      </mat-form-field>
+                      
+                    <mat-card-actions>
+                       <!-- <div class="row">
+                          <p class="forget-p"  style="font-size: 13px; color: blue;cursor:pointer; padding-left: 3px;">
+                   <span  (click)="openXl(content2)">Forgot Password ?</span>  </p>
+                      </div> -->
+                    <div  class="right-bkij mb-1 mt-3 d-flex">
+                          <button [disabled]="!loading"mat-raised-button class="project-button text-white"(click)= "onSubmitOTP()" >Verify</button>
+
+                          <button [disabled]="!loading" mat-raised-button class="project-button ml-3 text-white"(click)= "onSubmitResendOtp()" >Resend OTP</button>
+                        </div>
+                      </mat-card-actions>
+
+                 
+                    <br/>
+                      
+                    </form>
+                  </div>
+                  
+                </div>
+                  <!-- register end -->
+                  
+                   
+                
+              </div>
+         
+          </div>
+      <!-- </div> -->
+  </div>
+  <!-- </body> -->
+  <ng-template #content2 let-modal >
+    <div class="row "  >
+      <h4 class="modal-title project-heading  pt-2 col-md-10" id="modal-basic-title" >
+      &nbsp;  Forgot Password
+      </h4>
+  <div class="col-md-2 text-center">
+    <mat-icon
+    (click)="modal.dismiss('Cross click')"
+    class="text-danger cursor-pointer"
+    >close</mat-icon
+  >
+  </div>
+     
+    </div>
+  
+    <div class="modal-body " >
+      <div class="container-fluid" >
+        <form [formGroup]="forgotForm">
+          <div class=" ">
+   
+   <div class="row justify-content-center mt-1" >
+     <div class="col-md-10 text-center project-heading">Enter Your Email or Mobile No.</div>
+   </div>          
+            <div class="row justify-content-center">
+              <div class="col-md-8">
+  
+                
+                 <div class="input-group mb-1 mt-2 ">
+                  <input type="text" class="form-control" formControlName="username" placeholder="Please Enter Email/Mobile" id="name" required>
+                            <!-- <input type="text"   class="form-control" formControlName="username" placeholder="Please Enter Email/Mobile" > -->
+                        </div>
+               
+                
+               
+              </div>
+            </div>
+           
+           
+            <div class="row justify-content-center mt-2 mb-3">
+              <button
+                class="project-button"
+                mat-raised-button
+                matTooltip="Send Password"
+                (click)="forgotPassword(); modal.close('Save click')"
+              >
+                Send
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ng-template>
+  
+  
+  <ng-template #codOtp let-modal>
+    <div class="modal-header  justify-content-center" >
+      <h4 class="modal-title font-weight-600 project-heading" id="modal-basic-title" align="center" *ngIf="verify==false || shownamebox">
+        Enter mobile number or email
+      </h4>
+      <h4 class="modal-title font-weight-600 project-heading" id="modal-basic-title" align="center" *ngIf="verify==true">
+        Veirfy mobile number or email 
+      </h4>
+  
+     
+    </div>
+    <div class="modal-body "  >
+      <div class="container-fluid">
+        <form [formGroup]="otpFormLogin">
+       
+                <div class="row mt-2 justify-content-center">
+                  <div class=" col-lg-6"> 
+               
+                    <mat-form-field  class="example-full-width " appearance="outline" *ngIf="verify==false || shownamebox">
+                      <input
+                        matInput 
+                      class="pl-3"
+                        formControlName="username"
+                        required
+                      />
+                      <mat-icon matPrefix class="text-success">perm_phone_msg</mat-icon>
+                    </mat-form-field>
+                   
+                
+                       <div class="row justify-content-center">
+                   
+               
+                      <div  class="col-sm-8 text-center">
+                        <h4> <span class="checkout-register-otp font-weight-500" *ngIf="verify==true">{{otpFormLogin.controls.username.value}}</span>   <span matTooltip="edit " (click)="edit()" *ngIf="verify==true && !shownamebox" class="text-success">(change)</span><span *ngIf="shownamebox" (click)="cancel()" class="text-danger">(cancel)</span> </h4>
+                      </div>
+                      <p class="font-weight-500" *ngIf="verify==true">A text with a code has been sent to the number or email above.</p>
+                    
+                    </div>
+                  </div>
+                </div>
+                <div class="row justify-content-center mt-4" *ngIf="verify == true">
+                  <div class="col-lg-6 text-center">
+                    <mat-form-field  class="example-full-width" appearance="outline">
+                      <input
+                        matInput type="number"
+                        placeholder="Enter OTP"
+                        formControlName="otp"
+                        required
+                      /> -->
+                      <input type="number" class="login-inpu" placeholder="Enter OTP" formControlName="otp"  required>
+                    </mat-form-field>
+                   
+                  </div>
+                </div>
+          
+            <div
+              class="row mt-2 mb-3 justify-content-center"
+            >
+            
+            <button *ngIf="verify == true"
+            class="project-button w-35"
+            mat-raised-button
+            matTooltip="Verify OTP"
+            (click)="otpVerificationUser(); modal.close('Save click')" [disabled]="!loading"
+          >
+            Verify
+          </button>
+          &nbsp; &nbsp;
+           
+              <button *ngIf="otpgeneration == true " [disabled]="!loading"
+              class="project-button w-35"
+              mat-raised-button
+              matTooltip="Resend OTP"
+              (click)="resendOtpVerify()"
+            >
+              Resend OTP
+            </button> 
+              &nbsp; &nbsp;
+              <button  *ngIf="verify == false && otpgeneration == false"
+              class="project-button mb-3 w-35"
+              mat-raised-button
+              matTooltip="cancel"
+              (click)="modal.dismiss('Cross click')" [disabled]="!loading"
+            >
+              Cancel
+            </button>
+            &nbsp;&nbsp;
+              <button  *ngIf="verify == false"
+              class="project-button mb-3 w-35"
+              mat-raised-button
+              matTooltip="Send OTP"
+              (click)="otpGenerate()" [disabled]="!loading"
+            >
+              Send OTP
+            </button>
+          
+            </div>
+          
+           
+        </form>
+      </div>
+    </div>
+  </ng-template>
+

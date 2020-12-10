@@ -3,14 +3,14 @@
 *ngIf="isLoggedOut"
 >
 <div *ngIf="isLoggedOutPro">
-  <div class="text-center" style="padding: 10% 0;">
+  <div class="text-center" style="padding: 3% 0;">
     <mat-card-content>
-      <img src="https://img.icons8.com/carbon-copy/100/000000/clear-shopping-cart.png" />
-      <h2 class="font-weight-500 text-muted">Cart Is Empty.</h2>
-      <h5 class="pt-1 text-muted">Looks Like you have no item in your shopping cart.
-      </h5>
-      <h6 class="mt-2 text-white">Click <span routerLink="/" class="text-primary cursor-pointer" title="click">here</span> to
-        continue shopping.</h6>
+      <img src="assets/cart.png" />
+      <!-- <h2 class="font-weight-500 text-muted">Cart Is Empty.</h2> -->
+      <h4 class=" text-muted project-discription ">Looks Like you have no item in your shopping cart.
+      </h4>
+     
+        <button mat-raised-button class="project-button" routerLink="/"> Continue Shopping</button>
 
     </mat-card-content>
   </div>
@@ -53,6 +53,7 @@
                     <div>
                       <h5 class="" style="font-weight: bold;">  {{ pr.product.name }}</h5>
                       <h6>{{ pr.product.subheading }}</h6>
+                      <h6 class="pr.product.size !=null">Size : {{pr.product.size}}</h6>
                       <p class="mb-3 text-muted text-uppercase small">Qty - {{pr.quantity}}</p>
                       <!-- <p *ngFor="let sh of pr.product_rate " class="row mobile-cart-font-size">
                         <span *ngIf="sh.is_rent == '2' && ship_ask==true && (sh.rate_qty==0 || sh.rate_qty==null || sh.rate_qty=='0') " class="text-success text-titlecase font-weight-300 mobile-cart-font-size">
@@ -85,9 +86,6 @@
                      
   
                     
-                      <small id="passwordHelpBlock" class="form-text text-muted text-center">
-                        (Note, {{pr.quantity}} piece)
-                      </small>
                    </div>
                   </div>
                   <div class="d-flex justify-content-between align-items-center">
@@ -211,7 +209,7 @@
 
             </ul>
   
-            <button type="button" style="background: green; color: white;" class="btn  btn-block waves-effect waves-light" (click)="WtoutLoginCheckout()">Place Order</button>
+            <button type="button" mat-raised-button class="project-button w-100" (click)="WtoutLoginCheckout()">Place Order</button>
   
           </div>
         </div>
@@ -286,12 +284,13 @@
 
 
   <section *ngIf="isLoggedIn">
-    <div *ngIf="isLoginEmpty" class="row justify-content-center mt-5 pt-5 w-100">
-      <div class="text-center shadow-lg col-md-6 p-2 col-10">
-        <img src="/assets/img/empty-cart.png" class="img-fluid" />
+    <div *ngIf="isLoginEmpty" class="row justify-content-center mt-2 pt-5 w-100">
+      <div class="text-center  col-md-6 p-2 col-10">
+        <img src="/assets/cart.png"   height="250"/>
         <br />
-        <a routerLink="/" class="bg-primary-color">
-          Back to Home
+        <h5 class="project-discription" style="color: wheat;">Your cart is currently empty no product found in your cart</h5>
+        <a routerLink="/" class="bg-success-color" style="color: green;">
+          Start shopping
         </a>
 
 
@@ -332,6 +331,7 @@
                     <div>
                       <h5>   {{ cd.product.name }}</h5>
                       <h6> {{ cd.product.subheading }}</h6>
+                      <h6>Size : {{cd.product.size}}</h6>
                       <p class="mb-1 text-muted text-uppercase small"><span *ngIf="cd.product.txn_quantity < '1' " class=" font-weight-500 " >
                         <h6 class="text-danger">Out of Stock </h6>
                       </span></p>
@@ -359,14 +359,12 @@
                          
   
                     
-                      <small id="passwordHelpBlock" class="form-text text-muted text-center">
-                        (Note, {{cd.qty}} piece)
-                      </small>
+                     
                    </div>
                   </div>
                   <div class="d-flex justify-content-between align-items-center mt-0">
                     <div>
-                      <span *ngIf="cd.is_rent !='0'">{{ cd.rate_name }} </span>
+                      <span *ngIf="cd.is_rent !='0'" class="project-heading">{{ cd.rate_name }} </span>
                           <span class="font-weight-600">₹ {{ cd.rate }}</span><span
                             *ngIf="cd.rate < cd.total_mrp_amount" class="text-muted font-weight-400">&nbsp;<del> ₹
                               {{ cd.total_mrp_amount }}</del></span> &nbsp; &nbsp;  <strong><span
@@ -378,7 +376,7 @@
                   </div>
                   <div class="d-flex justify-content-between align-items-center">
                     <div>
-                      <a  type="button" (click)="deleteFromCart(cd.cart_inventory_id)" style="color: white;" class="c small text-uppercase mr-3"><i
+                      <a  type="button" (click)="deleteFromCart(cd.cart_inventory_id)" style="color: white;" class="c project-discription small text-uppercase mr-3"><i
                           class="fas fa-trash-alt mr-1"></i> Remove item </a>
                       <a href="#!" type="button" *ngIf="rentShow" class="card-link-secondary small text-uppercase" style="cursor: pointer;"  (click)="fetch_cart_specific(cd.cart_id,cd.cart_inventory_id);openXl(content2);"> Update Rate Type </a>
                     </div>
@@ -453,7 +451,7 @@
               </li>
             </ul>
   
-            <button type="button" style="background: green; color: white;" class="btn  btn-block waves-effect waves-light" (click)="checkout()">Place Order</button>
+            <button type="button" mat-raised-button  class="project-button w-100" (click)="checkout()">Place Order</button>
   
           </div>
         </div>
@@ -525,7 +523,6 @@
     <!--Grid row-->
   
   </section>
-  <app-footer></app-footer>
 
   <ng-template #content2 let-modal>
     <div class="modal-header">
@@ -582,7 +579,7 @@
 
 
           <div class="text-center mt-2 ">
-            <button class=" text-white bg-primary" (click)="updateCart2();modal.close('Save click')" mat-raised-button
+            <button class="project-button" (click)="updateCart2();modal.close('Save click')" mat-raised-button
               matTooltip="Update cart">Update
             </button>
           </div>

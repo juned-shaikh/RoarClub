@@ -1,0 +1,159 @@
+<div class="container mat-card">
+    <div class="">
+<div class="row justify-content-end pr-2 pb-2">
+    
+<!-- <h5 class="pl-3">  Profile </h5> -->
+<div>
+<span class="text-right  cursor-pointer pr-3" title="Update-profile" style="border-radius: 50%;" (click)="customer_update()">
+    <mat-icon>edit</mat-icon>
+</span>
+</div>
+</div>
+<div class="">
+<div class="row">
+    <div class="col-md-12 mb-2">
+        <div class="card">
+            <div class="card-header project-heading">
+                <span class="">Personal Details</span>
+                <span *ngIf="referral_ask==true" class="offset-md-7 justify-content-end pl-2  font-weight-500">My Referral Code : <span class="" style="background: green; padding: 2px 12px 2px 12px;"> {{buisness_details?.customer_reg_num}}</span></span>
+            </div>
+
+       <div *ngIf="buisness_details==null" class="card-body">
+        Not found
+       </div>
+        <div *ngIf="buisness_details!=null" class="card-body m-0">
+            <div *ngIf="referral_ask==true && updateAddres?.referral_code !='000000'" class="row ">
+<div class="col-md-5">
+    <div class="row">
+        <div class="col-md-12 m-0">
+            <h6 class="font-weight-500 m-0 project-discription feferrer">First Name : {{updateAddres.receiver_name}}</h6>
+            <h6 class="font-weight-500 m-0 project-discription feferrer">Last Name : {{updateAddres.receiver_last_name}}</h6>
+            <h6 class="font-weight-500 m-0 project-discription feferrer">Address : {{updateAddres.line1}},{{updateAddres.line2}},{{updateAddres.landmark}},{{updateAddres.city}},{{updateAddres.state}},{{updateAddres.country}},{{updateAddres.pin_code}}</h6>
+        </div>
+    </div>
+</div>
+<div class="col-md-7">
+    <div class="row">
+        <h6 class="font-weight-500 col-md-5 m-0 project-heading feferrer">Referrer Code : {{buisness_details?.referral_code}}</h6>
+
+
+        <h6 class="font-weight-500 col-md-7 m-0 project-discription feferrer">
+            Referrer Name : {{allResult?.buisness_details?.referral_name}} &nbsp;{{allResult?.buisness_details?.referral_last_name}}
+           </h6> 
+           <h6 class="font-weight-500 m-0 col-md-12 feferrer project-heading">Mobile No:  {{updateAddres.contact_no}}</h6>
+          <h6 class="font-weight-500 m-0 col-md-12 feferrer project-discription">Email Id : {{updateAddres.email}}</h6>
+            <h6 *ngIf="updateAddres.pan !=null" class="font-weight-500 col-md-12 feferrer project-heading"> 
+            PAN : {{updateAddres.pan}}</h6>
+     </div>
+    
+</div>
+
+
+
+               
+               
+                   
+                  
+                 
+                </div>
+             
+        
+       
+         
+         
+    </div>
+    </div>
+  </div>
+ <div *ngIf="buisness_details==null" class="col-md-6">
+    Not Found
+ </div>
+    <div *ngIf="buisness_details!=null" class="col-md-6">
+        <div class="card">
+            <div class="card-header project-heading">Buisness details</div>
+<div class="card-body">
+<div class="row mt-0 mb-0">
+    <div class="col-md-4 project-discription"><h6   class="font-weight-500 feferrer">Buisness Name : </h6></div>
+    <div class="col-md-8 project-discription">   <h6 *ngIf="buisness_details.buisness_name==null"  class="font-weight-500 project-discription feferrer">------ --</h6><h6 *ngIf="buisness_details.buisness_name!=null" class="feferrer">{{buisness_details.buisness_name}}</h6> </div>
+</div>
+
+
+
+<div class="row mt-0 mb-0">
+   <div class="col-md-5 project-discription ">  <h6  class="font-weight-500 feferrer m-0">GST  :</h6></div>
+   <div class="col-md-7 project-discription "> <h6 *ngIf="buisness_details.gst !=null" class="font-weight-500 feferrer m-0"> {{buisness_details.gst}}</h6>
+
+    <h6 *ngIf="buisness_details.gst ==null" class="font-weight-500"> --</h6></div>
+</div>
+
+<div class="row mt-0 mb-0">
+<div class="col-md-5 project-discription">
+    <h6  class="font-weight-500 feferrer project-discription">TAN : </h6>
+</div>
+<div class="col-md-7 project-discription">
+    <h6 *ngIf="buisness_details.tan !=null" class="font-weight-500 feferrer project-discription"> {{buisness_details.tan}}</h6>
+<h6 *ngIf="buisness_details.tan ==null" class="font-weight-500">----- --</h6>
+</div>
+</div>
+
+
+
+
+</div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <div class="row ">
+                    <div class="pl-3 project-heading col-md-8">  Bank Details </div>
+    <div class="col-md-4 p-0 text-right">
+        <span *ngIf="buisness_details!=null" class="text-right  cursor-pointer m-0 p-0" title="Update bank details" (click)="bankU()">
+            <i class="far fa-edit"></i>
+        </span>
+    </div>
+                </div>
+               
+            </div>
+            <div *ngIf="bank_details==null" class="card-body m-0 ">
+                No Data
+            </div>
+            <div *ngIf="bank_details!=null" class="card-body m-0 ">
+<div class="row">
+    <div class="col-md-12">
+        <h6 *ngIf="bank_details.account_name==null"class=" font-weight-500 m-0 feferrer project-discription">Account Holder Name : -</h6>
+        <h6 *ngIf="bank_details.account_name!=null" class="font-weight-500 m-0 feferrer project-discription">Account Holder Name : {{bank_details.account_name}}</h6>
+    </div>
+</div>
+                <div class="row">
+                    <div class="col-md-6 ">
+                      
+                        <h6 *ngIf="bank_details.bank_name==null"class="font-weight-500 feferrer project-discription m-0">Bank Name : -</h6>
+                        <h6 *ngIf="bank_details.bank_name!=null"class="font-weight-500 feferrer project-discription m-0">Bank Name : {{bank_details.bank_name}}</h6>
+                        <h6 *ngIf="bank_details.ifsc==null"class="font-weight-500 feferrer project-heading m-0">IFSC  : -</h6>
+                        <h6 *ngIf="bank_details.ifsc!=null" class="font-weight-500 feferrer project-heading m-0">IFSC  : {{bank_details.ifsc}}</h6>
+                    </div>
+                    <div class="col-md-6 ">
+                        <h6 *ngIf="bank_details.account_no!=null" class="font-weight-500 feferrer project-heading m-0">Account No :  {{bank_details.account_no}}</h6>
+                        <h6 *ngIf="bank_details.account_no==null"class="font-weight-500 feferrer project-heading m-0">Account No :  -</h6>
+                        <h6  *ngIf="bank_details.bank_address!=null"class="font-weight-500 feferrer project-discription m-0">Branch Name : {{bank_details.bank_address}}</h6>
+                        <h6 *ngIf="bank_details.bank_address==null"class="font-weight-500 feferrer project-discription m-0">Branch Name : -</h6>
+                        <h6  *ngIf="bank_details.upi==null"class="font-weight-500 feferrer project-discription m-0">UPI : -</h6>
+                        <h6 *ngIf="bank_details.upi!=null" class="font-weight-500 feferrer project-discription m-0">UPI : {{bank_details.upi}}</h6>
+                    </div>
+                </div>
+               
+               
+              
+                 
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+
+
+</div>
+</div>

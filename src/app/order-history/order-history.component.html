@@ -1,40 +1,53 @@
-<div class="container-fluid" >
-    <div class="row justify-content-center mt-4">
+<div *ngIf="!loader" class="row justify-content-center" style="margin-top: 10%;">
+  <div class="col-md-4 text-center">
+  <img src="assets/loader.gif" height="200" width="200">
+  </div>
+  </div>
+<div *ngIf="loader">
+<div class="container-fluid " >
+  <div class="row justify-content-center mt-5" *ngIf="orders?.length==0 && loader">
+    <div  class="col-md-6 text-center">
+     <img src="assets/no-order.png"/>
+     <p class="mt-3 font-weight-500 text-muted project-discription">  No Order available! </p>
+    </div>
+ </div>
+    <div *ngIf="orders?.length>0" class="row justify-content-center ">
         <div class="col-md-12 ">
             <div class="card mb-2" *ngFor="let orders of orders">
-            <div class="card-header">
-<div class="row">
+            <div class=" card  p-1 m-0 " style="background: rgba(0, 0, 0, 0.082)!important;">
+<div class="row pt-1 pb-0">
     <div class="col-md-2">
-        <h6 class="font-weight-600 order-history-heading1">Order Placed</h6>
-        <h6>
-            {{orders.order_timestamp}}
+      <h6 class="order-history-heading1 font-weight-600 project-heading m-0 ">  &nbsp;&nbsp;  ORDER {{orders?.order_number}}</h6>
+        <!-- <h6 class="font-weight-600 order-history-heading1">Order Placed</h6> -->
+        <h6 class="order-history-date  text-white text-center">
+           {{orders.order_timestamp}}
         </h6>
     </div>
     <div class="col-md-2">
-        <h6 class="order-history-heading">Ship TO</h6>
+        <h6 class="order-history-heading m-0 project-heading">Ship To</h6>
         
 
         <div class="dropdown ">
             <a
-              id="dropdownMenuButton" class="text-primary order-history-heading"
+              id="dropdownMenuButton" class="text-success order-history-heading project-discription"
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
-            >  <span>{{ orders.shipping_address.receiver_name }} </span> 
+            >  <span>{{ orders.shipping_address?.receiver_name }} </span> 
               <i
                 class="fas fa-angle-down cursor-pointer text-muted"
                 aria-hidden="true"
               ></i> 
             </a>
             <div
-              class="dropdown-menu p-0"
+              class="dropdown-menu p-0 sub-2"
               aria-labelledby="dropdownMenuButton"
             >
               <a
-                class="dropdown-item  p-1 text-wrap" style="width: 10rem;"
+                class="dropdown-item project-discription p-1 text-wrap " style="width: 10rem;"
               
                 >  
- {{ orders.shipping_address.line1 }},{{ orders.shipping_address.line2 }}, {{ orders.shipping_address.city }}, {{ orders.shipping_address.state }}, {{ orders.shipping_address.country }} ,                class="font-weight-500"
+ {{ orders.shipping_address.line1 }},{{ orders.shipping_address.line2 }}, {{ orders.shipping_address.city }}, {{ orders.shipping_address.state }}, {{ orders.shipping_address.country }} ,                
                 {{ orders.shipping_address.pin_code }}
                       </a
               >
@@ -44,25 +57,25 @@
 
     </div>
     <div class="col-md-2">
-        <h6 class="order-history-heading">PLACED BY</h6>
-        <div class="dropdown ">
+        <h6 class="order-history-heading project-heading m-0">Placed By</h6>
+        <div class="dropdown mt-0">
             <a
               id="dropdownMenuButton"
               data-toggle="dropdown"
               aria-haspopup="true"
-              aria-expanded="false" class="text-primary order-history-heading cursor-pointer"
-            >  <span>{{ orders.billing_address.receiver_name }} </span> 
+              aria-expanded="false" class="text-success order-history-heading project-discription cursor-pointer"
+            >  <span>{{ orders.billing_address?.receiver_name }} </span> 
               <i
                 class="fas fa-angle-down cursor-pointer text-muted"
                 aria-hidden="true"
               ></i> 
             </a>
             <div
-              class="dropdown-menu p-0"
+              class="dropdown-menu sub-2 p-0"
               aria-labelledby="dropdownMenuButton"
             >
               <a
-                class="dropdown-item  p-1 text-wrap" style="width: 10rem;"
+                class="dropdown-item  p-1 text-wrap project-discription" style="width: 10rem;"
               
                 > 
                         
@@ -75,131 +88,97 @@
           </div>
     </div>
     <div class="col-md-3">
-<h6 class="order-history-heading">TOTAL</h6>
-<h6 class="order-history-heading1">₹ {{orders.order_amount}}</h6>
+<h6 class="order-history-heading project-heading m-0">Total</h6>
+<h6 class="order-history-heading1">₹ {{orders?.order_amount}}</h6>
     </div>
     <div class="col-md-3 text-right">
-<!-- <h6>PO#99</h6> -->
-<h6 class="order-history-heading">ORDER {{orders.order_number}}</h6>
-<h6 class="cursor-pointer text-right" (click)="
-                  sendOrderId(orders.order_id,orders.orderRandomId);
-                  
-                " class="cursor-pointer text-primary text-right order-history-heading">View Order Details 
+
+
+
+<h6    class=" text-success text-right order-history-heading m-0"><span (click)="
+  sendOrderId(orders.order_id,orders.orderRandomId); " class="cursor-pointer project-discription link-click" title="view-order-details">View Order Details &nbsp;</span> 
             
 </h6>
+<!-- <h6 
+                  
+                 class="cursor-pointer  text-right order-history-heading1 p-0 m-0"  > Tracking Id: 00000
+            
+</h6> -->
+<h6  *ngIf="invoice_gen==1 && orders.parcel_inventory[0].order_inventory[0].deliver==true" 
+                  
+                 class="cursor-pointer text-success m-0 text-right order-history-heading project-discription" ><span title="view Invoice"  (click)="print_invoice(orders.parcel_inventory,'multi');" class="link-click">Invoice &nbsp;</span> 
+            
+</h6>
+
+                      
     </div>
 </div>
             </div>
-            <div class="card p-2" *ngFor="let parcel_inventory of orders.parcel_inventory">
-              <div class="card-body p-2">
-                <div class="container p-1 text-center  ">
-                  <div class="process p-0"> 
-                             <div class="process-row nav nav-tabs p-0">
-                               <div class="process-step p-0 " *ngFor="let order_status of parcel_inventory.order_inventory[0].status_flow; let i = index">
-                                 <button
-                                   type="button"
-                                   class="btn btn-info btn-circle text-center" 
-                                 > 
-                                 <i class="fas fa-check-circle fa-1x text-center"></i>
-                                
-                                 </button>
-                                 <p><small>{{ order_status.status }}</small></p>
-                               </div>
-                               
-                               
-                               
-                             </div>
-                       </div>
-               
-                </div>
-                <div class="row" *ngFor="let order_inventory of parcel_inventory.order_inventory" >
+            <div class="card" *ngFor="let parcel_inventory of orders.parcel_inventory">
+              <div class="container-fluid">
+                <div class="row  ">
+                  <div class="col-md-9">
+                    <h6 class="order-history-heading1 project-heading  cursor-pointer font-weight-600 p-0 m-0" *ngFor="let order_status of parcel_inventory.order_inventory[0].status_flow; let i = index; first as isFirst; last as isLast">
+                      <span *ngIf="isLast" style="color: #B89D4E; text-shadow: -2px 1px black;">{{order_status.status}}</span>
+                    </h6>
+                  </div>
+                  
+                  <div class="col-md-3 d-flex "> &nbsp; &nbsp;
+<h6 class="order-history-heading text-success text-right link-click project-discription cursor-pointer font-weight-600 p-0 m-0" (click)="trackStatus(parcel_inventory.order_inventory[0].status_flow,parcel_inventory.order_inventory[0].product.name,orders.order_number,parcel_inventory.awb_no,parcel_inventory.courier_method_id);openXl(contentTrack)">Track Details</h6> &nbsp; &nbsp;
+&nbsp;
+<h6 class="order-history-heading  text-success project-discription link-click cursor-pointer font-weight-600 text-right p-0 m-0" *ngIf="invoice_gen==1 && orders.parcel_inventory[0].order_inventory[0].deliver==true" 
+(click)="print_invoice(orders.parcel_inventory,'multi');">Invoice</h6>
+
                  
-                    <div class="col-md-8" >
-                        <div class="card-box" >
-                            <!-- <h6 class="font-weight-600">Delivered 25-October 2020</h6> -->
-                            <!-- <span class="next-heading">Package was Handled directly to a security gaurd.</span> -->
-                            <div class="row mt-2" > 
-                                <div class="col-md-3">
-                                     <img class="cursor-pointer"
-                      (click)="view_product2(order_inventory.product.meta_title, order_inventory.product.product_no,order_inventory.product.slug,order_inventory.product.quick_product_check)" matTooltip="View Product"
-                      class="order-image"
-                      src="{{ order_inventory.product_image.medium_thumbnail_link }}"
-                      onerror="this.src='assets/img/favicon1.png';"
-                    />
-                                </div>
-                                <div class="col-md-9 pl-3">
-                                  <div class="font-weight-600">{{ order_inventory.product.name }}</div>
-                    <div *ngIf=" order_inventory?.status_name!=null &&  order_inventory?.status_name=='Order Confirm Transaction'" class="heading-font-size-value">
-                      Payment Method : Online
-                    </div>
-                    <div *ngIf=" order_inventory?.status_name!=null &&  order_inventory?.status_name=='Order Confirm COD'" class="heading-font-size-value">
-                      Payment Method : Cash On Delivery
-                    </div>
-                    <div class="heading-font-size-value">
-                      Type : {{ order_inventory.product_rate.name }}
-                    </div>
-                    <div class="heading-font-size-value">Qty : {{ order_inventory.qty }}</div>
-                    <div class="heading-font-size-value">Rate : {{ order_inventory.product_rate.rate }}</div>
-                     <div *ngIf="order_inventory.product_rate.promo_code_discount!=0 && order_inventory.product_rate.promo_code_discount!=null" class="heading-font-size-value">Promo code Discount : {{ order.product_rate.promo_code_discount }}</div>
-                    <div *ngIf="order_inventory.product_rate.net_amt != 0" class="heading-font-size-value">
-                      Net Amount :
-                      ₹ {{ order_inventory.product_rate.net_amt  }}
-                    </div>
-
- 
-                                </div>
-                            </div>
-
-                        </div>
- <!-- <div class="container p-1 text-center  ">
-                <div class="process p-0"> 
-                           <div class="process-row nav nav-tabs p-0">
-                             <div class="process-step p-0 " *ngFor="let order_status of order_inventory.status_flow; let i = index">
-                               <button
-                                 type="button"
-                                 class="btn btn-info btn-circle text-center" 
-                               > 
-                               <i class="fas fa-check-circle fa-1x text-center"></i>
-                              
-                               </button>
-                               <p><small>{{ order_status.status }}</small></p>
-                             </div>
-                             
-                             
-                             
-                           </div>
-                     </div>
              
-              </div> -->
-                    </div>
-                   
-                    <div class="col-md-4 p-5">
-                      <button mat-raised-button class="order-button w-100" (click)="trackStatus(order_inventory.status_flow,order_inventory.product.name,orders.order_number);openXl(contentTrack)">Track Details</button>
-                      <!-- <button mat-raised-button class="order-button w-100 mt-2 mb-2">Print Packing Slip</button> -->
-                      <button *ngIf="rating_option==true" (click)="rating(order_inventory.product)" mat-raised-button class="order-button w-100 mt-2">Rate Product</button>
-                   
-                      <button *ngIf="cancel_policy==1 && order_inventory.cancel==true && (this.minDate.getFullYear() == orders.order_year) && ((this.minDate.getMonth()+1) == orders.order_month) && ((this.minDate.getDate()==orders.order_dates))" (click)=" update_cancel_initiate(order_inventory.order_item_id,order_inventory.order_id,order_inventory.parcel_no)" mat-raised-button class="order-button w-100 mt-2">Cancel</button>
-                    
-                      <button *ngIf="cancel_policy==2 && order_inventory.cancel==true" (click)=" update_cancel_initiate(order_inventory.order_item_id,order_inventory.order_id,order_inventory.parcel_no)" mat-raised-button class=" mt-2 order-button w-100">Cancel</button>
-                      <button *ngIf="return_policy==true && order_inventory.rtd==true && order_inventory.product.return_days!=null && (this.minDate.getFullYear() == orders.order_year) && ((this.minDate.getMonth()+1) == orders.order_month) && ((this.minDate.getDate()-orders.order_dates) <= order_inventory.product.return_days)" (click)="return_start(order_inventory.order_id,order_inventory.order_item_id,order_inventory.product.name,order_inventory.order_number);openXl(contentReturn)" mat-raised-button class="order-button w-100 mt-2">Return</button>
-                 
-                    </div>
-                   <!-- start for return -->
-                   <!-- <button *ngIf="return_policy==true && order_inventory.rtd==true && order_inventory.product.return_days!=null && (this.minDate.getFullYear() == orders.order_year) && ((this.minDate.getMonth()+1) == orders.order_month) && ((this.minDate.getDate()-orders.order_dates) <= order_inventory.product.return_days)" (click)="return_start(order_inventory.order_id,order_inventory.order_item_id,order_inventory.product.name,order_inventory.order_number);openXl(contentReturn)" mat-raised-button class="order-button w-100">Return</button>
-                  -->
-                    <!-- end for return -->
-                    <!-- start for cancel -->
-                    <div class="col-md-4 p-5">
-                    <!-- <button *ngIf="cancel_policy==1 && order_inventory.cancel==true && (this.minDate.getFullYear() == orders.order_year) && ((this.minDate.getMonth()+1) == orders.order_month) && ((this.minDate.getDate()==orders.order_dates))" (click)=" update_cancel_initiate(order_inventory.order_item_id,order_inventory.order_id,order_inventory.parcel_no)" mat-raised-button class="order-button w-100">Cancel</button>
-                    
-                    <button *ngIf="cancel_policy==2 && order_inventory.cancel==true" (click)=" update_cancel_initiate(order_inventory.order_item_id,order_inventory.order_id,order_inventory.parcel_no)" mat-raised-button class="order-button w-100">Cancel</button>
-                    -->
-                    <!-- </div> -->
-                  <!-- end for cancel -->
-                    </div>
-
-
+               
+                  </div>
                 </div>
+               
+              
+                   <div class="row">
+                    <div class="col-md-6 " *ngFor="let order_inventory of parcel_inventory.order_inventory">
+                      <div class=" card mt-1 mb-1 " style="background:  rgba(0, 0, 0, 0.075);" >
+                        
+                          <div class="row " > 
+                              <div class="col-md-2 text-center"> 
+                                   <img class="cursor-pointer "
+                    (click)="view_product2(order_inventory.product.meta_title, order_inventory.product.product_no,order_inventory.product.slug,order_inventory.product.quick_product_check)" matTooltip="View Product"
+                    class="order-image"
+                    src="{{ order_inventory.product_image.medium_thumbnail_link }}"  
+                    onerror="this.src='assets/no-img.png';"
+                  />
+                            </div>
+                              <div class="col-md-9 p-0 m-0">
+                                <div class="font-weight-600 project-discription text-white" style="font-size: 12px;">
+                                  {{ (order_inventory.product.name?.length>20)? (order_inventory.product.name | slice:0:20)+'...':(order_inventory.product.name) }}  &nbsp; Type : {{ order_inventory.product_rate.name }}, &nbsp; Qty : {{ order_inventory.qty }}
+                                  
+                                  
+                                  </div>
+                                  <div class="heading-font-size-value">
+                                    <span *ngIf=" order_inventory?.status_name!=null &&  order_inventory?.status_name=='Order Confirm Transaction'" > Payment Method : Online </span>
+                                    <span *ngIf="order_inventory?.status_name!=null &&  order_inventory?.status_name=='Order Confirm COD'">Payment Method : Cash On Delivery</span> <span *ngIf="order_inventory.product_rate.promo_code_discount!=0 && order_inventory.product_rate.promo_code_discount!=null">Promo code Discount : {{ order.product_rate.promo_code_discount }} </span>
+                                  </div>
+             
+                  <div class="heading-font-size-value">Rate : {{ order_inventory.product_rate.rate }}  &nbsp;   Net Amount :
+                    ₹ {{ order_inventory.product_rate.net_amt  }}  <span (click)="rating(order_inventory.product)" *ngIf="rating_option==true && order_inventory.rate_pro==true"  class="rate-button text-success" title="rate this product" >Rate Product </span></div>
+
+
+
+                              </div>
+                            
+
+                          </div>
+
+                      </div>
+
+                 
+                
+                   </div>
+                 </div>
+               
+
+
 
               
                 </div>
@@ -207,8 +186,6 @@
         </div>
     </div>
 </div>
-<div class="container-fluid" *ngIf="vieworder">
-  <app-order-view-details></app-order-view-details>
 </div>
 
  <!-- start for deducted amount model -->
@@ -241,7 +218,7 @@
 
       
       <div class="row">
-        <div class="col-lg-6 text-center">
+        <div  *ngIf="return_reason==0 || return_choose.length==0" class="col-lg-6 text-center">
            <mat-form-field appearance="fill" class="example-full-width">
              <mat-label class="mat-label">Reason</mat-label>
              <input 
@@ -253,20 +230,45 @@
              <mat-icon matSuffix>toc</mat-icon>
            </mat-form-field>
          </div>
-         <div class="col-lg-2 mt-2 text-center">
-         </div>
+
+         <div  *ngIf="return_reason==1 && return_choose.length > 0" class="col-lg-6 text-center">
+        
+          <div class="dropdown">
+            <label class="mat-label">Reason</label>
+            <select
+             
+              id="category"
+              formControlName="reason"
+              placeholder="Reason"
+            >
+              <option
+                *ngFor="let return_choose2 of return_choose"
+                [value]="return_choose2.reason"
+                >{{return_choose2.reason}}
+              </option>
+            </select>
+          </div>
+        </div>
       
-        <div class="col-lg-4 text-center">
+        <div class="col-lg-6 text-center">
           <mat-form-field appearance="fill" class="example-full-width">
             <mat-label class="mat-label">Comment Section</mat-label>
-            <input 
+            <!-- <input 
              
-           
+         
               matInput
               placeholder="Comment"
               formControlName="return_comment"
               
-            />
+            /> -->
+            <textarea
+            matInput
+            rows="6"
+            placeholder="Comment"
+            formControlName="return_comment"
+            required
+          >
+        </textarea>
             <mat-icon matSuffix>toc</mat-icon>
           </mat-form-field>
         </div>
@@ -295,15 +297,15 @@
      <ng-template #contentTrack let-modal>
       <div class="modal-header">
         <h5 class="modal-title" id="modal-basic-title" align="center">
-          Tracking Deatils
+          Tracking Details
         </h5>
     
         <h6 class="modal-title" id="modal-basic-title" align="center">
           Order ID : {{status_order_number}}
         </h6>
-        <h6 class="modal-title" id="modal-basic-title" align="center">
+        <!-- <h6 class="modal-title" id="modal-basic-title" align="center">
          Product : {{status_product_name}}
-        </h6>
+        </h6> -->
     
       
     
@@ -336,6 +338,37 @@
        
       </tbody>
     </table>
+    <div class="col-lg-4">
+      <button *ngIf="courier_method_id==2 && awb_no!=null && track_more==false"
+                    (click)="shipyari_awb_track_lifecycle()" mat-raised-button class="order-button w-100 mt-2">View More
+                  </button> 
+                  </div>
+                    <!-- start table -->
+                    <div  *ngIf="track_more==true">
+                    <h5>tracking_number : {{track.result[0].msg.tracking_number}}</h5>
+     <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">S. No.</th>
+          <th scope="col">Tag</th>
+          <th scope="col">TimeStamp</th>
+          <th scope="col">Location</th>
+          <!-- <th scope="col">Handle</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let track2 of track.result[0].msg.checkpoints;let k2=index">
+          <th scope="row">{{k2+1}}</th>
+          <td>{{track2.tag}}</td>
+          <td>{{track2.checkpoint_time}}</td>
+          <td>{{track2.location}}</td>
+          <!-- <td>@mdo</td> -->
+        </tr>
+       
+      </tbody>
+    </table>
+</div>
+                 
     </div>
     </ng-template>
      <!-- track details -->

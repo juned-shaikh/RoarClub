@@ -27,6 +27,7 @@ export class ProfilePageComponent implements OnInit {
   Changepassword:FormGroup;
   updateprofile:FormGroup;
 cust_reg_enable=false;
+buis_update=false;
   constructor(
     private adminService: RoarclubserviceService,
     private router:Router,
@@ -188,6 +189,38 @@ cust_reg_enable=false;
     showchangepass(){
   this. changepasssbox =!this. changepasssbox;
     }
+    fetch_customer(){
+      let postData = {
+        user_num:this.user_num,
+        access_token:this.access_token,
+        comp_num:this.comp_num_new
+      };
+      console.log(postData);
 
+      this.adminService.fetch_customer_registration(postData).subscribe(
+        data => {
+          if (data["status"] == 1) {
+           
+          
+if(data["result"].buisness_no!='0' && data["result"]!=null && data["result"].buisness_no!=null && data["result"].buisness_no!='null' && data["result"].buisness_no!='0'){
+  this.buis_update=true;
+  
+             }
+             else{
+             
+ 
+ 
+             }
+          } else {
+
+           
+          }
+        },
+        error => {
+
+         
+        }
+      );
+    }
 
 }

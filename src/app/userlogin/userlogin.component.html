@@ -2,7 +2,7 @@
   
 <div class="container-fluid" class="bg-img">
   <div class="row justify-content-center" >
-    <div  class="col-sm-9 col-md-6 col-lg-4 mx-auto ml-auto mr-auto text-center" style="background-color:black;margin-top: 80px;">
+    <div  class="col-sm-9 col-md-6 col-lg-4 mx-auto ml-auto mr-auto text-center" style="background:rgb(43, 42, 42);margin-top: 80px;">
        <div  class="content ">
       <h2>
        Sign<span> In</span>
@@ -18,10 +18,12 @@
             <label for="materialLoginFormEmail">Enter Email or Phone Number</label>
           </div>
     
-          <div class="md-form" *ngIf="pass  == 1">
-            <input type="password" id="materialLoginFormPassword" formControlName="password" class="form-control">
-            <label for="materialLoginFormPassword">Password</label>
-          </div>
+          <mat-form-field *ngIf="pass  == 1" class="example-full-width" >
+            <mat-label>Enter Password</mat-label>
+            <input matInput type="password"  id="myInput"  style="border: none;"  formControlName="password" >
+            <mat-icon onclick="myFunction()" (click)="passvible()" matSuffix *ngIf="visibility" class="cursor-pointer">visibility</mat-icon>
+            <mat-icon onclick="myFunction()" (click)="passvible()" matSuffix *ngIf="!visibility" class="cursor-pointer">visibility_off</mat-icon>
+          </mat-form-field>
     
           <div class="d-flex justify-content-around">
           
@@ -30,10 +32,10 @@
             </div>
           </div>
     
-          <button class="btn btn-outline-success btn-rounded btn-block my-4 waves-effect z-depth-0" (click)= "login()" *ngIf="pass==1" >Log in</button>
-          <button class="btn btn-outline-success btn-rounded btn-block my-4 waves-effect z-depth-0" *ngIf="pass==0" style="cursor: not-allowed!important;">Login/Signup</button>
-          <button class="btn btn-outline-secondary btn-rounded btn-block my-4 waves-effect z-depth-0"   *ngIf="pass==2" (click)= "onSubmitSign()"  type="submit">Get Otp</button>
-          <button class="btn btn-outline-success btn-rounded btn-block my-4 waves-effect z-depth-0" *ngIf="pass==1" (click)="openXl(codOtp)" >Login with Otp</button>
+          <button class="project-button w-100 mt-2" mat-raised-button (click)= "login()" *ngIf="pass==1" >Log in</button>
+          <button class="project-button" mat-raised-button *ngIf="pass==0" style="cursor: not-allowed!important;">Login/Signup</button>
+          <button class="project-button" mat-raised-button   *ngIf="pass==2" (click)= "onSubmitSign()"  type="submit">Get Otp</button>
+          <button class="project-button w-100 mt-2" mat-raised-button *ngIf="pass==1" (click)="openXl(codOtp)" >Login with Otp</button>
     
         </form>
     
@@ -43,36 +45,39 @@
     
         <form class="text-center" style="color: #757575;" [formGroup]="otpForm">
     
-          <div class="md-form">
-            <input type="email" id="materialLoginFormEmail" formControlName="otp" class="form-control">
-            <label for="materialLoginFormEmail">Enter Otp</label>
-          </div>
-    
-          <div class="md-form">
-            <input type="password" (keyup)="checkConfirmPassword()" id="materialLoginFormPassword" formControlName="password" class="form-control">
-            <label for="materialLoginFormPassword">Password</label>
-          </div>
-          <div class="md-form">
-            <input type="password" (keyup)="checkConfirmPassword()" id="materialLoginFormPassword" formControlName="confirmPassword" [class.is-invalid]="otpForm.errors?.misMatch" class="form-control">
-            <label for="materialLoginFormPassword">Confirm Password</label>
-    
-            <small class="text-danger" *ngIf="is_confirm">Confirm Password do not match with Password</small>
-          </div>
+          <mat-form-field class="w-100">
+            <mat-label>Enter OTP</mat-label>
+            <input matInput required  formControlName="otp" type="number">
+          </mat-form-field>
+          <mat-form-field class="w-100">
+            <mat-label>Enter Password</mat-label>
+            <input  (keyup)="checkConfirmPassword()" matInput required  id="myInput" formControlName="password" type="password">
+            <mat-icon onclick="myFunction()" (click)="passvible()" matSuffix *ngIf="visibility" class="cursor-pointer">visibility</mat-icon>
+            <mat-icon onclick="myFunction()" (click)="passvible()" matSuffix *ngIf="!visibility" class="cursor-pointer">visibility_off</mat-icon>
+          </mat-form-field>
+         
+          <mat-form-field class="w-100">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput required  (keyup)="checkConfirmPassword()" id="myInput3" formControlName="confirmPassword" type="password" [class.is-invalid]="otpForm.errors?.misMatch">
+            <mat-icon onclick="myFunction3()" (click)="passviblek()" matSuffix *ngIf="visibilityk" class="cursor-pointer">visibility</mat-icon>
+            <mat-icon onclick="myFunction3()" (click)="passviblek()" matSuffix *ngIf="!visibilityk" class="cursor-pointer">visibility_off</mat-icon>
+            <mat-hint class="text-danger" *ngIf="is_confirm">Confirm Password do not match with Password</mat-hint>
+          </mat-form-field>
     
           <div class="d-flex justify-content-around">
-            <div>
+            <!-- <div>
               <div class="form-check">
                 <input type="checkbox" class="form-check-input" id="materialLoginFormRemember">
                 <label class="form-check-label" for="materialLoginFormRemember">Remember me</label>
               </div>
-            </div>
+            </div> -->
             <div>
               <a  (click)="openXl(content2)">Forgot password?</a>
             </div>
           </div>
     
-          <button class="btn btn-outline-success btn-rounded btn-block my-4 waves-effect z-depth-0"   (click)= "onSubmitOTP()">Verify</button>
-          <button class="btn btn-outline-success btn-rounded btn-block my-4 waves-effect z-depth-0"   (click)= "onSubmitResendOtp()">Resend Otp</button>
+          <button class="project-button " mat-raised-button   (click)= "onSubmitOTP()">Verify</button>
+          <button class="project-button " mat-raised-button  (click)= "onSubmitResendOtp()">Resend Otp</button>
     
         </form>
     
@@ -83,8 +88,8 @@
 </div>
 
   <ng-template #content2 let-modal >
-    <div class="modal-header p-3" style="background-position: center;background-size: cover; background-image: url(https://images.pexels.com/photos/2387793/pexels-photo-2387793.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);" >
-      <h4 class="project-heading" id="modal-basic-title" align="center">
+    <div class="modal-header p-3"  >
+      <h4 class="modal-title project-heading" id="modal-basic-title" align="center">
         Forgot Password
       </h4>
   
@@ -95,21 +100,21 @@
       >
     </div>
   
-    <div class="modal-body " style="background-position: center;background-size: cover; background-image: url(https://images.pexels.com/photos/2387793/pexels-photo-2387793.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);" >
+    <div class="modal-body " >
       <div class="container-fluid" >
         <form [formGroup]="forgotForm">
           <div class=" ">
    
    <div class="row justify-content-center mt-1" >
-     <div class="col-md-10">Enter Your Email or Mobile No.</div>
+     <div class="col-md-10 project-heading">Enter Your Email or Mobile No.</div>
    </div>          
             <div class="row justify-content-center">
               <div class="col-md-10">
   
                 
                  <div class="input-group mb-1 mt-2 ">
-                  <input type="text" class="login-input" formControlName="username" placeholder="Please Enter Email/Mobile" id="name" required>
-                            <!-- <input type="text"   class="form-control" formControlName="username" placeholder="Please Enter Email/Mobile" > -->
+                           
+                            <input type="text"  class="form-control" formControlName="username" placeholder="Please Enter Email/Mobile" >
                         </div>
                
                 
@@ -120,12 +125,12 @@
            
             <div class="row justify-content-center mt-2 mb-3">
               <button
-                class=" btn-outline-success btn-rounded  waves-effect z-depth-0"
+                class="project-button"
                 mat-raised-button
                 matTooltip="Send Password"
                 (click)="forgotPassword(); modal.close('Save click')"
               >
-                OK
+                Send
               </button>
             </div>
           </div>
@@ -136,31 +141,31 @@
   
   
   <ng-template #codOtp let-modal>
-    <div class="modal-header p-3 justify-content-center" style="background-position: center;background-size: cover; background-image: url(https://images.pexels.com/photos/2387793/pexels-photo-2387793.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);" >
-      <h4 class="modal-title font-weight-600" id="modal-basic-title" align="center" *ngIf="verify==false || shownamebox">
+    <div class="modal-header  justify-content-center" >
+      <h4 class="modal-title font-weight-600 project-heading" id="modal-basic-title" align="center" *ngIf="verify==false || shownamebox">
         Enter mobile number or email
       </h4>
-      <h4 class="modal-title font-weight-600" id="modal-basic-title" align="center" *ngIf="verify==true">
+      <h4 class="modal-title font-weight-600 project-heading" id="modal-basic-title" align="center" *ngIf="verify==true">
         Veirfy mobile number or email 
       </h4>
   
      
     </div>
-    <div class="modal-body " style="background-position: center;background-size: cover; background-image: url(https://images.pexels.com/photos/2387793/pexels-photo-2387793.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);" >
+    <div class="modal-body "  >
       <div class="container-fluid">
         <form [formGroup]="otpFormLogin">
        
                 <div class="row mt-2 justify-content-center">
-                  <div class=" col-lg-8"> 
+                  <div class=" col-lg-6"> 
                
-                    <mat-form-field  class="example-full-width " *ngIf="verify==false || shownamebox">
+                    <mat-form-field  class="example-full-width " appearance="outline" *ngIf="verify==false || shownamebox">
                       <input
                         matInput 
                       class="pl-3"
                         formControlName="username"
                         required
                       />
-                      <mat-icon matPrefix class="text-primary">perm_phone_msg</mat-icon>
+                      <mat-icon matPrefix class="text-success">perm_phone_msg</mat-icon>
                     </mat-form-field>
                    
                 
@@ -168,7 +173,7 @@
                    
                
                       <div  class="col-sm-8 text-center">
-                        <h4> <span class="checkout-register-otp font-weight-500" *ngIf="verify==true">{{otpFormLogin.controls.username.value}}</span>   <span matTooltip="edit " (click)="edit()" *ngIf="verify==true && !shownamebox" class="text-success">(change)</span><span *ngIf="shownamebox" (click)="cancel()" class="text-danger">(cancel)</span> </h4>
+                        <h6> <span class="checkout-register-otp font-weight-500" *ngIf="verify==true">{{otpFormLogin.controls.username.value}}</span>   <span matTooltip="edit " (click)="edit()" *ngIf="verify==true && !shownamebox" class="text-primary">(change)</span><span *ngIf="shownamebox" (click)="cancel()" class="text-danger">(cancel)</span> </h6>
                       </div>
                       <p class="font-weight-500" *ngIf="verify==true">A text with a code has been sent to the number or email above.</p>
                     
@@ -177,14 +182,13 @@
                 </div>
                 <div class="row justify-content-center mt-4" *ngIf="verify == true">
                   <div class="col-lg-6 text-center">
-                    <mat-form-field  class="example-full-width" >
-                      <!-- <input
+                    <mat-form-field  class="example-full-width" appearance="outline">
+                      <input
                         matInput type="number"
                         placeholder="Enter OTP"
                         formControlName="otp"
                         required
-                      /> -->
-                      <input type="number" class="login-inpu" placeholder="Enter OTP" formControlName="otp"  required>
+                      />
                     </mat-form-field>
                    
                   </div>
@@ -195,7 +199,7 @@
             >
             
             <button *ngIf="verify == true"
-            class="order-button  btn-outline-success btn-rounded w-35"
+            class="project-button w-35"
             mat-raised-button
             matTooltip="Verify OTP"
             (click)="otpVerificationUser(); modal.close('Save click')" [disabled]="!loading"
@@ -205,7 +209,7 @@
           &nbsp; &nbsp;
            
               <button *ngIf="otpgeneration == true " [disabled]="!loading"
-              class="order-button btn-outline-success btn-rounded w-35"
+              class="project-button w-35"
               mat-raised-button
               matTooltip="Resend OTP"
               (click)="resendOtpVerify()"
@@ -214,7 +218,7 @@
             </button> 
               &nbsp; &nbsp;
               <button  *ngIf="verify == false && otpgeneration == false"
-              class=" btn-success btn-rounded mb-3 w-35"
+              class="project-button mb-3 w-35"
               mat-raised-button
               matTooltip="cancel"
               (click)="modal.dismiss('Cross click')" [disabled]="!loading"
@@ -223,7 +227,7 @@
             </button>
             &nbsp;&nbsp;
               <button  *ngIf="verify == false"
-              class="order-button  btn-outline-success btn-rounded  mb-3 w-8"
+              class="project-button mb-3 w-35"
               mat-raised-button
               matTooltip="Send OTP"
               (click)="otpGenerate()" [disabled]="!loading"

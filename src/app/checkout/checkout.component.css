@@ -40,6 +40,8 @@
 }
 .add-more{
   margin-left: 20px;
+  background: rgb(43, 42, 42);
+  color: white;
 }
 .add-shipping{
   border: 2px dashed plum;
@@ -61,7 +63,7 @@
   /* top: 5px; */
   letter-spacing: 1px;
   font-size: 15px;
-  background: gainsboro;
+  /* background: ; */
 }
 @media only screen and (min-width:992px){
   .paymenttype{
@@ -89,12 +91,12 @@
   overflow: hidden;
   /* border-radius: 8px!important; */
 }
-.button-for-address{
+/* .project-button{
   background: rgb(43, 42, 42);
-  color: green;
-  border: 2px solid green;
+  color: #B89D4E;
+  border: 2px solid #B89D4E;
   border-radius: 6px;
-}
+} */
 .stepper-for-order{
   /* color: #6c0753; */
   color: gray;
@@ -105,7 +107,7 @@
   font-size: 14px!important;
 }
 .mayment-border{
-  border-bottom: 2px solid green;
+  border-bottom: 2px solid #B89D4E;
   margin-bottom: 6px;
 }
 @media only screen and (max-width:768px){
@@ -118,16 +120,17 @@
 .coupon-box{
   height: 38px;
     /* border: none; */
-    border: .5px solid #d4474d;
-    box-shadow: 0 0 5px lightgrey;
+    border: 2px solid #B89D4E;
+    /* box-shadow: 0 0 5px lightgrey; */
     width: 70%;
     padding-left: 20px;
-    color: #6c0753;
+    border-radius: 9px;
+    color: black;
 }
 .coupon-box:focus{
-  border: .5px solid #6c0753;
-  border-radius: 0%;
-  color: #d4474d;
+  border: 2px solid #B89D4E;
+  border-radius: 9px;
+  color: black;
   outline: none;
 }
 
@@ -157,3 +160,62 @@ mat-card{
 /* *{
   background: #202328;
 } */
+.skin-2 .num-in {
+	/* background: #FFFFFF; */
+	box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
+	border-radius: 25px;
+	height: 40px;
+	width: 110px;
+  float: left;
+}
+
+.skin-2 .num-in	span {
+  width: 40%;
+  display: block;
+  height: 40px;
+  float: left;
+  position: relative;
+}
+
+.skin-2 .num-in span:before, .skin-2 .num-in span:after {
+  content: '';
+  position: absolute;
+  background-color: #667780;
+  height: 2px;
+  width: 10px;
+  top: 50%;
+  left: 50%;
+  margin-top: -1px;
+  margin-left: -5px;
+}
+
+.skin-2 .num-in span.plus:after {
+  transform: rotate(90deg);
+}
+
+.skin-2 .num-in input {
+    float: left;
+    background: none;
+    color: white;
+		width: 20%;
+		height: 40px;
+		border: none;
+		text-align: center;
+}
+
+/* / skin 2 */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+input:focus{
+  outline: none;
+  border: none;
+}

@@ -1,8 +1,8 @@
-<div class="container mt-1">
+<div class="container mt-1" style="background: rgb(43, 42, 42);">
      <div class="row justify-content-center" >
         <div class="col-md-11 mt-2 mb-1 col-11">
             <div class="row  justify-content-start pb-2 cursor-pointer" >
-                <h4 class="font-weight-500  pl-2  cursor-pointer" matTooltip="Change Password">Change Password</h4>  
+                <h4 class="font-weight-500  pl-2  project-heading " style="color: white;" matTooltip="Change Password">Change Pass<span class="border-heading">word</span></h4>  
                 
             </div>
             <div class="row">
@@ -11,36 +11,41 @@
                   <div class="row mt-1" >
                       <mat-form-field appearance="fill" class="example-full-width">
                           <mat-label>Enter Current Password</mat-label>
-                          <input matInput  required formControlName="old_password" type="password">
-                        <mat-icon matSuffix>lock</mat-icon>
+                          <input matInput  required formControlName="old_password" id="myInput" type="password">
+                          <mat-icon onclick="myFunction()" (click)="passvible()" matSuffix *ngIf="visibility" class="cursor-pointer">visibility</mat-icon>
+                          <mat-icon onclick="myFunction()" (click)="passvible()" matSuffix *ngIf="!visibility" class="cursor-pointer">visibility_off</mat-icon>
                       </mat-form-field>
                   </div>
                   <div class="row" >
                       <mat-form-field appearance="fill" class="example-full-width">
                           <mat-label>Enter New Password</mat-label>
-                          <input matInput  required formControlName="new_password" type="password">
-                        <mat-icon matSuffix>lock</mat-icon>
+                          <input matInput (keyup)="checkConfirmPassword()" id="myInput2" required formControlName="new_password" type="password">
+                          <mat-icon onclick="myFunction2()" (click)="passvible2()" matSuffix *ngIf="visibility2" class="cursor-pointer">visibility</mat-icon>
+                          <mat-icon onclick="myFunction2()" (click)="passvible2()" matSuffix *ngIf="!visibility2" class="cursor-pointer">visibility_off</mat-icon>
                       </mat-form-field>
                   </div>
                   <div class="row" >
                       <mat-form-field appearance="fill" class="example-full-width">
                           <mat-label>Re-Enter New Password</mat-label>
       
-                          <input matInput  required formControlName="confirm_password" type="password">
-                        <mat-icon matSuffix>lock</mat-icon>
-                      </mat-form-field>
+                          <input matInput (keyup)="checkConfirmPassword()" id="myInput3"  required formControlName="confirm_password" type="password">
+                          <mat-icon onclick="myFunction3()" (click)="passvible3()" matSuffix *ngIf="visibility3" class="cursor-pointer">visibility</mat-icon>
+                        
+                          <mat-icon onclick="myFunction3()" (click)="passvible3()" matSuffix *ngIf="!visibility3" class="cursor-pointer">visibility_off</mat-icon>
+                          <mat-hint class="text-danger" *ngIf="is_confirm">Confirm Password do not match with Password</mat-hint>
+                        </mat-form-field>
                   </div>
                  
                   <div class="row mb-2" >
-                      <button mat-raised-button class="order-button cursor-pointer" (click)="ChangePassword()">Change Password</button>
+                      <button mat-raised-button class="project-button project-heading" (click)="ChangePassword()">Change Password</button>
                   </div>
               </form>
               </div>
-              <!-- <div class="col-md-7 d-none d-md-block d-lg-block">
-                <div class="card mt-2">
-                  <img src="https://www.kindpng.com/picc/m/200-2005293_lock-password-icon-hd-png-download.png" height="220"/>
+              <div class="col-md-7 d-none d-md-block d-lg-block">
+                <div class=" text-center mt-2">
+                  <img src="../../assets/change-password.png" height="190"/>
                 </div>
-              </div> -->
+              </div>
             </div>
             
         </div>

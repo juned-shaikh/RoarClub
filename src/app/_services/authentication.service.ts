@@ -34,12 +34,40 @@ export class AuthenticationService {
         })
       );
   }
+  add_customer_registrationuser2(postData){
+     
+        
+          sessionStorage.setItem("tokenObject", postData);
+      return 0;
+    
+
+  }
 
   loginClient(username: string, password: string) {
     return this.http
       .post<any>(this.baseUrl + `registration/login`, {
         username: username,
         password: password
+      })
+
+      .pipe(
+        map(user => {
+          // login successful if there's a jwt token in the response
+          if (user) {
+            sessionStorage.setItem("tokenObject", user.jwtoken);
+          }
+
+          return user;
+        })
+      );
+  }
+
+  loginClient2(username: string, password: string,comp_num:string) {
+    return this.http
+      .post<any>(this.baseUrl + `registration/login`, {
+        username: username,
+        password: password,
+        comp_num:comp_num
       })
 
       .pipe(
@@ -78,6 +106,28 @@ export class AuthenticationService {
       .post<any>(this.baseUrl + `registration/otpVerificationForLogin`, {
         username: username,
         otp: otp
+      })
+
+      .pipe(
+        map(user => {
+          // login successful if there's a jwt token in the response
+          if (user) {
+            sessionStorage.setItem("tokenObject", user.jwtoken);
+            // console.log(user);
+          }
+
+          return user;
+        })
+      );
+  }
+
+
+  otpVerificationForLogin2(username: any, otp : any,comp_num:any) {
+    return this.http
+      .post<any>(this.baseUrl + `registration/otpVerificationForLogin`, {
+        username: username,
+        otp: otp,
+        comp_num:comp_num
       })
 
       .pipe(

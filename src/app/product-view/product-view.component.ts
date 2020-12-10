@@ -93,6 +93,7 @@ export class ProductViewComponent implements OnInit {
   registerForm2: FormGroup;
   imageView;
   shipping_rate=0;
+  // shipping_rate='0';
   shipping_name=null;
   megaMenu = false;
   previewFlag = sessionStorage.getItem('previewFlag');
@@ -562,6 +563,7 @@ pro['access_token']=sessionStorage.getItem('access_token');
           for(let scount=0;scount<this.product_rate.length;scount++){
             if(this.product_rate[scount].is_rent ==2 || this.product_rate[scount].is_rent=='2'){
               this.shipping_rate=this.product_rate[scount].rate;
+              console.log(this.shipping_rate);
               this.shipping_name=this.product_rate[scount].name;
             }
           }
@@ -608,7 +610,6 @@ if(this.userC==true){
           thumbPosition: ThumbnailsPosition.Bottom
         });
        // Load items into the lightbox gallery ref
-        console.log(this.items23);
        lightboxRef.load(this.items23);
          
           
@@ -621,16 +622,11 @@ if(this.userC==true){
     
 
           this.ratings = data["ratings"];
-          console.log(this.ratings_count);
           this.ratings_count = data["ratings_count"]; 
-          console.log(this.ratings);
           this.reviews_count = data["reviews_count"];
-          console.log(this.reviews_count);
           this.reviews = data["reviews"];
           this.all_ratings = data["all_ratings"];
-          console.log(this.all_ratings);
           this.percentmain = (this.ratings*this.reviews_count)/100;
-          console.log(this.percentmain);
          for(let y=0;y<this.all_ratings.length;y++){
            if(this.all_ratings[y].ratings=='1' || this.all_ratings[y].ratings==1){
              this.percentmain1=(this.all_ratings[y].count*100)/this.reviews_count;
@@ -918,20 +914,15 @@ if(this.userC==true){
           
 
           this.ratings = data["ratings"];
-          console.log(this.ratings_count);
           this.ratings_count = data["ratings_count"]; 
-          console.log(this.ratings);
           this.reviews_count = data["reviews_count"];
-          console.log(this.reviews_count);
           this.reviews = data["reviews"];
           // this.all_ratings = data["all_ratings"];
           // console.log(this.all_ratings);
           // this.percentmain = (this.ratings*this.reviews_count)/100;
           // console.log(this.percentmain);
          this.all_ratings = data["all_ratings"];
-          console.log(this.all_ratings);
           this.percentmain = (this.ratings*this.reviews_count)/100;  
-          console.log(this.percentmain);
          for(let y=0;y<this.all_ratings.length;y++){
            if(this.all_ratings[y].ratings=='1' || this.all_ratings[y].ratings==1){
              this.percentmain1=(this.all_ratings[y].count*100)/this.reviews_count;
@@ -1770,10 +1761,10 @@ estimate_time_delivery(){
       this.etd=data['etd'];
     }
     if(data['status']==0){
-      let msg="Courier service not available.";
-      this.snackbar.open(msg, "", {
-        duration: 3000
-      });
+      // let msg="Courier service not available.";
+      // this.snackbar.open(msg, "", {
+      //   duration: 3000
+      // });
     }
       // this.etd = data["result"];
       // if(this.addresses.length>0){
@@ -2177,7 +2168,6 @@ img_preview(){
           thumbPosition: ThumbnailsPosition.Bottom
         });
         // Load items into the lightbox gallery ref
-        console.log(this.items23);
         // lightboxRef.load(this.items23);
          
           
@@ -3031,7 +3021,6 @@ if (
   prductAnalysis(dd) {
     let pro=this.product_no;
      pro= pro.replace("?marketplace=ECOMTRAILS", "");
-   console.log(pro);
      this.adminservice
       .insert_product_visit_log({ comp_num: dd,user_num:sessionStorage.getItem("user_num"),product_no:pro})
       .subscribe(data => {
