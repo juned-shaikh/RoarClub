@@ -421,11 +421,11 @@
   </section>
  
   <section class="text-center" *ngIf="similarPro !=null">
-     <div><h3 class="text-center" style="color: lightgray; text-transform: capitalize;">similar product</h3></div>
+     <div><h3 class="text-center project-heading" style="color: lightgray; text-transform: capitalize;">simi<span class="border-heading">lar pro</span>duct</h3></div>
     <div class="row">
   
       <div class="col-md-6 col-lg-3 mb-5" *ngFor="let nprd2 of similarPro"> 
-        <div class="card" style="margin: auto; padding-right: 7px;  height:450px ;">
+        <div class="card" style="margin: auto; padding-right: 7px;  height:390px ;">
           <h1  class="outofstockproduct" *ngIf="nprd2?.txn_quantity < '1'"> Out of stock</h1>
           <div class="card_image" >
             <div id="box-img1"> 
@@ -438,36 +438,36 @@
         </div>
 
      
-        <h1  class="show-status" *ngIf="userC == true && nprd2?.txn_quantity < '1'"> Out of stock</h1>
-        <h4 style="margin-left:20px; text-transform: capitaliz; font-weight: bold;">{{ (nprd2?.name.length>60)? (nprd2?.name | slice:0:60)+'...':(nprd2?.name) }}</h4>
+        <!-- <h1  class="show-status" *ngIf="userC == true && nprd2?.txn_quantity < '1'"> Out of stock</h1> -->
+        <h4 style=" text-transform: capitaliz; font-weight: bold;" class="project-heading m-0">{{ (nprd2?.name.length>60)? (nprd2?.name | slice:0:60)+'...':(nprd2?.name) }}</h4>
        
-        <div  class="row mb-2"> 
-              <div class="col-md-1 text-right ">
+        <div  class="row mb-2 mt-0"> 
+              <div class="col-md-2 text-right ">
             
                   <a *ngIf="nprd2?.wishlist_check == false" 
                     style="cursor:pointer"
                     (click)="addToWishlist(nprd2)"
                     title="Add to WishList"
-                    > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i></a>
+                    > <i class="fa fa-heart-o" aria-hidden="true"  ></i></a>
                   <a
                   style="cursor:pointer" *ngIf="nprd2.wishlist_check == true"
                   (click)="deleteFromWishlist(nprd2.wishlist_num)"
                   title="Already exist in Wishlist"
-                  > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i>
+                  > <i class="fa fa-heart-o" aria-hidden="true"  ></i>
               </a>
 
                  <a *ngIf="userC==false" 
                     style="cursor:pointer"
                     (click)="addToWishlistWL(nprd2)"
                     title="Add to WishList"
-                    > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i>
+                    > <i class="fa fa-heart-o" aria-hidden="true" ></i>
                 </a>
                 </div>
          
                 
 
               
-            <div class="col-md-5 text-right" style="color: red;" >
+            <div class="col-md-5 text-right" >
               
               <span
               class="fa fa-star checked"
@@ -498,7 +498,7 @@
             style="cursor:pointer"
             (click)="addToCart(nprd2)"
             title="Add to Cart"
-            > <i class="fa fa-cart-plus" style="color: green;"></i></a>
+            > <i class="fa fa-cart-plus" ></i></a>
           </span>
           
            
@@ -506,7 +506,7 @@
             style="cursor:pointer"
             (click)="addToCart(nprd2)"
             title="Add to Cart"
-            > <i class="fa fa-cart-plus" style="color: green;"></i>
+            > <i class="fa fa-cart-plus" ></i>
         </a>
         <!-- </li>
       </ul> -->
@@ -514,7 +514,7 @@
         </div>
             </div>
             <div class="row justify-content-start">
-              <div class="col-md-7">
+              <div class="col-md-12">
                 <p style="color: black;margin-left:10px">
                   <span *ngIf="nprd2.rate[0].is_rent == '1'" 
                   >{{ nprd2.rate[0].name }} @ {{ nprd2.rate[0].rate }}
@@ -528,15 +528,15 @@
                 <span *ngIf="nprd2.rate[0].is_rent == '2'" 
                   >{{ nprd2.rate[1].name }} @ {{ nprd2.rate[1].rate }} </span
                 >
-                <br/>
+                &nbsp;
                 <span
                   *ngIf="nprd2.rate[0].rate < nprd2.mrp && nprd2.rate[0].discount_percent !=0"
-                  class="font-wieght-bold text-center for-you text-success"
-                  >Discount : {{ nprd2.rate[0].discount_percent | number:'1.0-0' }}% </span
+                  class="font-wieght-bold text-center for-you text-success" style="font-weight: bold;"
+                  > {{ nprd2.rate[0].discount_percent | number:'1.0-0' }}%  off</span
                 >
                 </p>
               </div>
-              <div class="col-md-5" *ngIf="nprd2?.txn_quantity > '0'">
+              <div class="col-md-12" *ngIf="nprd2?.txn_quantity > '0'">
                 <div class="" >
                   <a    (click)="rates(nprd2)" *ngIf="(nprd2?.cart_check == false) && userC==true 
                   " class="buy-now-button cursor-pointer"><span class="fa fa-bolt " ></span>&nbsp; Buy Now</a>

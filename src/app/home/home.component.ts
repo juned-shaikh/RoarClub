@@ -141,31 +141,12 @@ export class HomeComponent implements OnInit {
         this.roarclubbannerdata = data['result']; 
       
         }  
-           
-        
-  		
-      // else if(data['status']==0){
-      // sessionStorage.clear();
-      //  this.snackbar.open('Slider Is Not Fetch. ','' ,{
-      //           duration: 3000,
-      //           horizontalPosition:'center',
-      //   });      
-     
-      // }
-      else{
-
-      }
+    
+    
   	},
-  	error=>{
-  		
-    	}
+  
     );
-    // let l = location.origin;
-    // var c = l.split("//");
-    // this.host_name = c[1];
-    // let serv = this.host_name;
-    // var s = serv.split(".");
-    // this.serverlink = s[1];
+    
      this.adminservice
           .get_host_link({
           comp_num : 0
@@ -196,7 +177,7 @@ export class HomeComponent implements OnInit {
         data => {
           if (data["status"] == 1) {
             this.brands = data['result'];
-
+          
           } else if (data["status"] == 10) {
             
           } else {

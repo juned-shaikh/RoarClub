@@ -574,7 +574,7 @@ input[type=number]::-webkit-outer-spin-button {
   z-index: 1111;
   /* left: 8px; */
   line-height: 12;
-  height: 60%;
+  height: 70%;
   position: absolute;
   font-weight: 600;
   color: red;

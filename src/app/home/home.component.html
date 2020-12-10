@@ -1,8 +1,8 @@
 
-    <div class="container-fluid" style="overflow: hidden; ">  
+    <div class="container-fluid d-none d-lg-block d-xl-block" style="overflow: hidden; ">  
         <!-- rounded slider by Aman Verma 05-11-2020 -->
-      <div id="demo" class="carousel slide main-slider mb-2" data-ride="carousel" *ngIf="banner">
-        <div class="carousel-inner" style="height: 490px; border-radius: 9.5px!important;  overflow: hidden;">
+      <div id="demo" class="carousel slide main-slider " data-ride="carousel" *ngIf="banner">
+        <div class="carousel-inner" style="  height: 490px; border-radius: 9.5px!important;  overflow: hidden;" >
           <div *ngIf="banner_group_a==0 || bannerdata.value.banner_image_a_group==''" class="carousel-item active">
             <img src="{{ bannerdata.value.banner_image_a }}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
           </div>
@@ -563,6 +563,500 @@
         </div>
   
   
+
+        <section class="d-block d-lg-none d-md-none d-xl-none mt-2">
+        
+          <div class="container-fluid">
+            <div id="demo" class="carousel slide main-slider " data-ride="carousel" *ngIf="banner">
+              <div class="carousel-inner" style="  height: 260px; border-radius: 9.5px!important;  overflow: hidden;" >
+                <div *ngIf="banner_group_a==0 || bannerdata.value.banner_image_a_group==''" class="carousel-item active scroll-item">
+                  <img src="{{ bannerdata.value.banner_image_a }}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
+                </div>
+                <div *ngIf="banner_group_a==1 && bannerdata.value.banner_image_a_group!='' && banner_group_linka==0" class="carousel-item active cursor-pointer scroll-item" (click)="navigation(bannerdata.value.banner_image_a_group,bannerdata.value.banner_image_a_group_type,bannerdata.value.banner_image_a_group_id)">
+                  <img  src="{{ bannerdata.value.banner_image_a }}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
+                </div>
+              
+                <a *ngIf="banner_group_a==1 && bannerdata.value.banner_image_a_group!='' && banner_group_linka==1" class="carousel-item active cursor-pointer scroll-item" target="_blank"  href="{{bannerdata.value.banner_image_a_group}}"
+                >
+                <img src="{{bannerdata.value.banner_image_a}}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
+              </a>
+        
+                <div *ngIf="banner_group_b==0 || bannerdata.value.banner_image_b_group==''" class="carousel-item scroll-item">
+                  <img src="{{ bannerdata.value.banner_image_b }}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
+                </div>
+                <div *ngIf="banner_group_b==1 && bannerdata.value.banner_image_b_group!=''  && banner_group_linkb==0"  class="carousel-item scroll-item cursor-pointer" (click)="navigation(bannerdata.value.banner_image_b_group,bannerdata.value.banner_image_b_group_type,bannerdata.value.banner_image_b_group_id)">
+                  <img  src="{{ bannerdata.value.banner_image_b }}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
+                </div>
+              
+                <a *ngIf="banner_group_b==1 && bannerdata.value.banner_image_b_group!='' && banner_group_linkb==1" class="carousel-item active cursor-pointer scroll-item" target="_blank"  href="{{bannerdata.value.banner_image_b_group}}"
+                >
+                <img src="{{bannerdata.value.banner_image_b}}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
+              </a>
+        
+                <div class="carousel-item scroll-item" *ngIf="banner_group_c==0 || bannerdata.value.banner_image_c_group==''" >
+                <img src="{{ bannerdata.value.banner_image_c }}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
+              </div>
+                <div  *ngIf="banner_group_c==1 && bannerdata.value.banner_image_c_group!='' && banner_group_linkc==0" class="scroll-item carousel-item cursor-pointer" (click)="navigation(bannerdata.value.banner_image_c_group,bannerdata.value.banner_image_c_group_type,bannerdata.value.banner_image_c_group_id)">
+                <img src="{{ bannerdata.value.banner_image_c }}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
+              </div>
+        
+            
+        
+          <a *ngIf="banner_group_c==1 && bannerdata.value.banner_image_c_group!='' && banner_group_linkc==1" class="scroll-item carousel-item active cursor-pointer" target="_blank"  href="{{bannerdata.value.banner_image_c_group}}"
+                >
+                <img src="{{bannerdata.value.banner_image_c}}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
+              </a>   
+        
+              <!-- start for 4 and 5 -->
+        <!-- start for 4 -->
+        <div class="carousel-item scroll-item" *ngIf="banner_group_d==0 || bannerdata.value.banner_image_d_group==''" c\>
+                <img src="{{ bannerdata.value.banner_image_d }}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
+              </div>
+                <div  *ngIf="banner_group_d==1 && bannerdata.value.banner_image_d_group!='' && banner_group_linkd==0" class="carousel-item cursor-pointer scroll-item" (click)="navigation(bannerdata.value.banner_image_d_group,bannerdata.value.banner_image_d_group_type,bannerdata.value.banner_image_d_group_id)">
+                <img src="{{ bannerdata.value.banner_image_d }}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
+              </div>
+        
+            
+        
+          <a *ngIf="banner_group_d==1 && bannerdata.value.banner_image_d_group!='' && banner_group_linkd==1" class="carousel-item active cursor-pointer scroll-item" target="_blank"  href="{{bannerdata.value.banner_image_d_group}}"
+                >
+                <img src="{{bannerdata.value.banner_image_d}}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
+              </a>  
+        <!-- end for 4 -->
+        <!-- start for 5 -->
+        <div class="carousel-item scroll-item" *ngIf="banner_group_e==0 || bannerdata.value.banner_image_e_group==''" >
+                <img src="{{ bannerdata.value.banner_image_e }}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
+              </div>
+                <div  *ngIf="banner_group_e==1 && bannerdata.value.banner_image_e_group!='' && banner_group_linke==0" class="carousel-item cursor-pointer scroll-item" (click)="navigation(bannerdata.value.banner_image_e_group,bannerdata.value.banner_image_e_group_type,bannerdata.value.banner_image_e_group_id)">
+                <img src="{{ bannerdata.value.banner_image_e }}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
+              </div>
+        
+            
+        
+          <a *ngIf="banner_group_e==1 && bannerdata.value.banner_image_e_group!='' && banner_group_linke==1" class="carousel-item active cursor-pointer scroll-item" target="_blank"  href="{{bannerdata.value.banner_image_e_group}}"
+                >
+                <img src="{{bannerdata.value.banner_image_e}}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
+              </a>  
+        <!-- end for 5 -->
+              <!-- end for 4 and 5 -->
+              
+              </div>
+            
+              <a class="carousel-control-prev ml-1" href="#demo" style="background-color: black;top: 98px;height: 30px;width: 35px;border-radius: 36px;" data-slide="prev">
+                <span class="carousel-control-prev-icon"><i class="fas fa-chevron-left"></i></span>
+              </a>
+              <a class="carousel-control-next mr-1" href="#demo" style="background-color: black;top: 98px;height: 30px;width: 35px;border-radius: 36px;" data-slide="next">
+                <span class="carousel-control-next-icon"><i class="fas fa-chevron-right"></i></span>
+              </a>
+            </div>
+          </div>
+          <div class="container-fluid mt-0">
+            <div class="row mb-2  justify-content-start">
+              <div class=" col-6 ">
+            <h6 class="project-heading mobile-heading " style="position: relative; left: 1px;">Shop by brands</h6>
+              </div>
+              <div class="col-6 text-right pr-1">
+               <h6 class="m-0 project-discription mobile-heading" *ngIf="brands?.length > 4" routerLink="/out-brand">view all</h6>
+              </div>
+            </div>
+            <div class="row  mt-1  justify-content-center"  >
+              <div class="col-xs-3 " *ngFor="let brand of brands | slice:0:4;">
+                 <div class="card" style="background: transparent; box-shadow: none; outline: none;">
+                  <div class=" circular-image-brand-mobile " (click)="navigateBrand(brand.name,brand.brand_id)" >
+                    <img src="{{brand?.thumbnail_sml_location}}" onerror="this.src='assets/no-img.png';" class="brand-image-mobile" >
+                  </div>
+                 </div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="container-fluid mb-2  Trending-mobile-product-box pb-1" *ngIf="topSelling">
+            <div class="row justify-content-between  mobile-heading-row">
+              <h6 class="mobile-heading pl-0 project-heading">Trending Products</h6>   <ul class="pagination mt-1 justify-content-end mr-2">
+              <li class="page-item page-previous bg-dark" *ngIf="offsetSelling != 1">
+                <a matTooltip="Previous"
+                  class="page-link "
+                  (click)="changeOffsetSell(offsetSelling - 1)"
+                  aria-label="Previous"
+                >
+                  <span aria-hidden="true" class="cursor-pointer project-discription font-weight-400" style="color: #B89D4E!important;">« previous</span>
+                </a>
+              </li>
+              
+              <li class="page-item bg-dark" *ngIf="offsetSelling != pagesSelling">
+                <a matTooltip="More"
+                  class="page-link"
+                  (click)="changeOffsetSell(offsetSelling + 1)"
+                  aria-label="Next"
+                >
+                  <span aria-hidden="true" class="cursor-pointer  font-weight-400 project-discription" style="color: #B89D4E!important;">next »</span>
+                </a>
+              </li>
+            </ul>
+            </div>
+
+
+
+
+
+           
+
+
+
+
+
+
+              <div class="row justify-content-center">
+                <div class="col-12">
+<div class="row">
+  <div class="col-6  mobile-product-box-height"  (click)="view_product(nprd2.meta_title, nprd2.product_no,nprd2.slug,nprd2.quick_product_check)" *ngFor="let nprd2 of topSelling">
+  <div class="">
+    <div class="row">
+      <div class="col-md-12 mobile-image-box-height">
+      <img   src="{{ nprd2.gallery?.medium_thumbnail_link }}" class="mobile-view-image">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 mobile-product-heading">
+      <h6 class="m-0">
+        <a class="text-titlecase project-heading"  title="{{nprd2.name}}"> {{ (nprd2.name.length>34)? (nprd2.name | slice:0:34)+'...':(nprd2.name)  | titlecase}}</a>
+      </h6>
+      
+      </div>
+    
+    </div>
+<div class="row justify-content-center">
+<div  *ngIf="rating_option==true" class="justify-content-center text-center pb-1 star-mobile">
+  <span
+    class="fa fa-star checked"
+    *ngFor="let i of createRange2(nprd2.ratings)"
+  ></span>
+  <span *ngIf="nprd2.ratings>'0'"><span
+    class="fa fa-star unchecked"
+    *ngFor="let i of createRange2(5 - nprd2.ratings)"
+  ></span>
+</span>
+</div>
+</div>
+    <div class="row text-muted mobile-seller-price">
+    
+    <div class="col-md-12">
+
+
+
+      <span *ngIf="nprd2.rate[0].is_rent == '1'" class="mobile-product-price1"
+      >{{ nprd2.rate[0].name }} @ {{ nprd2.rate[0].rate }}
+    </span>
+    <span *ngIf="nprd2.rate[0].is_rent != '2'" class="mobile-product-price1"
+      >₹ {{ nprd2.rate[0].rate }}
+    </span>
+    &nbsp;
+    <span class="mobile-product-price" *ngIf="nprd2.rate[0].rate < nprd2.mrp"
+      ><del>₹ {{ nprd2.mrp }} </del></span
+    >
+    <span *ngIf="nprd2.rate[0].is_rent == '2'" class="mobile-product-price"
+      >{{ nprd2.rate[1].name }} @ {{ nprd2.rate[1].rate }} </span
+    ><br />
+    <span 
+      *ngIf="nprd2.rate[0].rate < nprd2.mrp"
+      class="font-wieght-bold text-center mobile-product-price1 text-success"
+      >Discount : {{ nprd2.rate[0].discount_percent | number:'1.0-0' }} %</span
+    >
+    </div>
+  </div>
+</div>
+  </div>
+</div>
+                </div>
+                
+              </div>
+            </div>
+
+            <div class="container-fluid d-block d-md-none d-lg-none d-xl-none bg-white" *ngIf="roarclubbannerdata">
+              <div class="row">
+                <div class="col-6 mt-1 banner-image-box-card-mobile " *ngIf="roarclubbannerdata[0] != null">
+                  <img src="{{roarclubbannerdata[0].image_link}}" class=" img-fluid img-banner"  onerror="this.src='assets/no-img.png';">
+                </div>
+                <div class="col-6 mt-1 banner-image-box-card-mobile " *ngIf="roarclubbannerdata[1] != null">
+                    <img src="{{roarclubbannerdata[1].image_link}}" class=" img-fluid img-banner"  onerror="this.src='assets/no-img.png';">
+                </div>
+              </div>
+            </div>
+            <div class="container-fluid mt-1 Trending-mobile-product-box pb-1 mb-3" *ngIf="newproduct">
+              <div class="row justify-content-between mobile-heading-row">
+                <h6 class="mobile-heading pl-0 project-heading">New Arrivals</h6>   <ul class="pagination justify-content-end mr-2 mt-1">
+                <li class="page-item page-previous bg-dark" *ngIf="offsetNew != 1">
+                  <a matTooltip="Previous"
+                    class="page-link "
+                    (click)="changeOffsetNew(offsetNew - 1)"
+                    aria-label="Previous"
+                  >
+                    <span aria-hidden="true" class="cursor-pointer  font-weight-400 text-success" >« previous</span>
+                  </a>
+                </li>
+                
+                <li class="page-item bg-dark" *ngIf="offsetNew != pagesNew">
+                  <a matTooltip="More"
+                    class="page-link"
+                    (click)="changeOffsetNew(offsetNew + 1)"
+                    aria-label="Next"
+                  >
+                    <span aria-hidden="true" class="cursor-pointer text-success font-weight-400">next »</span>
+                  </a>
+                </li>
+              </ul>
+              </div>
+                <div class="row justify-content-center">
+                 <div class="col-12">
+                   <div class="row justify-content-start">
+                    <div class="col-6   mobile-product-box-height"  (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)" *ngFor="let nprd of newproduct">
+                   <div class="">
+                      <div class="row">
+                        <div class="col-md-12 mobile-image-box-height">
+                      
+                        <img  src="{{ nprd.gallery?.medium_thumbnail_link }}" onerror="this.src='assets/no-img.png';" class="mobile-view-image">
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 mobile-product-heading">
+                        <h6 class="m-0">
+                          <a class="text-titlecase project-heading"  title="{{nprd.name}}"> {{ (nprd.name.length>34)? (nprd.name | slice:0:34)+'...':(nprd.name)  | titlecase}}</a>
+                        </h6>
+                      
+                        </div>
+                      </div>
+                      <div class="row justify-content-center">
+                        <div class="justify-content-center text-center pb-1 star-mobile">
+                          <span
+                            class="fa fa-star checked"
+                            *ngFor="let i of createRange2(nprd.ratings)"
+                          ></span>
+                          <span *ngIf="nprd.ratings>'0'"><span
+                            class="fa fa-star unchecked
+                            "
+                            *ngFor="let i of createRange2(5 - nprd.ratings)"
+                          ></span>
+                        </span>
+                        </div>
+                      </div>
+                
+                      <div class="row text-muted mobile-seller-price">
+                      <div class="col-md-12">
+                        <span *ngIf="nprd.rate[0].is_rent == '1'" class="mobile-product-price1"
+                        >{{ nprd.rate[0].name }} @ {{ nprd.rate[0].rate }}
+                      </span>
+                      <span *ngIf="nprd.rate[0].is_rent != '2'" class="mobile-product-price1"
+                        > ₹ {{ nprd.rate[0].rate}}
+                      </span>
+                      
+                      <span class="mobile-product-price" *ngIf="nprd.rate[0].rate < nprd.mrp"
+                        ><del>₹ {{ nprd.mrp }} </del></span
+                      >
+                      <span *ngIf="nprd.rate[0].is_rent == '2'" class="mobile-product-price"
+                        >{{ nprd.rate[1].name }} @ {{ nprd.rate[1].rate }} </span
+                      ><br />
+                      <span
+                        *ngIf="nprd.rate[0].rate < nprd.mrp"
+                        class="font-wieght-bold text-center mobile-product-price1 text-success"
+                        >Discount : {{ nprd.rate[0].discount_percent | number:'1.0-0' }} %</span
+                      >
+                      </div>
+                    </div>
+                  </div>
+                    </div>
+                   </div>
+                 </div>
+                </div>
+              </div>
+              <div class="container-fluid d-block d-md-none d-lg-none bg-white" *ngIf="roarclubbannerdata">
+                <div class="row">
+                  <div class="col-6 mt-1 banner-image-box-card-mobile" *ngIf="roarclubbannerdata[2] != null">
+                      <img src="{{roarclubbannerdata[2].image_link}}" class="w-100 img-fluid img-banner"  onerror="this.src='assets/img/favicon1.png';">
+                  </div>
+                  <div class="col-6 mt-1 banner-image-box-card-mobile " *ngIf="roarclubbannerdata[3] != null">
+                      <img src="{{roarclubbannerdata[3].image_link}}" class="w-100 img-fluid img-banner"  onerror="this.src='assets/img/favicon1.png';">
+                  </div>
+                  <div class="col-6 mt-1 banner-image-box-card-mobile " *ngIf="roarclubbannerdata[4] != null">
+                      <img src="{{roarclubbannerdata[4].image_link}}" class="w-100 img-fluid img-banner"  onerror="this.src='assets/img/favicon1.png';">
+                  </div>
+                  <div class="col-6 mt-1  banner-image-box-card-mobile" *ngIf="roarclubbannerdata[5] != null">
+                      <img src="{{roarclubbannerdata[5].image_link}}" class="w-100 img-fluid img-banner"  onerror="this.src='assets/img/favicon1.png';">
+                  </div>
+                </div>
+              </div>
+          <div class="container-fluid mt-1 Trending-mobile-product-box pb-1 mb-3" *ngIf="sellingDiscount && notbuy">
+        <div class="row justify-content-between  mobile-heading-row">
+          <h6 class="mobile-heading project-heading">Top Discounted Products</h6>    <ul class="pagination mt-1 justify-content-end pr-3">
+            <li class="page-item page-previous bg-dark" *ngIf="offsetDisc != 1">
+              <a matTooltip="Previous"
+                class="page-link "
+                (click)="changeOffsetDisc(offsetDisc - 1)"
+                aria-label="Previous"
+              >
+                <span aria-hidden="true" class="cursor-pointer text-success font-weight-400">« previous</span>
+                <!-- <span class="sr-only">Previous</span> -->
+              </a>
+            </li>
+          
+            <li class="page-item bg-dark" *ngIf="offsetDisc != pagesDisc">
+              <a matTooltip="More"
+                class="page-link"
+                (click)="changeOffsetDisc(offsetDisc + 1)"
+                aria-label="Next"
+              >
+                <span aria-hidden="true" class="cursor-pointer text-success font-weight-400">next »</span>
+              </a>
+            </li>
+          </ul>
+          
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <div class="row">
+                <div class="col-6   mobile-product-box-height"  (click)="view_product(nprd3.meta_title, nprd3.product_no,nprd3.slug,nprd3.quick_product_check)" *ngFor="let nprd3 of discountS">
+                <div class="">
+                  <div class="row">
+                    <div class="col-md-12 mobile-image-box-height">
+                      <img  src="{{ nprd3.gallery?.medium_thumbnail_link }}" onerror="this.src='assets/no-img.png';" class="mobile-view-image">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 mobile-product-heading ">
+                      <h6 class="m-0">
+                        <a class="text-titlecase project-heading"  title="{{nprd3.name}}"> {{ (nprd3.name.length>34)? (nprd3.name | slice:0:34)+'...':(nprd3.name)  | titlecase}}</a>
+                      </h6>
+                    
+                    </div>
+                  </div>
+                  <div class="row justify-content-center">
+                    <div class="justify-content-center text-center pb-1 star-mobile">
+                      <span
+                        class="fa fa-star checked"
+                        *ngFor="let i of createRange2(nprd3.ratings)"
+                      ></span>
+                      <span *ngIf="nprd3.ratings>'0'"><span
+                        class="fa fa-star unchecked"
+                        *ngFor="let i of createRange2(5 - nprd3.ratings)"
+                      ></span>
+                    </span>
+                    </div>
+                  </div>
+                  <div class="row text-muted mobile-seller-price">
+                    <div class="col-md-12">
+                      <span *ngIf="nprd3.rate[0].is_rent == '1'" class="mobile-product-price1"
+                      >{{ nprd3.rate[0].name }} @ {{ nprd3.rate[0].rate }}
+                    </span>
+                    <span *ngIf="nprd3.rate[0].is_rent != '2'" class="mobile-product-price1"
+                      >₹ {{ nprd3.rate[0].rate }}
+                    </span>
+                    
+                    <span class="mobile-product-price" *ngIf="nprd3.rate[0].rate < nprd3.mrp"
+                      ><del>₹ {{ nprd3.mrp  }} </del></span
+                    >
+                    <span *ngIf="nprd3.rate[0].is_rent == '2'" class="mobile-product-price"
+                      >{{ nprd3.rate[1].name }} @ {{ nprd3.rate[1].rate }} </span
+                    ><br />
+                    <span
+                      *ngIf="nprd3.rate[0].rate < nprd3.mrp"
+                      class="font-wieght-bold text-center mobile-product-price1 text-success"
+                      >Discount : {{ nprd3.rate[0].discount_percent | number:'1.0-0' }} %</span
+                    >
+                    </div>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+        <div class="container-fluid mt-1 Trending-mobile-product-box pb-1 mb-3"*ngIf="rentShow && discountR">
+          <div class="row justify-content-between mobile-heading-row">
+            <h6 class="mobile-heading project-heading"> Top Discounted Rent Products</h6>      <ul class="pagination justify-content-end">
+              <li class="page-item page-previous bg-dark" *ngIf="offsetRent != 1">
+                <a matTooltip="Previous"
+                  class="page-link "
+                  (click)="changeOffsetRent(offsetRent - 1)"
+                  aria-label="Previous"
+                >
+                  <span aria-hidden="true" class="cursor-pointer font-weight-500 text-success">« previous</span>
+                </a>
+              </li>
+            
+              <li class="page-item bg-dark" *ngIf="offsetRent != pagesRent">
+                <a matTooltip="More"
+                  class="page-link"
+                  (click)="changeOffsetRent(offsetRent + 1)"
+                  aria-label="Next"
+                >
+                  <span aria-hidden="true" class="cursor-pointer font-weight-500 text-success">next »</span>
+                </a>
+              </li>
+            </ul>
+          
+          </div>
+            <div class="row justify-content-center">
+              <div class="col-12">
+                <div class="row">
+                  <div class="col-6   mobile-product-box-height"  (click)="view_product(nprd4.meta_title, nprd4.product_no,nprd4.slug,nprd4.quick_product_check)" *ngFor="let nprd4 of discountR">
+                    <div class="row">
+                      <div class="col-md-12 mobile-image-box-height">
+                      <img  src="{{ nprd4.gallery?.medium_thumbnail_link }}" onerror="this.src='assets/no-img.png';" class="mobile-view-image">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12 mobile-product-heading">
+                      <h6 >
+                        <a class="text-titlecase project-heading"  title="{{nprd3.name}}"> {{ (nprd4.name.length>34)? (nprd4.name | slice:0:34)+'...':(nprd4.name)  | titlecase}}</a>
+                      </h6>
+                    
+                      </div>
+                    </div>
+                    <div class="row justify-content-center">
+                      <div  *ngIf="rating_option==true" class="justify-content-center text-center pb-1 star-mobile">
+                        <span
+                          class="fa fa-star checked"
+                          *ngFor="let i of createRange2(nprd4.ratings)"
+                        ></span>
+                        <span *ngIf="nprd4.ratings>'0'"><span
+                          class="fa fa-star unchecked"
+                          *ngFor="let i of createRange2(5 - nprd4.ratings)"
+                        ></span>
+                      </span>
+                      </div>
+                    </div>
+                    <div class="row text-muted mobile-seller-price">
+                    <div class="col-md-12">
+                      <span *ngIf="nprd4.rate[0].is_rent == '1'" class="mobile-product-price1"
+                      >{{ nprd4.rate[0].name }} @ {{ nprd4.rate[0].rate }}
+                    </span> &nbsp;
+                    <span *ngIf="nprd4.rate[0].is_rent != '2'" class="mobile-product-price1"
+                      >₹ {{ nprd4.rate[0].rate }}
+                    </span>
+                    <br>
+                    <span class="mobile-product-price" *ngIf="nprd4.rate[0].rate < nprd4.mrp"
+                      ><del>₹ {{ nprd4.mrp  }} </del></span
+                    >
+                    <span *ngIf="nprd4.rate[0].is_rent == '2'" class="mobile-product-price"
+                      >{{ nprd4.rate[1].name }} @ {{ nprd4.rate[1].rate }} </span
+                    ><br />
+                    <span
+                      *ngIf="nprd4.rate[0].rate < nprd4.mrp"
+                      class="font-wieght-bold text-center mobile-product-price1 text-success"
+                      >Discount : {{ nprd4.rate[0].discount_percent | number:'1.0-0' }} %</span
+                    >
+                    </div>
+                  </div>
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+        
+        </section>
     
            
   <!-- end -->
