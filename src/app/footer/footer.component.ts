@@ -1,12 +1,8 @@
 
-
-
-
 import { Component, OnInit, HostListener, ElementRef } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { RoarclubserviceService } from "../roarclubservice.service";
 import {MatSnackBar} from  '@angular/material/snack-bar'
-// import { MatSnackBar } from "@angular/material";
 import { CookieService } from "ngx-cookie-service";
 import { Location } from "@angular/common";
 @Component({
@@ -16,6 +12,9 @@ import { Location } from "@angular/common";
 })
 export class FooterComponent implements OnInit {
   comp_num_new = sessionStorage.getItem("comp_num_new");
+  user_num = sessionStorage.getItem("user_num");
+  access_token = sessionStorage.getItem("access_token");
+ 
   constructor(
     private adminservice: RoarclubserviceService,
     private router: Router,
@@ -24,8 +23,14 @@ export class FooterComponent implements OnInit {
     public location: Location,
     private cookie: CookieService
   ) {}
+  public is_logged_in = false;
+  public is_logged_out = false;
+  
   host_name;
   compd;
+  buis_update=false;
+  cust_reg_enable=false;
+
   ngOnInit() {
     let l = location.origin;
     var c = l.split("//");
@@ -37,7 +42,7 @@ export class FooterComponent implements OnInit {
         this.comp_num_new = sessionStorage.getItem('comp_num_new');
         this.medialinks(this.comp_num_new);
         this.basicCompany(this.comp_num_new);
-
+      
       }else{
         this.adminservice
         .hostlink({ host_name: this.host_name })
@@ -59,8 +64,17 @@ export class FooterComponent implements OnInit {
         });
 
       }
-      
-  
+      if (!this.user_num && !this.access_token) {
+        this.is_logged_out = true;
+        this.is_logged_in = false;
+      } else {
+        this.is_logged_in = true;
+        this.is_logged_out = false;
+       
+      }
+  // this.compSettingsCustReg(this.comp_num_new);
+  this.compSettingsCustReg();
+      this.fetch_customer();
   }
   data;
   medialinks(dd) {
@@ -89,4 +103,63 @@ export class FooterComponent implements OnInit {
         }
       });
   }
+
+
+
+  
+  compSettingsCustReg() {
+    this.adminservice
+      .fetch_particular_company_registry_with_sno({ comp_num: this.comp_num_new,s_no:21})
+      .subscribe(data => {
+     
+
+
+        if (data["status"] == 1) {
+          // if(data['data'].length>0){
+          //   for(let k=0;k<data['data'].length;k++){
+              // if(data['data'][k].s_no==14 || data['data'][k].s_no=='14'){
+                if(data['data'].value==1 || data['data'].value=='1'){
+                  this.cust_reg_enable=true;
+                }
+              // }
+          //   }
+          // }
+         }
+      });
+  }
+
+fetch_customer(){
+                if(this.is_logged_in==true){
+      let postData = {
+        user_num:this.user_num,
+        access_token:this.access_token,
+        comp_num: sessionStorage.getItem('comp_num_new')
+      };
+
+      this.adminservice.fetch_customer_registration(postData).subscribe(
+        data => {
+          if (data["status"] == 1) {
+          
+          
+if(data["result"].buisness_no!='0' && data["result"]!=null && data["result"].buisness_no!=null && data["result"].buisness_no!='null' && data["result"].buisness_no!='0'){
+  this.buis_update=true;
+             }
+             else{
+             
+ 
+ 
+             }
+          } else {
+
+           
+          }
+        },
+        error => {
+
+         
+        }
+      );
+    }
+  }
+
 }

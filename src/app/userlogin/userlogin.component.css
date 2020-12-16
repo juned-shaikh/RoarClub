@@ -1,22 +1,22 @@
-.bg-img{
+/* .bg-img{
    
     height: 100vh;
-  }
+  } */
 
   .content {
     text-align: center;
   }
-  
-  /* #materialLoginFormEmail{
-    color: white;
-    border-radius: 2px;
-    width: 240px;
-    height: 44px;
-    border: none;
-    padding: 15px 20px;
-    background-color: rgba(65, 65, 65, 0.5);
-    margin-bottom: 24px;
-  } */
+  .md-form input:not([type]):focus:not([readonly]), .md-form input[type="password"]:not(.browser-default):focus:not([readonly]), .md-form input[type="password"]:not(.browser-default):focus:not([readonly]), .md-form input[type="email"]:not(.browser-default):focus:not([readonly]), .md-form input[type="url"]:not(.browser-default):focus:not([readonly]), .md-form input[type="time"]:not(.browser-default):focus:not([readonly]), .md-form input[type="date"]:not(.browser-default):focus:not([readonly]), .md-form input[type="datetime"]:not(.browser-default):focus:not([readonly]), .md-form input[type="datetime-local"]:not(.browser-default):focus:not([readonly]), .md-form input[type="tel"]:not(.browser-default):focus:not([readonly]), .md-form input[type="number"]:not(.browser-default):focus:not([readonly]), .md-form input[type="search"]:not(.browser-default):focus:not([readonly]), .md-form input[type="phone"]:not(.browser-default):focus:not([readonly]), .md-form input[type="search-md"]:focus:not([readonly]), .md-form textarea.md-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #b89d4e;
+    /* -webkit-box-shadow: 0 1px 0 0 #4285f4; */
+    box-shadow: 0 1px 0 0 #b89d4e;}
+  .md-form input:not([type]):focus:not([readonly]), .md-form input[type="text"]:not(.browser-default):focus:not([readonly]), .md-form input[type="password"]:not(.browser-default):focus:not([readonly]), .md-form input[type="email"]:not(.browser-default):focus:not([readonly]), .md-form input[type="url"]:not(.browser-default):focus:not([readonly]), .md-form input[type="time"]:not(.browser-default):focus:not([readonly]), .md-form input[type="date"]:not(.browser-default):focus:not([readonly]), .md-form input[type="datetime"]:not(.browser-default):focus:not([readonly]), .md-form input[type="datetime-local"]:not(.browser-default):focus:not([readonly]), .md-form input[type="tel"]:not(.browser-default):focus:not([readonly]), .md-form input[type="number"]:not(.browser-default):focus:not([readonly]), .md-form input[type="search"]:not(.browser-default):focus:not([readonly]), .md-form input[type="phone"]:not(.browser-default):focus:not([readonly]), .md-form input[type="search-md"]:focus:not([readonly]), .md-form textarea.md-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #b89d4e;
+    /* -webkit-box-shadow: 0 1px 0 0 #4285f4; */
+    box-shadow: 0 1px 0 0 #b89d4e;}
+    .md-form input:not([type]):focus:not([readonly])+label, .md-form input[type="text"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="password"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="email"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="url"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="time"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="date"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="datetime"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="datetime-local"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="tel"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="number"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="search"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="phone"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="search-md"]:focus:not([readonly])+label, .md-form textarea.md-textarea:focus:not([readonly])+label {
+      color: #b89d4e;
+  }
   .content h2 {
     padding: 15px 0px 15px;
     font-size: 2em;
@@ -45,23 +45,21 @@
 input{
   color: white!important;
 }
-::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: 0.4em 0px !important;}
-::ng-deep .mat-form-field-label-wrapper { top: -1.5em; }
 
-::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
-    transform: translateY(-1.1em) scale(.75);
-    width: 133.33333%;
-}
-input{
-  border-bottom: 2px solid green;
-  color: white!important;
-}
-input>:focus{
-  border-bottom: 2px solid green!important;
-}
 .example-full-width{
   width: 100%;
 }
 mat-icon{
-  color: green;
+  color: #B89D4E;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline .mat-form-field-outline:focus {
+  color: #B89D4E;
+}
+/* Font color */
+input.mat-input-element {
+  color: white;
+}
+mat-label{
+  color: #B89D4E;
 }

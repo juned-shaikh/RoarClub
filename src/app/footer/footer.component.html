@@ -1,5 +1,5 @@
 
-<div class="container-fluid dash1 mt-5 border-top" id="back">
+<div class="container-fluid dash1 d-none d-lg-block d-xl-block border-top mt-5" id="back">
     <div class="row mt-3">
   
       <div class="col-md-6 mt-6 ml-6">
@@ -11,7 +11,7 @@
             <li class="text-white project-discription"><p style="font-size: 15px;">  {{compd?.line1}}, {{compd?.line2}}, {{compd?.landmark}}, {{compd?.city}},
               {{compd?.state}}, {{compd?.country}} -{{compd?.pin_code}}.</p></li>
             <br> 
-            <li> <p style="font-size: 15px;" class="project-discription">FAQ's&nbsp;&nbsp;&nbsp;&nbsp;   Privacy &nbsp;&nbsp;&nbsp;&nbsp;    PolicyTerms of Use &nbsp;&nbsp;&nbsp;&nbsp; <span class="project-heading text-success cursor-pointer" routerLink="/member-login">Member Registration</span> </p></li>
+            <li> <p style="font-size: 15px;" class="project-discription">FAQ's&nbsp;&nbsp;&nbsp;&nbsp;   Privacy &nbsp;&nbsp;&nbsp;&nbsp;    PolicyTerms of Use &nbsp;&nbsp;&nbsp;&nbsp; <span class="project-heading text-success cursor-pointer" *ngIf="cust_reg_enable && buis_update==false" routerLink="/member-login">Member Registration</span> </p></li>
       
             </ul>
       

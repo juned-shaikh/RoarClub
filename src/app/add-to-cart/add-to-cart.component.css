@@ -2,7 +2,7 @@
         color: white;
     }
     .list-group-item{
-        background-color: #111111;
+        background-color: rgb(43,42,42);
         color: white;
     }
     .row{
@@ -15,7 +15,13 @@
     .quan{
         border:none;
     }
-   
+   .price-details{
+     color: white;
+     margin: 0;
+   }
+   /* .example-button-row{
+     background: rgb(43,42,42);
+   } */
     /* skin 2 */
 .skin-2 .num-in {
 	/* background: #FFFFFF; */

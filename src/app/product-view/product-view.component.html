@@ -1,57 +1,65 @@
-<div class="container-fluid">
+
   <div class="container-fluid">
- 
-  
   <section class="mb-5 mt-2">
-  
+
+    
+
     <div class="row">
-      <div class="col-md-1 " >
-          <ul class="preview-thumbnail nav nav-tabs  mt-1 row "  >
-          <li class="col-12 col-md-12 " style="padding:5px"
-            *ngFor="let image of product_image | slice:0:5;let s=index"
-            class="active cursor-pointer"  
-          >
-            <a  
-              data-target="#pic-1" 
-              title="more product image "
-              data-toggle="tab"
-              (click)="Image(image.image_link)" class="p-0 select-image" 
-            >
-              <img 
-                
-        src="{{items23[s].thumb}}"
-                onerror="this.src='https://m.hindustantimes.com/rf/image_size_1200x900/HT/p2/2020/02/25/Pictures/_f1f79ea8-57b8-11ea-8541-e1442385f8f3.JPG';"
-                alt="Product Image"
-                class="select-image"
-                height="100"
-                width="100"
-            /></a>
-            <span *ngIf="product_image >5">more</span>
-          </li>
-        </ul>
-      </div>
-     
-      <div class="preview-pic tab-content box-up p-3 col-md-5  " >
-       
-        <div class="pt-2 pl-3 wishlist_check">
-          <span *ngIf="wishlist_check==false && product?.txn_quantity > '0'"><i class="far fa-heart fa-2x" title="add to wishlist" style="cursor: pointer;" (click)="addToWishlist(product)"> </i></span>
-         <span *ngIf="wishlist_check==false && product?.txn_quantity < '1'"  ><i class="far fa-heart fa-2x text-muted" style="cursor: not-allowed;" title="add to wishlist"  > </i></span>
-<span *ngIf="wishlist_check==true"><i class="fas fa-heart  fa-2x"  (click)="deleteFromWishlist(wishlist_num)" style="cursor: pointer;" title="remove from wishlist"></i></span> </div>
-       <div id="box-imgpro" class="gallerize-example" class="lightbox">
-        
-        <div class="lightbox" class="tab-pane active  shadow-lg cursor-pointer "  id="pic-1 " > 
-             
-        
-         
-       <div data-toggle="modal" data-target="#exampleModal">
-        <h1  class="show-status" *ngIf="product?.txn_quantity < '1'"><span> Out of stock </span></h1>
-  <img src="{{imageView}}" id="imgpro"/> 
-</div>
+
   
-        </div>
+     
+      <div class="preview-pic tab-content box-up p-3 col-md-6  " style="position: sticky; height: 100%; left: 0;">
+<div class="row">
+
+  <div class="col-md-2 " >
+    <ul class="preview-thumbnail nav nav-tabs  row "  >
+    <li class="col-12 col-md-12 " style="padding:5px"
+      *ngFor="let image of product_image | slice:0:5;let s=index"
+      class="active cursor-pointer"  
+    >
+      <a  
+        data-target="#pic-1" 
+        title="more product image "
+        data-toggle="tab"
+        (click)="Image(image.image_link)" class="p-0 select-image" 
+      >
+        <img 
+  src="{{items23[s].thumb}}"
+          onerror="this.src='assets/no-img.png';"
+          alt="Product Image"
+          class="select-image"
+          height="90"
+          width="100"
+      /></a>
+      <span *ngIf="product_image >5">more</span>
+    </li>
+  </ul>
+</div>
+  <div class="col-md-10 pt-1">
+    <div class=" pl-3 wishlist_check">
+      <span *ngIf="wishlist_check==false && product?.txn_quantity > '0'"><i class="far fa-heart fa-2x" title="add to wishlist" style="cursor: pointer;" (click)="addToWishlist(product)"> </i></span>
+     <span *ngIf="wishlist_check==false && product?.txn_quantity < '1'"  ><i class="far fa-heart fa-2x text-muted" style="cursor: not-allowed;" title="add to wishlist"  > </i></span>
+<span *ngIf="wishlist_check==true"><i class="fas fa-heart  fa-2x"  (click)="deleteFromWishlist(wishlist_num)" style="cursor: pointer;" title="remove from wishlist"></i></span> </div>
+   <div id="box-imgpro" class="gallerize-example" class="lightbox">
+    
+    <div class="lightbox" class="tab-pane active  shadow-lg cursor-pointer "  id="pic-1 " > 
+         
+    
+     
+   <div data-toggle="modal" data-target="#exampleModal">
+    <h1  class="show-status" *ngIf="product?.txn_quantity < '1'"><span> Out of stock </span></h1>
+<img src="{{imageView}}" id="imgpro"  onerror="this.src='assets/no-img.png';"/> 
+</div>
+
+    </div>
 
 
-       </div>
+   </div>
+  </div>
+</div>
+
+
+        
       <div class="row mt-2 p-3">
         <div class="col-md-4 ">
           <div class="mat-card" > 
@@ -154,7 +162,7 @@
       
       <ul class="" style="display: inline-block; cursor: pointer;" *ngFor="let size of product_groups_size"><li class=" cursor-pointer" style="display: inline-block;" *ngIf="size != '' && size != null">
         
-        <div *ngIf="sizing == size"  (click)="sizes(size)"  class=""><span class="post-size p-2" (click)="sizes(size)">{{size}}</span></div>
+        <div *ngIf="sizing == size"  (click)="sizes(size)"  class=""><span class="post-size p-2"  (click)="sizes(size)">{{size}}</span></div>
 
         <div *ngIf="sizing != size" (click)="sizes(size)" class=""><span (click)="sizes(size)" class="pre-size p-2">{{size}}</span></div>
       </li></ul>
@@ -420,12 +428,12 @@
   
   </section>
  
-  <section class="text-center" *ngIf="similarPro !=null">
-     <div><h3 class="text-center" style="color: lightgray; text-transform: capitalize;">similar product</h3></div>
+  <section class="text-center d-none d-lg-block d-xl-block" *ngIf="similarPro !=null">
+     <div><h3 class="text-center project-heading" style="color: lightgray; text-transform: capitalize;">simi<span class="border-heading">lar pro</span>duct</h3></div>
     <div class="row">
   
       <div class="col-md-6 col-lg-3 mb-5" *ngFor="let nprd2 of similarPro"> 
-        <div class="card" style="margin: auto; padding-right: 7px;  height:450px ;">
+        <div class="card" style="margin: auto; padding-right: 7px;  height:390px ;">
           <h1  class="outofstockproduct" *ngIf="nprd2?.txn_quantity < '1'"> Out of stock</h1>
           <div class="card_image" >
             <div id="box-img1"> 
@@ -438,36 +446,36 @@
         </div>
 
      
-        <h1  class="show-status" *ngIf="userC == true && nprd2?.txn_quantity < '1'"> Out of stock</h1>
-        <h4 style="margin-left:20px; text-transform: capitaliz; font-weight: bold;">{{ (nprd2?.name.length>60)? (nprd2?.name | slice:0:60)+'...':(nprd2?.name) }}</h4>
+        <!-- <h1  class="show-status" *ngIf="userC == true && nprd2?.txn_quantity < '1'"> Out of stock</h1> -->
+        <h4 style=" text-transform: capitaliz; font-weight: bold;" class="project-heading m-0">{{ (nprd2?.name.length>60)? (nprd2?.name | slice:0:60)+'...':(nprd2?.name) }}</h4>
        
-        <div  class="row mb-2"> 
-              <div class="col-md-1 text-right ">
+        <div  class="row mb-2 mt-0"> 
+              <div class="col-md-2 text-right ">
             
                   <a *ngIf="nprd2?.wishlist_check == false" 
                     style="cursor:pointer"
                     (click)="addToWishlist(nprd2)"
                     title="Add to WishList"
-                    > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i></a>
+                    > <i class="fa fa-heart-o" aria-hidden="true"  ></i></a>
                   <a
                   style="cursor:pointer" *ngIf="nprd2.wishlist_check == true"
                   (click)="deleteFromWishlist(nprd2.wishlist_num)"
                   title="Already exist in Wishlist"
-                  > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i>
+                  > <i class="fa fa-heart-o" aria-hidden="true"  ></i>
               </a>
 
                  <a *ngIf="userC==false" 
                     style="cursor:pointer"
                     (click)="addToWishlistWL(nprd2)"
                     title="Add to WishList"
-                    > <i class="fa fa-heart-o" aria-hidden="true" style="color: red;" ></i>
+                    > <i class="fa fa-heart-o" aria-hidden="true" ></i>
                 </a>
                 </div>
          
                 
 
               
-            <div class="col-md-5 text-right" style="color: red;" >
+            <div class="col-md-5 text-right" >
               
               <span
               class="fa fa-star checked"
@@ -498,7 +506,7 @@
             style="cursor:pointer"
             (click)="addToCart(nprd2)"
             title="Add to Cart"
-            > <i class="fa fa-cart-plus" style="color: green;"></i></a>
+            > <i class="fa fa-cart-plus" ></i></a>
           </span>
           
            
@@ -506,7 +514,7 @@
             style="cursor:pointer"
             (click)="addToCart(nprd2)"
             title="Add to Cart"
-            > <i class="fa fa-cart-plus" style="color: green;"></i>
+            > <i class="fa fa-cart-plus" ></i>
         </a>
         <!-- </li>
       </ul> -->
@@ -514,7 +522,7 @@
         </div>
             </div>
             <div class="row justify-content-start">
-              <div class="col-md-7">
+              <div class="col-md-12">
                 <p style="color: black;margin-left:10px">
                   <span *ngIf="nprd2.rate[0].is_rent == '1'" 
                   >{{ nprd2.rate[0].name }} @ {{ nprd2.rate[0].rate }}
@@ -528,15 +536,15 @@
                 <span *ngIf="nprd2.rate[0].is_rent == '2'" 
                   >{{ nprd2.rate[1].name }} @ {{ nprd2.rate[1].rate }} </span
                 >
-                <br/>
+                &nbsp;
                 <span
                   *ngIf="nprd2.rate[0].rate < nprd2.mrp && nprd2.rate[0].discount_percent !=0"
-                  class="font-wieght-bold text-center for-you text-success"
-                  >Discount : {{ nprd2.rate[0].discount_percent | number:'1.0-0' }}% </span
+                  class="font-wieght-bold text-center for-you text-success" style="font-weight: bold;"
+                  > {{ nprd2.rate[0].discount_percent | number:'1.0-0' }}%  off</span
                 >
                 </p>
               </div>
-              <div class="col-md-5" *ngIf="nprd2?.txn_quantity > '0'">
+              <div class="col-md-12" *ngIf="nprd2?.txn_quantity > '0'">
                 <div class="" >
                   <a    (click)="rates(nprd2)" *ngIf="(nprd2?.cart_check == false) && userC==true 
                   " class="buy-now-button cursor-pointer"><span class="fa fa-bolt " ></span>&nbsp; Buy Now</a>
@@ -559,9 +567,72 @@
   
   
   </div>
+
+<div class="container-fluid d-block d-lg-none d-xl-none">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h5 class="text-success project-heading">Similar Product</h5>
+    </div>
+  </div>
+<div class="row">
+  <div class="col-6   mobile-product-box-height"  (click)="view_product(nprd2.meta_title, nprd2.product_no,nprd2.slug,nprd2.quick_product_check)" *ngFor="let nprd2 of similarPro">
+    <div class="">
+      <div class="row">
+        <div class="col-md-12 mobile-image-box-height">
+          <img  src="{{ nprd2.gallery?.medium_thumbnail_link }}" onerror="this.src='assets/no-img.png';" class="mobile-view-image">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 mobile-product-heading ">
+          <h6 class="m-0">
+            <a class="text-titlecase project-heading"  title="{{nprd2.name}}"> {{ (nprd2.name.length>34)? (nprd2.name | slice:0:34)+'...':(nprd2.name)  | titlecase}}</a>
+          </h6>
+        
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="justify-content-center text-center pb-1 star-mobile">
+          <span
+            class="fa fa-star checked"
+            *ngFor="let i of createRange2(nprd2.ratings)"
+          ></span>
+          <span *ngIf="nprd2.ratings>'0'"><span
+            class="fa fa-star unchecked"
+            *ngFor="let i of createRange2(5 - nprd2.ratings)"
+          ></span>
+        </span>
+        </div>
+      </div>
+      <div class="row text-muted mobile-seller-price">
+        <div class="col-md-12">
+          <span *ngIf="nprd2.rate[0].is_rent == '1'" class="mobile-product-price1"
+          >{{ nprd2.rate[0].name }} @ {{ nprd2.rate[0].rate }}
+        </span>
+        <span *ngIf="nprd2.rate[0].is_rent != '2'" class="mobile-product-price1"
+          >₹ {{ nprd2.rate[0].rate }}
+        </span>
+        
+        <span class="mobile-product-price" *ngIf="nprd2.rate[0].rate < nprd2.mrp"
+          ><del>₹ {{ nprd2.mrp  }} </del></span
+        >
+        <span *ngIf="nprd2.rate[0].is_rent == '2'" class="mobile-product-price"
+          >{{ nprd2.rate[1].name }} @ {{ nprd2.rate[1].rate }} </span
+        ><br />
+        <span
+          *ngIf="nprd2.rate[0].rate < nprd2.mrp"
+          class="font-wieght-bold text-center mobile-product-price1 text-success"
+          >Discount : {{ nprd2.rate[0].discount_percent | number:'1.0-0' }} %</span
+        >
+        </div>
+      </div>
+    </div>
+    </div>
 </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 9999999!important;">
+</div>
+
+
+<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 9999999!important;">
   <div class="modal-dialog  modal-xl" style="z-index: 111111;">
     <div class="modal-content">
        <div class="modal-header">
