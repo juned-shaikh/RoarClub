@@ -1,16 +1,277 @@
+<div (click)="closeNav()" class="opacMenu" *ngIf="sidenav" ><mat-icon  style=" z-index: 43000;   position: relative;
+  margin-left: auto;
+  left: 92%; color: white;
+  top: 11%;
+  /* background: black; */
+  font-size: 27px;
+  width: 30px;
+  justify-self: center;">close</mat-icon> </div> 
+<div class="d-block d-md-block d-lg-none">
+  <div class="nav1 " style="width:100%;">
+    <div
+      id="mySidenav"
+      class="sidenav"
+      style="position: fixed;top:0;z-index:9999990; height: 100vh; "
+    >
+      
+      <div
+        class="nav1 "
+        style="width:100%; top:0;z-index:3; position: sticky; padding-top: 60px;"
+      >
+     
+   
+    
+<div class="border-top pt-1 pb-1 pl-2 font-weight-600 project-heading">Shop by categories <i
+  class="fas fa-chevron-right"
+  
+></i></div>
 
-<header class="d-block d-lg-none d-xl-none" style="background: transparent;">
-<div class="row justify-content-between">
-  <div class="col-6 pl-3">
-  <label class="navbar-toggle " id="js-navbar-toggle" for="chkToggle">
-              <i class="fa fa-bars"></i>
-          </label> <img src="./assets/1.png" width="120px" height="60px" routerLink="/" style="padding: 10px;">
+        <li class="nav-item pt-0 pb-0 pl-1 project-discription"  style="list-style: none;">
+          <a
+            class="nav-link pt-0 pb-0 "
+            *ngFor="let category of categoryresp; let index = index"
+          >
+            <p class="row" style="line-height: 1;">
+              <span
+                class="col-10  p-0"
+                (click)="
+                  navigateCategory(category.name, category.category_no)
+                "
+              >
+                <i class="fas fa-cart-arrow-down"></i> {{ category.name }}
+              </span>
+              <span class="col-2" *ngIf="category.sub_category != null">
+                <i
+                  class="fas fa-chevron-down"
+                  (click)="showSubItem(index)"
+                ></i>
+              </span>
+            </p>
+
+            <div class="row " *ngIf="visibleIndex === index">
+              <div
+                class="col-12  categories-col"
+                *ngFor="let categoryi of category.sub_category"
+                (click)="
+                  navigateCategory(categoryi.name, categoryi.category_no)
+                "
+              >
+                <span class=" cursor-pointer sub_category-1">
+                  {{
+                    categoryi.name.length > 25
+                      ? (categoryi.name | slice: 0:25) + "..."
+                      : categoryi.name
+                  }}</span
+                >
+
+                <div *ngIf="categoryi.sub_category2" class="">
+                  <p
+                    *ngFor="let categoryj of categoryi.sub_category2"
+                    class="cursor-pointer sub_category-2"
+                  >
+                    <span>
+                      {{
+                        categoryj.name.length > 25
+                          ? (categoryj.name | slice: 0:25) + "..."
+                          : categoryj.name
+                      }}
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </a>
+        </li>
+        
+        <h4 (click)="logout()" *ngIf="is_logged_in" class="project-heading text-white pl-4"> <i class="fas fa-sign-out-alt"></i>&nbsp; Logout</h4>
+         <h6 class="project-discription text-success text-center pl-5" style="position: fixed; bottom: 10px; ">Powerd By Ecomtrails.</h6>
+      </div>
+    </div>
+    <!-- <div (click)="closeNav1()" class="opacMenu" *ngIf="sidenav1" ><mat-icon  style=" z-index: 43000;   position: relative;
+       color: white;  
+      top: 11%;
+      font-size: 27px;
+      width: 30px;
+      justify-self: center;">close</mat-icon> </div> 
+    <div
+    id="mySidenav1"
+    class="sidenav1"
+    style="position: fixed;top:0;z-index:120; height: 100vh;"
+  >
+
+  </div> -->
+    <div id="nav-top">
+      <div
+        class="d-flex justify-content-between align-items-baseline fixed-top"
+        
+        id="main"
+      >
+        <div>
+          <span
+            style="font-size:30px;cursor:pointer" class="menu-bar-icon"
+            *ngIf="!sidenav"
+            (click)="openNav();closeNav1();showsearchbarr()"
+            >&#9776;
+          </span>
+          <span
+            style="font-size:30px;cursor:pointer"
+            *ngIf="sidenav" class="menu-bar-icon"
+            (click)="closeNav()"
+            >&#9776;
+          </span>
+          <a  class="m-0" routerLink="/">
+          <img
+            
+            src="assets/1.png"
+             class="mt-0"
+              height="30" width="70"
+          />
+        </a>
+
+        
         </div>
- <div class="col-6 text-right pr-3 pt-3">
-  <mat-icon class="text-success">search</mat-icon>
- </div>
+        <div>
+          <a class="nav-link " (click)="showsearchbar();closeNav();closeNav1()">
+            <i class="fas fa-search text-center mobile-menu-search"> </i>
+          </a>
+
+
+
+          <!-- <li class="nav-item d-block d-lg-none  d-md-block"> -->
+          <!-- <a class="nav-link " routerLink="/my-cart" (click)="closeNav1();closeNav()">
+            <i class="fas fa-shopping-bag text-center">
+              <sup >
+                {{ cart }}
+              </sup></i
+            >
+          </a> -->
+
+          <!-- <a class="nav-link "   *ngIf="!sidenav1"
+          (click)="openNav1();closeNav();showsearchbarr()">
+          <i class="fas fa-user-check text-info fa-1x"></i>
+          </a>
+          <a class="nav-link "   *ngIf="sidenav1"
+          (click)="closeNav1()">
+            
+            <i class="fas fa-user-check text-info fa-1x"></i>
+
+          </a> -->
+
+          <!-- </li> -->
+        </div>
+      </div>
+
+      <div class="search searchFull" *ngIf="showsearch" >
+        <mat-card>
+  
+          <i
+          class="searchIconback fas fa-arrow-left"
+          title="back"
+          (click)="showsearchbar()"
+        ></i>
+          <input
+            type="search" 
+            (keyup)="search($event.target.value)"
+            (keyup.enter)="
+              navigateCategory(
+                searchList.category[0].name,
+                searchList.category[0].category_no
+              )
+            "
+            (focus)="searchFocus = !searchFocus"
+            placeholder="Search for brand, category, product more..."
+            aria-label="search..."
+          />
+          <i
+            class="searchIcon fa fa-search "
+            title="search"
+            (click)="
+              navigateCategory(
+                searchList.category[0].name,
+                searchList.category[0].category_no
+              )
+            "
+          ></i>
+          <mat-card *ngIf="searchFocus" class="searchItems w-100">
+            <div
+                  class="d-flex align-items-center mt-2 mb-1 cursor-pointer category-hover"
+                  *ngFor="let category of searchList.category | slice: 0:6"
+                >
+                  <i class="fa fa-search mr-3 ml-3"></i>
+                  <a
+                    (click)="
+                      navigateCategory(category.name, category.category_no)
+                    "
+                  >
+                    <div style="font-size: 12px" class="project-discription">
+                      in {{ category.name }}
+                    </div>
+                  </a>
+                </div>
+
+                <div
+                  class="d-flex align-items-center cursor-pointer mt-1 category-hover"
+                  *ngFor="let brand of searchList.brand | slice: 0:6"
+                >
+                  <i class="fa fa-search mr-3 ml-3"></i>
+                  <a (click)="navigateBrand(brand.name, brand.brand_id)">
+                    <div style="font-size: 12px" class="project-discription">in {{ brand.name }}</div>
+                  </a>
+                </div>
+
+                <div
+                  class="d-flex align-items-center category-hover"
+                  *ngFor="let product of searchList.product | slice: 0:3"
+                >
+                  <i class="fa fa-search mr-3 ml-3"></i>
+
+                  <a
+                    routerLink="/product/{{
+                      getSlug(
+                        product.name,
+                        product.product_no,
+                        product.slug
+                      )
+                    }}"
+                  >
+                    <div style="font-size:14px" class="p-1 project-discription">
+                      {{ product.name | slice: 0:40 }} |
+                      {{ product.model | slice: 0:40 }}
+                    </div>
+                  </a>
+                </div>
+          </mat-card>
+        </mat-card>
+      </div>
+    </div>
+   
+   
+  
+    
+   
+  </div>
+
+
+  
 </div>
-</header>
+<div style="height: 40px;" class="d-block d-md-block d-lg-none"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div class="header d-none d-lg-block d-xl-block" style="background:#202328; ">
     <nav class="navbar " style="height: 70px; ">
@@ -19,7 +280,7 @@
           </label> -->
     
   
-     <img src="./assets/1.png" width="120px" height="60px" routerLink="/" style="padding: 10px;">
+     <img src="assets/1.png" width="120px" height="60px" routerLink="/" style="padding: 10px;">
       <!-- <input type="checkbox" id="chkToggle"> -->
       
       
@@ -116,7 +377,7 @@
       <ul style="display: contents; list-style: none;" class="ml-auto">
         <li style=" text-decoration: none; list-style: none!important;" class="">
          
-          <div class="search searchFull"  >
+          <div class="search "  >
             <mat-card>
               <input
                 type="search"

@@ -7,11 +7,13 @@ import {
   Validators,
   FormControl
 } from "@angular/forms";
-import { first } from "rxjs/operators";
+import { first, reduce } from "rxjs/operators";
 import { RoarclubserviceService } from "../roarclubservice.service";
 import {MatSnackBar} from  '@angular/material/snack-bar'
  import { CookieService } from "ngx-cookie-service";
 import { Location } from "@angular/common";
+import { CdkOverlayOrigin } from '@angular/cdk/overlay';
+import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 // import { SwiperOptions } from "swiper";
 
 @Component({
@@ -130,11 +132,21 @@ export class HomeComponent implements OnInit {
   nopreview = false;
   ecomtrails = false;
   ninetoys = false;
+  is_logged_in = false;
+  is_logged_out = false;
   roarclubbannerdata;
   roarclub = false;
   mlm = false;
   serverlink;
   ngOnInit() {
+
+    if (!this.user_num && !this.access_token) {
+      this.is_logged_out = true;
+      this.is_logged_in = false;
+    } else {
+      this.is_logged_in = true;
+      this.is_logged_out = false;
+    }
 
     this.adminservice.ninetoysBanner({access_token:this.access_token,user_num:this.user_num,comp_num:this.comp_num_new}).subscribe(data=>{
       if(data['status']==1){ 
@@ -166,12 +178,42 @@ export class HomeComponent implements OnInit {
         this.ecomtrails = true;
 
       }
-    if(this.ecomtrails == true){
-    this.adminservice
-    .fetchBrandsEcom({//for ecom
-     // .fetchBrands({
+
+
+
+
+
+    // if(this.ecomtrails == true){
+  this.adminservice
+  .fetchBrandsEcom({//for ecom
+   // .fetchBrands({
+      // access_token: this.access_token,user_num: this.user_num
+      comp_num : this.comp_num_new
+    })
+    .subscribe(
+      data => {
+        if (data["status"] == 1) {
+          this.brands = data['result'];
+        
+        } else if (data["status"] == 10) {
+          
+        } else {
+        }
+      },
+      error => {
+        // this.loading = false;
+      }
+    );
+
+
+  
+    // }
+    // else{
+       this.adminservice
+    // .FetchBrandEcom({//for ecom
+     .fetchBrands({
         // access_token: this.access_token,user_num: this.user_num
-        comp_num : this.comp_num_new
+        comp_num : 0
       })
       .subscribe(
         data => {
@@ -187,29 +229,7 @@ export class HomeComponent implements OnInit {
           // this.loading = false;
         }
       );
-    }
-    else{
-       this.adminservice
-    // .FetchBrandEcom({//for ecom
-     .fetchBrands({
-        // access_token: this.access_token,user_num: this.user_num
-        comp_num : 0
-      })
-      .subscribe(
-        data => {
-          if (data["status"] == 1) {
-            this.brands = data['result'];
-
-          } else if (data["status"] == 10) {
-            
-          } else {
-          }
-        },
-        error => {
-          // this.loading = false;
-        }
-      );
-    }
+    // }
     this.compSettings_ratingOption();
 
 

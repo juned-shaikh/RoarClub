@@ -23,6 +23,7 @@ export class AddToCartComponent implements OnInit {
   public totalPrice = 0;
  total_mrp=0;
    userC = false;
+   panelOpenState =false;
   estimate_self=false;
   ship_ask=true;
 total_entity=0;

@@ -92,7 +92,15 @@
   <!-- end -->
   
   <!-- brand gallary view by Aman Verma 05-11-2020 -->
-  <div class="row justify-content-start mt-1" style="background-color: #202328;" >
+  <div class="row justify-content-start mt-1" style="background-color: #202328;" *ngIf="ecomtrails == true">
+    <div class="col-md-2" *ngFor="let brand of brands | slice:0:6;">
+     
+        <div class=" circular-image-brand" (click)="navigateBrand(brand.name,brand.brand_id)" >
+          <img src="{{brand?.thumbnail_sml_location}}" onerror="this.src='assets/no-img.png';" class="brand-image" style="width: 100%;" height="190px ;">
+        </div>
+    </div>
+  </div>
+  <div class="row justify-content-start mt-1" style="background-color: #202328;" *ngIf="ecomtrails == false">
     <div class="col-md-2" *ngFor="let brand of brands | slice:0:6;">
      
         <div class=" circular-image-brand" (click)="navigateBrand(brand.name,brand.brand_id)" >
@@ -562,13 +570,13 @@
  
         </div>
   
-  
+  <!-- Mobile Section Start -->
 
         <section class="d-block d-lg-none d-md-none d-xl-none mt-2">
         
-          <div class="container-fluid">
+          <div class="">
             <div id="demo" class="carousel slide main-slider " data-ride="carousel" *ngIf="banner">
-              <div class="carousel-inner" style="  height: 260px; border-radius: 9.5px!important;  overflow: hidden;" >
+              <div class="carousel-inner"  >
                 <div *ngIf="banner_group_a==0 || bannerdata.value.banner_image_a_group==''" class="carousel-item active scroll-item">
                   <img src="{{ bannerdata.value.banner_image_a }}" onerror="this.src='https://www.pngkit.com/png/detail/930-9306658_404-not-found.png';" />
                 </div>
@@ -642,31 +650,32 @@
               
               </div>
             
-              <a class="carousel-control-prev ml-1" href="#demo" style="background-color: black;top: 98px;height: 30px;width: 35px;border-radius: 36px;" data-slide="prev">
+              <!-- <a class="carousel-control-prev ml-1" href="#demo" style="background-color: black;top: 98px;height: 30px;width: 35px;border-radius: 36px;" data-slide="prev">
                 <span class="carousel-control-prev-icon"><i class="fas fa-chevron-left"></i></span>
               </a>
               <a class="carousel-control-next mr-1" href="#demo" style="background-color: black;top: 98px;height: 30px;width: 35px;border-radius: 36px;" data-slide="next">
                 <span class="carousel-control-next-icon"><i class="fas fa-chevron-right"></i></span>
-              </a>
+              </a> -->
             </div>
           </div>
-          <div class="container-fluid mt-0">
+          <div class="container-fluid mt-0 mb-2">
             <div class="row mb-2  justify-content-start">
               <div class=" col-6 ">
             <h6 class="project-heading mobile-heading " style="position: relative; left: 1px;">Shop by brands</h6>
               </div>
-              <div class="col-6 text-right pr-1">
-               <h6 class="m-0 project-discription mobile-heading" *ngIf="brands?.length > 4" routerLink="/out-brand">view all</h6>
+              <div class="col-6 text-right ">
+               <h6 class="m-0 project-discription mobile-heading pr-2" *ngIf="brands?.length > 4" routerLink="/our-brand">view all</h6>
               </div>
             </div>
-            <div class="row  mt-1  justify-content-center"  >
-              <div class="col-xs-3 " *ngFor="let brand of brands | slice:0:4;">
-                 <div class="card" style="background: transparent; box-shadow: none; outline: none;">
-                  <div class=" circular-image-brand-mobile " (click)="navigateBrand(brand.name,brand.brand_id)" >
+            <div class="row  mt-1  justify-content-start "  >
+              <div class="col-3 text-left " *ngFor="let brand of brands | slice:0:4;">
+                 <!-- <div class="card" style="background: transparent; box-shadow: none; outline: none;"> -->
+                  <div class=" circular-image-brand-mobile border" (click)="navigateBrand(brand.name,brand.brand_id)" >
                     <img src="{{brand?.thumbnail_sml_location}}" onerror="this.src='assets/no-img.png';" class="brand-image-mobile" >
                   </div>
-                 </div>
-              </div>
+                 <!-- </div> -->
+                
+              </div> 
             </div>
           </div>
         
@@ -694,15 +703,6 @@
               </li>
             </ul>
             </div>
-
-
-
-
-
-           
-
-
-
 
 
 
@@ -884,8 +884,8 @@
                   </div>
                 </div>
               </div>
-          <div class="container-fluid mt-1 Trending-mobile-product-box pb-1 mb-3" *ngIf="sellingDiscount && notbuy">
-        <div class="row justify-content-between  mobile-heading-row">
+          <div class="container-fluid mt-1 Trending-mobile-product-box pb-1 mb-5" *ngIf="sellingDiscount && notbuy">
+        <div class="row justify-content-between  mobile-heading-row mb-3">
           <h6 class="mobile-heading project-heading">Top Discounted Products</h6>    <ul class="pagination mt-1 justify-content-end pr-3">
             <li class="page-item page-previous bg-dark" *ngIf="offsetDisc != 1">
               <a matTooltip="Previous"
@@ -971,7 +971,7 @@
         </div>
         
         
-        <div class="container-fluid mt-1 Trending-mobile-product-box pb-1 mb-3"*ngIf="rentShow && discountR">
+        <div class="container-fluid mt-1 Trending-mobile-product-box pb-1 mb-5 "*ngIf="rentShow && discountR">
           <div class="row justify-content-between mobile-heading-row">
             <h6 class="mobile-heading project-heading"> Top Discounted Rent Products</h6>      <ul class="pagination justify-content-end">
               <li class="page-item page-previous bg-dark" *ngIf="offsetRent != 1">
@@ -1060,3 +1060,38 @@
     
            
   <!-- end -->
+
+  <section class="bottom-bar d-block d-lg-none d-xl-none">
+  <div class="conatiner-fluid">
+    <div class="row text-success mt-2">
+     
+      <div class="col  text-center"> 
+        <div routerLink="/"> <i class="fas fa-home"></i>
+        <h6 class="text-success">Home</h6></div></div>
+      <div class="col  text-center">
+        <div routerLink="/our-brand"><i class="fab fa-microsoft text-success"></i>
+        <h6 class="text-success">Brands</h6></div></div>
+      <div class="col  text-center">
+       <div routerLink="/cart"> <i class="fas fa-shopping-bag text-center">
+        </i
+        >
+        <h6 class="text-success">Cart</h6></div></div>
+      <div class="col  text-center"> 
+        <div routerLink="/login" *ngIf="is_logged_out"> <i class="far fa-heart text-center text-success"></i>
+        <h6 class="text-success">WishList</h6></div>
+        <div routerLink="/wishlist" *ngIf="is_logged_in"> <i class="far fa-heart text-center text-success"></i>
+          <h6 class="text-success">WishList</h6></div>
+      </div>
+      <div class="col  text-center" >
+        <div routerLink="/login" *ngIf="is_logged_out">
+        <i class="fas fa-user-check text-info fa-1x"></i>
+        <h6 class="text-success">Account</h6></div>
+        <div routerLink="/my-account/account-setting" *ngIf="is_logged_in">
+          <i class="fas fa-user-check text-info fa-1x"></i>
+          <h6 class="text-success">Account</h6></div>
+      </div>
+    </div>
+  
+  </div>
+
+  </section>

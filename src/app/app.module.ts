@@ -15,6 +15,8 @@ import { AuthGuard } from './_guards';
 import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
  import { JwtInterceptor, ErrorInterceptor } from './_helpers';
  import { AlertComponent } from './_directives';
+import {MatExpansionModule} from '@angular/material/expansion';
+
 import { ReactiveFormsModule, FormsModule }    from '@angular/forms';
 import { AlertService, AuthenticationService, UserService} from './_services';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -149,6 +151,8 @@ import { MemberLoginSignupFormComponent } from './member-login-signup-form/membe
     MatNativeDateModule,
     //MatTooltipModule,
     AppRoutingModule,
+    MatExpansionModule
+,
     MatFormFieldModule,
     BrowserAnimationsModule,
     MatInputModule,
