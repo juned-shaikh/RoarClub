@@ -17,7 +17,7 @@
             <div class=" card  p-1 m-0 " style="background: rgba(0, 0, 0, 0.082)!important;">
 <div class="row pt-1 pb-0">
     <div class="col-md-2">
-      <h6 class="order-history-heading1 font-weight-600 project-heading m-0 ">  &nbsp;&nbsp;  ORDER {{orders?.order_number}}</h6>
+      <h6 class="order-history-heading1 font-weight-600 text-success project-heading m-0 ">  &nbsp;&nbsp;  ORDER {{orders?.order_number}}</h6>
         <!-- <h6 class="font-weight-600 order-history-heading1">Order Placed</h6> -->
         <h6 class="order-history-date  text-white text-center">
            {{orders.order_timestamp}}
@@ -96,7 +96,7 @@
 
 
 <h6    class=" text-success text-right order-history-heading m-0"><span (click)="
-  sendOrderId(orders.order_id,orders.orderRandomId); " class="cursor-pointer project-discription link-click" title="view-order-details">View Order Details &nbsp;</span> 
+  sendOrderId(orders.order_id,orders.orderRandomId); " class="cursor-pointer project-discription order-button-status" title="view-order-details">View Order Details &nbsp;</span> 
             
 </h6>
 <!-- <h6 
@@ -117,22 +117,34 @@
             <div class="card" *ngFor="let parcel_inventory of orders.parcel_inventory">
               <div class="container-fluid">
                 <div class="row  ">
-                  <div class="col-md-9">
-                    <h6 class="order-history-heading1 project-heading  cursor-pointer font-weight-600 p-0 m-0" *ngFor="let order_status of parcel_inventory.order_inventory[0].status_flow; let i = index; first as isFirst; last as isLast">
-                      <span *ngIf="isLast" style="color: #B89D4E; text-shadow: -2px 1px black;">{{order_status.status}}</span>
+                  <div class="col-md-8">
+                    <h6 class="order-history-heading1  project-heading  font-weight-600 p-0 m-0" *ngFor="let order_status of parcel_inventory.order_inventory[0].status_flow; let i = index; first as isFirst; last as isLast">
+                      <span *ngIf="isLast" class="order-history-heading-status">{{order_status.status}}</span>
                     </h6>
                   </div>
                   
-                  <div class="col-md-3 d-flex "> &nbsp; &nbsp;
-<h6 class="order-history-heading text-success text-right link-click project-discription cursor-pointer font-weight-600 p-0 m-0" (click)="trackStatus(parcel_inventory.order_inventory[0].status_flow,parcel_inventory.order_inventory[0].product.name,orders.order_number,parcel_inventory.awb_no,parcel_inventory.courier_method_id);openXl(contentTrack)">Track Details</h6> &nbsp; &nbsp;
-&nbsp;
-<h6 class="order-history-heading  text-success project-discription link-click cursor-pointer font-weight-600 text-right p-0 m-0" *ngIf="invoice_gen==1 && orders.parcel_inventory[0].order_inventory[0].deliver==true" 
-(click)="print_invoice(orders.parcel_inventory,'multi');">Invoice</h6>
-
-                 
-             
-               
-                  </div>
+                  <div class="col-md-4 d-flex text-right justify-content-end">
+                    <h6 class="order-history-heading text-success cursor-pointer font-weight-600 p-0 m-0 text-right" 
+                    *ngIf="invoice_gen==1 && orders.parcel_inventory[0].order_inventory[0].deliver==true" 
+                    (click)="print_invoice(orders.parcel_inventory,'multi');"><span class="order-button-status">Invoice</span></h6>
+                   
+                    <h6 class="order-history-heading text-success cursor-pointer font-weight-600 p-0 m-0 text-right" 
+                    (click)="trackStatus(parcel_inventory.order_inventory[0].status_flow,parcel_inventory.order_inventory[0].product.name,orders.order_number,parcel_inventory.awb_no,parcel_inventory.courier_method_id);openXl(contentTrack)"
+                    ><span class="order-button-status">Track Details</span> </h6>
+                   
+                    
+                    
+                    
+                                     
+                    <h6 *ngIf="orders.parcel_inventory[0].order_inventory[0].deliver!=true"
+                    class="order-history-heading  cursor-pointer font-weight-600 p-0 m-0" 
+                                  
+                    > 
+                    <!-- Tracking Id: {{orders.parcel_inventory[0].awb_no}} -->
+                    
+                    </h6>
+                                   
+                                      </div>
                 </div>
                
               
@@ -192,15 +204,15 @@
  
  <ng-template #contentReturn let-modal>
   <div class="modal-header">
-    <h5 class="modal-title" id="modal-basic-title" align="center">
+    <h5 class="modal-title project-heading" id="modal-basic-title" align="center">
       Return Reason
     </h5>
 
 
-    <h6 class="modal-title" id="modal-basic-title" align="center">
+    <h6 class="modal-title project-heading" id="modal-basic-title" align="center">
       Order ID : {{myFormReturn.controls.order_number.value}}
     </h6>
-    <h6 class="modal-title" id="modal-basic-title" align="center">
+    <h6 class="modal-title project-discription" id="modal-basic-title" align="center">
      Product : {{myFormReturn.controls.product_name.value}}
     </h6>
 
@@ -217,8 +229,8 @@
   <form [formGroup]="myFormReturn" >
 
       
-      <div class="row">
-        <div  *ngIf="return_reason==0 || return_choose.length==0" class="col-lg-6 text-center">
+      <div class="row justify-content-center">
+        <div  *ngIf="return_reason==0 || return_choose.length==0" class="col-lg-8 text-center">
            <mat-form-field appearance="fill" class="example-full-width">
              <mat-label class="mat-label">Reason</mat-label>
              <input 
@@ -231,7 +243,7 @@
            </mat-form-field>
          </div>
 
-         <div  *ngIf="return_reason==1 && return_choose.length > 0" class="col-lg-6 text-center">
+         <div  *ngIf="return_reason==1 && return_choose.length > 0" class="col-lg-8 text-center">
         
           <div class="dropdown">
             <label class="mat-label">Reason</label>
@@ -250,7 +262,7 @@
           </div>
         </div>
       
-        <div class="col-lg-6 text-center">
+        <div class="col-lg-8 text-center">
           <mat-form-field appearance="fill" class="example-full-width">
             <mat-label class="mat-label">Comment Section</mat-label>
             <!-- <input 
@@ -263,7 +275,7 @@
             /> -->
             <textarea
             matInput
-            rows="6"
+            rows="4"
             placeholder="Comment"
             formControlName="return_comment"
             required
@@ -371,4 +383,3 @@
                  
     </div>
     </ng-template>
-     <!-- track details -->

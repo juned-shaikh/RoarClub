@@ -82,3 +82,6 @@ input:focus{
   outline: none;
   border: none;
 }
+*{
+  overflow: hidden;
+}

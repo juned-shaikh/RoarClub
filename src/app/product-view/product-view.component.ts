@@ -92,6 +92,8 @@ export class ProductViewComponent implements OnInit {
   closeResult: string;
   registerForm2: FormGroup;
   imageView;
+  img1;
+  imageView1;
   shipping_rate=0;
   // shipping_rate='0';
   shipping_name=null;
@@ -457,6 +459,8 @@ this.compSettings_ratingOption();
      }
     this.imageView = this.product.image[0].image_link;
     this.img = this.imageView;
+    this.imageView1 = this.product.image[0].image_link;
+    this.img1 = this.imageView1;
      this.product_rate = this.product.rates;
 
       this.ratings = this.product_groups[index].ratings;
@@ -516,6 +520,8 @@ this.compSettings_ratingOption();
      }
       this.imageView = this.product.image[0].image_link;
       this.img = this.imageView;
+      this.imageView1 = this.product.image[0].image_link;
+      this.img1 = this.imageView1;
        this.product_rate =this.product.rates;
 
         this.ratings = this.product_groups[index].ratings;
@@ -591,7 +597,10 @@ if(this.userC==true){
 
           this.img = this.imageView;
 
-        
+          this.imageView1 = this.product_image[0].image_link;
+
+
+          this.img1 = this.imageView1;
           
           for(let y=0;y<this.product_image.length;y++){
             this.items23[y]={ src: this.product_image[y].image_link, thumb: this.product_image[y].image_link };
@@ -886,6 +895,10 @@ if(this.userC==true){
 
 
           this.img = this.imageView;
+          this.imageView1 = this.product_image[0].image_link;
+
+
+          this.img1 = this.imageView1;
 
         
           for(let y=0;y<this.product_image.length;y++){
@@ -1598,6 +1611,10 @@ if (
     this.imageView = image;
     this.img = this.imageView;
     
+  }
+  Image1(image){
+    this.imageView1=image;
+    this.img1=this.imageView1;
   }
   // view_product(){
 

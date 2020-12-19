@@ -1,0 +1,43 @@
+
+ 
+.example-full-width{
+  width: 100%;
+}
+
+    .form-control {
+      /* margin-left: -16px; */
+      /* margin-top: 2px; */
+      /* margin-bottom: 2px; */
+      display: block;
+      /* width: 25%; */
+      height: calc(1em + 1rem + 2px);
+      padding: 1.1rem .5rem;
+      font-size: .79rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #495057;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid #ced4da;
+      border-radius: .15rem;
+      transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+    .mat-cell{
+      color: white;
+    }
+    .mat-header-cell{
+      background-color: #B89D4E; color: white;
+    }
+    mat-table{
+      background: rgb(41, 41, 41);
+    }
+    mat-card{
+      background: rgb(43,42,42);
+    }
+    mat-label{
+      color: white;
+
+    }
+     input{
+       color: white;
+     }

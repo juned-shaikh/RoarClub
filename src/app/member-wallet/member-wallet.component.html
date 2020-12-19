@@ -1,0 +1,184 @@
+
+
+<div class="container-fluid">
+  <mat-card>
+  <div class="row mt-2">
+    <div class="col-md-4">
+      <h4 class="font-weight-600 project-heading text-success">Total Amount : {{this.sum_amount}}</h4>
+    </div>
+    <div class="col-md-4">
+      <input class="form-control" *ngIf="list_amount.length>0"  (keyup)="applyFilter($event.target.value)" placeholder="Search by amount ,date...">
+    </div>
+    <div class="col-md-4 text-right pr-2">
+      <button
+               mat-raised-button
+               (click)="openXl(contentRecharge)"
+               matTooltip="Recharge Wallet"
+               class="text-right project-button text-white mr-3"
+             >
+               Recharge Wallet
+             </button>
+    </div>
+   
+  </div>
+  
+  
+             <div *ngIf="list_amount.length>0">
+             
+               <mat-table [dataSource]="dataSource"  class="mat-elevation-z8 mt-2 mb-2 " matSort>
+                
+                    <ng-container matColumnDef="ids">
+                       <mat-header-cell *matHeaderCellDef style="font-size: 15px; " mat-sort-header>
+                          S No.
+                       </mat-header-cell>
+                       
+                       <mat-cell
+                       *matCellDef="let count = index"
+                       class=""
+                       
+                       >
+                      <span >
+                      {{count+1}}</span> 
+                       </mat-cell>
+                    </ng-container>
+ 
+   <ng-container matColumnDef="order_number">
+                       <mat-header-cell *matHeaderCellDef class="head-heading" mat-sort-header>
+                          Order Number
+                       </mat-header-cell>
+                       <mat-cell *matCellDef="let element0">
+                         {{ element0.order_number }}</mat-cell>
+                    </ng-container>
+ 
+                    <ng-container matColumnDef="amount">
+                       <mat-header-cell *matHeaderCellDef class="head-heading" mat-sort-header>
+                          Amount
+                       </mat-header-cell>
+                       <mat-cell *matCellDef="let element0">
+                         {{ element0.amount }}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="doa">
+                       <mat-header-cell *matHeaderCellDef class="head-heading" mat-sort-header>
+                          DOA
+                       </mat-header-cell>
+                       <mat-cell *matCellDef="let element0">
+                         {{ element0.doa }}</mat-cell>
+                    </ng-container>
+                   
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row  *matRowDef="let row; columns: displayedColumns;"></mat-row>
+               </mat-table>
+                
+             </div>
+
+            </mat-card>
+
+</div>
+
+<!-- start for deducted amount model -->
+
+<ng-template #contentRecharge let-modal>
+  <div class="modal-header">
+   <h5 class="modal-title" id="modal-basic-title" align="center">
+     Wallet Recharge
+   </h5>
+  
+  
+   <h6 class="modal-title" id="modal-basic-title" align="center">
+    
+   </h6>
+   
+   <mat-icon
+     title="close modal"
+     class="cursor-pointer"
+     (click)="modal.dismiss('Cross click')"
+     >close</mat-icon
+   >
+  </div>
+  <!-- modal body starts -->
+  <div class="modal-body ">
+   <!-- start table -->
+  <form  [formGroup]="myRecharge">
+  <!-- {{myRecharge.controls.amount2.value}} -->
+     
+     <div class="row justify-content-center">
+       <div  class="col-lg-8 text-center">
+          <mat-form-field appearance="fill" class="example-full-width">
+           <mat-label class="mat-label">Enter Amount</mat-label>
+           <input 
+            
+        type="number"
+             matInput
+           
+             formControlName="amount2"
+             
+           />
+          
+           <mat-icon matSuffix>toc</mat-icon>
+         </mat-form-field>
+        </div>
+  
+      
+      
+     </div>
+   
+  
+    </form>
+        <div class="row mt-2">
+                  <div class="col-md-12 text-center"> 
+                      <button 
+                        mat-raised-button
+                        class="project-button text-white "
+                        (click)="recharge()"
+                        >
+                     Make Recharge 
+                     </button>
+                     
+                  </div>
+               
+               </div>
+  
+  </div>
+  </ng-template>
+    <!-- end for deducted amount modal -->
+  <!-- start for checkout status
+   -->
+
+
+
+
+<div *ngIf="loader">
+    <div style="background-color:#fff;" >
+      <div class="text-center" style="padding: 1% 0;">
+        <mat-card-content *ngIf = "paymentStatus == 'Pending'">
+          <img style="height:90px;width:185px;" src="assets/img/loader.gif">
+          <h4 class="pt-3" style="font-weight:600;" >Waiting...!</h4>
+          <h6>Waiting For Response From Payment Gateway....</h6>
+          <div class="example-button-row pt-4 ">
+            <button mat-raised-button class="order-button" routerLink="/">Back To Home</button>
+          </div>
+        </mat-card-content>
+        <mat-card-content *ngIf = "paymentStatus == 'Success'">
+          <img style="height: 90px;width:195px;" src="assets/img/success.gif">
+          <h4 class="pt-3" style="font-weight:600;">Success.!</h4>
+
+
+          <h6>Recharge Done SuccessFully.</h6>
+
+          <div class="example-button-row pt-4 ">
+            <button mat-raised-button class="order-button" routerLink="/">Back To Home</button>
+          </div>
+        </mat-card-content>
+        <mat-card-content *ngIf = "paymentStatus == 'Failed'">
+          <img src="https://img.icons8.com/officel/80/000000/high-importance.png" height="90" width="185"/>
+          <h4 class="pt-3" style="font-weight:600;">Failed.!</h4>
+          <h6>The Recharge Failed.</h6>
+          <div class="example-button-row pt-4 ">
+            <button mat-raised-button class="order-button text-white" routerLink="/">Back To Home</button>
+          </div>
+        </mat-card-content>
+      </div>
+    </div>
+   
+</div>
+   <!-- end for checkout status -->

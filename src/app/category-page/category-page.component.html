@@ -499,4 +499,49 @@
       </div>
       
     </div>
-     
+    <div class=" pt-4 d-block d-md-none d-lg-none fixed-bottom" >
+      <!-- <mat-card> -->
+
+        <mat-accordion style="border:none; z-index: 1111111;" class="bg-dark">
+          <mat-expansion-panel [hideToggle]=true class="bg-dark">
+            <mat-expansion-panel-header style="background: rgb(43,42,42); width: 100%;">
+              <mat-panel-title class="justify-content-start project-heading text-success">
+              <span>sort by</span>   
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="example-button-row pl-2 text-white">
+
+
+              <mat-radio-button
+              (click)="setSorting('new')"
+              value="1"
+            >
+              Price New
+            </mat-radio-button>
+
+             
+            </div>
+            <div class="example-button-row pl-2 text-white">
+
+              <mat-radio-button
+              (click)="setSorting('high-to-low')"
+              value="2"
+            >
+              Price High to Low
+            </mat-radio-button>
+            
+            </div>
+            <div class="example-button-row pl-2 text-white">
+              <mat-radio-button
+              (click)="setSorting('low-to-high')"
+              value="3"
+            >
+              Price Low to high
+            </mat-radio-button>
+
+              
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <!-- </mat-card> -->
+    </div>

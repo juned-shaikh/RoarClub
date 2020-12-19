@@ -5,6 +5,7 @@ import {MatSnackBar} from  '@angular/material/snack-bar'
 import { Router } from "@angular/router";
 import { CookieService } from "ngx-cookie-service";
 import { timer, Subject, Observable, BehaviorSubject } from "rxjs";
+import { Location } from '@angular/common';
 import {
   FormBuilder,
   FormGroup,
@@ -74,7 +75,7 @@ private prodCount = 0;
     private router: Router,
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
-
+    private location: Location,
     private adminService: RoarclubserviceService,
     private cookie: CookieService
   ) {}
@@ -1951,5 +1952,8 @@ deleteFromCartWithoutLogin(product_no){
         
     } 
 
+}
+back() {
+  this.location.back()
 }
 }

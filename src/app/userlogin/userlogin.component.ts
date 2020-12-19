@@ -565,6 +565,9 @@ checkConfirmPassword() {
       this.is_confirm=false;
     }
   }
+  back() {
+    this.location.back()
+  }
  } 
 
 

@@ -447,7 +447,7 @@
 
      
         <!-- <h1  class="show-status" *ngIf="userC == true && nprd2?.txn_quantity < '1'"> Out of stock</h1> -->
-        <h4 style=" text-transform: capitaliz; font-weight: bold;" class="project-heading m-0">{{ (nprd2?.name.length>60)? (nprd2?.name | slice:0:60)+'...':(nprd2?.name) }}</h4>
+        <h4 style=" text-transform: capitaliz; font-weight: bold;" class="project-heading m-0 box-show-button">{{ (nprd2?.name.length>60)? (nprd2?.name | slice:0:60)+'...':(nprd2?.name) }}</h4>
        
         <div  class="row mb-2 mt-0"> 
               <div class="col-md-2 text-right ">
@@ -522,7 +522,7 @@
         </div>
             </div>
             <div class="row justify-content-start">
-              <div class="col-md-12">
+              <div class="col-md-12 ">
                 <p style="color: black;margin-left:10px">
                   <span *ngIf="nprd2.rate[0].is_rent == '1'" 
                   >{{ nprd2.rate[0].name }} @ {{ nprd2.rate[0].rate }}
@@ -544,7 +544,7 @@
                 >
                 </p>
               </div>
-              <div class="col-md-12" *ngIf="nprd2?.txn_quantity > '0'">
+              <div class="col-md-12 buy-now-button-box" *ngIf="nprd2?.txn_quantity > '0'">
                 <div class="" >
                   <a    (click)="rates(nprd2)" *ngIf="(nprd2?.cart_check == false) && userC==true 
                   " class="buy-now-button cursor-pointer"><span class="fa fa-bolt " ></span>&nbsp; Buy Now</a>
@@ -633,7 +633,7 @@
 
 
 <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 9999999!important;">
-  <div class="modal-dialog  modal-xl" style="z-index: 111111;">
+  <div class="modal-dialog  modal-lg" style="z-index: 111111; height: 440px;">
     <div class="modal-content">
        <div class="modal-header">
         <h4 class=" font-weight-600 m-0 project-heading" style="margin-left: 16px;">{{ product?.name }} &nbsp;<span class="text-danger text-uppercase project-discription " style="font-weight: bolder;" *ngIf="product.txn_quantity < '1'"> ( Out of stock )</span> </h4>    
@@ -661,16 +661,12 @@
                 <div class=" tab-content  p-1  d-none d-lg-block d-xl-block " style="overflow: hidden;">
                  
                 
-                  <div class="tab-pane active show-image1  cursor-pointer " id="pic-1 " >  
+                  <div class="tab-pane active show-image1  cursor-pointer " id="pic-3 " >  
                    
-                      <img src="{{img}}" alt="" style="min-width: 720px;
-                      min-height: 500px; max-width: 720px; max-height: 550px;" >
-                  
-                    
-                 
+                      <img src="{{img1}}" alt="" style="
+                      min-height: 400px; max-width: 100%; max-height: 450px;" >
                         
                   </div>
-                
     
                 </div>
     
@@ -681,7 +677,7 @@
               
                 <div class="preview-pic tab-content  p-1 show-image3 d-block d-lg-none" >
                 
-                  <div class="tab-pane active show-image3  cursor-pointer " id="pic-1 " >
+                  <div class="tab-pane active show-image3  cursor-pointer " id="pic-3 " >
                    
                  <!--<img src="{{imageView}}" onerror="this.src='assets/img/favicon1.png';" class="img-1 ">-->
                 
@@ -709,10 +705,10 @@
             class="active cursor-pointer"  
           >
             <a  
-              data-target="#pic-1" 
+              data-target="#pic-3" 
               matTooltip="more product image "
               data-toggle="tab"
-              (click)="Image(image1.image_link)"
+              (click)="Image1(image1.image_link)"
             >
               <img 
                 
@@ -720,7 +716,7 @@
                 onerror="this.src='assets/img/favicon1.png';"
                 alt="Product Image"
                 class=" p-1"
-                height="80"
+                height="70"
                 width="80"
             />
           </a> 

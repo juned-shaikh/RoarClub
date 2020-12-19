@@ -1,3 +1,14 @@
+<!-- <div class="d-block d-lg-none d-xl-none  mt-0">
+  <div class="row bg-dark m-0 pt-2">
+    <div class="col-1 p-2" (click)="back()">
+      <i class="fas fa-arrow-left text-white"></i>
+    </div>
+    <div class="col-11 p-2">
+      <h5 class="project-heading text-white">&nbsp;cart</h5>
+    </div>
+  </div>
+ 
+</div> -->
 
 <section
 *ngIf="isLoggedOut"
@@ -16,6 +27,8 @@
   </div>
 </div>
    <div *ngIf="isLoggedInPro">
+
+
 
     <div class=" pt-4 d-block d-md-none d-lg-none fixed-bottom " style="overflow: hidden;">
 
@@ -103,6 +116,9 @@
 
         </mat-expansion-panel>
       </mat-accordion>
+    
+      
+
     </div>
 
     <!--Grid row-->

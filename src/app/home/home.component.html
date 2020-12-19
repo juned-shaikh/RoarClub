@@ -572,8 +572,228 @@
   
   <!-- Mobile Section Start -->
 
-        <section class="d-block d-lg-none d-md-none d-xl-none mt-2">
-        
+
+
+
+
+  <div (click)="closeNav()" class="opacMenu" *ngIf="sidenav" ><mat-icon  style=" z-index: 43000;   position: relative;
+    margin-left: auto;
+    left: 92%; color: white;
+    top: 11%;
+    font-size: 27px;
+    width: 30px;
+    justify-self: center;">close</mat-icon> </div> 
+  <div class="d-block d-md-block d-lg-none">
+    <div class="nav1 " style="width:100%;">
+      <div
+        id="mySidenav"
+        class="sidenav"
+        style="position: fixed;top:0;z-index:9999990; height: 100vh; "
+      >
+        <div
+          class="nav1 "
+          style="width:100%; top:0;z-index:3; position: sticky; padding-top: 60px;" >
+  <div class="border-top pt-1 pb-1 pl-2 font-weight-600 project-heading">Shop by categories <i
+    class="fas fa-chevron-right"
+    
+  ></i></div>
+  
+          <li class="nav-item pt-0 pb-0 pl-1 project-discription"  style="list-style: none;">
+            <a
+              class="nav-link pt-0 pb-0 "
+              *ngFor="let category of categoryresp; let index = index"
+            >
+              <p class="row" style="line-height: 1;">
+                <span
+                  class="col-10  p-0"
+                  (click)="
+                    navigateCategory(category.name, category.category_no)
+                  "
+                >
+                  <i class="fas fa-cart-arrow-down"></i> {{ category.name }}
+                </span>
+                <span class="col-2" *ngIf="category.sub_category != null">
+                  <i
+                    class="fas fa-chevron-down"
+                    (click)="showSubItem(index)"
+                  ></i>
+                </span>
+              </p>
+  
+              <div class="row " *ngIf="visibleIndex === index">
+                <div
+                  class="col-12  categories-col"
+                  *ngFor="let categoryi of category.sub_category"
+                  (click)="
+                    navigateCategory(categoryi.name, categoryi.category_no)
+                  "
+                >
+                  <span class=" cursor-pointer sub_category-1">
+                    {{
+                      categoryi.name.length > 25
+                        ? (categoryi.name | slice: 0:25) + "..."
+                        : categoryi.name
+                    }}</span
+                  >
+  
+                  <div *ngIf="categoryi.sub_category2" class="">
+                    <p
+                      *ngFor="let categoryj of categoryi.sub_category2"
+                      class="cursor-pointer sub_category-2"
+                    >
+                      <span>
+                        {{
+                          categoryj.name.length > 25
+                            ? (categoryj.name | slice: 0:25) + "..."
+                            : categoryj.name
+                        }}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </li>
+          
+          <h4 (click)="logout()" *ngIf="is_logged_in" class="project-heading text-white pl-4"> <i class="fas fa-sign-out-alt"></i>&nbsp; Logout</h4>
+           <h6 class="project-discription text-success text-center pl-5" style="position: fixed; bottom: 10px; ">Powerd By Ecomtrails.</h6>
+        </div>
+      </div>
+  
+      <div id="nav-top">
+        <div
+          class="d-flex justify-content-between align-items-baseline "
+           
+          id="main-nav"
+        >
+          <div class="">
+         
+         &nbsp;   <span class="material-icons text-success" *ngIf="!sidenav" style="font-size:30px;cursor:pointer; color: black!important;"  (click)="openNav();closeNav1();showsearchbarr()">
+              format_list_bulleted
+              </span>
+              <span class="material-icons text-success" style="font-size:30px;cursor:pointer;color: black!important;"  *ngIf="sidenav" (click)="closeNav()">
+                format_list_bulleted
+                </span>
+
+
+            <span  class="m-0" routerLink="/" style="position: fixed;
+            top: 3px;
+            left: 38px;">
+            <img
+              
+              src="assets/main-logo.jpeg"
+             
+                height="30" width="70"
+            />
+            </span>
+  
+          
+          </div>
+          <div>
+            <a class="nav-link mt-0" style="position: relative;
+            top: 0px;
+            " (click)="showsearchbar();closeNav();closeNav1()">
+              <i class="fas fa-search  text-center mobile-menu-search" > </i>
+            </a>
+  
+            
+          </div>
+        </div>
+  
+        <div class="search searchFull" *ngIf="showsearch" >
+          <mat-card>
+    
+            <i
+            class="searchIconback fas fa-arrow-left"
+            title="back"
+            (click)="showsearchbar()"
+          ></i>
+            <input
+              type="search" 
+              (keyup)="search($event.target.value)"
+              (keyup.enter)="
+                navigateCategory(
+                  searchList.category[0].name,
+                  searchList.category[0].category_no
+                )
+              "
+              (focus)="searchFocus = !searchFocus"
+              placeholder="Search for brand, category, product more..."
+              aria-label="search..."
+            />
+            <i
+              class="searchIcon fa fa-search "
+              title="search"
+              (click)="
+                navigateCategory(
+                  searchList.category[0].name,
+                  searchList.category[0].category_no
+                )
+              "
+            ></i>
+            <mat-card *ngIf="searchFocus" class="searchItems w-100 mt-2">
+              <div
+                    class="d-flex align-items-center mt-2 mb-1 cursor-pointer category-hover" 
+                    *ngFor="let category of searchList.category | slice: 0:6"
+                  >
+                    <i class="fa fa-search mr-3 ml-3"></i>
+                    <a
+                      (click)="
+                        navigateCategory(category.name, category.category_no)
+                      "
+                    >
+                      <div style="font-size: 12px" class="project-discription">
+                        in {{ category.name }}
+                      </div>
+                    </a>
+                  </div>
+  
+                  <div
+                    class="d-flex align-items-center cursor-pointer mt-1 category-hover"
+                    *ngFor="let brand of searchList.brand | slice: 0:6"
+                  >
+                    <i class="fa fa-search mr-3 ml-3"></i>
+                    <a (click)="navigateBrand(brand.name, brand.brand_id)">
+                      <div style="font-size: 12px" class="project-discription">in {{ brand.name }}</div>
+                    </a>
+                  </div>
+  
+                  <div
+                    class="d-flex align-items-center category-hover"
+                    *ngFor="let product of searchList.product | slice: 0:3"
+                  >
+                    <i class="fa fa-search mr-3 ml-3"></i>
+  
+                    <a
+                      routerLink="/product/{{
+                        getSlug(
+                          product.name,
+                          product.product_no,
+                          product.slug
+                        )
+                      }}"
+                    >
+                      <div style="font-size:14px" class="p-1 project-discription">
+                        {{ product.name | slice: 0:40 }} |
+                        {{ product.model | slice: 0:40 }}
+                      </div>
+                    </a>
+                  </div>
+            </mat-card>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+        <section class="d-block d-lg-none d-md-none d-xl-none ">
+          <mat-card class="col-md-12 text-center  w-100" *ngIf="!banner" style="background: rgb(43,42,42); height: 200px;">
+              <img src="assets/loader.gif" height="100" width="100" class="mt-4 text-center" >
+          
+          </mat-card>
+         
           <div class="">
             <div id="demo" class="carousel slide main-slider " data-ride="carousel" *ngIf="banner">
               <div class="carousel-inner"  >
@@ -667,9 +887,18 @@
                <h6 class="m-0 project-discription mobile-heading pr-2" *ngIf="brands?.length > 4" routerLink="/our-brand">view all</h6>
               </div>
             </div>
-            <div class="row  mt-1  justify-content-start "  >
+          
+            <div class="row  mt-1  justify-content-start "  *ngIf="ecomtrails == true">
               <div class="col-3 text-left " *ngFor="let brand of brands | slice:0:4;">
-                 <!-- <div class="card" style="background: transparent; box-shadow: none; outline: none;"> -->
+                  <div class=" circular-image-brand-mobile border" (click)="navigateBrand(brand.name,brand.brand_id)" >
+                    <img src="{{brand?.thumbnail_sml_location}}" onerror="this.src='assets/no-img.png';" class="brand-image-mobile" >
+                  </div>
+                 <!-- </div> -->
+                
+              </div> 
+            </div>
+            <div class="row  mt-1  justify-content-start "  *ngIf="ecomtrails == false">
+              <div class="col-3 text-left " *ngFor="let brand of brands | slice:0:4;">
                   <div class=" circular-image-brand-mobile border" (click)="navigateBrand(brand.name,brand.brand_id)" >
                     <img src="{{brand?.thumbnail_sml_location}}" onerror="this.src='assets/no-img.png';" class="brand-image-mobile" >
                   </div>
@@ -679,7 +908,7 @@
             </div>
           </div>
         
-          <div class="container-fluid mb-2  Trending-mobile-product-box pb-1" *ngIf="topSelling">
+          <div class="container-fluid mb-2  Trending-mobile-product-box pb-1" >
             <div class="row justify-content-between  mobile-heading-row">
               <h6 class="mobile-heading pl-0 project-heading">Trending Products</h6>   <ul class="pagination mt-1 justify-content-end mr-2">
               <li class="page-item page-previous bg-dark" *ngIf="offsetSelling != 1">
@@ -704,9 +933,22 @@
             </ul>
             </div>
 
+             <div class="row" *ngIf="!topSelling">
+               <div class="col-6">
+                <mat-card class="col-md-12 text-center mt-3 w-100" *ngIf="!banner" style="background: rgb(43,42,42); height: 200px;">
+                  <img src="assets/loader.gif" height="100" width="100" class="mt-4 text-center" >
+              
+              </mat-card>
+               </div>
+               <div class="col-6">
+                <mat-card class="col-md-12 text-center mt-3 w-100" *ngIf="!banner" style="background: rgb(43,42,42); height: 200px;">
+                  <img src="assets/loader.gif" height="100" width="100" class="mt-4 text-center" >
+              
+              </mat-card>
+              </div>
+             </div>
 
-
-              <div class="row justify-content-center">
+              <div class="row justify-content-center" *ngIf="topSelling">
                 <div class="col-12">
 <div class="row">
   <div class="col-6  mobile-product-box-height"  (click)="view_product(nprd2.meta_title, nprd2.product_no,nprd2.slug,nprd2.quick_product_check)" *ngFor="let nprd2 of topSelling">
@@ -772,8 +1014,27 @@
               </div>
             </div>
 
-            <div class="container-fluid d-block d-md-none d-lg-none d-xl-none bg-white" *ngIf="roarclubbannerdata">
+            <div class="container-fluid d-block d-md-none d-lg-none d-xl-none bg-white" >
               <div class="row">
+                <div class="col-md-12">
+                  <h4 class="project-heading text-success">Shop by collection</h4>
+                </div>
+              </div>
+              <div class="row" *ngIf="!roarclubbannerdata">
+                <div class="col-6">
+                 <mat-card class="col-md-12 text-center mt-3 w-100" *ngIf="!banner" style="background: rgb(43,42,42); height: 150px;">
+                   <img src="assets/loader.gif" height="100" width="100" class="mt-4 text-center" >
+               
+               </mat-card>
+                </div>
+                <div class="col-6">
+                 <mat-card class="col-md-12 text-center mt-3 w-100" *ngIf="!banner" style="background: rgb(43,42,42); height: 150px;">
+                   <img src="assets/loader.gif" height="100" width="100" class="mt-2 text-center" >
+               
+               </mat-card>
+               </div>
+              </div>
+              <div class="row" *ngIf="roarclubbannerdata">
                 <div class="col-6 mt-1 banner-image-box-card-mobile " *ngIf="roarclubbannerdata[0] != null">
                   <img src="{{roarclubbannerdata[0].image_link}}" class=" img-fluid img-banner"  onerror="this.src='assets/no-img.png';">
                 </div>
@@ -782,7 +1043,7 @@
                 </div>
               </div>
             </div>
-            <div class="container-fluid mt-1 Trending-mobile-product-box pb-1 mb-3" *ngIf="newproduct">
+            <div class="container-fluid mt-1 Trending-mobile-product-box pb-1 mb-3" >
               <div class="row justify-content-between mobile-heading-row">
                 <h6 class="mobile-heading pl-0 project-heading">New Arrivals</h6>   <ul class="pagination justify-content-end mr-2 mt-1">
                 <li class="page-item page-previous bg-dark" *ngIf="offsetNew != 1">
@@ -806,7 +1067,23 @@
                 </li>
               </ul>
               </div>
-                <div class="row justify-content-center">
+
+              <div class="row" *ngIf="!newproduct">
+                <div class="col-6">
+                 <mat-card class="col-md-12 text-center mt-3 w-100" *ngIf="!banner" style="background: rgb(43,42,42); height: 200px;">
+                   <img src="assets/loader.gif" height="100" width="100" class="mt-4 text-center" >
+               
+               </mat-card>
+                </div>
+                <div class="col-6">
+                 <mat-card class="col-md-12 text-center mt-3 w-100" *ngIf="!banner" style="background: rgb(43,42,42); height: 200px;">
+                   <img src="assets/loader.gif" height="100" width="100" class="mt-4 text-center" >
+               
+               </mat-card>
+               </div>
+              </div>
+
+                <div class="row justify-content-center" *ngIf="newproduct">
                  <div class="col-12">
                    <div class="row justify-content-start">
                     <div class="col-6   mobile-product-box-height"  (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)" *ngFor="let nprd of newproduct">
@@ -910,7 +1187,22 @@
           </ul>
           
           </div>
-          <div class="row justify-content-center">
+          <div class="row" *ngIf="!sellingDiscount && !notbuy">
+            <div class="col-6">
+             <mat-card class="col-md-12 text-center mt-3 w-100" *ngIf="!banner" style="background: rgb(43,42,42); height: 200px;">
+               <img src="assets/loader.gif" height="100" width="100" class="mt-4 text-center" >
+           
+           </mat-card>
+            </div>
+            <div class="col-6">
+             <mat-card class="col-md-12 text-center mt-3 w-100" *ngIf="!banner" style="background: rgb(43,42,42); height: 200px;">
+               <img src="assets/loader.gif" height="100" width="100" class="mt-4 text-center" >
+           
+           </mat-card>
+           </div>
+          </div>
+
+          <div class="row justify-content-center" *ngIf="sellingDiscount && notbuy">
             <div class="col-12">
               <div class="row">
                 <div class="col-6   mobile-product-box-height"  (click)="view_product(nprd3.meta_title, nprd3.product_no,nprd3.slug,nprd3.quick_product_check)" *ngFor="let nprd3 of discountS">

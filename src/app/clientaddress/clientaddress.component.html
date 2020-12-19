@@ -1,17 +1,17 @@
 <mat-card  class="">
     <div class="row justify-content-center">
       <div class="col-md-12 ">
-        <button mat-raised-button class="project-button ml-1"  (click)="openXl(content)"> <mat-icon>add</mat-icon>&nbsp; Add Address</button>
+        <button mat-raised-button class="project-button ml-1"  (click)="openXl(content)"> <mat-icon class="text-white">add</mat-icon>&nbsp; Add Address</button>
       </div>
     </div>
     <div class="row">
 
-      <div class="col-lg-12">
+      <div class="col-lg-12 ">
 
 <!-- billing check start -->
 <mat-radio-group aria-label="Modes" >
           <div
-            class="row mt-3" style="width: 98%;"  *ngFor="let address1 of address; let i = index"
+            class="row mt-3 " style="width: 98%;"  *ngFor="let address1 of address; let i = index"
               >
             <div class="col-md-12  add-more" style=" border-radius: 12px;">
               <div class="row cursor-pointer    font-weight-400 mt-1 mb-1" >
@@ -88,12 +88,12 @@
         </mat-radio-group>
         
 <!-- billing check end -->
-        <mat-radio-group aria-label="Modes" *ngIf="addresses !=null">
+        <mat-radio-group aria-label="Modes"  *ngIf="addresses !=null">
           <div
             class="row mt-3" style="width: 98%;"
             *ngFor="let address of addresses; let i = index" 
           >
-            <div class="col-md-12  add-more" style=" border-radius: 12px;">
+            <div class="col-md-12  add-more " style=" border-radius: 12px; border: .5px solid #B89D4E;">
               <div class="row cursor-pointer    font-weight-400 mt-1 mb-1" >
                <div class="col-md-11 col-6" >
                 <!-- <div class="form-check ">
