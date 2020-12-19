@@ -129,3 +129,23 @@ width: 60px;
   text-align: center;
   border: 1px solid darkgrey ;
 }
+
+.mycart-scroll{
+  cursor: pointer;
+  max-height: 70vh; overflow-x: auto;
+}
+.mycart-scroll::-webkit-scrollbar {
+  width: 7px;
+}
+.mycart-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: grey;
+}
+.mycart-scroll::-webkit-scrollbar-track {
+  background: grey;
+}
+.mycart-scroll::-webkit-scrollbar-thumb {
+  background-color: rgb(43, 42, 42) ;
+  border-radius: 6px;
+  border: 3px solid var(--scrollbarBG);
+}

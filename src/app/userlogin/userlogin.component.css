@@ -16,6 +16,7 @@
     box-shadow: 0 1px 0 0 #b89d4e;}
     .md-form input:not([type]):focus:not([readonly])+label, .md-form input[type="text"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="password"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="email"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="url"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="time"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="date"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="datetime"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="datetime-local"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="tel"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="number"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="search"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="phone"]:not(.browser-default):focus:not([readonly])+label, .md-form input[type="search-md"]:focus:not([readonly])+label, .md-form textarea.md-textarea:focus:not([readonly])+label {
       color: #b89d4e;
+      text-align: center;
   }
   .content h2 {
     padding: 15px 0px 15px;
@@ -44,10 +45,14 @@
     
 input{
   color: white!important;
+  text-align: center;
 }
-
+label{
+  text-align: center!important;
+}
 .example-full-width{
   width: 100%;
+  text-align: center;
 }
 mat-icon{
   color: #B89D4E;
@@ -62,4 +67,7 @@ input.mat-input-element {
 }
 mat-label{
   color: #B89D4E;
+}
+.label{
+  text-align: center;
 }

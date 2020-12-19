@@ -16,14 +16,14 @@ import {
 import { SelectionModel } from "@angular/cdk/collections";
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-
+import { saveAs } from 'file-saver';
 @Component({
   selector: 'app-order-view-details',
   templateUrl: './order-view-details.component.html',
   styleUrls: ['./order-view-details.component.css']
 })
 export class OrderViewDetailsComponent implements OnInit {
-public orders: any = null;
+  public orders: any = null;
   // public order_id: any;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
@@ -38,11 +38,21 @@ public orders: any = null;
    site;
    parcel_return=[];
    return_choose=[];
-
+   invoice_gen=0;
+  awb_no;
+  track;
+  track_more=false;
+  courier_method_id;
+  notbuy=true;
+status_order_number;
+status_product_name;
+  status_flow=[];
+  discount_total_amount;
+  comp_num= sessionStorage.getItem("comp_num_new");
+ 
   main;
   orderRandomId;
   orderRandomIdResult;
-  discount_total_amount;
   previewFlag = sessionStorage.getItem('previewFlag');
   public access_token=sessionStorage.getItem('access_token');
   public user_num=sessionStorage.getItem('user_num');  
@@ -293,7 +303,7 @@ getOrdersHistory() {
     this.router.navigate(["/Admin/preview/product"]);
 
     }else{
-      this.router.navigate(["/product-view"]);
+      this.router.navigate(["/product"]);
 
     }
   }
@@ -303,18 +313,18 @@ getOrdersHistory() {
      if(quick=='N'){
     if(this.previewFlag == '1'){
       this.router
-      .navigateByUrl("/", {
+      .navigateByUrl("/RefreshComponent", {
         skipLocationChange: true
       })
-      .then(() => this.router.navigate(["/Admin/preview/product-view", slug]));
+      .then(() => this.router.navigate(["/Admin/preview/product", slug]));
 
 
     }else{
       this.router
-      .navigateByUrl("/", {
+      .navigateByUrl("/RefreshComponent", {
         skipLocationChange: true
       })
-      .then(() => this.router.navigate(["/product-view", slug]));
+      .then(() => this.router.navigate(["/product", slug]));
 
     }
    }
@@ -336,7 +346,7 @@ getOrdersHistory() {
     var year =this.minDate.getFullYear();
     var fullD=year+'-'+month+'-'+day
     ;
-         console.log(fullD);
+        // console.log(fullD);
          this.dates=fullD;
          }
         else if(v== "2"){
@@ -356,9 +366,7 @@ getOrdersHistory() {
       order_item_id.push(order_item_id2.order_inventory[k].order_item_id);
    
     }
-      this.adminservice
-      .cancel_order_by_user(
-        { comp_num: sessionStorage.getItem("comp_num_new"),
+    var post2={ comp_num: sessionStorage.getItem("comp_num_new"),
         
         user_num:this.user_num,
       access_token:this.access_token,
@@ -366,8 +374,12 @@ getOrdersHistory() {
       parcel_no:parcel_no,
       order_id:order_id
 
-      }
-        )
+      };
+      console.log(post2);
+
+      this.adminservice
+      .cancel_order_by_user(
+        post2        )
       .subscribe(data => {
         if (data["status"] == 1) {
          
@@ -375,7 +387,7 @@ getOrdersHistory() {
             duration: 3000,
             horizontalPosition:'center',
         }); 
-        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() =>
+        this.router.navigateByUrl('/RefrshComponent', { skipLocationChange: true }).then(() =>
         this.router.navigate(['/my-account/order-history']));          
           
         }  
@@ -397,7 +409,7 @@ getOrdersHistory() {
 
   // start for return
 
-return_start(order_id,order_item_id,product_name,order_number){
+return_start(order_id,order_item_id,order_number){
   this.entity="single";
    
   this.myFormReturn.get('order_id').setValue(order_id);
@@ -405,7 +417,7 @@ return_start(order_id,order_item_id,product_name,order_number){
   this.myFormReturn.get('order_number').setValue(order_number);
   this.parcel_return=order_item_id;
   // this.myFormReturn.get('order_item_id').setValue(order_item_id);
-  this.myFormReturn.get('product_name').setValue(product_name);
+  this.myFormReturn.get('product_name').setValue('product_name');
   
 
 }
@@ -444,7 +456,7 @@ return_start(order_id,order_item_id,product_name,order_number){
                 flag2=1;
         }
         else{
-          console.log(this.myFormSplit.value["order_item_id"]);
+         // console.log(this.myFormSplit.value["order_item_id"]);
 
           if(this.myFormSplit.value["order_item_id"].value.length==0){
             alert("Please select checkboxes");
@@ -457,8 +469,8 @@ return_start(order_id,order_item_id,product_name,order_number){
                       access_token:this.access_token,
                       order_inventories:this.myFormSplit.value["order_item_id"],
                       return_comment:this.myFormReturn.controls.return_comment.value,
-                      reason:this.valuesSplit.parcel_no,
-                      order_id:this.valuesSplit.order_id
+                      reason:this.valuesSplit[0].parcel_no,
+                      order_id:this.valuesSplit[0].order_id
               
                       };
               flag2=1;
@@ -468,6 +480,7 @@ return_start(order_id,order_item_id,product_name,order_number){
          }
       }
       if(flag2==1){
+        console.log(post);
     // order_item_id.push(this.myFormReturn.controls.order_item_id.value);
       this.adminservice
       .update_return_initiate(
@@ -480,7 +493,7 @@ return_start(order_id,order_item_id,product_name,order_number){
             duration: 3000,
             horizontalPosition:'center',
         }); 
-        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() =>
+        this.router.navigateByUrl('/RefrshComponent', { skipLocationChange: true }).then(() =>
         this.router.navigate(['/my-account/order-history']));          
           
         }  
@@ -511,7 +524,7 @@ return_start(order_id,order_item_id,product_name,order_number){
            var year =this.minDate.getFullYear();
            var fullD=year+'-'+month+'-'+day
            ;
-                console.log(fullD);
+               // console.log(fullD);
                 this.dates=fullD;
                 this.compSettings_return_reason_Option();
                
@@ -531,7 +544,7 @@ return_start(order_id,order_item_id,product_name,order_number){
          let v = JSON.parse(d.value);
          if(v== "1"){
            this.return_reason=1;
-           console.log(3);
+          // console.log(3);
            this.reason_dropdown();
            
                
@@ -548,7 +561,7 @@ return_start(order_id,order_item_id,product_name,order_number){
       if (data["status"] == 1) {
        this.return_choose=data['result'];
        this.myFormReturn.get('reason').setValue(this.return_choose[0].reason);
-       console.log(33);
+      // console.log(33);
        
       } 
     });
@@ -559,14 +572,18 @@ return_start(order_id,order_item_id,product_name,order_number){
   
   // end for rating option
   // end for return
-  CancelSelected(myForm){
-    console.log(this.myFormSplit.value);
-    console.log(this.myFormSplit.value["order_item_id"]);
-   
-   
+  CancelSelected2(myForm){
+    console.log(myForm);
     console.log(myForm["order_item_id"]);
-    console.log(myForm.order_item_id);
-    console.log(this.myFormSplit.controls.order_item_id);
+  }
+  CancelSelected(myForm){
+   // console.log(this.myFormSplit.value);
+   // console.log(this.myFormSplit.value["order_item_id"]);
+   
+   
+   // console.log(myForm["order_item_id"]);
+   // console.log(myForm.order_item_id);
+   // console.log(this.myFormSplit.controls.order_item_id);
      if(myForm["order_item_id"].length==0){
   alert("Please select checkboxes");
       }
@@ -575,18 +592,52 @@ return_start(order_id,order_item_id,product_name,order_number){
 
       var res = confirm("Are you sure you want to cancel this order.");
       if(res){
-      
-        this.adminservice
-        .cancel_order_by_user(
-          { comp_num: sessionStorage.getItem("comp_num_new"),
+        var inventories=[];
+        var parcel_in=[];
+        console.log(myForm["order_item_id"]);
+         console.log(myForm["id"]);
+          
+        for(let i=0;i<myForm["id"].length;i++){
+          var status=0;
+        
+           for(let j=0;j<parcel_in.length;j++){
+            
+             if(parcel_in[j]==myForm["id"][i]){
+               status=1;
+             }
+             
+           }
+           if(status==0){
+             parcel_in.push(myForm["id"][i]);
+           }
+        }
+        console.log(parcel_in);
+        for(let i=0;i<parcel_in.length;i++){
+          var inv=[];
+          for(let j=0;j<myForm['order_item_id'].length;j++){
+            if(parcel_in[i]==myForm['id'][j]){
+              inv.push(myForm['order_item_id'][j]);
+            }
+          }
+          console.log(inv);
+          inventories.push({parcel_no:parcel_in[i],order_inventories:inv});
+        }
+        console.log(inventories);
+      var post2= { comp_num: sessionStorage.getItem("comp_num_new"),
           
           user_num:this.user_num,
         access_token:this.access_token,
         order_inventories:myForm["order_item_id"],
         parcel_no:this.valuesSplit.parcel_no,
-        order_id:this.valuesSplit.order_id
-  
-        }
+        order_id:this.valuesSplit[0].order_id,
+  inventories:inventories
+        };
+        console.log(post2);
+ console.log(this.valuesSplit);
+
+        this.adminservice
+        .cancel_order_by_user_multiple_parcel(
+         post2
           )
         .subscribe(data => {
           if (data["status"] == 1) {
@@ -595,7 +646,9 @@ return_start(order_id,order_item_id,product_name,order_number){
               duration: 3000,
               horizontalPosition:'center',
           }); 
-          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() =>
+             this.modalService.dismissAll('Save click');
+         
+          this.router.navigateByUrl('/RefrshComponent', { skipLocationChange: true }).then(() =>
           this.router.navigate(['/my-account/order-history']));          
             
           }  
@@ -619,21 +672,51 @@ return_start(order_id,order_item_id,product_name,order_number){
   parcelsSplit(parcel,method,entity2){
 this.method_method=method;
 this.entity=entity2;
+console.log(parcel);
+var prods=[];
+var inven;
+for(let k=0;k<parcel.length;k++){
+  for(let l=0;l<parcel[k].order_inventory.length;l++){
+      inven=parcel[k].order_inventory[l];
+   console.log(inven);
+     if(method=='cancel' && parcel[k].order_inventory[l].cancel==true){
+      inven['method_status']=true;
+       parcel[k].order_inventory[l].method_status=true;
+     }
+     else if(method=='return' && parcel[k].order_inventory[l].rtd==true && parcel[k].order_inventory[l].r_days==1){
+      inven['method_status']=true;
+       parcel[k].order_inventory[l].method_status=true;
+     }
+     else{
+        inven['method_status']=false;
+       parcel[k].order_inventory[l].method_status=false;
+   
+     }
+    inven['parcel_no']=parcel[k].parcel_no;
+    inven['order_id']=parcel[k].order_id;
+prods.push(inven);
+  }
+}
+console.log(prods);
     // this.parcel_details = parcel;
-    this.valuesSplit=parcel;
+    this.valuesSplit=prods;
     this.selectionSplit = new SelectionModel(true, []);
     // this.valuesSplit.parcel_no=parcel.parcel_no 
-this.dataSourceSplit = new MatTableDataSource(this.valuesSplit.order_inventory);
+this.dataSourceSplit = new MatTableDataSource(this.valuesSplit);
       this.dataSourceSplit.sort = this.sort; 
       this.masterToggleSplit(true);
 
-      var emailFormArray = <FormArray>this.myFormSplit.controls.order_item_id;
-console.log(emailFormArray)
-  for (let z=0;z<this.valuesSplit.order_inventory.length;z++) {
-    console.log(this.valuesSplit.order_inventory[z].order_item_id);
+//       var emailFormArray = <FormArray>this.myFormSplit.controls.order_item_id;
+// console.log(emailFormArray)
+//   var emailFormArray2 = <FormArray>this.myFormSplit.controls.id;
 
-    emailFormArray.push(new FormControl(this.valuesSplit.order_inventory[z].order_item_id));
-  }
+  // for (let z=0;z<this.valuesSplit.length;z++) {
+  //  // console.log(this.valuesSplit.order_inventory[z].order_item_id);
+  //   if(this.valuesSplit[z].method_status==true){
+   
+  //       emailFormArray.push(new FormControl(this.valuesSplit[z].order_item_id));
+  //   }
+  // }
   }
    // start split
 isAllSelectedSplit() {
@@ -644,23 +727,30 @@ isAllSelectedSplit() {
 
  removeCheckWithoutClearSplit() {
   var emailFormArray2 = <FormArray>this.myFormSplit.controls.order_item_id;
+ 
+  var emailFormArray2_id = <FormArray>this.myFormSplit.controls.id;
   for (var i = 0; i < this.valuesSplit.length; i++) {
     let index = emailFormArray2.controls.findIndex(
       x => x.value == this.valuesSplit[i].order_item_id
     );
     emailFormArray2.removeAt(index);
+emailFormArray2_id.removeAt(index);
 
   }
   //console.log(emailFormArray2);
 }
-onChangeDemoSplit(order_item_id: string, isChecked: boolean) {
+onChangeDemoSplit(order_item_id: string, isChecked: boolean,parcel_no) {
   var emailFormArray = <FormArray>this.myFormSplit.controls.order_item_id;
+ var emailFormArray_id = <FormArray>this.myFormSplit.controls.id;
 
   if (isChecked) {
     emailFormArray.push(new FormControl(order_item_id));
+  emailFormArray_id.push(new FormControl(parcel_no));
+ 
   } else {
     let index = emailFormArray.controls.findIndex(x => x.value == order_item_id);
     emailFormArray.removeAt(index);
+    emailFormArray_id.removeAt(index);
   }
   //console.log(emailFormArray);
 }
@@ -671,14 +761,20 @@ masterToggleSplit(isChecked: boolean) {
     : this.dataSourceSplit.data.forEach(row => this.selectionSplit.select(row));
 
   var emailFormArray2 = <FormArray>this.myFormSplit.controls.order_item_id;
+ var emailFormArray2_id = <FormArray>this.myFormSplit.controls.id;
+ 
   if (isChecked) {
     // code...
 
     this.removeCheckWithoutClearSplit();
 
     for (var i = 0; i < this.valuesSplit.length; i++) {
-      emailFormArray2.push(new FormControl(this.valuesSplit[i].order_item_id));
-    }
+      if(this.valuesSplit[i].method_status==true){
+           emailFormArray2.push(new FormControl(this.valuesSplit[i].order_item_id));
+          emailFormArray2_id.push(new FormControl(this.valuesSplit[i].parcel_no));
+  
+      }
+     }
   } else {
     this.removeCheckSplit();
   }
@@ -688,15 +784,156 @@ masterToggleSplit(isChecked: boolean) {
 removeCheckSplit() {
   this.selectionSplit.clear();
   var emailFormArray = <FormArray>this.myFormSplit.controls.order_item_id;
+ 
+  var emailFormArray_id = <FormArray>this.myFormSplit.controls.id;
   for (var i = 0; i < this.valuesSplit.length; i++) {
     let index = emailFormArray.controls.findIndex(
       x => x.value == this.valuesSplit[i].order_item_id
     );
     emailFormArray.removeAt(index);
+  emailFormArray_id.removeAt(index);
 
   }
   //console.log(emailFormArray);
 }
 // end split
+// track detail
+trackStatus(status,name,order_number,awb_no,courier_method_id){
+  this.track_more=false;
+this.status_flow=status;
+this.status_order_number=order_number;
+this.status_product_name=name;
+this.awb_no=awb_no;
+console.log(this.awb_no);
+this.courier_method_id=courier_method_id;
+console.log(courier_method_id);
+// this.awb_no=1430910705434;
+console.log(order_number);
+// this.courier_method_id=2;
+console.log(status);
+console.log(name);
 
+}
+  //track detail
+  shipyari_awb_track_lifecycle(){
+    this.track_more=false;
+    this.adminservice
+    .shipyari_awb_track_lifecycle({ user_num: this.user_num,access_token:this.access_token,comp_num:this.comp_num,awb_no:this.awb_no })
+    .subscribe(data => {
+      if (data["status"] == 1) {
+        this.track_more=true;
+       this.track=data['result'];
+     
+       
+      } 
+    });
+  }
+
+
+  print_invoice(courier_no,dd){
+    let checkboxes=true;
+   // console.log(courier_no);
+         let post={
+            access_token: this.access_token,
+            user_num: this.user_num,
+            comp_num: sessionStorage.getItem("comp_num_new"),
+            parcel_no:courier_no
+          }
+          // console.log(post);
+           if(dd=="single"){
+         let y=[];
+         y.push(courier_no);
+         post['parcel_no']=y;
+           }
+           else{
+            if(courier_no.length==0){
+              checkboxes=false;
+                alert("No Data");
+           
+            }
+            else{
+             let invoice_array=[];
+    
+              let invoice_check=false;
+                for(let i=0;i<courier_no.length;i++){
+                   
+                    for(let s=0;s<invoice_array.length;s++){
+                      if(invoice_array[s]==courier_no[i]['parcel_no']){
+                        invoice_check=true;
+                      }
+                    }
+                    if(invoice_check==false){
+                      invoice_array.push(courier_no[i]['parcel_no']);
+                    }
+                }
+      
+                  
+      
+               post['parcel_no']=invoice_array;
+            }
+           }
+           checkboxes=true;
+          // console.log(post);
+           const formData = new FormData();
+           formData.append("comp_num", post.comp_num);
+           formData.append("parcel_no", JSON.stringify(post['parcel_no']));
+           formData.append("user_num", post.user_num);
+           formData.append("access_token", post.access_token);
+          // console.log(formData);
+           if(checkboxes==true){
+  
+           // console.log(checkboxes);
+         this.adminservice.print_invoice(post).subscribe(
+           data => {
+             // console.log(1);
+              this.loader = true;
+             // console.log(data);
+             
+                // console.log(data['body']);
+               
+  
+                 var blob :any= new Blob([data['body']], { type: "application/pdf" });
+                // console.log(blob);
+                saveAs(blob, "invoice.pdf");
+               if (data['headers'].get("content-type").search("pdf") != -1) {
+                // var blob = new Blob([data['body']], { type: "application/pdf" });
+                // saveAs(blob, "invoice.pdf");
+              } else {
+    
+                this.snackbar.open("NO Data Available ", "", {
+                  duration: 5000
+                });
+                // this.router
+                //   .navigateByUrl("/RefreshComponent", { skipLocationChange: true })
+                //   .then(() => this.router.navigate(["Admin/dashboard-reports"]));
+              }
+    
+               
+            
+  }   
+  ,
+        error => {
+         // console.log(error['headers']);
+          // console.log(error);
+        }      
+          );
+        }
+     }
+    //print invoice
+     // invoice
+compSettingsInvoice() {
+  this.adminservice
+    .fetch_particular_company_registry_with_sno({ comp_num: sessionStorage.getItem("comp_num_new"),s_no:27 })
+    .subscribe(data => {
+      if (data["status"] == 1) {
+
+        let d = data['data'];
+        let v = d.value;
+        if (v == '1') {
+          this.invoice_gen = 1;
+        }
+        
+      }
+    });
+}
 }

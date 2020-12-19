@@ -85,6 +85,7 @@ import { MemberBankDetailsComponent } from './member-bank-details/member-bank-de
 import { MemberProfileComponent } from './member-profile/member-profile.component';
 import { MemberRegistrationDetailsComponent } from './member-registration-details/member-registration-details.component';
 import { MemberLoginSignupFormComponent } from './member-login-signup-form/member-login-signup-form.component';
+import { MemberWalletComponent} from './member-wallet/member-wallet.component';
 
 @NgModule({
   declarations: [
@@ -97,6 +98,7 @@ import { MemberLoginSignupFormComponent } from './member-login-signup-form/membe
     HeaderComponent,
     OrderHistoryComponent,
     AddressComponent,
+    MemberWalletComponent,
     // ChangePasswordComponent,
     HomeComponent,
     AccountInfoComponent,

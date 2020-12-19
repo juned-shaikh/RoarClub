@@ -26,6 +26,7 @@ import { saveAs } from 'file-saver';
   styleUrls: ['./order-history.component.css']
 })
 export class OrderHistoryComponent implements OnInit {
+
 public orders=[];
   public order_id: any;
   public order_inventory=[];
@@ -40,7 +41,7 @@ public orders=[];
   courier_method_id;
   orderDetails;
   discount_amount;
-  
+  notbuy=true;
 status_order_number;
 status_product_name;
   total_mrp;
@@ -93,7 +94,8 @@ status_product_name;
       return_comment:[''],
       product_name:['']
     });
-     
+   
+    this.compSettings();
     this.compSettings_ratingOption();
     this.compSettings_cancelOption();
     this.compSettings_returnOption();
@@ -131,18 +133,20 @@ getOrdersHistory() {
           
             this.orders = data["result"];
             this.loader=true;
-            for(let i=0;i<this.orders.length;i++){
-            	for (let j=0;j<this.orders[i].order_inventory.length;j++){
-                this.orders[i].order_inventory[j].order_number=this.orders[i].order_number;
-                this.orders[i].order_inventory[j].payment_method_name=this.orders[i].payment_method_name;
-            		this.orders[i].order_inventory[j].status_name=this.orders[i].status_name;
-            		
-                this.orders[i].order_inventory[j].orderRandomId=this.orders[i].orderRandomId;
+            // for(let i=0;i<this.orders.length;i++){
+            //   if(this.orders[i].order_inventory.length>0){
+            //     for (let j=0;j<this.orders[i].order_inventory.length;j++){
+            //       this.orders[i].order_inventory[j].order_number=this.orders[i].order_number;
+            //       this.orders[i].order_inventory[j].payment_method_name=this.orders[i].payment_method_name;
+            //       this.orders[i].order_inventory[j].status_name=this.orders[i].status_name;
+                  
+            //       this.orders[i].order_inventory[j].orderRandomId=this.orders[i].orderRandomId;
 
-                this.order_inventory.push(this.orders[i].order_inventory[j]);
-            	}
+            //       this.order_inventory.push(this.orders[i].order_inventory[j]);
+            //     }
+            //   }
 
-            }
+            // }
              this.noOrder=true;
             this.loader=true;
 
@@ -298,7 +302,7 @@ getOrdersHistory() {
     var year =this.minDate.getFullYear();
     var fullD=year+'-'+month+'-'+day
     ;
-         console.log(fullD);
+        // console.log(fullD);
          this.dates=fullD;
          }
         else if(v== "2"){
@@ -334,7 +338,7 @@ getOrdersHistory() {
             horizontalPosition:'center',
         }); 
         this.router.navigateByUrl('/RefrshComponent', { skipLocationChange: true }).then(() =>
-        this.router.navigate(['/home_profile/order-history']));          
+        this.router.navigate(['/my-account/order-history']));          
           
         }  
         else{
@@ -396,7 +400,7 @@ return_start(order_id,order_item_id,product_name,order_number){
             horizontalPosition:'center',
         }); 
         this.router.navigateByUrl('/RefrshComponent', { skipLocationChange: true }).then(() =>
-        this.router.navigate(['/home_profile/order-history']));          
+        this.router.navigate(['/my-account/order-history']));          
           
         }  
         else{
@@ -425,7 +429,7 @@ return_start(order_id,order_item_id,product_name,order_number){
            var year =this.minDate.getFullYear();
            var fullD=year+'-'+month+'-'+day
            ;
-                console.log(fullD);
+               // console.log(fullD);
                 this.dates=fullD;
                 this.compSettings_return_reason_Option();
                
@@ -445,7 +449,7 @@ return_start(order_id,order_item_id,product_name,order_number){
          let v = JSON.parse(d.value);
          if(v== "1"){
            this.return_reason=1;
-           console.log(3);
+          // console.log(3);
            this.reason_dropdown();
            
                
@@ -462,7 +466,7 @@ return_start(order_id,order_item_id,product_name,order_number){
       if (data["status"] == 1) {
        this.return_choose=data['result'];
        this.myFormReturn.get('reason').setValue(this.return_choose[0].reason);
-       console.log(33);
+      // console.log(33);
        
       } 
     });
@@ -482,11 +486,11 @@ this.status_product_name=name;
 this.awb_no=awb_no;
 console.log(this.awb_no);
 this.courier_method_id=courier_method_id;
-// console.log(this.courier_method_id);
+//// console.log(this.courier_method_id);
 // this.awb_no=1430910705434;
-// console.log(this.awb_no);
+//// console.log(this.awb_no);
 // this.courier_method_id=2;
-// console.log(this.courier_method_id);
+//// console.log(this.courier_method_id);
 }
   //track detail
   shipyari_awb_track_lifecycle(){
@@ -521,14 +525,14 @@ compSettingsInvoice() {
  
   print_invoice(courier_no,dd){
   let checkboxes=true;
-  console.log(courier_no);
+ // console.log(courier_no);
        let post={
           access_token: this.access_token,
           user_num: this.user_num,
           comp_num: sessionStorage.getItem("comp_num_new"),
           parcel_no:courier_no
         }
-         console.log(post);
+        // console.log(post);
          if(dd=="single"){
        let y=[];
        y.push(courier_no);
@@ -562,27 +566,27 @@ compSettingsInvoice() {
           }
          }
          checkboxes=true;
-         console.log(post);
+        // console.log(post);
          const formData = new FormData();
          formData.append("comp_num", post.comp_num);
          formData.append("parcel_no", JSON.stringify(post['parcel_no']));
          formData.append("user_num", post.user_num);
          formData.append("access_token", post.access_token);
-         console.log(formData);
+        // console.log(formData);
          if(checkboxes==true){
 
-          console.log(checkboxes);
+         // console.log(checkboxes);
        this.adminservice.print_invoice(post).subscribe(
          data => {
-            console.log(1);
+           // console.log(1);
             this.loader = true;
-            console.log(data);
+           // console.log(data);
            
-               console.log(data['body']);
+              // console.log(data['body']);
              
 
                var blob :any= new Blob([data['body']], { type: "application/pdf" });
-               console.log(blob);
+              // console.log(blob);
               saveAs(blob, "invoice.pdf");
              if (data['headers'].get("content-type").search("pdf") != -1) {
               // var blob = new Blob([data['body']], { type: "application/pdf" });
@@ -602,12 +606,31 @@ compSettingsInvoice() {
 }   
 ,
       error => {
-        console.log(error['headers']);
-         console.log(error);
+       // console.log(error['headers']);
+        // console.log(error);
       }      
         );
       }
    }
   //print invoice
+  compSettings() {
+    this.adminservice
+     .fetch_particular_company_registry_with_sno({ comp_num: sessionStorage.getItem("comp_num_new"),s_no:7})
+     .subscribe(data => {
+    
 
+
+       if (data["status"] == 1) {
+          let d = data['data'];
+          let v = d.value;
+        if(v== '1' || v== '0'){
+          this.notbuy=false;
+        }
+      
+           }
+        //  }
+        // }
+     });
+
+ }
 }

@@ -521,13 +521,7 @@ export class HeaderComponent implements OnInit {
       }); 
       localStorage.setItem("flag1", "0");
       sessionStorage.clear();
-      // location.reload();
-      //  const currentRoute = this.router.url;
-
-      // this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      //     this.router.navigate(["/home"]); 
-      // }); 
-      // this.router.navigate(['/home']);
+      
       var rtoken = sessionStorage.getItem('noti_token');
       var topic = "user_"+sessionStorage.getItem('user_num');
       
@@ -593,7 +587,6 @@ export class HeaderComponent implements OnInit {
       .fetch_product_list_check({
         comp_num: sessionStorage.getItem("comp_num"),
         category_no: id,
-        // comp_num: 56
       })
       .subscribe(data => {
         if (data["status"] == 1) {
@@ -681,14 +674,12 @@ this.showsearch = !this.showsearch;
   }
   openNav() {
     document.getElementById("mySidenav").style.left = "0";
-    // document.getElementById("main").style.marginLeft = "250px";
-    // document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+    
     this.sidenav = true;
   }
 
   closeNav() {
     document.getElementById("mySidenav").style.left = "-90%";
-    // document.getElementById("main").style.marginLeft= "0";
     document.body.style.backgroundColor = "white";
     this.sidenav = false;
   }
@@ -696,14 +687,13 @@ this.showsearch = !this.showsearch;
 
   openNav1() {
     document.getElementById("mySidenav1").style.right = "0";
-    // document.getElementById("main").style.marginLeft = "250px";
-    // document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+   
     this.sidenav1 = true;
   }
 
   closeNav1() {
     document.getElementById("mySidenav1").style.right = "-90%";
-    // document.getElementById("main").style.marginLeft= "0";
+  
     document.body.style.backgroundColor = "white";
     this.sidenav1 = false;
   }
@@ -717,9 +707,8 @@ this.showsearch = !this.showsearch;
   brandFetch(dd){
     if(this.ecomtrails == true && this.roarclub == false && this.mlm == false){
       this.adminService
-      .fetchBrandsEcom({//for ecom
-       // .fetchBrands({
-          // access_token: this.access_token,user_num: this.user_num
+      .fetchBrandsEcom({
+     
           comp_num : dd
         })
         .subscribe(
@@ -733,15 +722,12 @@ this.showsearch = !this.showsearch;
             }
           },
           error => {
-            // this.loading = false;
           }
         );
       }
       else{
          this.adminService
-      // .FetchBrandEcom({//for ecom
        .fetchBrands({
-          // access_token: this.access_token,user_num: this.user_num
           comp_num : 0
         })
         .subscribe(
@@ -755,7 +741,6 @@ this.showsearch = !this.showsearch;
             }
           },
           error => {
-            // this.loading = false;
           }
         );
       }

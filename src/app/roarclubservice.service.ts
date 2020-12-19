@@ -367,12 +367,37 @@ getparticularCompSetting(data) {
     data
   );
 }
+member_wallet_recharge_initiate(data) {
+  return this.https.post(this.baseUrl + "associates/member_wallet_recharge_initiate", data);
+}
+transaction_of_order_wallet_razor_pay(data) {
+  return this.https.post(this.baseUrl + "user/transaction_of_order_wallet_razor_pay", data);
+}
 otpVerification(data) {
   return this.https.post(this.baseUrl + "company/otpVerification", data);
 }
+payment_status_check_recharge(data) {
+  return this.https.post(this.baseUrl + "user/payment_status_check_recharge", data);
+}
+check_user(data){
+    return this.https.post(this.baseUrl + "associates/check_user", data);
 
+}
+fetch_member_wallet_list(data) {
+  return this.https.post(this.baseUrl + "associates/fetch_member_wallet_list", data);
+}
+fetch_member_wallet_list_vendor(data){
+    return this.https.post(this.baseUrl + "associates/fetch_member_wallet_list_vendor", data);
+}
+recharge_wallet_manually(data){
+    return this.https.post(this.baseUrl + "associates/recharge_wallet_manually", data);
+}
 resendOtpForLogin(data){
   return this.https.post(this.baseUrl + "registration/resendOtpForLogin", data);
+
+}
+cancel_order_by_user_multiple_parcel(data){
+  return this.https.post(this.baseUrl + "order_vendor/cancel_order_by_user_multiple_parcel", data);
 
 }
 otpVerificationForLogin(data){

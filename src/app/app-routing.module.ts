@@ -25,6 +25,7 @@ import { MemberLoginSignupFormComponent } from './member-login-signup-form/membe
 import { MemberRegistrationDetailsComponent } from './member-registration-details/member-registration-details.component';
 import { MemberProfileComponent } from './member-profile/member-profile.component';
 import { MemberBankDetailsComponent } from './member-bank-details/member-bank-details.component';
+import { MemberWalletComponent } from './member-wallet/member-wallet.component';
  
 const routes: Routes = [
   { path: "",  pathMatch: "prefix", 
@@ -101,7 +102,9 @@ const routes: Routes = [
       {
         path: "member-profile", component:MemberProfileComponent
       },
-     
+     {
+       path: "member-wallet", component:MemberWalletComponent
+     },
     //  {path : 'orders', 
     //  loadChildren: () =>
     //  import('./order/order.module').then(m => m.OrderModule)

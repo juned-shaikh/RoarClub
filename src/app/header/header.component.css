@@ -328,7 +328,8 @@ display: flex;
         background: rgb(43, 42, 42);
         /* top: 40px; */
         width: 100%!important;
-        position: relative;
+        position: fixed;
+        top: 0;
         z-index: 999909;
       }
       .searchFull .mat-card{
@@ -343,7 +344,6 @@ display: flex;
       }
       .searchFull input{
         width: 100%;
-        /* border: .25px solid #781352; */
         font-size: 14px;
         height: 38px;
         border-radius: 9px;
@@ -411,10 +411,22 @@ z-index: 999999;
         /* font-family: 'Cinzel', serif!important; */
         font-family: 'Raleway', sans-serif!important;
         top:49px!important;
-        color: white;
+        color: white!important;
         left: 0;
         background-color: white;
       }
+      .search .searchItems{
+        z-index: 999999;
+                position: absolute;
+                /* font-family: 'Cinzel', serif!important; */
+                font-family: 'Raleway', sans-serif!important;
+                top:37px!important;
+                
+                color: black;
+                left: 0;
+                background-color: white;
+              }
+
       .search .mat-card.searchItems > div{
         padding: 0px 0px 0px 10px ;
       }

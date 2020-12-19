@@ -23,7 +23,9 @@ export class ProfilePageComponent implements OnInit {
   public data = {access_token:this.access_token, comp_num:this.comp_num}
   userdata;
   public changepasssbox =false;
+  public member_refer = false;
   public shownamebox = false;
+  public member_wallet = false;
   Changepassword:FormGroup;
   updateprofile:FormGroup;
 cust_reg_enable=false;
@@ -116,26 +118,7 @@ buis_update=false;
 
   }
 
-  compSettingsCustReg() {
-    this.adminService
-      .fetch_particular_company_registry_with_sno({ comp_num: this.comp_num_new,s_no:21})
-      .subscribe(data => {
-     
 
-
-        if (data["status"] == 1) {
-          // if(data['data'].length>0){
-          //   for(let k=0;k<data['data'].length;k++){
-              // if(data['data'][k].s_no==14 || data['data'][k].s_no=='14'){
-                if(data['data'].value==1 || data['data'].value=='1'){
-                  this.cust_reg_enable=true;
-                }
-              // }
-          //   }
-          // }
-         }
-      });
-  }
   update(){
     this.shownamebox = false;
     let data = this.updateprofile.value;
@@ -222,5 +205,74 @@ if(data["result"].buisness_no!='0' && data["result"]!=null && data["result"].bui
         }
       );
     }
+    compSettingsCustReg() {
+      this.adminService
+        .fetch_particular_company_registry_with_sno({ comp_num: this.comp_num_new,s_no:21})
+        .subscribe(data => {
+       
+  
+  
+          if (data["status"] == 1) {
+            // if(data['data'].length>0){
+            //   for(let k=0;k<data['data'].length;k++){
+                // if(data['data'][k].s_no==14 || data['data'][k].s_no=='14'){
+                  if(data['data'].value==1 || data['data'].value=='1'){
+                    this.cust_reg_enable=true;
+                    this.compSettingsMemberWallet();
+                 this.compSettingsMemberRefer();
+                  }
+                // }
+            //   }
+            // }
+           }
+        });
+    }
+  
+   compSettingsMemberWallet() {
+      this.adminService
+        .fetch_particular_company_registry_with_sno({ comp_num: this.comp_num_new,s_no:31})
+        .subscribe(data => {
+       
+  
+  
+          if (data["status"] == 1) {
+            // if(data['data'].length>0){
+            //   for(let k=0;k<data['data'].length;k++){
+                // if(data['data'][k].s_no==14 || data['data'][k].s_no=='14'){
+                  if(data['data'].value==1 || data['data'].value=='1'){
+                    this.member_wallet=true;
+                  }
+                // }
+            //   }
+            // }
+           }
+        });
+    }
+  
+  
+   compSettingsMemberRefer() {
+      this.adminService
+        .fetch_particular_company_registry_with_sno({ comp_num: this.comp_num_new,s_no:25})
+        .subscribe(data => {
+       
+  
+  
+          if (data["status"] == 1) {
+            // if(data['data'].length>0){
+            //   for(let k=0;k<data['data'].length;k++){
+                // if(data['data'][k].s_no==14 || data['data'][k].s_no=='14'){
+                  if(data['data'].value==1 || data['data'].value=='1'
+                    || data['data'].value==2 || data['data'].value=='2'){
+                    
+                    this.member_refer=true;
+                  }
+                  console.log(this.member_refer);
+                // }
+            //   }
+            // }
+           }
+        });
+    }
+  
 
 }

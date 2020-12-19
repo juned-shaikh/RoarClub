@@ -9,7 +9,7 @@
     color: white;
 }
 .order-history-date{
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
 }
 .sub-2:hover{
@@ -46,6 +46,13 @@
     text-transform: capitalize;
     color: white;
 }
+.order-history-heading-status{
+    background-color: #B89D4E;
+    color: white;
+    padding: .5px 9px .5px 9px;
+    text-shadow: 2px 1px rgb(43, 42, 42);
+    border-radius: 3px;
+}
 .card-box{
     max-height: 400px;
     /*height: 400px;*/
@@ -73,7 +80,7 @@
     font-weight: 600;
 }
 .process-step .btn:focus{outline:none}
-.process{display:table;width:100%;position:relative}
+.process{display:table;width:100%;position:relative; }
 .process-row{display:table-row}
 .process-step button[disabled]{opacity:1 !important;filter: alpha(opacity=100) !important}
 .process-row:before{top:40px;bottom:0;position:absolute;content:" ";width:100%;height:1px;background-color:#ccc;z-order:0}
@@ -99,4 +106,29 @@
     background: rgb(43, 42, 42);
     border: none;
     box-shadow: none;
+  }
+  .order-button-status{
+    /* color: blue; */
+    font-size: 13px; position: relative;
+    /* top: 4px; */
+    margin-right: 5px;border: 1px solid rgb(54, 54, 54);
+    border-radius: 5px;
+    background: rgb(43, 42, 42);
+    padding: 2px 8px 2px 8px;
+    cursor: pointer;
+    margin-left: 10px;
+    font-weight: 600;
+    /* right: 12px; */
+}
+.order-button-status:hover{
+  background: lightgrey;
+}
+.table{
+    color: white;
+}
+mat-label{
+    color: white;
+  }
+  input{
+    color: white;
   }

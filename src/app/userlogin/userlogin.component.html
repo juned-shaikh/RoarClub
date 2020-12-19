@@ -1,5 +1,15 @@
 
-  
+  <!-- <div class="d-block d-lg-none d-xl-none  mt-0">
+    <div class="row bg-dark m-0 pt-2">
+      <div class="col-1 p-2" (click)="back()">
+        <i class="fas fa-arrow-left text-white"></i>
+      </div>
+      <div class="col-11 p-2">
+        <h5 class="project-heading text-white">&nbsp;Login</h5>
+      </div>
+    </div>
+   
+  </div> -->
 <div class="container-fluid" class="bg-img">
   <div class="row justify-content-center" >
     <div  class="col-sm-9 col-md-6 col-lg-4 col-10 mx-auto ml-auto mr-auto text-center" style="background:rgb(43, 42, 42);margin-top: 80px;">
@@ -15,7 +25,7 @@
     
           <div class="md-form">
             <input type="email" id="materialLoginFormEmail" (keyup)="checkUserExist()" formControlName="username"  class="form-control">
-            <label for="materialLoginFormEmail">Enter Email or Phone Number</label>
+            <label for="materialLoginFormEmail" class="label">Enter Email or Phone Number</label>
           </div>
     
           <mat-form-field *ngIf="pass  == 1" class="example-full-width" >
@@ -33,7 +43,7 @@
           </div>
     
           <button class="project-button w-100 mt-2" mat-raised-button (click)= "login()" *ngIf="pass==1" >Log in</button>
-          <button class="project-button" mat-raised-button *ngIf="pass==0" style="cursor: not-allowed!important;">Login/Signup</button>
+          <button class="project-button-disable" mat-raised-button *ngIf="pass==0" style="cursor: not-allowed!important;">Login/Signup</button>
           <button class="project-button" mat-raised-button   *ngIf="pass==2" (click)= "onSubmitSign()"  type="submit">Get Otp</button>
           <button class="project-button w-100 mt-2" mat-raised-button *ngIf="pass==1" (click)="openXl(codOtp)" >Login with Otp</button>
     
