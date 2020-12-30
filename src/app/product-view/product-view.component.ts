@@ -1,13 +1,7 @@
-import { NgxImageZoomModule } from 'ngx-image-zoom';
-//import { LightboxModule } from "@ngx-gallery/lightbox";
-import { Gallery, GalleryItem, ImageItem, ThumbnailsPosition, ImageSize } from 'ng-gallery';
-import { Lightbox } from 'ng-gallery/lightbox';
-import { map } from 'rxjs/operators';
-
-import { NgxImgZoomService } from "ngx-img-zoom";
 import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
+// import { MatDialog } from "@angular/material";
 import { RoarclubserviceService } from "../roarclubservice.service";
-import {MatSnackBar} from  '@angular/material/snack-bar'
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
 import { CookieService } from "ngx-cookie-service";
@@ -34,15 +28,16 @@ import { Title, Meta } from "@angular/platform-browser";
 // import { Lightbox } from 'ng-gallery/lightbox';
 
 @Component({
-  selector: 'app-product-view',
-  templateUrl: './product-view.component.html',
-  styleUrls: ['./product-view.component.css']
+  selector: "app-product-view",
+  templateUrl: "./product-view.component.html",
+  styleUrls: ["./product-view.component.css"]
 })
 export class ProductViewComponent implements OnInit {
   public product_no = sessionStorage.getItem("pno");
   categories;
-  size_with_color=[]; 
-  estimate_count=0;
+  invoicevalue=0;
+  size_with_color=[];
+  estimate_count=1;
   loader;
   ship_ask=true;
   cart_check=false;
@@ -56,12 +51,13 @@ export class ProductViewComponent implements OnInit {
   percentmain4=0;
   percentmain5=0;
   addresses_pincode;
+  quick_buy='1';
   ratings = 0;
   coloring;
   otpForm: FormGroup;
-   items23=[];
-
-  //items23: GalleryItem[];
+    items23=[];
+  
+  // items23: GalleryItem[];
   sizing;
   ratings_count = 0;
   reviews_count = 0;
@@ -71,7 +67,7 @@ export class ProductViewComponent implements OnInit {
   topCategories;
   product;
   product_category;
-  product_rate;
+  product_rate=[];
   product_tags;
   product_specification;
   product_image;
@@ -82,6 +78,7 @@ export class ProductViewComponent implements OnInit {
   alreadyCart = false;
   alreadyCartStock = false;
   product_groups;
+  product_image1;
   product_groups_color=[];
   product_groups_color_image=[];
   product_groups_size=[];
@@ -92,15 +89,13 @@ export class ProductViewComponent implements OnInit {
   closeResult: string;
   registerForm2: FormGroup;
   imageView;
-  img1;
   imageView1;
+  img1;
   shipping_rate=0;
-  // shipping_rate='0';
   shipping_name=null;
   megaMenu = false;
   previewFlag = sessionStorage.getItem('previewFlag');
   constructor(
-    private ngxImgZoom: NgxImgZoomService,
     private snackbar: MatSnackBar,
     private route: ActivatedRoute,
     private _location: Location,
@@ -112,20 +107,9 @@ export class ProductViewComponent implements OnInit {
     private cookie: CookieService,
     private titleService: Title,
     private meta: Meta,
-    public gallery: Gallery,
-     public lightbox: Lightbox,
-    
-    //public lightbox: LightboxModule
-  )
-   { 
-      this.ngxImgZoom.setZoomBreakPoints([
-    { w: 100, h: 100 },
-    { w: 150, h: 150 },
-    { w: 200, h: 200 },
-    { w: 250, h: 250 },
-    { w: 300, h: 300 }
-     ]);
-}
+    // public gallery: Gallery,
+    // public lightbox: LightboxModule
+  ) {}
   // open(content) {
   //   this.modalService
   //     .open(content, { ariaLabelledBy: "modal-basic-title" })
@@ -155,7 +139,7 @@ export class ProductViewComponent implements OnInit {
   meta_keyword;
   site;
   main;
-  etd="5-6 days";
+  etd;
   wishlist_check=false;
   wishlist_num;
   estimate_self=false;
@@ -226,15 +210,21 @@ ecomtrails = false;
     let mat3 = matches.substring(i + 1, matches.length);
     this.product_no = mat3;
      this.otpForm = this.formBuilder.group({
-      cod: ["1"],
+      paymentmode: ["1"],
       comp_num: sessionStorage.getItem("comp_num_new"),
-      delivery_postcode:[""],
-      weight:[""]
+      delivery_pincode:[""],
+      weight:[""],
+ length:[""],
+ width:[""],
+ height:[""],
+ invoicevalue:[""]
+
     });
 //start 21/08/2020
 this.compSettings();
 this.compSettings2();
 this.compSettings_ratingOption();
+this.compSettings_buyNowOption();
 //end 21/08/2020
 
      // start for add to cart without login
@@ -306,25 +296,25 @@ this.compSettings_ratingOption();
             if(this.previewFlag == '1'){
               if ((sessionStorage.getItem("comp_num_new") == "0") && (this.host_name != "localhost:4209")) {
                   this.router
-                  .navigateByUrl("/RefreshComponent", {
+                  .navigateByUrl("/", {
                     skipLocationChange: true
                   })
-                  .then(() => this.router.navigate(["/Admin/preview/my-cart"]));
+                  .then(() => this.router.navigate(["/Admin/preview/cart"]));
               }else{
                 this.router
-                .navigateByUrl("/RefreshComponent", {
+                .navigateByUrl("/", {
                   skipLocationChange: true
                 })
-                .then(() => this.router.navigate(["/my-cart"]));
+                .then(() => this.router.navigate(["/cart"]));
 
               }
 
             }else{
               this.router
-              .navigateByUrl("/RefreshComponent", {
+              .navigateByUrl("/", {
                 skipLocationChange: true
               })
-              .then(() => this.router.navigate(["/my-cart"]));
+              .then(() => this.router.navigate(["/cart"]));
 
             }
             
@@ -386,7 +376,7 @@ this.compSettings_ratingOption();
   }
   colors(color){
     this.coloring=color;
-  location.reload;
+
     //start 1/09/2020
     //   var index =-1;
     //  if(this.sizing != null){
@@ -425,7 +415,7 @@ this.compSettings_ratingOption();
                 }
                 // if(this.product_groups[x].size=='' || this.product_groups[x].size==null){
                 //    this.size_with_color.push({size:"Not Define"});
-                //  //console.log(this.size_with_color);
+                //  ////console.log(this.size_with_color);
 
                 // }
                 //   else{
@@ -458,9 +448,10 @@ this.compSettings_ratingOption();
        this.sizing=this.product_groups[index].size;
      }
     this.imageView = this.product.image[0].image_link;
+    
     this.img = this.imageView;
-    this.imageView1 = this.product.image[0].image_link;
-    this.img1 = this.imageView1;
+    this.imageView1=this.product_image1[0].image_link;
+    this.img1 = this.imageView1
      this.product_rate = this.product.rates;
 
       this.ratings = this.product_groups[index].ratings;
@@ -510,7 +501,7 @@ this.compSettings_ratingOption();
          index = this.product_groups.findIndex(x => x.size === size);
    
     }
-   //console.log(index);
+   ////console.log(index);
      this.product = this.product_groups[index];
      if(this.product_groups[index].color != this.coloring){
        this.coloring=null;
@@ -520,8 +511,8 @@ this.compSettings_ratingOption();
      }
       this.imageView = this.product.image[0].image_link;
       this.img = this.imageView;
-      this.imageView1 = this.product.image[0].image_link;
-      this.img1 = this.imageView1;
+      this.imageView1 = this.product.image1[0].image_link;
+      this.img1 = this.imageView1
        this.product_rate =this.product.rates;
 
         this.ratings = this.product_groups[index].ratings;
@@ -536,7 +527,7 @@ this.compSettings_ratingOption();
     this.site = this.site.replace("?", "%3F");
      // let a="/product/";
       this.site = encodeURIComponent(this.site);
-  //console.log(this.product.product_no);
+  ////console.log(this.product.product_no);
   this.getProduct2(this.product.product_no);
   }
   getProduct(match) {
@@ -558,6 +549,58 @@ pro['access_token']=sessionStorage.getItem('access_token');
              this.cart_inventory=data['cart_inventory'];
             
            }
+           else{
+    
+var getCookie=this.cookie.get("product_id2");
+var strings = getCookie.replace('%2C',',');
+
+var getCookieQ=this.cookie.get("quantity");
+var stringsQ = getCookieQ.replace('%2C',',');
+// let stringToSplit = "abc def ghi";
+var strings2=strings.split(",");
+var strings2Q=stringsQ.split(",");
+
+// for(let pro=0;pro<this.products.length;pro++){
+// this.products[pro]['s_no']=pro+1;    
+
+     this.count=strings2.length;
+     this.product['cart_check']=false;  
+    
+for(let gg=0;gg<strings2.length;gg++){
+
+
+  strings2[gg] = strings2[gg].replace(/^\s*/, "").replace(/\s*$/, "");
+// myStringWithCommas.split(/\s*,\s*/).forEach(function(myString) {
+// });
+strings2Q[gg] = strings2Q[gg].replace(/^\s*/, "").replace(/\s*$/, "");
+     
+if(strings2[gg] == this.product.product_no){
+
+    this.product['cart_check']=true;
+   
+    this.product['cart_qty']=JSON.parse(strings2Q[gg]);
+    this.product['qty']=JSON.parse(strings2Q[gg]);
+    this.product['qty2']=JSON.parse(strings2Q[gg]);
+  
+    // this.products[pro]['cart_qty']=strings2Q[gg];
+      if(parseInt(strings2Q[gg])>=parseInt(this.product.txn_quantity)){
+        this.product['cart_qty_stock']=true;
+       }
+       else{
+        this.product['cart_qty_stock']=false;
+      }
+  }
+  else{
+   
+  }
+
+// }
+
+
+}
+// }
+
+           }
           if(this.product.color !=null){
             this.coloring=this.product.color;
           }
@@ -566,23 +609,39 @@ pro['access_token']=sessionStorage.getItem('access_token');
           }
           this.product_category = data["product_category"];
           this.product_rate = data["product_rate"];
+          console.log(this.product_rate);
           for(let scount=0;scount<this.product_rate.length;scount++){
             if(this.product_rate[scount].is_rent ==2 || this.product_rate[scount].is_rent=='2'){
-              this.shipping_rate=this.product_rate[scount].rate;
-              console.log(this.shipping_rate);
-              this.shipping_name=this.product_rate[scount].name;
+              this.shipping_rate=parseInt(this.product_rate[scount].rate);
+              this.shipping_name=(this.product_rate[scount].name);
+            }
+          }
+            if(this.product_rate.length>0){
+            if(this.product_rate[0].is_rent ==2 || this.product_rate[0].is_rent=='2'){
+              this.invoicevalue= parseInt(this.product_rate[1].rate)+ (this.shipping_rate);
+          
+            }
+            else{
+                this.invoicevalue=parseInt(this.product_rate[0].rate)+ (this.shipping_rate);
             }
           }
           this.otpForm.get("comp_num").setValue(this.product.comp_num);
        this.otpForm.get("weight").setValue(this.product.final_weight);
+  this.otpForm.get("length").setValue(this.product.length);
+  this.otpForm.get("width").setValue(this.product.breadth);
+  this.otpForm.get("height").setValue(this.product.height);
+  this.otpForm.get("invoicevalue").setValue(  this.invoicevalue);
+
+       //    this.otpForm.get("comp_num").setValue(this.product.comp_num);
+       // this.otpForm.get("weight").setValue(this.product.final_weight);
 //start for estimate time delivery 20/08/2020
 if(this.userC==true){
       this.getAddresses();
 
     }
     else if( this.estimate_self==true){
-      this.otpForm.get("delivery_postcode").setValue('452003');
-//.//console.log(1);
+      this.otpForm.get("delivery_pincode").setValue('452003');
+//.////console.log(1);
          this.estimate_time_delivery();
     }
 //end for estimate time delivery 20/08/2020
@@ -591,35 +650,38 @@ if(this.userC==true){
 
 
           this.product_image = data["product_image"];
-
+          this.product_image1=data["product_image"]
           this.imageView = this.product_image[0].image_link;
-
+          this.imageView1=this.product_image1[0].image_link;
 
           this.img = this.imageView;
 
-          this.imageView1 = this.product_image[0].image_link;
-
-
-          this.img1 = this.imageView1;
+        this.img1=this.imageView1
           
           for(let y=0;y<this.product_image.length;y++){
             this.items23[y]={ src: this.product_image[y].image_link, thumb: this.product_image[y].image_link };
           }
-           this.items23 = this.product_image.map(item => new ImageItem({ src: item.image_link, thumb: item.image_link }));
-          this.items23 = this.product_image.map(
-                        item => ({ src: item.image_link, thumb: item.image_link })
+          for(let y=0;y<this.product_image1.length;y++){
+            this.items23[y]={ src: this.product_image1[y].image_link, thumb: this.product_image1[y].image_link };
+          }
+           // this.items23 = this.product_image.map(item => new ImageItem({ src: item.image_link, thumb: item.image_link }));
+          // this.items23 = this.product_image.map(
+                        // item => ({ src: item.image_link, thumb: item.image_link })
 
-          );
+          // );
 
         /** Lightbox */
 
-        const lightboxRef = this.gallery.ref('lightbox');
-        lightboxRef.setConfig({
-          imageSize: ImageSize.Cover,
-          thumbPosition: ThumbnailsPosition.Bottom
-        });
-       // Load items into the lightbox gallery ref
-       lightboxRef.load(this.items23);
+        // Get a lightbox gallery ref
+        // const lightboxRef = this.gallery.ref('lightbox');
+        // Add custom gallery config to the lightbox (optional)
+        // lightboxRef.setConfig({
+        //   imageSize: ImageSize.Cover,
+        //   thumbPosition: ThumbnailsPosition.Bottom
+        // });
+        // Load items into the lightbox gallery ref
+        //console.log(this.items23);
+        // lightboxRef.load(this.items23);
          
           
 
@@ -631,11 +693,16 @@ if(this.userC==true){
     
 
           this.ratings = data["ratings"];
+          //console.log(this.ratings_count);
           this.ratings_count = data["ratings_count"]; 
+          //console.log(this.ratings);
           this.reviews_count = data["reviews_count"];
+          //console.log(this.reviews_count);
           this.reviews = data["reviews"];
           this.all_ratings = data["all_ratings"];
+          //console.log(this.all_ratings);
           this.percentmain = (this.ratings*this.reviews_count)/100;
+          //console.log(this.percentmain);
          for(let y=0;y<this.all_ratings.length;y++){
            if(this.all_ratings[y].ratings=='1' || this.all_ratings[y].ratings==1){
              this.percentmain1=(this.all_ratings[y].count*100)/this.reviews_count;
@@ -711,7 +778,7 @@ if(this.userC==true){
               // if(this.product_groups_color[0]==this.product_groups[x].color){
                 // if(this.product_groups[x].size=='' || this.product_groups[x].size==null){
                 //    this.size_with_color.push({size:"Not Define"});
-                //  //console.log(this.size_with_color);
+                //  ////console.log(this.size_with_color);
 
                 // }
                 //   else{
@@ -756,14 +823,14 @@ if(this.userC==true){
                 // this.product_groups_color_image[x]=this.product_groups.map(item => item.color_image)
   // .filter((value, index, self) => self.indexOf(value) === index)
  let term =this.product_groups_color[x];
- //console.log(term);
+ ////console.log(term);
 var upperLetter=term.toUpperCase();
         var smallLetter=term.toLowerCase();
         for(let y=0;y<this.product_groups.length;y++){
-          // console.log(this.product_groups[y]);
-          // console.log(this.product_groups[y].image);
-          // console.log(this.product_groups[y].image[0]);
-          // console.log(this.product_groups[y].image[0].small_thumbnail_link);
+          // //console.log(this.product_groups[y]);
+          // //console.log(this.product_groups[y].image);
+          //console.log(this.product_groups[y].image[0]);
+          // //console.log(this.product_groups[y].image[0].small_thumbnail_link);
        
           if(this.product_groups[y].color==term){
             this.product_groups_color_image[x]=this.product_groups[y].image[0].small_thumbnail_link;
@@ -773,9 +840,9 @@ var upperLetter=term.toUpperCase();
      
    // this.product_groups_color_image[x]=this.product_groups.filter(function(tag){
    //     if(tag.color !=null){
-   //       //console.log(tag);
-   //        //console.log(tag.color);
-   //       //console.log(tag.color_image);
+   //       ////console.log(tag);
+   //        ////console.log(tag.color);
+   //       ////console.log(tag.color_image);
    //        return (tag.color.indexOf(upperLetter)>=0 || tag.color.indexOf(smallLetter)>=0);
      
    //    }
@@ -783,10 +850,10 @@ var upperLetter=term.toUpperCase();
    //      return 0;
    //    }
    //  });
-// console.log(this.product_groups_color_image);
+// //console.log(this.product_groups_color_image);
               }
             }
-            //console.log(this.product_groups_color_image);
+            ////console.log(this.product_groups_color_image);
 
 
               // product_groups_color_image
@@ -819,6 +886,66 @@ this.prductAnalysis(this.comp_num_new);
           this.adminservice.similar_product(postData).subscribe(data => {
             if (data["status"] == 1) {
               this.similarPro = data["result"];
+// start for without login
+
+if((sessionStorage.getItem("user_num") == "" ||
+        sessionStorage.getItem("access_token") == "") ||
+      (sessionStorage.getItem("user_num") == null ||
+        sessionStorage.getItem("access_token") == null)){
+  // if(this.cookie.get("product_id2") != null && this.cookie.get("product_id2") != ''){
+   
+var getCookie=this.cookie.get("product_id2");
+var strings = getCookie.replace('%2C',',');
+
+var getCookieQ=this.cookie.get("quantity");
+var stringsQ = getCookieQ.replace('%2C',',');
+// let stringToSplit = "abc def ghi";
+var strings2=strings.split(",");
+var strings2Q=stringsQ.split(",");
+   
+ for(let pro=0;pro<this.similarPro.length;pro++){
+  this.similarPro[pro]['s_no']=pro+1;    
+  
+             this.count=strings2.length;
+             this.similarPro[pro]['cart_check']=false;  
+            
+     for(let gg=0;gg<strings2.length;gg++){
+    
+  
+          strings2[gg] = strings2[gg].replace(/^\s*/, "").replace(/\s*$/, "");
+// myStringWithCommas.split(/\s*,\s*/).forEach(function(myString) {
+// });
+strings2Q[gg] = strings2Q[gg].replace(/^\s*/, "").replace(/\s*$/, "");
+             
+if(strings2[gg] == this.similarPro[pro].product_no){
+        
+            this.similarPro[pro]['cart_check']=true;
+           
+            this.similarPro[pro]['cart_qty']=JSON.parse(strings2Q[gg]);
+            this.similarPro[pro]['qty']=JSON.parse(strings2Q[gg]);
+            this.similarPro[pro]['qty2']=JSON.parse(strings2Q[gg]);
+  
+            // this.products[pro]['cart_qty']=strings2Q[gg];
+              if(parseInt(strings2Q[gg])>=parseInt(this.similarPro[pro].txn_quantity)){
+                this.similarPro[pro]['cart_qty_stock']=true;
+               }
+               else{
+                this.similarPro[pro]['cart_qty_stock']=false;
+              }
+          }
+          else{
+           
+          }
+        
+     }
+
+
+    }
+  // }
+}
+// console.log(this.products);
+      // end for without login
+
             } else if (data["status"] == 0) {
             }
           });
@@ -858,6 +985,56 @@ pro['access_token']=sessionStorage.getItem('access_token');
              this.cart_inventory=data['cart_inventory'];
             
            }
+           else{
+             
+var getCookie=this.cookie.get("product_id2");
+var strings = getCookie.replace('%2C',',');
+
+var getCookieQ=this.cookie.get("quantity");
+var stringsQ = getCookieQ.replace('%2C',',');
+// let stringToSplit = "abc def ghi";
+var strings2=strings.split(",");
+var strings2Q=stringsQ.split(",");
+   
+//  for(let pro=0;pro<this.similarPro.length;pro++){
+  // this.product['s_no']=pro+1;    
+  
+            //  this.count=strings2.length;
+             this.product['cart_check']=false;  
+            
+     for(let gg=0;gg<strings2.length;gg++){
+    
+  
+          strings2[gg] = strings2[gg].replace(/^\s*/, "").replace(/\s*$/, "");
+// myStringWithCommas.split(/\s*,\s*/).forEach(function(myString) {
+// });
+strings2Q[gg] = strings2Q[gg].replace(/^\s*/, "").replace(/\s*$/, "");
+             
+if(strings2[gg] == this.product.product['product_no']){
+        
+            this.product['cart_check']=true;
+           
+            this.product['cart_qty']=JSON.parse(strings2Q[gg]);
+            this.product['qty']=JSON.parse(strings2Q[gg]);
+            this.product['qty2']=JSON.parse(strings2Q[gg]);
+  
+            // this.products[pro]['cart_qty']=strings2Q[gg];
+              if(parseInt(strings2Q[gg])>=parseInt(this.product.txn_quantity)){
+                this.product['cart_qty_stock']=true;
+               }
+               else{
+                this.product['cart_qty_stock']=false;
+              }
+          }
+          else{
+           
+          }
+        
+    //  }
+
+
+    }
+           }
           if(this.product.color !=null){
             this.coloring=this.product.color;
           }
@@ -868,20 +1045,34 @@ pro['access_token']=sessionStorage.getItem('access_token');
           this.product_rate = data["product_rate"];
           for(let scount=0;scount<this.product_rate.length;scount++){
             if(this.product_rate[scount].is_rent ==2 || this.product_rate[scount].is_rent=='2'){
-              this.shipping_rate=this.product_rate[scount].rate;
-              this.shipping_name=this.product_rate[scount].name;
+              this.shipping_rate=parseInt(this.product_rate[scount].rate);
+              this.shipping_name=(this.product_rate[scount].name);
+            }
+          }
+          if(this.product_rate.length>0){
+            if(this.product_rate[0].is_rent ==2 || this.product_rate[0].is_rent=='2'){
+              this.invoicevalue= parseInt(this.product_rate[1].rate)+ (this.shipping_rate);
+          
+            }
+            else{
+                this.invoicevalue=parseInt(this.product_rate[0].rate)+ (this.shipping_rate);
             }
           }
           this.otpForm.get("comp_num").setValue(this.product.comp_num);
        this.otpForm.get("weight").setValue(this.product.final_weight);
+  this.otpForm.get("length").setValue(this.product.length);
+  this.otpForm.get("width").setValue(this.product.breadth);
+  this.otpForm.get("height").setValue(this.product.height);
+  this.otpForm.get("invoicevalue").setValue(  this.invoicevalue);
+
 //start for estimate time delivery 20/08/2020
 if(this.userC==true){
       this.getAddresses();
 
     }
     else if( this.estimate_self==true){
-      this.otpForm.get("delivery_postcode").setValue('452003');
-//.//console.log(1);
+      this.otpForm.get("delivery_pincode").setValue('452003');
+//.////console.log(1);
          this.estimate_time_delivery();
     }
 //end for estimate time delivery 20/08/2020
@@ -894,48 +1085,53 @@ if(this.userC==true){
           this.imageView = this.product_image[0].image_link;
 
 
+          this.img1 = this.imageView1
+          this.imageView1 = this.product_image1[0].image_link;
+
+
           this.img = this.imageView;
-          this.imageView1 = this.product_image[0].image_link;
-
-
-          this.img1 = this.imageView1;
 
         
           for(let y=0;y<this.product_image.length;y++){
             this.items23[y]={ src: this.product_image[y].image_link, thumb: this.product_image[y].image_link };
           }
-          console.log(this.items23);
+          //console.log(this.items23);
           
           
-          this.items23 = this.product_image.map(
-                        item => ({ src: item.image_link, thumb: item.image_link })
+          // this.items23 = this.product_image.map(
+          //               item => ({ src: item.image_link, thumb: item.image_link })
 
-          );
+          // );
 
         /** Lightbox */
 
         // Get a lightbox gallery ref
-       const lightboxRef = this.gallery.ref('lightbox');
-      //  Add custom gallery config to the lightbox (optional)
-        lightboxRef.setConfig({
-          imageSize: ImageSize.Cover,
-          thumbPosition: ThumbnailsPosition.Bottom
-        });
-     //  Load items into the lightbox gallery ref
-       lightboxRef.load(this.items23);
+        // const lightboxRef = this.gallery.ref('lightbox');
+        // Add custom gallery config to the lightbox (optional)
+        // lightboxRef.setConfig({
+        //   imageSize: ImageSize.Cover,
+        //   thumbPosition: ThumbnailsPosition.Bottom
+        // });
+        // Load items into the lightbox gallery ref
+        // lightboxRef.load(this.items23);
          
           
 
           this.ratings = data["ratings"];
+          //console.log(this.ratings_count);
           this.ratings_count = data["ratings_count"]; 
+          //console.log(this.ratings);
           this.reviews_count = data["reviews_count"];
+          //console.log(this.reviews_count);
           this.reviews = data["reviews"];
           // this.all_ratings = data["all_ratings"];
-          // console.log(this.all_ratings);
+          // //console.log(this.all_ratings);
           // this.percentmain = (this.ratings*this.reviews_count)/100;
-          // console.log(this.percentmain);
+          // //console.log(this.percentmain);
          this.all_ratings = data["all_ratings"];
+          //console.log(this.all_ratings);
           this.percentmain = (this.ratings*this.reviews_count)/100;  
+          //console.log(this.percentmain);
          for(let y=0;y<this.all_ratings.length;y++){
            if(this.all_ratings[y].ratings=='1' || this.all_ratings[y].ratings==1){
              this.percentmain1=(this.all_ratings[y].count*100)/this.reviews_count;
@@ -1121,7 +1317,7 @@ count=0;
         //rate_type end
 
         this.cookie.set("product_id2", co);
-
+      }
         //start fetch product
           var quotes = this.cookie.get("product_id2");
 
@@ -1143,17 +1339,36 @@ count=0;
         // this.adminservice.updateCartCount();
         this.adminservice.fethcProductWishlist(postData2).subscribe(data => {
           if (data["status"] == "1") {
-             this.count = data['wishlist'].length;
+            this.count = data['wishlist'].length;
+            //  data['cart'].types='not_login';
+             var carts=data['wishlist'];
+             carts.types='not_login';
+             carts.show=false;
+             carts.net_amt=data['total_net'];
+          
+            // if (data["status"] == "1") {
+            //   this.cart = data["wishlist"].length;
+            // } else {
+            //   this.cart = "0";
+            // }
+               // this.count+=this.count;
+               //console.log(this.count);
+
      this.adminservice.cartCount.next(this.count);
+     this.adminservice.cartShow.next(data['wishlist']);
+    //          this.count = data['wishlist'].length;
+    //  this.adminservice.cartCount.next(this.count);
     this.snackbar.open("Added to Cart successfully", "", {
           duration: 1000
         });
+         this.getProduct(this.product_no);
+          
              // this.adminservice.updateCartCount();
           }
         });
        
        
-      }
+      
     }
     // var detail = product;
     // var postData = {
@@ -1271,10 +1486,20 @@ count=0;
      //          this.count = this.count+1;
      // this.adminservice.cartCount.next(this.count);
    // cart cunt start
-            this.adminservice.fetch_cart_count(postData).subscribe(data => {
+            this.adminservice.fetchCart(postData).subscribe(data => {
               if (data["status"] == "1") {
-                this.count = data['cart_count'];
+                this.count = data['cart'].cart_inventory.length;
+                var carts=data['cart'].cart_inventory;
+                carts.types='login';
+                carts.show=false;
+
+                carts.net_amt=data['cart'].net_amt;
+             
                 this.adminservice.cartCount.next(this.count);
+                this.adminservice.cartShow.next(data['cart'].cart_inventory);
+    
+                // this.count = data['cart_count'];
+                // this.adminservice.cartCount.next(this.count);
               }
             });
             // cart count end
@@ -1392,6 +1617,7 @@ count=0;
       });
     } else {
       this.adminservice.buy = true;
+      sessionStorage.setItem("buy_variable", 'true');
       sessionStorage.setItem("product_no2", postData.product_no);
       sessionStorage.setItem("rate_buy", postData.rate_type);
       let id_object = { product_no: postData.product_no };
@@ -1411,7 +1637,7 @@ count=0;
   //   let slug = this.product.meta_title.replace(/\s/, "-") + "-?" + match;
   //   window.scroll(0, 0);
   //   this.router
-  //     .navigateByUrl("/RefreshComponent", {
+  //     .navigateByUrl("/", {
   //       skipLocationChange: true
   //     })
   //     .then(() => this.router.navigate(["/product", slug]));
@@ -1423,17 +1649,17 @@ count=0;
     window.scroll(0, 0);
     if(this.previewFlag == '1'){
       this.router
-      .navigateByUrl("/RefreshComponent", {
+      .navigateByUrl("/", {
         skipLocationChange: true
       })
-      .then(() => this.router.navigate(["/Admin/preview/product", slug]));
+      .then(() => this.router.navigate(["/Admin/preview/product-view", slug]));
 
     }else{
       this.router
-      .navigateByUrl("/RefreshComponent", {
+      .navigateByUrl("/", {
         skipLocationChange: true
       })
-      .then(() => this.router.navigate(["/product", slug]));
+      .then(() => this.router.navigate(["/product-view", slug]));
 
     }
    
@@ -1468,7 +1694,6 @@ count=0;
       sessionStorage.getItem("user_num") == "" ||
       sessionStorage.getItem("user_num") == null
     ) {
-      
       this.router.navigate(["/login"]);
     } else {
       let post = {
@@ -1570,6 +1795,7 @@ count=0;
       postData.user_num = sessionStorage.getItem("user_num");
 
       this.adminservice.buy = true;
+      sessionStorage.setItem("buy_variable", 'true');
       sessionStorage.setItem("product_no2", postData.product_no);
       sessionStorage.setItem("rate_buy", postData.rate_type);
       let id_object = { product_no: postData.product_no };
@@ -1698,21 +1924,21 @@ if (
     window.scroll(0, 0);
     if(this.previewFlag == '1'){
       this.router
-      .navigateByUrl("/RefreshComponent", {
+      .navigateByUrl("/", {
         skipLocationChange: true
       })
-      .then(() => this.router.navigate(["/Admin/preview/shop", slug]));
+      .then(() => this.router.navigate(["/Admin/preview/category-page", slug]));
 
     }else{
       this.router
-      .navigateByUrl("/RefreshComponent", {
+      .navigateByUrl("/", {
         skipLocationChange: true
       })
-      .then(() => this.router.navigate(["/shop", slug]));
+      .then(() => this.router.navigate(["/category-page", slug]));
 
     }
     // this.router
-    //   .navigateByUrl("/RefreshComponent", {
+    //   .navigateByUrl("/", {
     //     skipLocationChange: true
     //   })
     //   .then(() => this.router.navigate(["/shop", slug]));
@@ -1747,7 +1973,7 @@ getAddresses() {
       this.addresses = data["result"];
       if(this.addresses.length>0){
         this.addresses_pincode=this.addresses[0].pin_code;
-              this.otpForm.get("delivery_postcode").setValue(this.addresses_pincode);
+              this.otpForm.get("delivery_pincode").setValue(this.addresses_pincode);
 
          this.estimate_time_delivery();
       }
@@ -1755,18 +1981,27 @@ getAddresses() {
     });
   }
 estimate_time_delivery(){
+  console.log('etd');
   if(this.estimate_count==1){
     this.estimate_count=0;
+  console.log('etd2');
+
   }
   else{
     this.estimate_count=1;
+  console.log('etd3');
+
   }
   if(this.estimate_self==true){
     this.estimate_count=0;
+  console.log('etd4');
+
   }
   //this.estimate_count=!this.estimate_count;
   if(this.estimate_count==0){
-    if(this.otpForm.controls.delivery_postcode.value==''){
+  console.log('etd5');
+
+    if(this.otpForm.controls.delivery_pincode.value==''){
  let msg="Please enter pincode.";
        this.snackbar.open(msg, "", {
         duration: 3000
@@ -1778,10 +2013,10 @@ estimate_time_delivery(){
       this.etd=data['etd'];
     }
     if(data['status']==0){
-      // let msg="Courier service not available.";
-      // this.snackbar.open(msg, "", {
-      //   duration: 3000
-      // });
+      let msg="Courier service not available.";
+      this.snackbar.open(msg, "", {
+        duration: 3000
+      });
     }
       // this.etd = data["result"];
       // if(this.addresses.length>0){
@@ -1991,6 +2226,15 @@ updateCart3minus(cart_id,cart_inventory_id,rate_type_actual,qty2,qty_stock) {
       
     this.adminservice.deleteCart(postData).subscribe(data => {
       if (data["status"] == "1") {
+         // cart cunt start
+        this.adminservice.fetch_cart_count(postData).subscribe(data => {
+              if (data["status"] == "1") {
+                this.count = data['cart_count'];
+                this.adminservice.cartCount.next(this.count);
+              }
+            });
+            // cart count end
+    
    this.getProduct(this.product_no);
       
         if(this.previewFlag == '1'){
@@ -2008,13 +2252,13 @@ updateCart3minus(cart_id,cart_inventory_id,rate_type_actual,qty2,qty_stock) {
         if(this.previewFlag == '1'){
           if ((sessionStorage.getItem("comp_num_new") == "0") && (this.host_name != "localhost:4209")) {
             this.router
-            .navigateByUrl("/RefreshComponent", {
+            .navigateByUrl("/", {
               skipLocationChange: true
             })
             .then(() => this.router.navigate(["/Admin/preview/login"]));
           }else{
             this.router
-            .navigateByUrl("/RefreshComponent", {
+            .navigateByUrl("/", {
               skipLocationChange: true
             })
             .then(() => this.router.navigate(["/login"]));
@@ -2024,7 +2268,7 @@ updateCart3minus(cart_id,cart_inventory_id,rate_type_actual,qty2,qty_stock) {
 
         }else{
           this.router
-          .navigateByUrl("/RefreshComponent", {
+          .navigateByUrl("/", {
             skipLocationChange: true
           })
           .then(() => this.router.navigate(["/login"]));
@@ -2036,7 +2280,7 @@ updateCart3minus(cart_id,cart_inventory_id,rate_type_actual,qty2,qty_stock) {
             if ((sessionStorage.getItem("comp_num_new") == "0") && (this.host_name != "localhost:4209")) {
  
                 this.router
-                .navigateByUrl("/RefreshComponent", {
+                .navigateByUrl("/", {
                   skipLocationChange: true
                 })
                 .then(() => this.router.navigate(["/Admin/preview/login"]));
@@ -2069,14 +2313,14 @@ updateCart3minus(cart_id,cart_inventory_id,rate_type_actual,qty2,qty_stock) {
             });
             if(this.previewFlag == '1'){
               // this.router
-              // .navigateByUrl("/RefreshComponent", {
+              // .navigateByUrl("/", {
               //   skipLocationChange: true
               // })
               // .then(() => this.router.navigate(["/Admin/preview/wishlist"]));
               
             }else{
               // this.router
-              // .navigateByUrl("/RefreshComponent", {
+              // .navigateByUrl("/", {
               //   skipLocationChange: true
               // })
               // .then(() => this.router.navigate(["/wishlist"]));
@@ -2107,7 +2351,7 @@ updateCart3minus(cart_id,cart_inventory_id,rate_type_actual,qty2,qty_stock) {
         if (data["status"] == 1) {
          let d = data['data'];
          let v = JSON.parse(d.value);
-         if(v== "1"){
+         if(v== "1" || v== 1){
            this.ship_ask=false;
          }
          
@@ -2123,7 +2367,7 @@ updateCart3minus(cart_id,cart_inventory_id,rate_type_actual,qty2,qty_stock) {
       .subscribe(data => {
         if (data["status"] == 1) {
          let d = data['data'];
-         let v = JSON.parse(d.value);
+         let v = d.value;
          if(v== "0"){
            this.rating_option=false;
          }
@@ -2138,6 +2382,26 @@ updateCart3minus(cart_id,cart_inventory_id,rate_type_actual,qty2,qty_stock) {
   }
   
   // end for rating option
+  
+  // start forBuy Now
+  compSettings_buyNowOption() {
+    this.adminservice
+      .fetch_particular_company_registry_with_sno({ comp_num: sessionStorage.getItem("comp_num_new"),s_no:29 })
+      .subscribe(data => {
+        if (data["status"] == 1) {
+         let d = data['data'];
+         let v = d.value;
+        
+           this.quick_buy=v;
+        
+         
+        }
+      });
+  }
+  
+  // end for buy now option
+
+
   compSettings() {
     this.adminservice
       .fetch_particular_company_registry_with_sno({ comp_num: sessionStorage.getItem("comp_num_new"),s_no:6 })
@@ -2149,16 +2413,16 @@ updateCart3minus(cart_id,cart_inventory_id,rate_type_actual,qty2,qty_stock) {
           // if(data['data'].length>0){
           //   for(let k=0;k<data['data'].length;k++){
               // if(data['data'].s_no==6 || data['data'][k].s_no=='6'){
-                if(data['data'].value==0 || data['data'].value=='0' || data['data'].value==2 || data['data'].value=='2'){
+                if(data['data'].value!=3 && data['data'].value!='3' ){
                   this.is_estimate=true;
-                }
-                  if(data['data'].value==2 || data['data'].value=='2'){
+                // }
+                  if( data['data'].value!=0 && data['data'].value!='0'){
                   this.is_national=true;
                 }
-                 if( data['data'].value=='0'){
+                else{
                 this.estimate_self=true;
                 }
-              // }
+              }
             }
          //  }
          // }
@@ -2167,24 +2431,25 @@ updateCart3minus(cart_id,cart_inventory_id,rate_type_actual,qty2,qty_stock) {
 
   //end Priyangee 21/08/2020
 img_preview(){
-  for(let y=0;y<this.product_image.length;y++){
-            this.items23[y]={ src: this.product_image[y].image_link, thumb: this.product_image[y].image_link };
-          }
-          this.items23 = this.product_image.map(
-                        item => ({ src: item.image_link, thumb: item.image_link })
+  // for(let y=0;y<this.product_image.length;y++){
+  //           this.items23[y]={ src: this.product_image[y].image_link, thumb: this.product_image[y].image_link };
+  //         }
+  //         // this.items23 = this.product_image.map(
+  //                       // item => ({ src: item.image_link, thumb: item.image_link })
 
-          );
+  //         // );
 
   //       /** Lightbox */
 
   //       // Get a lightbox gallery ref
-         const lightboxRef = this.gallery.ref('lightbox');
+        // const lightboxRef = this.gallery.ref('lightbox');
   //       // Add custom gallery config to the lightbox (optional)
-         lightboxRef.setConfig({
-          imageSize: ImageSize.Cover,
-          thumbPosition: ThumbnailsPosition.Bottom
-        });
+        // lightboxRef.setConfig({
+        //   imageSize: ImageSize.Cover,
+        //   thumbPosition: ThumbnailsPosition.Bottom
+        // });
         // Load items into the lightbox gallery ref
+        //console.log(this.items23);
         // lightboxRef.load(this.items23);
          
           
@@ -2212,6 +2477,65 @@ addToWishlistWL(product) {
           this.adminservice.similar_product(postData).subscribe(data => {
             if (data["status"] == 1) {
               this.similarPro = data["result"];
+              console.log(this.similarPro);
+              // start without login
+              if(this.userC==false){
+                
+var getCookie=this.cookie.get("product_id2");
+var strings = getCookie.replace('%2C',',');
+
+var getCookieQ=this.cookie.get("quantity");
+var stringsQ = getCookieQ.replace('%2C',',');
+// let stringToSplit = "abc def ghi";
+var strings2=strings.split(",");
+var strings2Q=stringsQ.split(",");
+
+for(let pro=0;pro<this.similarPro.length;pro++){
+// this.products[pro]['s_no']=pro+1;    
+
+     this.count=strings2.length;
+     this.similarPro[pro]['cart_check']=false;  
+    
+for(let gg=0;gg<strings2.length;gg++){
+
+
+  strings2[gg] = strings2[gg].replace(/^\s*/, "").replace(/\s*$/, "");
+// myStringWithCommas.split(/\s*,\s*/).forEach(function(myString) {
+// });
+strings2Q[gg] = strings2Q[gg].replace(/^\s*/, "").replace(/\s*$/, "");
+this.similarPro[pro]['cart_check']=false;
+   
+if(strings2[gg] == this.similarPro[pro].product_no){
+
+    this.similarPro[pro]['cart_check']=true;
+   
+    this.similarPro[pro]['cart_qty']=JSON.parse(strings2Q[gg]);
+    this.similarPro[pro]['qty']=JSON.parse(strings2Q[gg]);
+    this.similarPro[pro]['qty2']=JSON.parse(strings2Q[gg]);
+  
+    // this.products[pro]['cart_qty']=strings2Q[gg];
+      if(parseInt(strings2Q[gg])>=parseInt(this.similarPro[pro].txn_quantity)){
+        this.similarPro[pro]['cart_qty_stock']=true;
+       }
+       else{
+        this.similarPro[pro]['cart_qty_stock']=false;
+      }
+  }
+  else{
+   
+  }
+
+}
+
+console.log(this.similarPro);
+         
+}
+// }
+console.log(this.similarPro);
+         
+              }
+
+              // end without login
             } else if (data["status"] == 0) {
             }
           });
@@ -2292,9 +2616,8 @@ addToWishlistWL(product) {
            
           }
            this.cookie.set('quantity',k);
-         this.snackbar.open("This product already exist in cart,and quantity icreases by 1.", "", {
-                duration: 5000
-              });
+           this.getProduct(this.product_no);
+        this.similar(this.product_no);
         }
         else{
          this.snackbar.open("This product already exist in cart,and quantity reached the limit.", "", {
@@ -2385,10 +2708,17 @@ addToWishlistWL(product) {
         this.adminservice.fethcProductWishlist(postData2).subscribe(data => {
           if (data["status"] == "1") {
              this.count = data['wishlist'].length;
+             var carts=data['wishlist'];
+             carts.types='not_login';
+             carts.show=false;
+           
      this.adminservice.cartCount.next(this.count);
     this.snackbar.open("Added to Cart successfully", "", {
           duration: 1000
         });
+          // this.adminservice.updateCartCount();
+                         this.similar(this.product_no);
+            
              // this.adminservice.updateCartCount();
           }
         });
@@ -2633,6 +2963,7 @@ addToWishlistWL(product) {
       });
     } else {
       this.adminservice.buy = true;
+      sessionStorage.setItem("buy_variable", 'true');
       sessionStorage.setItem("product_no2", postData.product_no);
       sessionStorage.setItem("rate_buy", postData.rate_type);
       let id_object = { product_no: postData.product_no };
@@ -2839,6 +3170,15 @@ updateCart3minusS(cart_id,cart_inventory_id,rate_type_actual,qty2,qty_stock) {
       
     this.adminservice.deleteCart(postData).subscribe(data => {
       if (data["status"] == "1") {
+             // cart cunt start
+        this.adminservice.fetch_cart_count(postData).subscribe(data => {
+              if (data["status"] == "1") {
+                this.count = data['cart_count'];
+                this.adminservice.cartCount.next(this.count);
+              }
+            });
+            // cart count end
+    
    this.similar(this.product_no);
       
         if(this.previewFlag == '1'){
@@ -2856,13 +3196,13 @@ updateCart3minusS(cart_id,cart_inventory_id,rate_type_actual,qty2,qty_stock) {
         if(this.previewFlag == '1'){
           if ((sessionStorage.getItem("comp_num_new") == "0") && (this.host_name != "localhost:4209")) {
             this.router
-            .navigateByUrl("/RefreshComponent", {
+            .navigateByUrl("/", {
               skipLocationChange: true
             })
             .then(() => this.router.navigate(["/Admin/preview/login"]));
           }else{
             this.router
-            .navigateByUrl("/RefreshComponent", {
+            .navigateByUrl("/", {
               skipLocationChange: true
             })
             .then(() => this.router.navigate(["/login"]));
@@ -2872,7 +3212,7 @@ updateCart3minusS(cart_id,cart_inventory_id,rate_type_actual,qty2,qty_stock) {
 
         }else{
           this.router
-          .navigateByUrl("/RefreshComponent", {
+          .navigateByUrl("/", {
             skipLocationChange: true
           })
           .then(() => this.router.navigate(["/login"]));
@@ -2884,7 +3224,7 @@ updateCart3minusS(cart_id,cart_inventory_id,rate_type_actual,qty2,qty_stock) {
             if ((sessionStorage.getItem("comp_num_new") == "0") && (this.host_name != "localhost:4209")) {
  
                 this.router
-                .navigateByUrl("/RefreshComponent", {
+                .navigateByUrl("/", {
                   skipLocationChange: true
                 })
                 .then(() => this.router.navigate(["/Admin/preview/login"]));
@@ -2917,14 +3257,14 @@ updateCart3minusS(cart_id,cart_inventory_id,rate_type_actual,qty2,qty_stock) {
             });
             if(this.previewFlag == '1'){
               // this.router
-              // .navigateByUrl("/RefreshComponent", {
+              // .navigateByUrl("/", {
               //   skipLocationChange: true
               // })
               // .then(() => this.router.navigate(["/Admin/preview/wishlist"]));
               
             }else{
               // this.router
-              // .navigateByUrl("/RefreshComponent", {
+              // .navigateByUrl("/", {
               //   skipLocationChange: true
               // })
               // .then(() => this.router.navigate(["/wishlist"]));
@@ -3001,6 +3341,7 @@ updateCart3minusS(cart_id,cart_inventory_id,rate_type_actual,qty2,qty_stock) {
       postData.user_num = sessionStorage.getItem("user_num");
 
       this.adminservice.buy = true;
+      sessionStorage.setItem("buy_variable", 'true');
       sessionStorage.setItem("product_no2", postData.product_no);
       sessionStorage.setItem("rate_buy", postData.rate_type);
       let id_object = { product_no: postData.product_no };
@@ -3038,6 +3379,7 @@ if (
   prductAnalysis(dd) {
     let pro=this.product_no;
      pro= pro.replace("?marketplace=ECOMTRAILS", "");
+   //console.log(pro);
      this.adminservice
       .insert_product_visit_log({ comp_num: dd,user_num:sessionStorage.getItem("user_num"),product_no:pro})
       .subscribe(data => {
@@ -3052,38 +3394,1174 @@ if (
       });
   }
 
+ // end for product analysis
 
+ //start for qty update without login
 
+updateCart3minusl(qty2,qty_stock,product_no) {
+  // var qty = 1;
+  var qty=parseInt(qty2)-1;
+  if (qty < 1) {
+   this.deleteFromCartWithoutLogin(product_no);
+  }
+    else if (qty >= 1) {
+      // start 
+if(this.cookie.get("product_id2") != null && this.cookie.get("product_id2") != ''){
+      var getCookie=this.cookie.get("product_id2");
+       var strings = getCookie.replace('%2C',',');
 
+       var getCookieQ=this.cookie.get("quantity");
+       var stringsQ = getCookieQ.replace('%2C',',');
+       var strings2=strings.split(",");
+       var strings2Q=stringsQ.split(",");
+       for(let gg=0;gg<strings2.length;gg++){
+            strings2[gg] = strings2[gg].replace(/^\s*/, "").replace(/\s*$/, "");
 
+strings2Q[gg] = strings2Q[gg].replace(/^\s*/, "").replace(/\s*$/, "");
+            if(strings2[gg] == product_no){
+                 //console.log(strings2Q[gg]);
+               strings2Q[gg]= (qty).toString();
+                 //console.log(strings2Q[gg]);
+                 //console.log(strings2[gg]);
 
-public imagePath;
-  imgURL: any;
-  public message: string;
+                  // quants.concat(","+this.qty_set);
+      
+            }
+       }
+    }
+     // if(this.alreadyCart == true){
+       //console.log(strings2);
+    //console.log(strings2Q);
+    var k=null;
+    for (var i = 0; i < strings2Q.length; i++) {
+      //console.log(k);
+      if(k==null){
+         k=strings2Q[i];
+     
+      }
+      else{
+         k=k.concat(","+strings2Q[i]);
+     
+      }
+     
+    }
+      //console.log(k);
+    
+      this.cookie.set('quantity',k);
+      //console.log(this.cookie.get('quantity'));
+       
 
-  enableZoom: Boolean = true;
-  previewImageSrc: any;
-  zoomImageSrc: any;
-
-  
     
 
-  preview(files) {
-    if (files.length === 0) return;
+      //start fetch product
+        var quotes = this.cookie.get("product_id2");
 
-    var mimeType = files[0].type;
-    if (mimeType.match(/image\/*/) == null) {
-      this.message = "Only images are supported.";
-      return;
+      var d = quotes.replace(/%2C/g, ",");
+      var d1 = d.split(",");
+
+      var dn = quotes.replace(/,""/g, "");
+      //start for qty
+       var quotesQ = this.cookie.get("quantity");
+      var dQ = quotesQ.replace(/%2C/g, ",");
+      var d1Q = dQ.split(",");
+
+      var dnQ = quotesQ.replace(/,""/g, "");
+      //en for qty
+      var postData2 = { product_no: "", comp_num: "" };
+      postData2.product_no = dn;
+      postData2['quantity']=dnQ;
+      postData2.comp_num = sessionStorage.getItem("comp_num_new");
+      //console.log(postData2);
+      // end
+   
+
+    this.adminservice.fethcProductWishlist(postData2).subscribe(data => {
+     
+      this.loader = false;
+      if (data["status"] == "1") {
+        this.loader = true;
+        
+     
+         this.snackbar.open("Update Cart Successfully", "", {
+          duration: 3000
+        });
+        this.getProduct(this.product_no);
+        if(this.previewFlag == '1'){
+        
+
+        }else{
+         
+        }
+      } else if (data["status"] == "10") {
+       
+      } else {
+        this.loader = true;
+        this.snackbar.open("This cart is not update..!", "", {
+          duration: 3000
+        });
+       
+      }
+      this.loader = true;
+    });
+  } else {
+    this.loader = true;
+
+    this.snackbar.open("This quantity is not available.", "", {
+      duration: 3000
+    });
+    this.getProduct(this.product_no);
+  }
+}
+updateCart3plusl(qty2,qty_stock,product_no) {
+  // var qty = 1;
+  // this.isLoggedIn = true;
+  var qty=parseInt(qty2)+1;
+  if (qty < 1) {
+   this.deleteFromCartWithoutLogin(product_no);
+  }
+  else if(qty > parseInt(qty_stock)){
+    let msg="Quantity limit exceed.";
+    // let msg="only "+qty_stock+" quantity available.";
+     this.snackbar.open(msg, "", {
+      duration: 3000
+    });
+    this.getProduct(this.product_no);
+  } else if (qty >= 1) {
+    // start 
+if(this.cookie.get("product_id2") != null && this.cookie.get("product_id2") != ''){
+      var getCookie=this.cookie.get("product_id2");
+       var strings = getCookie.replace('%2C',',');
+
+       var getCookieQ=this.cookie.get("quantity");
+       var stringsQ = getCookieQ.replace('%2C',',');
+       var strings2=strings.split(",");
+       var strings2Q=stringsQ.split(",");
+       for(let gg=0;gg<strings2.length;gg++){
+            strings2[gg] = strings2[gg].replace(/^\s*/, "").replace(/\s*$/, "");
+
+strings2Q[gg] = strings2Q[gg].replace(/^\s*/, "").replace(/\s*$/, "");
+            if(strings2[gg] == product_no){
+                 //console.log(strings2Q[gg]);
+               strings2Q[gg]= (qty).toString();
+                 //console.log(strings2Q[gg]);
+                 //console.log(strings2[gg]);
+
+                  // quants.concat(","+this.qty_set);
+      
+            }
+       }
+    }
+     // if(this.alreadyCart == true){
+       //console.log(strings2);
+    //console.log(strings2Q);
+    var k=null;
+    for (var i = 0; i < strings2Q.length; i++) {
+      //console.log(k);
+      if(k==null){
+         k=strings2Q[i];
+     
+      }
+      else{
+         k=k.concat(","+strings2Q[i]);
+     
+      }
+     
+    }
+      //console.log(k);
+    
+      this.cookie.set('quantity',k);
+      //console.log(this.cookie.get('quantity'));
+       
+
+    
+
+      //start fetch product
+        var quotes = this.cookie.get("product_id2");
+
+      var d = quotes.replace(/%2C/g, ",");
+      var d1 = d.split(",");
+
+      var dn = quotes.replace(/,""/g, "");
+      //start for qty
+       var quotesQ = this.cookie.get("quantity");
+      var dQ = quotesQ.replace(/%2C/g, ",");
+      var d1Q = dQ.split(",");
+
+      var dnQ = quotesQ.replace(/,""/g, "");
+      //en for qty
+      var postData2 = { product_no: "", comp_num: "" };
+      postData2.product_no = dn;
+      postData2['quantity']=dnQ;
+      postData2.comp_num = sessionStorage.getItem("comp_num_new");
+      //console.log(postData2);
+      // end
+
+    this.adminservice.fethcProductWishlist(postData2).subscribe(data => {
+      // this.isLoggedOut = false;
+      // this.isLoggedIn = true;
+      this.loader = false;
+      if (data["status"] == "1") {
+        this.loader = true;
+       
+        this.getProduct(this.product_no);  
+          this.snackbar.open("Update Cart Successfully", "", {
+          duration: 3000
+        });
+          // this.ngOnInit();
+        if(this.previewFlag == '1'){
+         
+
+        }else{
+         
+        }
+      } else if (data["status"] == "10") {
+        
+      } else {
+        this.loader = true;
+        this.snackbar.open("This cart is not update..!", "", {
+          duration: 3000
+        });
+        
+      }
+      this.loader = true;
+    });
+  } else {
+    this.loader = true;
+
+    this.snackbar.open("This quantity is not available.", "", {
+      duration: 3000
+    });
+    this.getProduct(this.product_no);
+  }
+}
+
+updateCart3l(qty2,qty_stock,qty,product_no) {
+  // var qty = 1;
+  // this.isLoggedIn = true;
+
+  if (qty < 1) {
+    this.deleteFromCartWithoutLogin(product_no);
+    // this.snackbar.open("Choose Valid quantity.", "", {
+    //   duration: 3000
+    // });
+    // this.ngOnInit();
+  }
+  else if(qty > parseInt(qty_stock)){
+    let msg="Quantity limit exceed.";
+    // let msg="only "+qty_stock+" quantity available.";
+     this.snackbar.open(msg, "", {
+      duration: 3000
+    });
+    this.getProduct(this.product_no);
+  }
+   else if (qty >= 1) {
+     // start 
+if(this.cookie.get("product_id2") != null && this.cookie.get("product_id2") != ''){
+      var getCookie=this.cookie.get("product_id2");
+       var strings = getCookie.replace('%2C',',');
+
+       var getCookieQ=this.cookie.get("quantity");
+       var stringsQ = getCookieQ.replace('%2C',',');
+       var strings2=strings.split(",");
+       var strings2Q=stringsQ.split(",");
+       for(let gg=0;gg<strings2.length;gg++){
+            strings2[gg] = strings2[gg].replace(/^\s*/, "").replace(/\s*$/, "");
+
+strings2Q[gg] = strings2Q[gg].replace(/^\s*/, "").replace(/\s*$/, "");
+            if(strings2[gg] == product_no){
+                 //console.log(strings2Q[gg]);
+               strings2Q[gg]= (qty).toString();
+                 //console.log(strings2Q[gg]);
+                 //console.log(strings2[gg]);
+
+                  // quants.concat(","+this.qty_set);
+      
+            }
+       }
+    }
+     // if(this.alreadyCart == true){
+       //console.log(strings2);
+    //console.log(strings2Q);
+    var k=null;
+    for (var i = 0; i < strings2Q.length; i++) {
+      //console.log(k);
+      if(k==null){
+         k=strings2Q[i];
+     
+      }
+      else{
+         k=k.concat(","+strings2Q[i]);
+     
+      }
+     
+    }
+      //console.log(k);
+    
+      this.cookie.set('quantity',k);
+      //console.log(this.cookie.get('quantity'));
+       
+
+    
+
+      //start fetch product
+        var quotes = this.cookie.get("product_id2");
+
+      var d = quotes.replace(/%2C/g, ",");
+      var d1 = d.split(",");
+
+      var dn = quotes.replace(/,""/g, "");
+      //start for qty
+       var quotesQ = this.cookie.get("quantity");
+      var dQ = quotesQ.replace(/%2C/g, ",");
+      var d1Q = dQ.split(",");
+
+      var dnQ = quotesQ.replace(/,""/g, "");
+      //en for qty
+      var postData2 = { product_no: "", comp_num: "" };
+      postData2.product_no = dn;
+      postData2['quantity']=dnQ;
+      postData2.comp_num = sessionStorage.getItem("comp_num_new");
+      //console.log(postData2);
+      // end
+    this.adminservice.fethcProductWishlist(postData2).subscribe(data => {
+      
+      if (data["status"] == "1") {
+        
+        // this.updateCartCount();
+       this.snackbar.open("Update Cart Successfully", "", {
+          duration: 3000
+        });
+        this.getProduct(this.product_no);
+       
+      } else if (data["status"] == "10") {
+      } else {
+        this.loader = true;
+        this.snackbar.open("This cart is not update..!", "", {
+          duration: 3000
+        });
+      
+      }
+      this.loader = true;
+    });
+  } else {
+    this.loader = true;
+
+    this.snackbar.open("This quantity is not available.", "", {
+      duration: 3000
+    });
+    // this.ngOnInit();
+  }
+}
+
+//end for qty update without login
+deleteFromCartWithoutLogin(product_no){
+// console.log(product_no);
+var res = confirm("Are you sure you want to delete this product from cart.");
+  if (res) { if(this.cookie.get("product_id2") != null && this.cookie.get("product_id2") != ''){
+      var getCookie=this.cookie.get("product_id2");//product cookie string
+       var strings = getCookie.replace('%2C',',');//product cookie string ,,
+
+       var getCookieQ=this.cookie.get("quantity");  //quantity cookie string
+       var stringsQ = getCookieQ.replace('%2C',','); //quantity cookie string ,,
+       // let stringToSplit = "abc def ghi";
+       var strings2=strings.split(",");//product cookie string split
+
+       var strings2Q=stringsQ.split(",");//product cookie string split
+
+       for(let gg=0;gg<strings2.length;gg++){//product loop
+            strings2[gg] = strings2[gg].replace(/^\s*/, "").replace(/\s*$/, "");
+// myStringWithCommas.split(/\s*,\s*/).forEach(function(myString) {
+// });
+strings2Q[gg] = strings2Q[gg].replace(/^\s*/, "").replace(/\s*$/, "");
+
+            if(strings2[gg] == product_no){
+                 
+  strings2.splice(gg, 1);
+  strings2Q.splice(gg, 1);
+                 // strings2Q[gg] =null ;
+            
+            }
+       }
+    }
+       console.log(strings2);
+    console.log(strings2Q);
+    
+    var k=null;
+    var k2=null;
+    for (var i = 0; i < strings2Q.length; i++) {
+      //console.log(k);
+      if(k==null){
+         k=strings2Q[i];
+     
+      }
+      else{
+         k=k.concat(","+strings2Q[i]);
+     
+      }
+
+      if(k2==null){
+         k2=strings2[i];
+     
+      }
+      else{
+         k2=k2.concat(","+strings2[i]);
+     
+      }
+     
+    }
+      console.log(k);
+      console.log(k2);
+    
+      this.cookie.set('quantity',k);
+      this.cookie.set('product_id2',k2);
+      
+     
+
+      //start fetch product
+        var quotes = this.cookie.get("product_id2");
+
+      var d = quotes.replace(/%2C/g, ",");
+      var d1 = d.split(",");
+
+      var dn = quotes.replace(/,""/g, "");
+      //start for qty
+       var quotesQ = this.cookie.get("quantity");
+      var dQ = quotesQ.replace(/%2C/g, ",");
+      var d1Q = dQ.split(",");
+
+      var dnQ = quotesQ.replace(/,""/g, "");
+      //en for qty
+      var postData2 = { product_no: "", comp_num: "" };
+      postData2.product_no = dn;
+      postData2['quantity']=dnQ;
+      postData2.comp_num = sessionStorage.getItem("comp_num_new");
+      console.log(postData2);
+
+this.loader = true;
+ this.snackbar.open("This product is delete from cart Successfully.", "", {
+      duration: 3000
+    });
+      // window.location.reload();
+      this.getProduct(this.product_no);    
+  } 
+
+}
+
+  
+// start for without login
+
+
+
+// start 13/08/2020 Priyangee for update cart
+
+updateCart3W(s_no,product_no,qty,qty_stock,rate_type,method) {
+  // var qty = 1;
+
+  if (qty < 1) {
+    // this.snackbar.open("Choose Valid quantity.", "", {
+    //   duration: 3000
+    // });
+    // this.ngOnInit();
+    this.deleteFromCartFW(product_no);
+  }
+  else if(qty > parseInt(qty_stock)){
+    let msg="Quantity limit exceed.";
+    // let msg="only "+qty_stock+" quantity available.";
+     this.snackbar.open(msg, "", {
+      duration: 3000
+    });
+      this.ngOnInit();
+  }
+   else if (qty >= 1) {
+    let data2 = { s_no: s_no,
+      product_no: product_no,
+  qty:qty,
+  qty_stock:qty_stock,
+    user_num: sessionStorage.getItem("user_num"),
+    comp_num: sessionStorage.getItem("comp_num_new"),
+    access_token: sessionStorage.getItem("access_token")
+  }
+  console.log(data2);
+
+var pro=s_no;
+  
+  var getCookie=this.cookie.get("product_id2");
+  var strings = getCookie.replace('%2C',',');
+  
+  var getCookieQ=this.cookie.get("quantity");
+  var stringsQ = getCookieQ.replace('%2C',',');
+  // let stringToSplit = "abc def ghi";
+  var strings2=strings.split(",");
+  var strings2Q=stringsQ.split(",");
+      
+            this.count=strings2.length;
+  console.log(strings2.length);
+    this.alreadyCart=false;
+    this.alreadyCartStock=false;
+     if(this.cookie.get("product_id2") != null && this.cookie.get("product_id2") != ''){
+       
+                this.count=strings2.length;
+  
+        for(let gg=0;gg<strings2.length;gg++){
+          strings2[gg] = strings2[gg].replace(/^\s*/, "").replace(/\s*$/, "");
+  // myStringWithCommas.split(/\s*,\s*/).forEach(function(myString) {
+  // });
+  strings2Q[gg] = strings2Q[gg].replace(/^\s*/, "").replace(/\s*$/, "");
+            
+  if(strings2[gg] == product_no){
+                  this.alreadyCart=true;
+  if(parseInt(qty)>=parseInt(qty_stock)
+  
+  ){
+                    this.alreadyCartStock=true;
+                    console.log(parseInt(qty_stock));
+                  }
+                  else{
+                    strings2Q[gg]=qty.toString();
+                    // if(method=='new'){
+
+                    // }
+                    // else if(method==)
+                    // this.products[s_no]['cart_qty']=(qty);
+                    // console.log(this.products[s_no]['cart_qty']);
+                    // this.strings2QW[gg]= (parseInt(this.strings2QW[gg])+1).toString();
+                    // this.products[s_no-1][qty_stock]=parseInt(qty_stock)+1;
+                 }
+             }
+        }
+     }
+      if(this.alreadyCart == true){
+        if(this.alreadyCartStock==false){
+     var k=null;
+     for (var i = 0; i < strings2Q.length; i++) {
+       if(k==null){
+          k=strings2Q[i];
+      
+       }
+       else{
+          k=k.concat(","+strings2Q[i]);
+      
+       }
+      
+     }
+       this.cookie.set('quantity',k);
+        this.snackbar.open("This product already exist in cart,and quantity icreases by 1.", "", {
+               duration: 5000
+             });
+         }
+       else{
+        this.snackbar.open("This product already exist in cart,and quantity reached the limit.", "", {
+               duration: 5000
+             });
+       }
+      
+  
+     }
+     else{
+     if (this.cookie.get("product_id2") == null || this.cookie.get("product_id2") == '') {
+       var product_set = this.cookie.set("product_id2", product_no);
+       this.qty_set=this.cookie.set("quantity", '1');
+     } else if (this.cookie.get("product_id2") != null && this.cookie.get("product_id2") != '') {
+       var newId = product_no;
+       var quants="1";
+  var product;
+       if (this.cookie.get("product_id2")) {
+         product = this.cookie.get("product_id2");
+         this.qty_set=this.cookie.get("quantity");
+       } else {
+         product = [];
+       }
+       var co_qty;
+       co_qty=quants.concat(","+this.qty_set);
+        this.cookie.set("quantity",co_qty);
+       var co;
+       co = newId.concat("," + product);
+       //rate_type topPosToStartShowing
+       if (
+         !this.cookie.get("rate_type") ||
+         this.cookie.get("rate_type") == null || this.cookie.get("rate_type")==''
+       ) {
+        
+           var product_set = this.cookie.set(
+             "rate_type",
+            rate_type
+           );
+     
+         // var product_set = this.cookie.set("rate_type", detail.rate[0].rate_type);
+       } else if (this.cookie.get("rate_type") != null && this.cookie.get("rate_type") != '') {
+        
+           var newIdR = rate_type;
+        
+         // var newIdR = detail.rate[0].rate_type;
+         var productR;
+         if (this.cookie.get("rate_type")) {
+           productR = this.cookie.get("rate_type");
+         } else {
+           productR = [];
+         }
+         var coR;
+         coR = newIdR.concat("," + productR);
+  
+         this.cookie.set("rate_type", coR);
+  
+       }
+       //rate_type end
+  
+       this.cookie.set("product_id2", co);
+     }
+       //start fetch product
+         var quotes = this.cookie.get("product_id2");
+  
+       var d = quotes.replace(/%2C/g, ",");
+       var d1 = d.split(",");
+  
+       var dn = quotes.replace(/,""/g, "");
+       //start for qty
+        var quotesQ = this.cookie.get("quantity");
+       var dQ = quotesQ.replace(/%2C/g, ",");
+       var d1Q = dQ.split(",");
+  
+       var dnQ = quotesQ.replace(/,""/g, "");
+       //en for qty
+       var postData2 = { product_no: "", comp_num: "" };
+       postData2.product_no = dn;
+       postData2['quantity']=dnQ;
+       postData2.comp_num = sessionStorage.getItem("comp_num_new");
+       // this.adminservice.updateCartCount();
+       this.adminservice.fethcProductWishlist(postData2).subscribe(data => {
+         if (data["status"] == "1") {
+          
+           this.count = data['wishlist'].length;
+           //  data['cart'].types='not_login';
+            var carts=data['wishlist'];
+            carts.types='not_login';
+            carts.show=false;
+          
+  
+    this.adminservice.cartCount.next(this.count);
+    this.adminservice.cartShow.next(data['wishlist']);
+   
+   this.snackbar.open("Update Cart successfully", "", {
+         duration: 1000
+       });
+       this.similar(this.product_no);
+            // this.adminservice.updateCartCount();
+         }
+       });
+       //end fetch product
+      }
+     
+  
+  
+  
+  
+  
+    // end add update
+    } else {
+  
+      this.snackbar.open("This quantity is not available.", "", {
+        duration: 3000
+      });
+      this.ngOnInit();
+    }
+  }
+  
+  updateCart3minusW(s_no,product_no,qty2,qty_stock,rate_type,method) {
+    // var qty = 1;
+    var qty=parseInt(qty2)-1;
+    if (qty < 1) {
+      // this.snackbar.open("Choose Valid quantity.", "", {
+      //   duration: 3000
+      // });
+      // this.ngOnInit();
+      this.deleteFromCartFW(product_no);
+    }
+      else if (qty >= 1) {
+        let data2 = { s_no: s_no,
+          product_no: product_no,
+      qty:qty,
+      qty_stock:qty_stock,
+        user_num: sessionStorage.getItem("user_num"),
+        comp_num: sessionStorage.getItem("comp_num_new"),
+        access_token: sessionStorage.getItem("access_token")
+      }
+      console.log(data2);
+  
+  
+      
+    // start add update
+    this.alreadyCart=false;
+    this.alreadyCartStock=false;
+     if(this.cookie.get("product_id2") != null && this.cookie.get("product_id2") != ''){
+      var getCookie=this.cookie.get("product_id2");
+      var strings = getCookie.replace('%2C',',');
+  
+      var getCookieQ=this.cookie.get("quantity");
+      var stringsQ = getCookieQ.replace('%2C',',');
+      // let stringToSplit = "abc def ghi";
+      var strings2=strings.split(",");
+      var strings2Q=stringsQ.split(",");
+          
+                this.count=strings2.length;
+  console.log(strings2.length);
+        for(let gg=0;gg<strings2.length;gg++){
+          strings2[gg] = strings2[gg].replace(/^\s*/, "").replace(/\s*$/, "");
+  // myStringWithCommas.split(/\s*,\s*/).forEach(function(myString) {
+  // });
+  strings2Q[gg] = strings2Q[gg].replace(/^\s*/, "").replace(/\s*$/, "");
+             if(strings2[gg] == product_no){
+                  this.alreadyCart=true;
+                
+  if(qty>=parseInt(qty_stock)){
+                    this.alreadyCartStock=true;
+                    console.log(parseInt(qty_stock));
+                  }
+                  else{
+                    strings2Q[gg]=qty.toString();
+                    // // strings2Q[gg]= (parseInt(strings2Q[gg])).toString();
+                    // this.products[s_no]['cart_qty']=(qty);
+                    // console.log(this.products[s_no]['cart_qty']);
+                  
+                 }
+             }
+        }
+     }
+      if(this.alreadyCart == true){
+        if(this.alreadyCartStock==false){
+     var k=null;
+     for (var i = 0; i < strings2Q.length; i++) {
+       if(k==null){
+          k=strings2Q[i];
+      
+       }
+       else{
+          k=k.concat(","+strings2Q[i]);
+      
+       }
+      
+     }
+       this.cookie.set('quantity',k);
+        this.snackbar.open("Update Cart Successfully.", "", {
+               duration: 5000
+             });
+         }
+       else{
+        this.snackbar.open("Quantity reached the limit.", "", {
+               duration: 5000
+             });
+       }
+      
+  
+     }
+     else{
+     if (this.cookie.get("product_id2") == null || this.cookie.get("product_id2") == '') {
+       var product_set = this.cookie.set("product_id2", product_no);
+       this.qty_set=this.cookie.set("quantity", '1');
+     } else if (this.cookie.get("product_id2") != null && this.cookie.get("product_id2") != '') {
+       var newId = product_no;
+       var quants="1";
+  var product;
+       if (this.cookie.get("product_id2")) {
+         product = this.cookie.get("product_id2");
+         this.qty_set=this.cookie.get("quantity");
+       } else {
+         product = [];
+       }
+       var co_qty;
+       co_qty=quants.concat(","+this.qty_set);
+        this.cookie.set("quantity",co_qty);
+       var co;
+       co = newId.concat("," + product);
+       //rate_type topPosToStartShowing
+       if (
+         !this.cookie.get("rate_type") ||
+         this.cookie.get("rate_type") == null || this.cookie.get("rate_type")==''
+       ) {
+        
+           var product_set = this.cookie.set(
+             "rate_type",
+            rate_type
+           );
+     
+         // var product_set = this.cookie.set("rate_type", detail.rate[0].rate_type);
+       } else if (this.cookie.get("rate_type") != null && this.cookie.get("rate_type") != '') {
+        
+           var newIdR = rate_type;
+        
+         // var newIdR = detail.rate[0].rate_type;
+         var productR;
+         if (this.cookie.get("rate_type")) {
+           productR = this.cookie.get("rate_type");
+         } else {
+           productR = [];
+         }
+         var coR;
+         coR = newIdR.concat("," + productR);
+  
+         this.cookie.set("rate_type", coR);
+  
+       }
+       //rate_type end
+  
+       this.cookie.set("product_id2", co);
+     }
+       //start fetch product
+         var quotes = this.cookie.get("product_id2");
+  
+       var d = quotes.replace(/%2C/g, ",");
+       var d1 = d.split(",");
+  
+       var dn = quotes.replace(/,""/g, "");
+       //start for qty
+        var quotesQ = this.cookie.get("quantity");
+       var dQ = quotesQ.replace(/%2C/g, ",");
+       var d1Q = dQ.split(",");
+  
+       var dnQ = quotesQ.replace(/,""/g, "");
+       //en for qty
+       var postData2 = { product_no: "", comp_num: "" };
+       postData2.product_no = dn;
+       postData2['quantity']=dnQ;
+       postData2.comp_num = sessionStorage.getItem("comp_num_new");
+       // this.adminservice.updateCartCount();
+       this.adminservice.fethcProductWishlist(postData2).subscribe(data => {
+         if (data["status"] == "1") {
+          
+           this.count = data['wishlist'].length;
+           //  data['cart'].types='not_login';
+            var carts=data['wishlist'];
+            carts.types='not_login';
+            carts.show=false;
+          
+  
+    this.adminservice.cartCount.next(this.count);
+    this.adminservice.cartShow.next(data['wishlist']);
+   
+   this.snackbar.open("Update Cart successfully", "", {
+         duration: 1000
+       });
+       this.similar(this.product_no);
+            // this.adminservice.updateCartCount();
+         }
+       });
+       //end fetch product
+      }
+  
+  
+  
+  
+         
+      // this.similar(this.product_no);
+  
+     
+    // end add update
+    } else {
+  
+      this.snackbar.open("This quantity is not available.", "", {
+        duration: 3000
+      });
+      this.ngOnInit();
+    }
+  }
+  updateCart3plusW(s_no,product_no,qty2,qty_stock,rate_type,method) {
+    var qty=parseInt(qty2)+1;
+    if (qty < 1) {
+      // this.snackbar.open("Choose Valid quantity.", "", {
+      //   duration: 3000
+      // });
+      // this.ngOnInit();
+      this.deleteFromCartFW(product_no);
+    }
+    else if(qty > parseInt(qty_stock)){
+      let msg="Quantity limit exceed";
+      // let msg="only "+qty_stock+" quantity available.";
+       this.snackbar.open(msg, "", {
+        duration: 3000
+      });
+        this.ngOnInit();
+    } else if (qty >= 1) {
+      let data2 = { s_no: s_no,
+        product_no: product_no,
+    qty:qty,
+    qty_stock:qty_stock,
+      user_num: sessionStorage.getItem("user_num"),
+      comp_num: sessionStorage.getItem("comp_num_new"),
+      access_token: sessionStorage.getItem("access_token")
+    }
+    console.log(data2);
+  
+  
+    // start add update
+    
+  var getCookie=this.cookie.get("product_id2");
+  var strings = getCookie.replace('%2C',',');
+  
+  var getCookieQ=this.cookie.get("quantity");
+  var stringsQ = getCookieQ.replace('%2C',',');
+  // let stringToSplit = "abc def ghi";
+  var strings2=strings.split(",");
+  var strings2Q=stringsQ.split(",");
+      
+            this.count=strings2.length;
+  console.log(strings2.length);
+    this.alreadyCart=false;
+    this.alreadyCartStock=false;
+     if(this.cookie.get("product_id2") != null && this.cookie.get("product_id2") != ''){
+       
+                this.count=strings2.length;
+  
+        for(let gg=0;gg<strings2.length;gg++){
+          strings2[gg] = strings2[gg].replace(/^\s*/, "").replace(/\s*$/, "");
+  // myStringWithCommas.split(/\s*,\s*/).forEach(function(myString) {
+  // });
+  strings2Q[gg] = strings2Q[gg].replace(/^\s*/, "").replace(/\s*$/, "");
+             if(strings2[gg] == product_no){
+            
+                  this.alreadyCart=true;
+  if(parseInt(strings2Q[gg])>=parseInt(qty_stock)){
+                    this.alreadyCartStock=true;
+                    console.log(parseInt(qty_stock));
+                  }
+                  else{
+                    strings2Q[gg]=(qty).toString();
+                    // this.products[s_no]['cart_qty']=(qty);
+                    // console.log(this.products[s_no]['cart_qty']);
+                  
+                    // this.strings2QW[gg]= (parseInt(this.strings2QW[gg])+1).toString();
+                    // this.products[s_no-1][qty_stock]=parseInt(qty_stock)+1;
+                 }
+             }
+        }
+     }
+      if(this.alreadyCart == true){
+        if(this.alreadyCartStock==false){
+     var k=null;
+     for (var i = 0; i < strings2Q.length; i++) {
+       if(k==null){
+          k=strings2Q[i];
+      
+       }
+       else{
+          k=k.concat(","+strings2Q[i]);
+      
+       }
+      
+     }
+       this.cookie.set('quantity',k);
+        this.snackbar.open("Update cart successfully.", "", {
+               duration: 5000
+             });
+         }
+       else{
+        this.snackbar.open("Quantity reached the limit.", "", {
+               duration: 5000
+             });
+       }
+      
+  
+     }
+     else{
+     if (this.cookie.get("product_id2") == null || this.cookie.get("product_id2") == '') {
+       var product_set = this.cookie.set("product_id2", product_no);
+       this.qty_set=this.cookie.set("quantity", '1');
+     } else if (this.cookie.get("product_id2") != null && this.cookie.get("product_id2") != '') {
+       var newId = product_no;
+       var quants="1";
+  var product;
+       if (this.cookie.get("product_id2")) {
+         product = this.cookie.get("product_id2");
+         this.qty_set=this.cookie.get("quantity");
+       } else {
+         product = [];
+       }
+       var co_qty;
+       co_qty=quants.concat(","+this.qty_set);
+        this.cookie.set("quantity",co_qty);
+       var co;
+       co = newId.concat("," + product);
+       //rate_type topPosToStartShowing
+       if (
+         !this.cookie.get("rate_type") ||
+         this.cookie.get("rate_type") == null || this.cookie.get("rate_type")==''
+       ) {
+        
+           var product_set = this.cookie.set(
+             "rate_type",
+            rate_type
+           );
+     
+         // var product_set = this.cookie.set("rate_type", detail.rate[0].rate_type);
+       } else if (this.cookie.get("rate_type") != null && this.cookie.get("rate_type") != '') {
+        
+           var newIdR = rate_type;
+        
+         // var newIdR = detail.rate[0].rate_type;
+         var productR;
+         if (this.cookie.get("rate_type")) {
+           productR = this.cookie.get("rate_type");
+         } else {
+           productR = [];
+         }
+         var coR;
+         coR = newIdR.concat("," + productR);
+  
+         this.cookie.set("rate_type", coR);
+  
+       }
+       //rate_type end
+  
+       this.cookie.set("product_id2", co);
+     }
+       //start fetch product
+         var quotes = this.cookie.get("product_id2");
+  
+       var d = quotes.replace(/%2C/g, ",");
+       var d1 = d.split(",");
+  
+       var dn = quotes.replace(/,""/g, "");
+       //start for qty
+        var quotesQ = this.cookie.get("quantity");
+       var dQ = quotesQ.replace(/%2C/g, ",");
+       var d1Q = dQ.split(",");
+  
+       var dnQ = quotesQ.replace(/,""/g, "");
+       //en for qty
+       var postData2 = { product_no: "", comp_num: "" };
+       postData2.product_no = dn;
+       postData2['quantity']=dnQ;
+       postData2.comp_num = sessionStorage.getItem("comp_num_new");
+       // this.adminservice.updateCartCount();
+       this.adminservice.fethcProductWishlist(postData2).subscribe(data => {
+         if (data["status"] == "1") {
+          
+           this.count = data['wishlist'].length;
+           //  data['cart'].types='not_login';
+            var carts=data['wishlist'];
+            carts.types='not_login';
+            carts.show=false;
+          
+  
+    this.adminservice.cartCount.next(this.count);
+    this.adminservice.cartShow.next(data['wishlist']);
+   
+   this.snackbar.open("Update successfully", "", {
+         duration: 1000
+       });
+       this.similar(this.product_no);
+            // this.adminservice.updateCartCount();
+         }
+       });
+       //end fetch product
+      }
+     
+      // this.similar(this.product_no);
+    // end add update
+   
+    } else {
+  
+      this.snackbar.open("This quantity is not available.", "", {
+        duration: 3000
+      });
+      // this.ngOnInit();
+    }
+  }
+  // end add update
+
+
+
+  deleteFromCartFW(product_no) {
+    // var products = this.resultPro["product_no"];
+    var res = confirm("Are you sure you want to delete this product from cart.");
+      if (res) { if(this.cookie.get("product_id2") != null && this.cookie.get("product_id2") != ''){
+          var getCookie=this.cookie.get("product_id2");//product cookie string
+           var strings = getCookie.replace('%2C',',');//product cookie string ,,
+  
+           var getCookieQ=this.cookie.get("quantity");  //quantity cookie string
+           var stringsQ = getCookieQ.replace('%2C',','); //quantity cookie string ,,
+           // let stringToSplit = "abc def ghi";
+           var strings2=strings.split(",");//product cookie string split
+  
+           var strings2Q=stringsQ.split(",");//product cookie string split
+  
+           for(let gg=0;gg<strings2.length;gg++){//product loop
+                strings2[gg] = strings2[gg].replace(/^\s*/, "").replace(/\s*$/, "");
+  // myStringWithCommas.split(/\s*,\s*/).forEach(function(myString) {
+  // });
+   strings2Q[gg] = strings2Q[gg].replace(/^\s*/, "").replace(/\s*$/, "");
+   
+                if(strings2[gg] == product_no){
+                     
+      strings2.splice(gg, 1);
+      strings2Q.splice(gg, 1);
+                     // strings2Q[gg] =null ;
+                
+                }
+           }
+        }
+           console.log(strings2);
+        console.log(strings2Q);
+        
+        var k=null;
+        var k2=null;
+        for (var i = 0; i < strings2Q.length; i++) {
+          //console.log(k);
+          if(k==null){
+             k=strings2Q[i];
+         
+          }
+          else{
+             k=k.concat(","+strings2Q[i]);
+         
+          }
+  
+          if(k2==null){
+             k2=strings2[i];
+         
+          }
+          else{
+             k2=k2.concat(","+strings2[i]);
+         
+          }
+         
+        }
+          console.log(k);
+          console.log(k2);
+        
+          this.cookie.set('quantity',k);
+          this.cookie.set('product_id2',k2);
+          
+         
+  
+          //start fetch product
+            var quotes = this.cookie.get("product_id2");
+  
+          var d = quotes.replace(/%2C/g, ",");
+          var d1 = d.split(",");
+  
+          var dn = quotes.replace(/,""/g, "");
+          //start for qty
+           var quotesQ = this.cookie.get("quantity");
+          var dQ = quotesQ.replace(/%2C/g, ",");
+          var d1Q = dQ.split(",");
+  
+          var dnQ = quotesQ.replace(/,""/g, "");
+          //en for qty
+          
+        var postData2 = { product_no: "", comp_num: "" };
+        postData2.product_no = dn;
+         postData2['quantity']=dnQ;
+        postData2.comp_num = sessionStorage.getItem("comp_num_new");
+
+        this.adminservice.fethcProductWishlist(postData2).subscribe(data => {
+          // this.loader = false;
+          if (data["status"] == "1") {
+             this.count = data['wishlist'].length;
+                this.adminservice.cartCount.next(this.count);
+          }
+        });
+        this.similar(this.product_no);
+          // this.ngOnInit();
+      }
     }
 
-    var reader = new FileReader();
-    this.imagePath = files;
-    reader.readAsDataURL(files[0]);
-    reader.onload = (_event) => {
-      //this.imgURL = reader.result;
-      this.previewImageSrc = reader.result;
-      this.zoomImageSrc = reader.result;
-    };
-}
 }

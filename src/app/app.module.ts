@@ -42,7 +42,6 @@ import { HashLocationStrategy, LocationStrategy , PathLocationStrategy} from '@a
 import { RegistrationComponent } from './registration/registration.component';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 import { UserloginComponent } from './userlogin/userlogin.component';
-import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 
@@ -117,7 +116,6 @@ import { MemberWalletComponent} from './member-wallet/member-wallet.component';
     AddToCartComponent,
    
     UserloginComponent,
-    CheckoutPageComponent,
    
     ProfilePageComponent,
    

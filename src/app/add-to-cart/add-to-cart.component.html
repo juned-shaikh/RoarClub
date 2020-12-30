@@ -122,23 +122,83 @@
     </div>
 
     <!--Grid row-->
+    <div class="row justify-content-center"><div class="col-md-11 project-heading text-right pt-1">
+      <span class="stepper-for-order text-success"><i class="fas fa-shopping-cart"></i>&nbsp; Your Cart  --------  </span>  <span class="stepper-for-order text-muted"> <i class="fas fa-file-invoice"></i>&nbsp; Order Summary -------- </span>  <span class=" text-muted"> <i class="far fa-credit-card"></i>&nbsp; Payment </span> 
+    </div>
+  </div>
+
     <div class="row justify-content-center">
   
       <!--Grid column-->
-      <div class="col-lg-6 " >
+      <div class="col-lg-7 " >
   
         <!-- Card -->
         <div class="card wish-list mb-3"   >
-          
-          <div class="shadow p-3 card-body" >
+          <div class="card-header m-0 pb-0" style="border-bottom: 1px solid #B89D4E;
+          ">
+           <div class="row m-0 p-0">
+            <h4 class="m-0 p-0 project-heading col-md-5">Cart (<span class="text-success"> {{products.length}}</span> items)</h4>
+
+            <div *ngIf="is_estimate==true" class="col-md-7 m-0 p-0">
+              <form [formGroup]="otpForm" *ngIf="is_national==true" class="">
+                  
+                   <mat-form-field  class="example-full-width ">
+                            <mat-label class="mat-label">Please enter pincode</mat-label>
+                            <input
+                              matInput
+                              autocomplete="off"
+                            type="number"
+                              (keyup)="estim()"
+                              formControlName="delivery_pincode"
+                              id="text1"
+                              onkeypress="return IsNumeric(event);"
+                              ondrop="return false;"
+                              onpaste="return false;"
+                              required
+                            />
+              
+                            
+                            <mat-hint id="error" style=" display: none" class="text-success"
+                              >*put Numeric value </mat-hint
+                            >
+                           
+                          </mat-form-field>
+                      
+              &nbsp;
+                    <button *ngIf="estimate_count==1"
+                          mat-raised-button
+                          class="project-button"
+                          (click)="estimate_time_delivery()"
+                          type="submit"
+                        
+                        >
+                          check
+                        </button>
+                        <button *ngIf="estimate_count==0"
+                          mat-raised-button
+                          class="project-button"
+                          (click)="estimate_time_delivery()"
+                          type="submit"
+                        
+                        >
+                          change
+                        </button>
+                      
+                   
+                  </form>
+                </div>
+           </div>
+
+          </div>
+          <div class="shadow  card-body mycart-scroll " >
   
-            <h5 class="mb-1 project-heading ">Cart (<span class="text-success">{{products.length}}</span> items)</h5>
-  <div class="row border-top pt-1">
-    <div class="col-md-12 mb-1" *ngFor="let pr of products" style="background: rgb(43,42,42); border-radius: 9px;">
-      <div class="row mb-4 " >
+            
+  <div class="row m-0">
+    <div class="col-md-12 " *ngFor="let pr of products; let i = index" style="background: rgb(43,42,42); border-radius: 9px; ">
+      <div class="row mb-2" >
         <div class="col-md-5 col-lg-3 col-xl-3 col-3">
           <div class="view  rounded mb-3 mb-md-0">
-            <img class="img-fluid " style="height: 100px; width: 100%;"
+            <img class="img-fluid " style="height: 120px; width: 100%;"
             src="{{
               pr.product_image.medium_thumbnail_link
             }}"  class="mb-1" (click)="view_product(pr.product.meta_title,pr.product.product_no,pr.product.slug,pr.product.quick_product_check)" alt="Sample">
@@ -149,10 +209,10 @@
           <div>
             <div class="d-flex justify-content-between">
               <div>
-                <h5 class="m-0" style="font-weight: bold;">  {{ pr.product.name }}</h5>
-                <h6 class="m-0">{{ pr.product.subheading }}</h6>
-                <h6 class="m-0" *ngIf="pr.product.size !=null">Size : {{pr.product.size}}</h6>
-                <p class="m-0 text-muted text-uppercase small">Qty - {{pr.quantity}}</p>
+                <h4 class="m-0 project-heading" style="font-weight: bold;">  {{ pr.product.name }}</h4>
+                <h5 class="m-0 project-discription">{{ pr.product.subheading }}</h5>
+                <h6 class="m-0 project-heading" *ngIf="pr.product.size !=null">Size : {{pr.product.size}}</h6>
+                <p class="m-0 project-heading text-muted text-uppercase small">Qty - {{pr.quantity}}</p>
               
               </div>
               <div>
@@ -192,16 +252,31 @@
               </div>
             
             </div>
+            <div *ngFor="let sh of pr.product_rate" class="">
+              <h5 *ngIf="(sh.rate_qty==0 || sh.rate_qty=='0' || sh.rate_qty==null) && ship_ask==true" class="project-heading text-titlecase m-0 font-weight-400 text-success">
+                Free Shipping
+              </h5>
+              <h5 *ngIf="sh.is_rent == '2' && ship_ask==true && sh.rate_qty!=0 && sh.rate_qty!=null && sh.rate_qty!='0'" class=" project-heading m-0 text-titlecase text-success font-weight-400">
+                Shipping Charge : {{sh.rate_qty}}
+              </h5>
+            </div>
+<!-- start 20/08/2020 for estimate delivery -->
+<div class="row" *ngIf="is_estimate==true && etd">
+
+<h6 *ngIf="estimate_self==false" class="mobile-cart-font-size">Delivery by {{pr.etd | date:'longDate'}}</h6>
+<h6 *ngIf="estimate_self==true" class="mobile-cart-font-size">Delivery by {{pr.etd }}</h6>
+</div>
           </div>
         </div>
       </div>
+      <hr *ngIf="i != (products.length-1)" style="border: 1px solid #B89D4E; width: 100%;"/>
     </div>
   </div>
           
-            <hr class="mb-4">
+            <!-- <hr class="m"> -->
           
-            <p class="text-success mb-0"><i class="fas fa-info-circle mr-1"></i> Do not delay the purchase, adding
-              items to your cart does not mean booking them.</p>
+            <!-- <p class="text-success mb-0"><i class="fas fa-info-circle mr-1"></i> Do not delay the purchase, adding
+              items to your cart does not mean booking them.</p> -->
   
           </div>
         </div>
@@ -211,122 +286,118 @@
       <!--Grid column-->
   
       <!--Grid column-->
-      <div class="col-lg-4 d-lg-block d-none d-xl-block" >
-  
-        <!-- Card -->
-        <div class="card mb-3" style="background: rgb(43,42,42);">
-          <div class="card-body " >
-  
-            <h5 class="mb-3 project-heading" style="color: white">Price Details</h5>
-  
-            <ul class="list-group list-group-flush" >
-              <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0" >
-                Total MRP
-                <span>₹{{ total_mrp}}</span>
-              </li>
-            
-              <li class="list-group-item d-flex justify-content-between align-items-center px-0 m-0" *ngIf="total_discount>0 && total_discount>'0'">
-                Discount
-                <span>₹ {{ total_mrp-net_amount}}</span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between m-0 align-items-center px-0 m-0">
-                Price (item {{ products.length }})
-                <span>₹{{net_amount}}</span>
-              </li>
-            
+      <div class="col-lg-4 d-none d-lg-block d-xl-block" style="position: sticky; top: 40px;">
+        <mat-card>
+          <div class="row  project-heading m-0">
+            <h4 class="text-uppercase ml-3 project-heading">price details</h4>&nbsp;&nbsp;
+            (Products {{ products.length}} & Total Qty {{total_entity}})
+          </div>
+         
+          <div *ngIf="total_discount>0 && total_discount>'0'" class="row price-details ">
+            <div class="col-md-8 col-8">
+              <p class="project-heading">Total MRP </p>
+            </div>
+            <div class="col-md-4 col-4">
+              <p class="project-heading">₹{{ total_mrp}}</p>
+            </div>
+          </div>
 
-              <li class="list-group-item d-flex justify-content-between align-items-center px-0 m-0" *ngIf="ship_ask==false">
-                Shipping
-                <span>₹{{ ship_charge }}</span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center px-0 m-0" *ngIf="ship_ask==true">
-                Shipping
-                <span>₹{{ total_shipp }}</span>
+          <div *ngIf="total_discount>0 && total_discount>'0'" class="row price-details">
+            <div class="col-md-8 col-8">
+              <p class="project-heading">Discount </p>
+            </div>
+            <div class="col-md-4 col-4">
+              <p class="project-heading">₹ {{ total_mrp-net_amount}}</p>
+            </div>
+          </div>
+
+          <div class="row price-details">
+            <div class="col-md-8 col-8">
+              <!-- <p>Price (item {{ products.length }})</p> -->
+              <p class="project-heading" >Price (Inclusive of GST)</p>
+            </div>
+            <div class="col-md-4 col-4">
+              <p class="project-heading">₹{{net_amount}}</p>
+            </div>
+          </div>
+
+          <div *ngIf="ship_ask==true" class="row price-details m-0">
+            <div class="col-md-8 col-8">
+              <p class="project-heading">Shipping Charge</p>
+            </div>
+            <div class="col-md-4 col-4">
+              <p class="project-heading" > ₹{{ total_shipp }}</p>
+            </div>
+          </div>
+<!-- 31/08/2020 start -->
+           <div *ngIf="ship_ask==false" class="row price-details border-bottom">
+            <div class="col-md-8 col-8">
+              <p class="project-heading" >Shipping Charge</p>
+            </div>
+            <div class="col-md-4 col-4" >
+              <p class="project-heading"> ₹{{ ship_charge }}</p>
+            </div>
+          </div>
+<!-- 31/08/2020 end -->
+
+          <div class="row mt-2 ">
+            <div class="col-md-8 col-7">
+              <h4 class="project-heading pl-3">Total Amount</h4>
+            </div>
+            <div class="col-md-4 col-5">
+              <h4 class="project-heading"> ₹{{ total_nett}}</h4>
+            </div>
+          </div>
+          <!-- for-qty -->
+          <!-- <div class="row mt-2 mb-2">
+            <div class="col-md-8 col-7">
+              <h6>Total Qty</h6>
+            </div>
+            <div class="col-md-4 col-5">
+              <h6>{{total_entity}} </h6>
+            </div>
+          </div> -->
+          <!-- for qty -->
+          <div *ngIf="(total_mrp-net_amount)>0 && (total_mrp-net_amount)>'0'" class="row border-top pt-3">
+            <div class="col-md-12">
+              <h5 class="text-success project-heading">
+                You Will Save ₹ {{total_mrp-net_amount}} on this purchase 
+              </h5 >
+            </div>
+          </div>
+         
+          <!-- <div class="row border-top pt-3 pr-2 pl-2"> -->
+           
+        </mat-card>
+        <div class="row   pl-3 pr-3">
+          <!-- <button mat-raised-button  routerLink="/home" class="project-button mt-2">
+            Continue Shopping
+          </button> -->
+          <button mat-raised-button (click)="WtoutLoginCheckout()" class="project-button w-100 mt-2">
+            Checkout
+          </button>
+        </div>
+        <div class="row  mt-3 justify-content-end ">
+          <div class="col-md-7 text-left"> 
+            <ul>
+              <li class="text-success">
+              1.  Safe and Secure Payments.
               </li>
              
-              <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-0">
-                
-                  The total amount of
-                  
-               
-                <span><strong>₹{{ total_nett}}</strong></span>
+              <li class="text-success">
+             2.   100% Authentic products.
               </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center px-0" >
-                Total Qty
-                <span>{{total_entity}}</span>
-              </li>
-              <li class="list-group-item d-flex text-success justify-content-between align-items-center px-0" *ngIf="total_discount>0 && total_discount>'0'">
-                You Will Save
-                <span>   ₹ {{total_mrp-net_amount}} on this purchase </span>
-              </li>
-
             </ul>
-  
-            <button type="button" mat-raised-button class="project-button w-100" (click)="WtoutLoginCheckout()">Place Order</button>
-  
-          </div>
-        </div>
-        <!-- Card -->
-  
-        <!-- Card -->
-        <div class="card mb-3" *ngIf="is_national==true">
-          <div class="card-body" >
-  
-            <a class="dark-grey-text d-flex justify-content-between" data-toggle="collapse" href="#collapseExample15"
-              aria-expanded="true" aria-controls="collapseExample15">
-              Check Delivery Status 
-              <span><i class="fas fa-chevron-down pt-1"></i></span>
-            </a>
-  
-            <div class="collapse" id="collapseExample15">
-              <form [formGroup]="otpForm" >
-              <div class="mt-1 justify-content-between row "> 
-                <div class="md-form col-8 md-outline "> 
-                  <input type="text" id="discount-code1" class="form-control font-weight-light"
-                    placeholder="Enter pin code"  (keyup)="estim()"
-                    formControlName="delivery_postcode"
-                    id="text1"
-                    onkeypress="return IsNumeric(event);"
-                    ondrop="return false;"
-                    onpaste="return false;"
-                    required>
-                </div>  
-                <div class="col-4"> <button 
-                mat-raised-button
-                class=""
-                (click)="estimate_time_delivery()"
-                type="submit"
-                
-              >
-                check
-              </button>
-            </div>
-              </div>
-            </form>
+            
             </div>
           </div>
-        </div>
-        <!-- <div class="card mb-3" >
-          <div class="card-body" >
-  
-            <a class="dark-grey-text d-flex justify-content-between" data-toggle="collapse" href="#collapseExample1"
-              aria-expanded="false" aria-controls="collapseExample1">
-              Add a discount code (optional)
-              <span><i class="fas fa-chevron-down pt-1"></i></span>
-            </a>
-  
-            <div class="collapse" id="collapseExample1">
-              <div class="mt-3">
-                <div class="md-form md-outline mb-0">
-                  <input type="text" id="discount-code1" class="form-control font-weight-light"
-                    placeholder="Enter discount code">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-        <!-- Card -->
-  
+  <!-- <div class="row mt-2">
+    <div class="col-md-12 text-right">
+      <h6><i class="fas fa-share"></i> <span routerLink="/home" class="cursor-pointer "> &nbsp;back to shopping </span></h6>
+    </div>
+  </div> -->
+
+
       </div>
       <!--Grid column-->
   
@@ -342,14 +413,18 @@
         <img src="/assets/cart.png"   height="250"/>
         <br />
         <h5 class="project-discription" style="color: wheat;">Your cart is currently empty no product found in your cart</h5>
-        <a routerLink="/" class="project-button" >
+        <button routerLink="/" mat-raised-button class="project-button" >
           Start shopping
-        </a>
+        </button>
 
 
       </div>
     </div> 
     <!--Grid row-->
+    <div class="row justify-content-center"><div class="col-md-10 project-heading text-right pt-1">
+      <span class="stepper-for-order text-success"><i class="fas fa-shopping-cart"></i>&nbsp; Your Cart  --------  </span>  <span class="stepper-for-order text-muted"> <i class="fas fa-file-invoice"></i>&nbsp; Order Summary -------- </span>  <span class=" text-muted"> <i class="far fa-credit-card"></i>&nbsp; Payment </span> 
+    </div>
+  </div>
     <div class="row justify-content-center" *ngIf="isLoginFull">
   
       <!--Grid column-->
@@ -358,18 +433,73 @@
         <!-- Card -->
         <div class="card wish-list mb-3"   >
           
-          <div class="shadow p-3 card-body" >
-  
-            <h5 class="mb-4 project-heading">Cart (<span class="text-success">({{ cart.cart_inventory.length }})</span> items)</h5>
-  
-           <div class="row">
-             <div class="col-md-12 mb-1" style="background: rgb(43,42,42); border-radius: 9px;" *ngFor="let cd of c; let i = index">
-              <div class="row mb-1" >
+          <div class="card-header pb-0 m-0">
+            <div class="row border-bottom mt-0 mb-0 p-0">
+              <div class="col-md-4">
+                <h4 class=" project-heading ">Cart (<span class="text-success"> ({{ cart.cart_inventory.length }})</span> items)</h4>
+              </div>
+                <div *ngIf="is_estimate==true" class="col-md-8">
+                  <div *ngIf="is_national==true" class="pl-2">
+    <form [formGroup]="otpForm" class="d-block">
+      
+       <mat-form-field  class="example-full-width m-0">
+                <mat-label class="mat-label">Please enter pincode</mat-label> 
+                <input
+                  matInput
+                  autocomplete="off"
+                type="number"
+                  (keyup)="estim()"
+                  
+                  formControlName="delivery_pincode"
+                  id="text1"
+                  onkeypress="return IsNumeric(event);"
+                  ondrop="return false;"
+                  onpaste="return false;"
+                  required
+                />
+    <mat-icon matPrefix>location_on</mat-icon>
+                
+                <mat-hint id="error" style=" display: none" class="text-success"
+                  >*put Numeric value </mat-hint
+                >
+               
+              </mat-form-field>
+          &nbsp;
+        <button *ngIf="estimate_count==1" style="position: absolute;"
+              mat-raised-button
+              class="project-button m-0 p-0"
+              (click)="estimate_time_delivery()"
+              type="submit"
+              
+            >
+              check
+            </button>
+            <button *ngIf="estimate_count==0"
+              mat-raised-button style="position: absolute;"
+              class="project-button"
+              (click)="estimate_time_delivery()"
+              type="submit"
+             
+            >
+              change
+            </button>
+        
+      </form>
+    </div>
+    </div>
+            </div>
+
+          </div>
+          <div class="shadow  card-body mt-0 mycart-scroll" >
+
+           <div class="row m-0">
+             <div class="col-md-12 mb-1" style="background: rgb(43,42,42); border-radius: 9px; " *ngFor="let cd of c; let i = index">
+              <div class="row" >
                 <div class="col-md-5 col-lg-3 col-xl-3 col-3">
                   <div class="view  rounded mb-3 mb-md-0"  (click)="view_product(cd.product.meta_title, cd.product.product_no,cd.product.slug,cd.product.quick_product_check)">
                    
-                    <img src="{{cd.product_image.medium_thumbnail_link}}" class=""
-                    style="height: 100px; width: 100%;" />
+                    <img src="{{cd.product_image?.medium_thumbnail_link}}" class=""
+                    style="height: 120px; width: 100%;" />
                   
                   </div>
                 </div>
@@ -377,14 +507,31 @@
                   <div>
                     <div class="d-flex justify-content-between">
                       <div>
-                        <h5 class="project-heading m-0">   {{ cd.product.name }}</h5>
-                        <h6 class="project-discription m-0"> {{ cd.product.subheading }}</h6>
-                        <h6 class="project-discription">Size : {{cd.product.size}}</h6>
-                        <p class="mb-1 text-muted text-uppercase small"><span *ngIf="cd.product.txn_quantity < '1' " class=" font-weight-500 " >
+                        <h4 class="project-heading m-0">   {{ cd.product.name }}</h4>
+                        <h5 class="project-discription m-0"> {{ cd.product.subheading }}</h5>
+                        <h5 class="project-discription m-0">Size : {{cd.product.size}}</h5>
+                        <p class="m-0 text-muted text-uppercase small" *ngIf="cd.product.txn_quantity < '1' "><span  class=" font-weight-500 " >
                           <h6 class="text-danger">Out of Stock </h6>
                         </span></p>
-                        <!-- <p class="mb-2 text-muted text-uppercase small">Color: blue</p> -->
-                        <p class="mb-3 text-muted text-uppercase small" *ngIf="is_estimate==true"> Delivery by {{cd.etd}}</p>
+                      <div class="m-0 p-0" *ngIf="ship_ask==true">
+                        <h5 *ngIf="cd.shipping_amt!=null && cd.shipping_amt!=0 && cd.shipping_amt!='0'" class="m-0 text-titlecase font-weight-400 project-heading">
+                          Shipping Charge : {{cd.shipping_amt}}
+                        </h5>
+
+                        <h5 *ngIf="cd.shipping_amt==null || cd.shipping_amt==0 || cd.shipping_amt=='0'" class="m-0 text-titlecase font-weight-400  project-heading text-success">
+                          Free Shipping
+                        </h5>
+                      </div>
+
+
+
+                       <div class="m-0 p-0" *ngIf="is_estimate==true && etd">
+  <h6 *ngIf="estimate_self==false" class="project-heading m-0">Delivery by {{cd.etd | date:'longDate'}}</h6>
+<h6 *ngIf="estimate_self==true" class="project-heading m-0">Delivery by {{cd.etd }}</h6>       
+</div>
+
+
+
                       </div>
                       <div>
   
@@ -405,7 +552,6 @@
                             </div>
                    
                            
-    
                       
                        
                      </div>
@@ -428,22 +574,24 @@
                             class="fas fa-trash-alt mr-1"></i> Remove item </a>
                         <a href="#!" type="button" *ngIf="rentShow" class="card-link-secondary small text-uppercase" style="cursor: pointer;"  (click)="fetch_cart_specific(cd.cart_id,cd.cart_inventory_id);openXl(content2);"> Update Rate Type </a>
                       </div>
-                      <p class="mb-0"><span><strong> <a  type="button"   (click)="addToWishlist(cd)" style="color: white;" class=" small text-uppercase mr-3"><i
-                        class="fas fa-heart mr-1"></i> Add to wishlist </a>
-                        <a  type="button" *ngIf="cd.product.wishlist_check == true"  (click)="deleteFromWishlist(cd.product.wishlist_num)" style="color: red;" class=" small text-uppercase mr-3"><i
-                          class="fas fa-heart mr-1"></i> Add to wishlist </a>
-                      </strong></span></p>
+              <p>
+                        <a  type="button"  (click)="addToWishlistDl(cd.product_no);deleteFromCartw(cd.cart_inventory_id)"  class=" small text-uppercase mr-3"><i
+                          class="fas fa-heart mr-1"></i> move to wishlist </a>
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
+            
+              <hr *ngIf="i != (cart.cart_inventory.length-1)" style="border: 1px solid #B89D4E; width: 100%;"/>
+            
             </div>
+           
            </div>
             <!-- <hr class="mb-4"> -->
-            <hr *ngIf="i != (cart.cart_inventory.length-1)" />
+           
           
-            <p class="text-success mb-0"><i class="fas fa-info-circle mr-1"></i> Do not delay the purchase, adding
-              items to your cart does not mean booking them.</p>
+          
   
           </div>
         </div>
@@ -541,119 +689,132 @@
       </div>
 
 
-      <div class="col-lg-4 d-none d-lg-block d-xl-block" >
-  
-        <!-- Card -->
-        <div class="card mb-3" >
-          <div class="card-body" >
-  
-            <h5 class="mb-3" style="color: white">Payment Details</h5>
-  
-            <ul class="list-group list-group-flush" >
-              <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0" >
-               <span  *ngIf="cart.cart_inventory.length ==1">Total MRP</span> 
-               <span  *ngIf="cart.cart_inventory.length >= 2">Total MRP (items
-                {{cart.cart_inventory.length}})</span> 
-                <span>₹ {{ cart.total_mrp_amount }}</span>
+      <div class="col-lg-4 d-none d-lg-block d-xl-block">
+
+        <mat-card>
+          <div class="row  project-heading m-0">
+            <h3 class="text-titlecase ml-3 font-weight-600 project-heading m-0">Payment details</h3>&nbsp;&nbsp;
+             (Products {{cart.cart_inventory.length}} & Total Qty {{total_entity}})
+          
+          </div>
+          <div class="row price-details mt-2">
+           </div>
+          <div *ngIf="(cart.total_mrp_amount-cart.inventory_total_amt)>0 && (cart.total_mrp_amount-cart.inventory_total_amt)>'0'" class="row price-details">
+            <div class="col-md-8 col-8 project-heading">
+              <p class="" *ngIf="cart.cart_inventory.length ==1">Total MRP 
+              </p>
+              <p class="" *ngIf="cart.cart_inventory.length >= 2">Total MRP <!-- (items
+                {{cart.cart_inventory.length}}) --></p>
+            </div>
+            <div class="col-md-4 col-4 text-right project-heading">
+              <p>₹ {{ cart.total_mrp_amount }}</p>
+            </div>
+          </div>
+          <div *ngIf="(cart.total_mrp_amount-cart.inventory_total_amt)>0 && (cart.total_mrp_amount-cart.inventory_total_amt)>'0'" class="row  price-details">
+            <div class="col-md-8 col-8 project-heading">
+              <p>Discount </p>
+            </div>
+            <div class="col-md-4 col-4 text-right project-heading">
+              <p>₹ {{ cart.total_mrp_amount-cart.inventory_total_amt }}</p>
+            </div>
+          </div>
+
+          <div  class="row price-details">
+            <div class="col-md-8 col-8 project-heading">
+             <!--  <p>Price (item {{cart.cart_inventory.length}})</p> -->
+              <p>Price (Inclusive of GST)</p>
+            </div>
+            <div class="col-md-4 col-4 text-right project-heading">
+              <p>₹ {{ cart.inventory_total_amt}}</p>
+            </div>
+          </div>
+
+          <div class="row price-details " *ngIf="ship_ask==true">
+            <div class="col-md-8 col-8 project-heading">
+              <p>Shipping Charge</p>
+            </div>
+            <div class="col-md-4 col-4 text-right project-heading">
+              <p>₹ {{ cart.shipping_total_amt }}</p>
+            </div>
+          </div>
+          <!-- 31/08/2020 start -->
+         <div *ngIf="ship_ask==false" class="row price-details ">
+          <div class="col-md-8 col-8 project-heading">
+            <p>Shipping Charge</p>
+          </div>
+          <div class="col-md-4 col-4 text-right project-heading">
+            <p> ₹{{ ship_charge }}</p>
+          </div>
+        </div>
+<!-- 31/08/2020 end -->
+
+
+          <div class="row ">
+            <div class="col-md-8 col-7  project-heading">
+              <h4 class="project-heading ml-3">Total Amount</h4>
+            </div>
+            <div class="col-md-4 col-5 text-right project-heading">
+              <h4 class="project-heading">₹ {{ cart.net_amt }}</h4>
+            </div>
+          </div>
+<!-- for-qty -->
+<!-- <div class="row mt-2 mb-2">
+<div class="col-md-10 col-7">
+<h6>Total Qty </h6>
+</div>
+<div class="col-md-2 col-5">
+<h6> {{total_entity}}</h6>
+</div>
+</div> -->
+<!-- for qty -->
+
+          <div *ngIf="(cart.total_mrp_amount-cart.inventory_total_amt)>0 && (cart.total_mrp_amount-cart.inventory_total_amt)>'0'" class="row border-top pt-3">
+            <div class="col-md-12 text-right">
+              <h4 class="text-success project-heading m-0">
+                You Will Save ₹ {{ cart.total_mrp_amount-cart.inventory_total_amt }}
+              </h4>
+            </div>
+          </div>
+
+        </mat-card>
+        <!-- <div class="row justify-content-end pt-3 pr-3 "> -->
+          <!-- 
+         <div class="row justify-content-end pt-3 pr-3 ">
+          <button mat-raised-button (click)="checkout()" class="order-button w-50 pt-1 pb-1"
+            style="font-size: 17px; letter-spacing: 1px;">
+            Checkout
+          </button>
+        </div> -->
+        <!-- <div class="row  justify-content-end pt-3 pr-3 ">
+         
+        </div> -->
+         <div class="row  ">
+        
+          <button mat-raised-button (click)="checkout()" class="project-button  w-100 ml-3 mr-3"
+            >
+            Checkout
+          </button>
+        </div>
+       <!--  </div> -->
+        <div class="row  mt-3 justify-content-end ">
+          <div class="col-md-7 text-left"> 
+            <ul>
+              <li class="text-success">
+                Safe and Secure Payments.
               </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                Discount
-                <span>₹ {{ cart.total_mrp_amount-cart.inventory_total_amt }}</span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                Price (item {{cart.cart_inventory.length}})
-                <span>₹ {{ cart.inventory_total_amt}}</span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center px-0" *ngIf="ship_ask==true"> 
-                Shipping Charge
-                <span>₹ {{ cart.shipping_total_amt }}</span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center px-0" *ngIf="ship_ask==false">
-                Shipping Charge
-                <span>₹{{ ship_charge }}</span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
-                <div>
-                  <strong >The total amount of</strong>
-                  
-                </div>
-                <span><strong>₹ {{ cart.net_amt }}</strong></span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                Total Qty
-                <span>{{total_entity}}</span>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center px-0">
-                You Will Save 
-                <span>₹ {{ cart.total_mrp_amount-cart.inventory_total_amt }}</span>
+             
+              <li class="text-success">
+                100% Authentic products.
               </li>
             </ul>
-  
-            <button type="button" mat-raised-button  class="project-button w-100" (click)="checkout()">Place Order</button>
-  
-          </div>
-        </div>
-        <!-- Card -->
-  
-        <!-- Card -->
-        <div class="card mb-3" *ngIf="is_national==true">
-          <div class="card-body" >
-  
-            <a class="dark-grey-text d-flex justify-content-between" data-toggle="collapse" href="#collapseExample15"
-              aria-expanded="true" aria-controls="collapseExample15">
-              Check Delivery Status 
-              <span><i class="fas fa-chevron-down pt-1"></i></span>
-            </a>
-  
-            <div class="collapse" id="collapseExample15">
-              <form [formGroup]="otpForm" >
-              <div class="mt-1 justify-content-between row "> 
-                <div class="md-form col-8 md-outline "> 
-                  <input type="text" id="discount-code1" class="form-control font-weight-light"
-                    placeholder="Enter pin code"  (keyup)="estim()"
-                    formControlName="delivery_postcode"
-                    id="text1"
-                    onkeypress="return IsNumeric(event);"
-                    ondrop="return false;"
-                    onpaste="return false;"
-                    required>
-                </div>  
-                <div class="col-4"> <button 
-                mat-raised-button
-                class=""
-                (click)="estimate_time_delivery()"
-                type="submit"
-                
-              >
-                check
-              </button>
-            </div>
-              </div>
-            </form>
+            
             </div>
           </div>
-        </div>
-        <!-- <div class="card mb-3" >
-          <div class="card-body" >
-  
-            <a class="dark-grey-text d-flex justify-content-between" data-toggle="collapse" href="#collapseExample1"
-              aria-expanded="false" aria-controls="collapseExample1">
-              Add a discount code (optional)
-              <span><i class="fas fa-chevron-down pt-1"></i></span>
-            </a>
-  
-            <div class="collapse" id="collapseExample1">
-              <div class="mt-3">
-                <div class="md-form md-outline mb-0">
-                  <input type="text" id="discount-code1" class="form-control font-weight-light"
-                    placeholder="Enter discount code">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-        <!-- Card -->
-  
+  <div class="row mt-2">
+    <!-- <div class="col-md-12 text-right">
+      <h6><i class="fas fa-share"></i> <span routerLink="/home" class="cursor-pointer "> &nbsp;back to shopping </span></h6>
+    </div> -->
+  </div>
       </div>
       <!--Grid column-->
   

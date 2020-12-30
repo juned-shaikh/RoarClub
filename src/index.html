@@ -8,13 +8,22 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link
+   <link
   rel="stylesheet"
   href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
+
+<!-- 
+<link
+rel="stylesheet"
+href="../src/assets/bootstrap-roarclub/css/bootstrap.min.css"
+/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="../src/assets/bootstrap-roarclub/js/bootstrap.min.js"></script> -->
 
   
   <link
@@ -54,12 +63,21 @@
   
   <script> 
     $(document).ready(function() {
-      $("ul li a").click(function() {
-        $(".active1").removeClass("active1");
-        $(this).addClass("active1");
+      $("#sortby #sortbynext span").click(function() {
+        $(".activesort").removeClass("activesort");
+        $(this).addClass("activesort");
       });
     });
   </script>
+
+<script> 
+  $(document).ready(function() {
+    $("ul li a").click(function() {
+      $(".active1").removeClass("active1");
+      $(this).addClass("active1");
+    });
+  });
+</script>
     <script>
       function myFunction() {
         var x = document.getElementById("myInput");

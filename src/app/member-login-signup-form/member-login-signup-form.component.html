@@ -5,7 +5,9 @@
    
     <div class="container-fluid " style="min-height: 50vh;">
       <!-- <div class=" no-pdding login-box"> -->
-          <div class="row no-margin w-100 bklmj justify-content-center mt-4">
+         <div class="row justify-content-center">
+           <div class="col-md-11">
+            <div class="row no-margin w-100 bklmj justify-content-center mt-4">
               <div class="col-lg-4 col-md-4 box-login-with log-det col-10  pl-5 pr-5 pt-2 pb-2 m-5">
                    <div class="text-center">
                   <h2 class="mb-4 login-heading project-heading text-white ">Sign <span class="text-green">IN</span></h2> 
@@ -85,7 +87,7 @@
                       </div> -->
                     <div  class="right-bkij mb-1 mt-3 d-flex">
                           <button [disabled]="!loading"mat-raised-button class="project-button text-white"(click)= "onSubmitOTP()" >Verify</button>
-
+&nbsp;
                           <button [disabled]="!loading" mat-raised-button class="project-button ml-3 text-white"(click)= "onSubmitResendOtp()" >Resend OTP</button>
                         </div>
                       </mat-card-actions>
@@ -104,6 +106,8 @@
               </div>
          
           </div>
+           </div>
+         </div>
       <!-- </div> -->
   </div>
   <!-- </body> -->

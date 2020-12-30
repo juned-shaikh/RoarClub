@@ -6,7 +6,7 @@
         <div class="col-lg-12 pb-2" >
 
 
-             <div *ngIf="wishlist ==null">
+             <div *ngIf="!wishlist">
       <div class="text-center" style="padding: 10% 0;">
         <mat-card-content>
          <h4 class="text-center project-heading">YOUR WISHLIST IS EMPTY</h4>
@@ -24,31 +24,32 @@
         </mat-card-content>
       </div>
     </div>
+    
 
             <div class="row  justify-content-start" *ngIf="wishlist !=null">
-                <div class="col-md-6 " *ngFor = "let pwl of wishlist" >
+                <div class="col-md-12 " *ngFor = "let pwl of wishlist" >
             
          
             <!-- Item-->
-            <div class="cart-item d-md-flex justify-content-between"><span (click)="deleteFromWishlist(pwl.wishlist_num)" class="remove-item" title="delete"><i class="fa fa-times"></i></span>
+            <div class="cart-item d-md-flex justify-content-between"><span (click)="deleteFromWishlist(pwl.wishlist_num)" class="remove-item" title="delete"><i class="fas fa-trash"></i></span>
                 <div class="px-3 my-3">
                     <a class="cart-item-product">
                         <div class="cart-item-product-thumb cursor-pointer" (click)="view_product(pwl.product.meta_title, pwl.product.product_no,pwl.product.slug,pwl.product.quick_product_check)" matTooltip="View Product">
-                          <img src="{{pwl.product_image.image_link}}"  class="img-fluid"  onerror="this.src='assets/no-img.png';" alt="Product">
+                          <img src="{{pwl.product_image?.image_link}}"  class="img-fluid"  onerror="this.src='assets/no-img.png';" alt="Product">
                         
                         </div>
                         <div class="cart-item-product-info row">
                          
                           <div class="col-md-12">  
                             <h4 class="cart-item-product-title project-heading">{{pwl.product.name | titlecase}}</h4>
-                         
+                            <h4 class="cart-item-product-title project-heading">{{pwl.product.subheading | titlecase}}</h4>
                             <h6 class="cart-item-product-title2 project-discription"><span>Model :</span>  {{pwl.product.model}}</h6>
                             <span *ngIf="pwl.product_rate[0].is_rent== '1'" class="for-you">{{pwl.product_rate[0].name}} @  {{pwl.product_rate[0].rate }}  </span>
-                            <span *ngIf="pwl.product_rate[0].is_rent!='2'" class="for-you">Buy @  {{pwl.product_rate[0].rate }}  </span>
-                            <span class="for-you" *ngIf="pwl.product_rate[0].rate !== pwl.product.mrp"><del>MRP  : {{pwl.product.mrp | currency:"₹"}} </del></span>
-                            <span *ngIf="pwl.product_rate[0].is_rent=='2'" class="for-you">Buy @  {{pwl.product_rate[1].rate }} </span>
-                            <h5 *ngIf="pwl.product_rate[0].rate !== pwl.product_rate.mrp" class="font-wieght-bold  for-you text-success">Discount : {{pwl.product_rate[0].discount_percent | number}}%</h5></div>
-                          <div class="col-md-4" >
+                            <span *ngIf="pwl.product_rate[0].is_rent!='2'" class="for-you project-heading">₹ {{pwl.product_rate[0].rate }}  </span> &nbsp;
+                            <span class="for-you " *ngIf="pwl.product_rate[0].rate !== pwl.product.mrp"><del>MRP  : {{pwl.product.mrp | currency:"₹"}} </del></span>
+                            <span *ngIf="pwl.product_rate[0].is_rent=='2'" class="for-you">  {{pwl.product_rate[1].rate }} </span> &nbsp;&nbsp;
+                            <span *ngIf="pwl.product_rate[0].rate !== pwl.product_rate.mrp" class=" for-you text-success"><b> {{pwl.product_rate[0].discount_percent | number}}%  off </b></span></div>
+                          <div class="col-md-4 mt-2" >
                             <button mat-raised-button class="project-button" (click)="addToCart(pwl);addtocartFromWishlist(pwl.wishlist_num)">Add to cart</button>
                            
                           </div>

@@ -87,30 +87,26 @@
      
    <!-- new add 17-11-2020 -->
    <div class="col-md-12 text-center">
-    <h2 class="title" style="font-family: Cinzel Semi Bold;">Shop <span class="border-heading">by</span> Brands</h2>
+    <h2 class="title" style="font-family: Cinzel Semi Bold;">Shop <span class="border-heading">by</span> Category</h2>
   </div>
   <!-- end -->
   
   <!-- brand gallary view by Aman Verma 05-11-2020 -->
-  <div class="row justify-content-start mt-1" style="background-color: #202328;" *ngIf="ecomtrails == true">
-    <div class="col-md-2" *ngFor="let brand of brands | slice:0:6;">
-     
-        <div class=" circular-image-brand" (click)="navigateBrand(brand.name,brand.brand_id)" >
-          <img src="{{brand?.thumbnail_sml_location}}" onerror="this.src='assets/no-img.png';" class="brand-image" style="width: 100%;" height="190px ;">
-        </div>
-    </div>
-  </div>
-  <div class="row justify-content-start mt-1" style="background-color: #202328;" *ngIf="ecomtrails == false">
-    <div class="col-md-2" *ngFor="let brand of brands | slice:0:6;">
-     
-        <div class=" circular-image-brand" (click)="navigateBrand(brand.name,brand.brand_id)" >
-          <img src="{{brand?.thumbnail_sml_location}}" onerror="this.src='assets/no-img.png';" class="brand-image" style="width: 100%;" height="190px ;">
+  <div class="row justify-content-start mt-1" style="background-color: #202328;" >
+    <div class="col-md-2"  *ngFor="let category of categoryresp | slice:0:6">
+    
+        <div class=" circular-image-brand"   (click)="
+        navigateCategory(category.name, category.category_no)
+      " >
+          <img src="{{category?.small_icon_link}}" onerror="this.src='assets/no-img.png';" class="brand-image" style="width: 100%;" height="190px ;">
+       <h6 class="project-heading brand-text text-success cursor-pointer" >{{ category.name }}</h6>
         </div>
     </div>
   </div>
  
-  <div class="row justify-content-end text-right pr-3 mt-1"  *ngIf="brands?.length > 6">
-    <span class="more-brands text-success" routerLink="/our-brand"> see more brands <i class="fas fa-chevron-right"></i></span>
+ 
+  <div class="row justify-content-end text-right pr-3 mt-1"  *ngIf="categoryresp?.length > 6">
+    <span class="more-brands text-success" > see more categories <i class="fas fa-chevron-right"></i></span>
      </div>
 <!-- top selling product by Aman Verma 06-11-2020 -->
   <section class="mt-2">
@@ -143,10 +139,13 @@
         </span>
         </span>
       </div>
-       
+      <div *ngIf="!topSelling">
+<img src="assets/loader.gif">
+      </div> 
+
       <!-- </div> -->
     </div>
-       <div class="row justify-content-start mt-0">
+       <div class="row justify-content-start mt-0" *ngIf="topSelling">
          <div class="col-md-3" *ngFor="let nprd of topSelling">
            <div class="card newproduct_box" id="box-img1">
             <img src="{{ nprd?.gallery?.medium_thumbnail_link }}" id="img1" alt="New Product Image" class="image" (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)">
@@ -297,7 +296,12 @@
     </div>
      
   </div>
-      <div class="row justify-content-start mt-0">
+
+  <div *ngIf="!newproduct" class="text-center justify-content-center">
+    <img src="assets/loader.gif">
+          </div> 
+
+      <div class="row justify-content-start mt-0 " *ngIf="newproduct">
         <div class="col-md-3" *ngFor="let nprd of newproduct">
           <div class="card newproduct_box" id="box-img1">
            <img src="{{ nprd?.gallery?.medium_thumbnail_link }}" id="img1" alt="New Product Image" class="image" (click)="view_product(nprd.meta_title, nprd.product_no,nprd.slug,nprd.quick_product_check)">

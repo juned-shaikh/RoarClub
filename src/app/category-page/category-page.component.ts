@@ -792,6 +792,7 @@ this.ngOnInit();
   setRange(min, max) {
     this.rangeMin = min;
     this.rangeMax = max;
+    this.fetch_product_list(this.category, this.offset);
     this.ngOnInit();
   }
 
@@ -1522,7 +1523,7 @@ updateCart3minus(cart_id,cart_inventory_id,rate_type_actual,qty2,qty_stock) {
     // }
     //end for buy now modify
   }
-   // start for rating optional
+   // start for rating optionalnavigateCategory
   compSettings_ratingOption() {
     this.adminservice
       .fetch_particular_company_registry_with_sno({ comp_num: sessionStorage.getItem("comp_num_new"),s_no:20 })
@@ -1542,9 +1543,7 @@ updateCart3minus(cart_id,cart_inventory_id,rate_type_actual,qty2,qty_stock) {
         }
       });
   }
-  product(){
-
-  }
+ 
   
   // end for rating option
 

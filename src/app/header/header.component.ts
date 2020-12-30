@@ -581,7 +581,11 @@ export class HeaderComponent implements OnInit {
     // let slug = name.replace(/\s/, "-") + "-" + id;
     return slug;
   }
+  hideitem(){
+    this.searchFocus= false;
+  }
   navigateCategory(name, id) {
+   
 
     this.adminService
       .fetch_product_list_check({

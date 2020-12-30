@@ -24,7 +24,7 @@
         (click)="Image(image.image_link)" class="p-0 select-image" 
       >
         <img 
-  src="{{items23[s].thumb}}"
+  src="{{items23[s]?.thumb}}"
           onerror="this.src='assets/no-img.png';"
           alt="Product Image"
           class="select-image"
@@ -60,37 +60,24 @@
 
 
         
-      <div class="row mt-2 p-3">
-        <div class="col-md-4 ">
-          <div class="mat-card" > 
-            <img src="assets/easy.png" height="50" > <br/>
-
-
-          
-           <span class="text-success project-discription">easy and secure payments</span>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="mat-card">
-            <img src="assets/tick.svg" height="50"/>
-             <br/>
-            <span class="text-success project-discription">100% genuine products</span>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="mat-card">
-          
-            <img src="assets/deliverd.png" height="50"/>
-             <br/>
-            <span class="project-discription text-success">free shipping above rs. across india</span>
-          </div>
-        </div>
-      </div>
+    
 
       </div>
 
       <div class="col-md-6" style="color: white;">
-        <div class="row" style="cursor: pointer;margin-left: 16px;" ><small class="text-muted brand-name project-discription col-md-10">{{product?.brand_name}}</small>   <div class="col-lg-2 col-md-2 text-right ">
+        <div class="row" style="cursor: pointer;margin-left: 4px;" >
+          <div class="col-lg-10 col-md-10 d-flex capitalize-h3">
+        <h3 class=" d-flex m-0 project-discription">    <span class="font-weight-400 cursor-pointer" routerLink="/">  Home  </span>
+            <div *ngFor="let pcat of product_category; let i = index" class="font-weight-400 category-click cursor-pointer" title="{{pcat.name}}" (click)="navigateCategory(pcat.name, pcat.category_no)">
+              
+    &nbsp;  > <a  class=""> {{ (pcat.name.length>20)? (pcat.name | slice:0:20)+'...':(pcat.name)  | titlecase }}  </a>
+              
+            </div>
+          </h3>
+          </div>
+          
+          
+          <div class="col-lg-2 col-md-2 text-right ">
           <div class="share-property " matTooltip="share this product">
         
             <i class="fab fa-whatsapp text-success" ></i> <a
@@ -107,7 +94,7 @@
       </div>
         </div></div>
         <h1 class="product-title font-weight-600 pt-1 project-heading" style="margin-left: 16px;">{{ product?.name }}  </h1>    
-        <h5 class=" text-muted text-uppercase project-discription" style="position: relative; top: -12px;margin-left: 16px; font-weight: bold;">{{ product?.subheading }}</h5>
+        <h4 class=" text-muted text-uppercase project-discription mb-0" style="position: relative; top: -12px;margin-left: 16px; font-weight: bold;">{{ product?.subheading }}</h4>
       
         <div *ngIf="ratings != 0 && rating_option==true" class="mb-3 mt-0 pt-0 project-discription pl-3">
           <span *ngIf="ratings != 0" class="badge  text-success pl-3 pr-3 pt-2 pb-2">{{ratings}} <i class="fas fa-star" style="font-size: 10px;"></i></span> &nbsp;
@@ -117,29 +104,29 @@
       <span *ngIf="reviews_count > 2 || reviews_count > '2'" class="text-success">Reviews</span>
       <span *ngIf="reviews_count == 1 || reviews_count == '1'" class="text-success">Review</span> </span></div>
         <div *ngFor="let prates of product_rate" class="d-flex  col-lg-12  ">
-          <div  *ngIf=" prates.is_rent !='2'">
+          <div  *ngIf=" prates.is_rent !='2'" class="mt-2 mb-2">
               <span class="">  
-              <span style="font-size: 34px;">{{prates.rate | currency:'INR'}}</span></span> &nbsp;
-              <span *ngIf="product.mrp>prates.rate" class=" font-weight-500  mb-2">  <del> MRP : {{product.mrp | currency:'INR'}}</del></span> &nbsp;&nbsp;<span *ngIf="product.mrp>prates.rate" class="text-success">{{prates.discount_percent | number:'1.0-0'}} % off</span>  <br/>
+              <span style="font-size: 32px;" class="project-heading">{{prates.rate | currency:'INR'}}</span></span> &nbsp;
+              <span *ngIf="product.mrp>prates.rate" class="  mb-2 " style="font-weight: 500; font-size: 17px; color: #ddd; font-family: sans-serif;" >  <del> MRP : {{product.mrp | currency:'INR'}}</del></span> &nbsp;&nbsp;<span *ngIf="product.mrp>prates.rate" class="text-success" style="font-weight: 600; font-size: 17px;">{{prates.discount_percent | number:'1.0-0'}} % off</span>  <br/>
           </div>
           </div>
        
-       <div class="row">
+       <!-- <div class="row">
          <div class="col-md-12 pl-4">
            <h4 style="margin-left: 16px; " class="project-discription">
          <span class="project-heading">  Delivery  </span>    by {{etd}}
            </h4>
          </div>
-       </div>
-<div class="row" >
-  <div class="col-md-12 " *ngIf="product_groups_color.length > 1">
+       </div> -->
+<div class="row mt-3" *ngIf="product_groups_color.length > 1">
+  <div class="col-md-12 " >
     <div *ngIf="product_groups_color.length > 0" class=" row pl-4" style="cursor: pointer;">
-      <span class="font-weight-600 ">&nbsp;&nbsp; Color : &nbsp;&nbsp;&nbsp;&nbsp;</span>  <br/> <div class="ml-2"  *ngFor="let color of product_groups_color;let count=index"><div class= " cursor-pointer " style="display: inline-block;" *ngIf="color != '' && color != null">
+      <span class="font-weight-600 project-heading mt-2">&nbsp;&nbsp; Color : &nbsp;&nbsp;&nbsp;&nbsp;</span>  <br/> <div class="ml-2"  *ngFor="let color of product_groups_color;let count=index"><div class= " cursor-pointer " style="display: inline-block;" *ngIf="color != '' && color != null">
 
 
         <div *ngIf="coloring == color"  (click)="colors(color)"  class="text-center">
 <img     src="{{ product_groups_color_image[count] }}"
-          class="img-fluid color-img-hover " style="height: 80px;width: 70px; border: 2px solid white; padding: 1px;" /> <br/>
+          class="img-fluid color-img-hover " style="height: 80px;width: 70px; background: white; border: 2px solid #ac6522; padding: 1px;" /> <br/>
 
 
         <span class=" color-box  ">{{color}}</span>
@@ -147,7 +134,7 @@
       
         <div *ngIf="coloring != color" (click)="colors(color)"  class="text-center" >
 <img    src="{{ product_groups_color_image[count] }}"
-          class="img-fluid color-img-hover " style="height: 80px;width: 70px; "  /> <br/>
+          class="img-fluid color-img-hover " style="height: 80px;width: 70px; background: white;"  /> <br/>
 
 
           <span class="color-box">{{color}}</span>
@@ -156,55 +143,120 @@
         
       </div>
   </div>
-  <div class="col-md-12 mt-3 pl-5" *ngIf="product_groups_size.length > 0">
-    <div *ngIf="product_groups_size.length > 0" class="">
-      <span class="font-weight-600">Size :</span> 
+</div>
+  <div class="row mt-3" *ngIf="product_groups_size.length > 1">
+  <div class="col-md-12 mt-4 pl-5" >
+    <div  class="">
+      <span class="font-weight-600 project-heading" style="font-size: 15px; ">Size :</span> 
       
       <ul class="" style="display: inline-block; cursor: pointer;" *ngFor="let size of product_groups_size"><li class=" cursor-pointer" style="display: inline-block;" *ngIf="size != '' && size != null">
         
-        <div *ngIf="sizing == size"  (click)="sizes(size)"  class=""><span class="post-size p-2"  (click)="sizes(size)">{{size}}</span></div>
+        <div *ngIf="sizing == size"  (click)="sizes(size)"  class="size-of-size"><div class="post-size p-2"  (click)="sizes(size)">{{size}}</div></div>
 
-        <div *ngIf="sizing != size" (click)="sizes(size)" class=""><span (click)="sizes(size)" class="pre-size p-2">{{size}}</span></div>
+        <div *ngIf="sizing != size" (click)="sizes(size)" class=""><div (click)="sizes(size)" class="pre-size p-2">{{size}}</div></div>
       </li></ul>
       </div>
   </div>
 </div>
-  <div class="row mb-3">
-    <div class="col-md-8 pl-4 project-discription">
-   
-      <span *ngIf="shipping_name!=null && ship_ask && (shipping_rate==null || shipping_rate==0)" class="mb-1 text-success" >  
-        {{shipping_name}}  : Free Shipping
-              <div *ngIf="shipping_rate!='0' && shipping_rate!=0">₹ {{shipping_rate}}</div>
 
-
-      </span> 
-<span *ngIf="shipping_name!=null && ship_ask && (shipping_rate!=null && shipping_rate!=0)" class="mb-1 text-success " >  
-        {{shipping_name}}  : 
-             ₹ {{shipping_rate}}
-      </span> 
-    </div>
-  </div>
    
         
 
 
-        <div class="row mt-1">
-          <div class="col-md-8 d-flex">
-            
-         <button type="button" mat-raised-button *ngIf="userC == true  && product.txn_quantity > '0'" (click)="rates(product);" class=" w-100  project-button" >Buy now</button>
+
+<!-- start 20/08/2020 for estimate delivery -->
+<div *ngIf="is_estimate==true">
+<form *ngIf="is_national==true" [formGroup]="otpForm">
+
+  <div class="row mt-3">
+    <!-- <div class="col-md-2 ml-2">
+      <h4 class="project-heading mt-3 pl-1">Delivery</h4>
+    </div> -->
+    <div class="col-md-8 ml-2">
+      <mat-form-field  class="example-full-width mt-1">
+        <mat-label class="mat-label" style="font-size: 11px;"> enter pincode to know estimate delivery time</mat-label>
+        <input
+          matInput
+          autocomplete="off"
+        type="number"
+          (keyup)="estim()"
+          formControlName="delivery_pincode"
+          id="text1"
+          onkeypress="return IsNumeric(event);"
+          ondrop="return false;"
+          onpaste="return false;"
+          required
+        />
+    <mat-icon matPrefix>location_on</mat-icon>
+        
+        <mat-hint id="error" style=" display: none" class="text-success"
+          >*put Numeric value </mat-hint
+        >
+       
+      </mat-form-field>
+    
+    <button *ngIf="estimate_count==1"
+      mat-raised-button
+      class="project-button"
+      (click)="estimate_time_delivery()"
+      type="submit"
+      
+    >
+      check
+    </button>
+    <button *ngIf="estimate_count==0"
+      mat-raised-button
+      (click)="estimate_time_delivery()"
+      type="submit"
+      class="project-button"
+    >
+      change
+    </button>
+    </div>
+  </div>
+
+
+</form>
+<h6 *ngIf="estimate_self==true && etd" class="text-success project-heading">Delivery by {{etd}}</h6>
+<h6 *ngIf="estimate_self==false && etd" class="text-success project-heading">Delivery by {{etd  | date:'longDate'}}</h6>
+</div>
+
+<div class="ml-3 mt-3">
   
-         <button type="button" mat-raised-button *ngIf="userC == true && product.txn_quantity < '1'" style="cursor: not-allowed;"  class=" w-100 project-button-disable">Buy now</button>
-            <button type="button" mat-raised-button *ngIf="userC == false  && product.txn_quantity > '0'" (click)="rates(product);" class="w-100 project-button" >Buy now</button>
-            <button type="button" mat-raised-button *ngIf="userC == false && product.txn_quantity < '1'" style="cursor:not-allowed;"  class="w-100 project-button-disable">Buy now</button>
-           <button type="button" mat-raised-button  class="project-button w-100" *ngIf="userC==false  && product.txn_quantity > '0'"  (click)="addToCart(product)" ><i
-               class="fas fa-shopping-cart pr-2 project-heading "> </i>&nbsp;Add to cart</button> 
-               <button type="button" mat-raised-button class="project-button-disable w-100 ml-2" *ngIf="userC==false &&  product.txn_quantity < '1'" style="cursor: not-allowed;"><i
-                 class="fas fa-shopping-cart pr-2 project-heading "> </i>&nbsp;Add to cart</button> 
+  <span *ngIf="shipping_name!=null && ship_ask && (shipping_rate==null || shipping_rate==0)" class="mb-1 text-success project-heading" >  
+    {{shipping_name}}  : Free Shipping
+          <div *ngIf="shipping_rate!='0' && shipping_rate!=0">₹ {{shipping_rate}}</div>
+
+
+  </span> 
+<span *ngIf="shipping_name!=null && ship_ask && (shipping_rate!=null && shipping_rate!=0)" class="mb-1 text-success project-heading" >  
+    {{shipping_name}}  : 
+         ₹ {{shipping_rate}}
+  </span> 
+</div>
+
+
+        <div class="row mt-4">
+          <div class="col-md-5 ml-2">
+            
+            <button type="button" mat-raised-button *ngIf="userC == true  && product?.txn_quantity > '0'" (click)="rates(product);" class=" w-100  project-button-2" ><i class="fa fa-bolt "></i> Buy now</button>
+  
+            <button type="button" mat-raised-button *ngIf="userC == true && product?.txn_quantity < '1'" style="cursor: not-allowed;"  class=" w-100 project-button-disable"><i class="fa fa-bolt text-white"></i> Buy now</button>
+               <button type="button" mat-raised-button *ngIf="userC == false  && product?.txn_quantity > '0'" (click)="rates(product);" class="w-100 project-button-2" ><i class="fa fa-bolt "></i> Buy now</button>
+               <button type="button" mat-raised-button *ngIf="userC == false && product?.txn_quantity < '1'" style="cursor:not-allowed;"  class="w-100 project-button-disable"><i class="fa fa-bolt text-white"></i> Buy now</button>
+          </div>
+          <div class="col-md-5  "> 
+          
+        
+           <button type="button" mat-raised-button  class="project-button w-100 project-heading" *ngIf="userC==false  && product?.txn_quantity > '0'"  (click)="addToCart(product)" ><i
+               class="fas fa-shopping-cart   text-white"> </i>&nbsp;Add to cart</button> 
+               <button type="button" mat-raised-button class="project-button-disable w-100 " *ngIf="userC==false &&  product?.txn_quantity < '1'" style="cursor: not-allowed;"><i
+                 class="fas fa-shopping-cart  project-heading "> </i>&nbsp;Add to cart</button> 
 
                  <span class="d-flex update-button ml-2" *ngIf="cart_check == true">
                   <span *ngIf="cart_inventory.qty > 1 || cart_inventory.qty > '1'" class=" updateCart3minus button-update  mr-1 p-1"
                     title="decrease"
-                    (click)="updateCart3minus(cart_inventory.cart_id,cart_inventory.cart_inventory_id,cart_inventory.rate_type,cart_inventory.qty,product.txn_quantity);">-
+                    (click)="updateCart3minus(cart_inventory.cart_id,cart_inventory.cart_inventory_id,cart_inventory.rate_type,cart_inventory.qty,product?.txn_quantity);">-
                   </span>
   
                   <span *ngIf="cart_inventory.qty == 1 || cart_inventory.qty == '1'" class="wNrY5O updateCart3minus button-update  ml-1" (click)="deleteFromCartF(cart_inventory.cart_inventory_id)"
@@ -213,51 +265,50 @@
   &nbsp;
                   <input class=" form-control text-center box-update mt-0" type="number" matInput style="width: 40px;"
                     placeholder="Quantity" value="{{cart_inventory.qty}}" required min="1"
-                    (change)="updateCart3(cart_inventory.cart_id,cart_inventory.cart_inventory_id,cart_inventory.rate_type,$event.target.value,product.txn_quantity)"
-                    (keyup)="updateCart3(cart_inventory.cart_id,cart_inventory.cart_inventory_id,cart_inventory.rate_type,$event.target.value,product.txn_quantity)">
-                  <span *ngIf="cart_inventory.qty<product.txn_quantity" class=" ml-1 mt-1 wNrY5O updateCart3minus button-update text-center" title="increase"
-                    (click)="updateCart3plus(cart_inventory.cart_id,cart_inventory.cart_inventory_id,cart_inventory.rate_type,cart_inventory.qty,product.txn_quantity);">+
+                    (change)="updateCart3(cart_inventory.cart_id,cart_inventory.cart_inventory_id,cart_inventory.rate_type,$event.target.value,product?.txn_quantity)"
+                    (keyup)="updateCart3(cart_inventory.cart_id,cart_inventory.cart_inventory_id,cart_inventory.rate_type,$event.target.value,product?.txn_quantity)">
+                  <span *ngIf="cart_inventory.qty<product?.txn_quantity" class=" ml-1 mt-1 wNrY5O updateCart3minus button-update text-center" title="increase"
+                    (click)="updateCart3plus(cart_inventory.cart_id,cart_inventory.cart_inventory_id,cart_inventory.rate_type,cart_inventory.qty,product?.txn_quantity);">+
               </span>
-        <span *ngIf="cart_inventory.qty >= product.txn_quantity" class=" ml-1 mt-1 updateCart3minus wNrY5O text-center button-update" title="limit reached" [disabled]=true
+        <span *ngIf="cart_inventory.qty >= product?.txn_quantity" class=" ml-1 mt-1 updateCart3minus wNrY5O text-center button-update" title="limit reached" [disabled]=true
           >+
   
         </span>
   
       </span>
 
-                 <button type="button" *ngIf="cart_check == false && userC==true && product.txn_quantity < '1'" mat-raised-button class="project-button-disable ml-2 w-100"  style="cursor: not-allowed;">
+                 <button type="button" *ngIf="cart_check == false && userC==true && product?.txn_quantity < '1'" mat-raised-button class="project-heading project-button-disable  w-100"  style="cursor: not-allowed;">
                    <i
-                   class="fas fa-shopping-cart pr-2 project-heading "> </i>
+                   class="fas fa-shopping-cart pr-2  text-white"> </i>
                    &nbsp;Add to cart
                  </button> 
-                 <button *ngIf="cart_check == false && userC==true && product.txn_quantity > '0'"  mat-raised-button class="project-button w-100">
-                  <i class="fas fa-shopping-cart pr-2 project-heading "   (click)="addToCart(product)"> </i> &nbsp;Add to cart
+                 <button *ngIf="cart_check == false && userC==true && product?.txn_quantity > '0'"  mat-raised-button class=" project-button w-100 project-heading">
+                  <i class="fas fa-shopping-cart pr-2  text-white"   (click)="addToCart(product)"> </i> &nbsp;Add to cart
                  </button>
        
 
                    
           </div> 
-          <div class="col-md-4">
-           
-          </div>
+         
         </div>
                   
-        <div class="classic-tabs   px-2 pt-1 mt-3">
+        <div class="classic-tabs   px-2 pt-2 mt-4">
 
           <ul class="nav  nav-justified border-bottom "  id="advancedTab" role="tablist">
             <li class="nav-item">
               <a class="nav-link  active project-heading active"  id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Description</a>
-            </li>
+            </li> &nbsp;&nbsp;
             <li class="nav-item">
               <a class="nav-link project-heading " id="info-tab" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false">Specification</a>
             </li>
+            &nbsp;&nbsp;
             <li class="nav-item">
               <a class="nav-link project-heading " id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Ratings & Reviews</a>
             </li>
           </ul>
           <div class="tab-content mt-4" id="advancedTabContent">
             <div class="tab-pane fade show active project-discription" id="description" role="tabpanel" aria-labelledby="description-tab">
-              <h5 [innerHTML]="product.meta_description" style="font-size: 14px;" class="project-discription"></h5> 
+              <h5 [innerHTML]="product?.meta_description" style="font-size: 14px;" class="project-discription"></h5> 
             </div>
             <div class="tab-pane fade mt-4" id="info" role="tabpanel" aria-labelledby="info-tab">
             
@@ -265,12 +316,12 @@
                   <div class="col-md-2 project-heading" style="font-weight: 600;">
                     <span >Model</span>  <br/>
                     <span>Brand </span> <br/>
-                    <span *ngIf="product.size">Size</span> 
+                    <span *ngIf="product?.size">Size</span> 
                   
                   </div>
                   <div class="col-md-10 project-discription pl-5">
-<span> {{ product.model }} </span><br/>
-<span> {{ product.brand_name }} </span><br/> <span style="font-family: sans-serif!important;">{{ product.size }}</span>
+<span> {{ product?.model }} </span><br/>
+<span> {{ product?.brand_name }} </span><br/> <span style="font-family: sans-serif!important;">{{ product?.size }}</span>
 
 
                   </div>
@@ -287,7 +338,7 @@
                 <h4 class="project-heading">  Ratings & Reviews </h4> 
 
             
-                <button *ngIf="rating_option==true" mat-raised-button class=" pl-4 pr-4 pt-1 pb-1 cursor-pointer project-heading project-button"  (click)="rating(product)"> Rate Product</button>
+                <button *ngIf="rating_option==true" mat-raised-button class="  cursor-pointer project-heading project-button"  (click)="rating(product)"> Rate Product</button>
                 
                 </div>
                 
@@ -311,11 +362,7 @@
               <div class="card mt-3  card12" *ngIf="ratings != 0 && rating_option==true">
                 <div class="card-header justify-content-between d-flex">
                 <h5>  Ratings & Reviews </h5> 
-
-            
                 <button *ngIf="rating_option==true" mat-raised-button class=" pl-4 pr-4 pt-1 pb-1 cursor-pointer card-button project-heading"  (click)="rating(product)"> Rate Product</button>
-
-                
                 </div>
                 
                 
@@ -417,7 +464,7 @@
         
         </div>
   
-  
+       
   
        
               
@@ -428,12 +475,114 @@
   
   </section>
  
-  <section class="text-center d-none d-lg-block d-xl-block" *ngIf="similarPro !=null">
-     <div><h3 class="text-center project-heading" style="color: lightgray; text-transform: capitalize;">simi<span class="border-heading">lar pro</span>duct</h3></div>
+  <section class="text-center d-none d-lg-block d-xl-block p-2 " *ngIf="similarPro !=null">
+    
+
+   
+    <div class="pagination  row mb-0">
+      <div class="col-md-4  text-left">
+      <span class="page-item  float-left prev-item" *ngIf="offsetSimilar != 1">
+        <span matTooltip="Previous"
+          class="page-link page-previous"
+          (click)="changeOffsetSimilar(offsetSimilar - 1)"
+          aria-label="Previous"
+        >
+          <span aria-hidden="true" class=" font-weight-bold cursor-pointer"><i class="fas fa-angle-left"></i></span>
+      </span>
+      </span>
+    </div>
+    <div class="col-md-4 text-center">
+      <div><h3 class="text-center project-heading" style="color: lightgray; text-transform: capitalize;">simi<span class="border-heading">lar pro</span>duct</h3></div>
+
+    </div>
+    <div class="col-md-4 text-right ">
+      <span class="page-item float-right next-item" *ngIf="offsetSimilar != pagesSimilar">
+        <span  matTooltip="Next"
+          class="page-link page-next"
+          (click)="changeOffsetSimilar(offsetSimilar + 1)"
+          aria-label="Next"
+        >
+          <span aria-hidden="true" class=" font-weight-bold cursor-pointer"> <i class="fas fa-angle-right"></i></span>
+      </span>
+      </span>
+    </div>
+    <div *ngIf="!similarPro">
+<img src="assets/loader.gif">
+    </div> 
+
+    <!-- </div> -->
+  </div>
     <div class="row">
   
-      <div class="col-md-6 col-lg-3 mb-5" *ngFor="let nprd2 of similarPro"> 
-        <div class="card" style="margin: auto; padding-right: 7px;  height:390px ;">
+      <div class="col-md-6 col-lg-2  p-1" *ngFor="let nprd2 of similarPro | slice:0:6"> 
+      
+        <div class="car-similar" >
+          <div class="buy-now-button-box ">
+          <div  class="row justify-content-between " > 
+            <div class="col-md-2 text-right pt-2 pl-4"> 
+          
+              <a *ngIf="nprd2?.wishlist_check == false" 
+                  style="cursor:pointer"
+                  (click)="addToWishlist(nprd2)"
+                  title="Add to WishList"
+                  > <i class="fa fa-heart-o" aria-hidden="true"  ></i></a>
+                <a
+                style="cursor:pointer" *ngIf="nprd2.wishlist_check == true"
+                (click)="deleteFromWishlist(nprd2.wishlist_num)"
+                title="Already exist in Wishlist"
+                > <i class="fas fa-heart" aria-hidden="true"  ></i>
+            </a>
+
+               <a *ngIf="userC==false" 
+                  style="cursor:pointer"
+                  (click)="addToWishlistWL(nprd2)"
+                  title="Add to WishList"
+                  > <i class="fa fa-heart-o" aria-hidden="true" ></i>
+              </a>
+              </div>
+       
+            
+            <div class=" col-md-3" *ngIf="nprd2?.txn_quantity > '0'">
+              <button  (click)="rates(nprd2)" mat-raised-button *ngIf="(nprd2?.cart_check == false) && userC==true 
+              " class="project-button cursor-pointer">Buy Now</button>
+               <button   (click)="rates(nprd2)" mat-raised-button *ngIf="userC == false" class="project-button  cursor-pointer"> Buy Now</button>
+          </div>
+      <div class="col-md-7 text-right " >
+        <div class="num-block skin-2"  *ngIf="nprd2?.cart_check == true">
+          <div class="num-in" style="cursor: pointer;">
+            <span class="minus dis" *ngIf="nprd2.cart_inventory.qty > 1 || nprd2.cart_inventory.qty > '1'"  (click)="updateCart3minus(nprd2.cart_inventory.cart_id,nprd2.cart_inventory.cart_inventory_id,nprd2.cart_inventory.rate_type,nprd2.cart_inventory.qty,nprd2?.txn_quantity);"></span>
+            <span class="minus dis" *ngIf="nprd2.cart_inventory.qty == 1 || nprd2.cart_inventory.qty == '1'"  (click)="deleteFromCartF(nprd2.cart_inventory.cart_inventory_id)"></span>
+            <input type="number" class="in-num"   value="{{nprd2.cart_inventory.qty}}" required min="1"
+            (change)="updateCart3(nprd2.cart_inventory.cart_id,nprd2.cart_inventory.cart_inventory_id,nprd2.cart_inventory.rate_type,$event.target.value,nprd2?.txn_quantity)"
+            (keyup)="updateCart3(nprd2.cart_inventory.cart_id,nprd2.cart_inventory.cart_inventory_id,nprd2.cart_inventory.rate_type,$event.target.value,nprd2?.txn_quantity)" >
+            <span class="plus" *ngIf="nprd2.cart_inventory.qty<nprd2?.txn_quantity"
+              (click)="updateCart3plus(nprd2.cart_inventory.cart_id,nprd2.cart_inventory.cart_inventory_id,nprd2.cart_inventory.rate_type,nprd2.cart_inventory.qty,nprd2?.txn_quantity);"></span>
+            <span class="plus" *ngIf="nprd2.cart_inventory.qty>nprd2?.txn_quantity || nprd2.cart_inventory.qty==nprd2?.txn_quantity"  title="Reached limit" [disabled]=true></span>
+          </div>
+        </div>
+       
+        <span *ngIf="userC==true" class="">
+          <a *ngIf="nprd2.cart_check == false "
+          style="cursor:pointer"
+          (click)="addToCart(nprd2)"
+          title="Add to Cart"
+          > <i class="fa fa-cart-plus mt-2 mr-2" ></i></a>
+        </span>
+        
+         
+        <a  *ngIf="userC==false" class=""
+          style="cursor:pointer"
+          (click)="addToCart(nprd2)"
+          title="Add to Cart"
+          > <i class="fa fa-cart-plus mt-2 mr-2" ></i>
+      </a>
+      <!-- </li>
+    </ul> -->
+
+      </div>
+          </div>
+        </div>
+          
           <h1  class="outofstockproduct" *ngIf="nprd2?.txn_quantity < '1'"> Out of stock</h1>
           <div class="card_image" >
             <div id="box-img1"> 
@@ -447,95 +596,23 @@
 
      
         <!-- <h1  class="show-status" *ngIf="userC == true && nprd2?.txn_quantity < '1'"> Out of stock</h1> -->
-        <h4 style=" text-transform: capitaliz; font-weight: bold;" class="project-heading m-0 box-show-button">{{ (nprd2?.name.length>60)? (nprd2?.name | slice:0:60)+'...':(nprd2?.name) }}</h4>
+        <h4 style=" text-transform: capitaliz; font-weight: bold;" class="project-heading m-0 box-show-button pl-1 pr-1">{{ (nprd2?.name.length>50)? (nprd2?.name | slice:0:50)+'...':(nprd2?.name) }}</h4>
        
-        <div  class="row mb-2 mt-0"> 
-              <div class="col-md-2 text-right ">
-            
-                  <a *ngIf="nprd2?.wishlist_check == false" 
-                    style="cursor:pointer"
-                    (click)="addToWishlist(nprd2)"
-                    title="Add to WishList"
-                    > <i class="fa fa-heart-o" aria-hidden="true"  ></i></a>
-                  <a
-                  style="cursor:pointer" *ngIf="nprd2.wishlist_check == true"
-                  (click)="deleteFromWishlist(nprd2.wishlist_num)"
-                  title="Already exist in Wishlist"
-                  > <i class="fa fa-heart-o" aria-hidden="true"  ></i>
-              </a>
-
-                 <a *ngIf="userC==false" 
-                    style="cursor:pointer"
-                    (click)="addToWishlistWL(nprd2)"
-                    title="Add to WishList"
-                    > <i class="fa fa-heart-o" aria-hidden="true" ></i>
-                </a>
-                </div>
-         
-                
-
-              
-            <div class="col-md-5 text-right" >
-              
-              <span
-              class="fa fa-star checked"
-              *ngFor="let i of createRange2(nprd2.ratings)"
-            ></span>
-            <span *ngIf="nprd2.ratings>'0'"><span
-              class="fa fa-star unchecked"
-              *ngFor="let i of createRange2(5 - nprd2.ratings)"
-            ></span>
-          </span>
-        </div>
-        <div class="col-md-4 text-right " >
-          <div class="num-block skin-2"  *ngIf="nprd2?.cart_check == true">
-            <div class="num-in" style="cursor: pointer;">
-              <span class="minus dis" *ngIf="nprd2.cart_inventory.qty > 1 || nprd2.cart_inventory.qty > '1'"  (click)="updateCart3minus(nprd2.cart_inventory.cart_id,nprd2.cart_inventory.cart_inventory_id,nprd2.cart_inventory.rate_type,nprd2.cart_inventory.qty,nprd2.txn_quantity);"></span>
-              <span class="minus dis" *ngIf="nprd2.cart_inventory.qty == 1 || nprd2.cart_inventory.qty == '1'"  (click)="deleteFromCartF(nprd2.cart_inventory.cart_inventory_id)"></span>
-              <input type="number" class="in-num"   value="{{nprd2.cart_inventory.qty}}" required min="1"
-              (change)="updateCart3(nprd2.cart_inventory.cart_id,nprd2.cart_inventory.cart_inventory_id,nprd2.cart_inventory.rate_type,$event.target.value,nprd2.txn_quantity)"
-              (keyup)="updateCart3(nprd2.cart_inventory.cart_id,nprd2.cart_inventory.cart_inventory_id,nprd2.cart_inventory.rate_type,$event.target.value,nprd2.txn_quantity)" >
-              <span class="plus" *ngIf="nprd2.cart_inventory.qty<nprd2.txn_quantity"
-                (click)="updateCart3plus(nprd2.cart_inventory.cart_id,nprd2.cart_inventory.cart_inventory_id,nprd2.cart_inventory.rate_type,nprd2.cart_inventory.qty,nprd2.txn_quantity);"></span>
-              <span class="plus" *ngIf="nprd2.cart_inventory.qty>nprd2.txn_quantity || nprd2.cart_inventory.qty==nprd2.txn_quantity"  title="Reached limit" [disabled]=true></span>
-            </div>
-          </div>
-         
-          <span *ngIf="userC==true">
-            <a *ngIf="nprd2.cart_check == false "
-            style="cursor:pointer"
-            (click)="addToCart(nprd2)"
-            title="Add to Cart"
-            > <i class="fa fa-cart-plus" ></i></a>
-          </span>
-          
-           
-          <a  *ngIf="userC==false"
-            style="cursor:pointer"
-            (click)="addToCart(nprd2)"
-            title="Add to Cart"
-            > <i class="fa fa-cart-plus" ></i>
-        </a>
-        <!-- </li>
-      </ul> -->
-
-        </div>
-            </div>
+      
             <div class="row justify-content-start">
               <div class="col-md-12 ">
-                <p style="color: black;margin-left:10px">
+                <p style="color: black;margin-left:3px">
                   <span *ngIf="nprd2.rate[0].is_rent == '1'" 
                   >{{ nprd2.rate[0].name }} @ {{ nprd2.rate[0].rate }}
                 </span>
                 <span *ngIf="nprd2.rate[0].is_rent != '2'" style="font-weight: bold;"
                   >₹ {{ nprd2.rate[0].rate}} 
-                </span> &nbsp;
+                </span> 
                 <span class="for-you text-muted font-weight-500" *ngIf="nprd2.rate[0].rate < nprd2.mrp"
                   ><del>₹ {{ nprd2.mrp }} </del></span
                 >
                 <span *ngIf="nprd2.rate[0].is_rent == '2'" 
-                  >{{ nprd2.rate[1].name }} @ {{ nprd2.rate[1].rate }} </span
-                >
+                  >{{ nprd2.rate[1].name }} @ {{ nprd2.rate[1].rate }} </span>
                 &nbsp;
                 <span
                   *ngIf="nprd2.rate[0].rate < nprd2.mrp && nprd2.rate[0].discount_percent !=0"
@@ -544,13 +621,7 @@
                 >
                 </p>
               </div>
-              <div class="col-md-12 buy-now-button-box" *ngIf="nprd2?.txn_quantity > '0'">
-                <div class="" >
-                  <a    (click)="rates(nprd2)" *ngIf="(nprd2?.cart_check == false) && userC==true 
-                  " class="buy-now-button cursor-pointer"><span class="fa fa-bolt " ></span>&nbsp; Buy Now</a>
-                   <a   (click)="rates(nprd2)" *ngIf="userC == false" class="buy-now-button  cursor-pointer"><span class="fa fa-bolt " ></span>&nbsp; Buy Now</a>
-                </div>
-              </div>
+             
             </div>
            
           </div>
@@ -633,10 +704,10 @@
 
 
 <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 9999999!important;">
-  <div class="modal-dialog  modal-lg" style="z-index: 111111; height: 440px;">
+  <div class="modal-dialog  modal-xl" style="z-index: 111111; height: 560px; width: 920px;">
     <div class="modal-content">
        <div class="modal-header">
-        <h4 class=" font-weight-600 m-0 project-heading" style="margin-left: 16px;">{{ product?.name }} &nbsp;<span class="text-danger text-uppercase project-discription " style="font-weight: bolder;" *ngIf="product.txn_quantity < '1'"> ( Out of stock )</span> </h4>    
+        <h4 class=" font-weight-600 m-0 project-heading" style="margin-left: 16px;">{{ product?.name }} &nbsp;<span class="text-danger text-uppercase project-discription " style="font-weight: bolder;" *ngIf="product?.txn_quantity < '1'"> ( Out of stock )</span> </h4>    
           <button type="button" class="close btn btn-secondry" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true" style="color: white;">&times;</span>
           </button>
@@ -656,15 +727,15 @@
         <div class="row">
           
           <div class="preview col-md-12 col-12" >
-            <!-- <h1  class="show-status" *ngIf="product.txn_quantity < '1'"><span> Out of stock </span></h1>   -->
+            <!-- <h1  class="show-status" *ngIf="product?.txn_quantity < '1'"><span> Out of stock </span></h1>   -->
           
                 <div class=" tab-content  p-1  d-none d-lg-block d-xl-block " style="overflow: hidden;">
                  
                 
-                  <div class="tab-pane active show-image1  cursor-pointer " id="pic-3 " >  
+                  <div class="tab-pane active show-image1  cursor-pointer justify-content-center text-center" id="pic-3 " >  
                    
                       <img src="{{img1}}" alt="" style="
-                      min-height: 400px; max-width: 100%; max-height: 450px;" >
+                      min-height: 450px; max-width: 100%; max-height: 450px;" >
                         
                   </div>
     
@@ -675,18 +746,7 @@
     
                   
               
-                <div class="preview-pic tab-content  p-1 show-image3 d-block d-lg-none" >
-                
-                  <div class="tab-pane active show-image3  cursor-pointer " id="pic-3 " >
-                   
-                 <!--<img src="{{imageView}}" onerror="this.src='assets/img/favicon1.png';" class="img-1 ">-->
-                
-    
-                
-    
-                  </div>
-    
-                </div>
+             
     
              
     
@@ -712,15 +772,15 @@
             >
               <img 
                 
-        src="{{items23[s].thumb}}"
-                onerror="this.src='assets/img/favicon1.png';"
+        src="{{items23[s]?.thumb}}"
+                onerror="this.src='assets/no-img.png';"
                 alt="Product Image"
                 class=" p-1"
                 height="70"
                 width="80"
             />
           </a> 
-            <span *ngIf="product_image > 5" style="color: white;">more</span>
+            <!-- <span *ngIf="product_image > 5" style="color: white;">more</span> -->
            
         </li>
       </ul>
