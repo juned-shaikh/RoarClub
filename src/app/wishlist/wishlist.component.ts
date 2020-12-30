@@ -57,14 +57,14 @@ export class WishlistComponent implements OnInit {
               .navigateByUrl("/RefreshComponent", {
                 skipLocationChange: true
               })
-              .then(() => this.router.navigate(["/Admin/home_profile/wishlist"]));
+              .then(() => this.router.navigate(["/Admin/my-account/wishlist"]));
               
             }else{
               this.router
-              .navigateByUrl("/RefreshComponent", {
+              .navigateByUrl("/", {
                 skipLocationChange: true
               })
-              .then(() => this.router.navigate(["/home_profile/wishlist"]));
+              .then(() => this.router.navigate(["/my-account/wishlist"]));
 
             }
           
@@ -164,15 +164,15 @@ count=0;
       .navigateByUrl("/RefreshComponent", {
         skipLocationChange: true
       })
-      .then(() => this.router.navigate(["/Admin/preview/product", slug]));
+      .then(() => this.router.navigate(["/Admin/preview/product-view", slug]));
 
 
     }else{
       this.router
-      .navigateByUrl("/RefreshComponent", {
+      .navigateByUrl("/", {
         skipLocationChange: true
       })
-      .then(() => this.router.navigate(["/product", slug]));
+      .then(() => this.router.navigate(["/product-view", slug]));
 
     }
     }
@@ -198,14 +198,14 @@ count=0;
               .navigateByUrl("/RefreshComponent", {
                 skipLocationChange: true
               })
-              .then(() => this.router.navigate(["/Admin/preview/my-cart"]));
+              .then(() => this.router.navigate(["/Admin/preview/cart"]));
               
             }else{
               this.router
-              .navigateByUrl("/RefreshComponent", {
+              .navigateByUrl("/", {
                 skipLocationChange: true
               })
-              .then(() => this.router.navigate(["/my-cart"]));
+              .then(() => this.router.navigate(["/cart"]));
 
             }
           

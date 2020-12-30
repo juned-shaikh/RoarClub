@@ -45,7 +45,7 @@
       <mat-card *ngIf="shipAddShow == false" style="overflow: hidden;">
         <div class="row justify-content-center">
           <div class="col-lg-11">
-          <button mat-raised-button class="project-button "    (click)="openXl(content)"> <mat-icon>add</mat-icon>&nbsp; Add Address</button>
+          <button mat-raised-button class="project-button "    (click)="openXl(content)"> <mat-icon class="text-white">add</mat-icon>&nbsp; Add Address</button>
         </div>
         </div>
         <div class="row">
@@ -163,7 +163,7 @@
       <mat-card *ngIf="shipAddShow == true">
         <div class="row justify-content-center">
           <div class="col-md-11">
-            <button mat-raised-button class="project-button"  (click)="openXl(content)"> <mat-icon>add</mat-icon>&nbsp; Add Address</button>
+            <button mat-raised-button class="project-button"  (click)="openXl(content)"> <mat-icon class="text-white">add</mat-icon>&nbsp; Add Address</button>
           </div>
         </div>
         <div class="row">
@@ -372,19 +372,19 @@
               </div>
               <div class="col-md-9 pt-3 col-8">
               <div class="row cursor-pointer" style="cursor: pointer;" >
-                  <h6 class="text-titlecase font-weight-600 project-heading ">
+                  <h6 class="text-titlecase font-weight-600 project-heading m-0">
                   {{ cd.product.name }}
                   </h6>
               </div>
-              <div class="row" style="cursor: pointer;"  title="View Product">
-                  <h6 class="text-titlecase font-weight-500 project-discription col-md-8 m-0">
+              <div class="row" style="cursor: pointer;"  title="View Product mt-0">
+                  <h6 class="text-titlecase font-weight-500 project-discription col-md-8 m-0 pl-0">
                   {{ cd.product.subheading }}
                   </h6>
                   <div *ngIf="buy_now==true" class="col-md-4">
 
                     <div class="num-block skin-2">
                       <div class="num-in" style="cursor: pointer;">
-                        <span class="minus dis" *ngIf="cd.quantity > 1 || cd.quantity > '1'"  (click)="updateCart3minusl(cd.quantity,cd.product.txn_quantity,cd.product.product_no);"></span>
+                        <span class="minus dis text-white" *ngIf="cd.quantity > 1 || cd.quantity > '1'"  (click)="updateCart3minusl(cd.quantity,cd.product.txn_quantity,cd.product.product_no);"></span>
                         <span class="minus dis" *ngIf="cd.quantity == 1 || cd.quantity == '1'"  (click)="deleteFromCartWithoutLogin(cd.product.product_no)"></span>
                         <input type="number" class="in-num"   value="{{cd.quantity}}" required min="1"
                         (change)="updateCart3l(cd.quantity,cd.product.txn_quantity,$event.target.value,cd.product.product_no)"
@@ -576,8 +576,8 @@
   <!-- coupon start 31/08/2020 *ngIf="buy_now==false" -->
 <mat-card class="mt-3">
   <div   class="project-discription p-0 m-0" style="color: #b89d4e; cursor: pointer;">
-   <p class="row" (click)="opencoupenu()" *ngIf="!opencoupen"><span class="col-md-10">apply coupen code?</span>  <span class=" text-right col-md-2"><i class="fas fa-angle-up"></i></span>  </p>
-   <p class="row"  *ngIf="opencoupen"><span class="col-md-10">apply coupen code</span>  <span class=" text-right col-md-2" (click)="opencoupenu()"><i class="fas fa-angle-down"></i></span></p>
+   <p class="row" (click)="opencoupenu()" *ngIf="!opencoupen"><span class="col-md-10">Apply Coupon </span>  <span class=" text-right col-md-2"><i class="fas fa-angle-up"></i></span>  </p>
+   <p class="row"  *ngIf="opencoupen"><span class="col-md-10">Enter Coupon code</span>  <span class=" text-right col-md-2" (click)="opencoupenu()"><i class="fas fa-angle-down"></i></span></p>
   </div>
 <form #couponform = "ngForm" *ngIf="opencoupen">
       <input type="text" placeholder="enter coupon code" name="coupon" [(ngModel)]="coupon" class="coupon-box">
@@ -772,14 +772,14 @@ Make Payment
       <div class="row justify-content-end pt-3 pr-3 " *ngIf="forpaymenthide">
         <button *ngIf="makePaymenShip == true && makePaymenBill == true"
           mat-raised-button (click)= "forpayment()"
-          class="project-button w-50 pt-1 pb-1" 
+          class="project-button w-50 " 
         >
           Place Order
         </button>
 <!-- for both -->
         <button *ngIf="makePaymenShip == false && makePaymenBill == false" (click)= "forpayment2('1')" matTooltip="Please select Address"
           mat-raised-button style="cursor:not-allowed"
-          class="project-button-disable w-50 pt-1 pb-1" 
+          class="project-button-disable w-50 " 
         >
           Place Order
         </button>
@@ -795,7 +795,7 @@ Make Payment
 <!-- for shippin -->
          <button *ngIf="makePaymenShip == false && makePaymenBill == true" (click)= "forpayment2('3')" matTooltip="Please select Address"
           mat-raised-button style="cursor:not-allowed"
-          class="project-button-disable w-50 pt-1 pb-1" 
+          class="project-button-disable w-50 " 
         >
           Place Order
         </button>
@@ -989,7 +989,7 @@ Make Payment
         </div>
       </div>
 
-      <div class="modal-footer text-center ml-auto mr-auto">
+      <div class="modal-footer justify-content-center text-center ml-auto mr-auto">
         <button
           class="  project-button"
           (click)="addAddress(); "

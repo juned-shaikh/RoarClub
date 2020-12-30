@@ -11,90 +11,95 @@
    
   </div> -->
 <div class="container-fluid" class="bg-img">
-  <div class="row justify-content-center" >
-    <div  class="col-sm-9 col-md-6 col-lg-4 col-10 mx-auto ml-auto mr-auto text-center" style="background:rgb(43, 42, 42);margin-top: 80px;">
-       <div  class="content ">
-      <h2>
-       Sign<span> In</span>
-      </h2>
-      
-    
-      <div class="card-body px-lg-5 pt-0" *ngIf="signup  == 1" >
-    
-        <form class="text-center" style="color: #757575;" [formGroup]="loginuser">
-    
-          <div class="md-form">
-            <input type="email" id="materialLoginFormEmail" (keyup)="checkUserExist()" formControlName="username"  class="form-control">
-            <label for="materialLoginFormEmail" class="label">Enter Email or Phone Number</label>
-          </div>
-    
-          <mat-form-field *ngIf="pass  == 1" class="example-full-width" >
-            <mat-label>Enter Password</mat-label>
-            <input matInput type="password"  id="myInput"  style="border: none;"  formControlName="password" >
-            <mat-icon onclick="myFunction()" (click)="passvible()" matSuffix *ngIf="visibility" class="cursor-pointer">visibility</mat-icon>
-            <mat-icon onclick="myFunction()" (click)="passvible()" matSuffix *ngIf="!visibility" class="cursor-pointer">visibility_off</mat-icon>
-          </mat-form-field>
-    
-          <div class="d-flex justify-content-around">
+  <div class="row justify-content-center">
+    <div class="col-md-11">
+      <div class="row justify-content-center" >
+        <div  class="col-sm-9 col-md-6 col-lg-4 col-10 mx-auto ml-auto mr-auto text-center" style="background:rgb(43, 42, 42);margin-top: 80px; ">
+           <div  class="content ">
+          <h2>
+           Sign<span> In</span>
+          </h2>
           
-            <div>
-              <a *ngIf="pass  == 1" (click)="openXl(content2)">Forgot password?</a>
-            </div>
-          </div>
-    
-          <button class="project-button w-100 mt-2" mat-raised-button (click)= "login()" *ngIf="pass==1" >Log in</button>
-          <button class="project-button-disable" mat-raised-button *ngIf="pass==0" style="cursor: not-allowed!important;">Login/Signup</button>
-          <button class="project-button" mat-raised-button   *ngIf="pass==2" (click)= "onSubmitSign()"  type="submit">Get Otp</button>
-          <button class="project-button w-100 mt-2" mat-raised-button *ngIf="pass==1" (click)="openXl(codOtp)" >Login with Otp</button>
-    
-        </form>
-    
-      </div>
-    
-      <div class="card-body px-lg-5 pt-0" *ngIf="signup == 2">
-    
-        <form class="text-center" style="color: #757575;" [formGroup]="otpForm">
-    
-          <mat-form-field class="w-100">
-            <mat-label>Enter OTP</mat-label>
-            <input matInput required  formControlName="otp" type="number">
-          </mat-form-field>
-          <mat-form-field class="w-100">
-            <mat-label>Enter Password</mat-label>
-            <input  (keyup)="checkConfirmPassword()" matInput required  id="myInput" formControlName="password" type="password">
-            <mat-icon onclick="myFunction()" (click)="passvible()" matSuffix *ngIf="visibility" class="cursor-pointer">visibility</mat-icon>
-            <mat-icon onclick="myFunction()" (click)="passvible()" matSuffix *ngIf="!visibility" class="cursor-pointer">visibility_off</mat-icon>
-          </mat-form-field>
+        
+          <div class="card-body px-lg-5 pt-0 " *ngIf="signup  == 1" >
+        
+            <form class="text-center" style="color: #757575;" [formGroup]="loginuser">
+        
+              <div class="md-form">
+                <input type="email" id="materialLoginFormEmail" (keyup)="checkUserExist()" formControlName="username" placeholder="Enter Email or Phone Number"  class="form-control">
          
-          <mat-form-field class="w-100">
-            <mat-label>Confirm Password</mat-label>
-            <input matInput required  (keyup)="checkConfirmPassword()" id="myInput3" formControlName="confirmPassword" type="password" [class.is-invalid]="otpForm.errors?.misMatch">
-            <mat-icon onclick="myFunction3()" (click)="passviblek()" matSuffix *ngIf="visibilityk" class="cursor-pointer">visibility</mat-icon>
-            <mat-icon onclick="myFunction3()" (click)="passviblek()" matSuffix *ngIf="!visibilityk" class="cursor-pointer">visibility_off</mat-icon>
-            <mat-hint class="text-danger" *ngIf="is_confirm">Confirm Password do not match with Password</mat-hint>
-          </mat-form-field>
-    
-          <div class="d-flex justify-content-around">
-            <!-- <div>
-              <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="materialLoginFormRemember">
-                <label class="form-check-label" for="materialLoginFormRemember">Remember me</label>
               </div>
-            </div> -->
-            <div>
-              <a  (click)="openXl(content2)">Forgot password?</a>
-            </div>
+        
+              <mat-form-field *ngIf="pass  == 1" class="example-full-width" >
+                <mat-label>Enter Password</mat-label>
+                <input matInput type="password"  id="myInput"  style="border: none;"  formControlName="password" >
+                <mat-icon onclick="myFunction()" (click)="passvible()" matSuffix *ngIf="visibility" class="cursor-pointer">visibility</mat-icon>
+                <mat-icon onclick="myFunction()" (click)="passvible()" matSuffix *ngIf="!visibility" class="cursor-pointer">visibility_off</mat-icon>
+              </mat-form-field>
+        
+              <div class="d-flex justify-content-around">
+              
+                <div>
+                  <a *ngIf="pass  == 1" (click)="openXl(content2)">Forgot password?</a>
+                </div>
+              </div>
+        
+              <button class="project-button w-100 mt-2" mat-raised-button (click)= "login()" *ngIf="pass==1" >Log in</button>
+              <button class="project-button-disable" mat-raised-button *ngIf="pass==0" style="cursor: not-allowed!important;">Login/Signup</button>
+              <button class="project-button" mat-raised-button   *ngIf="pass==2" (click)= "onSubmitSign()"  type="submit">Get Otp</button>
+              <button class="project-button w-100 mt-2" mat-raised-button *ngIf="pass==1" (click)="openXl(codOtp)" >Login with Otp</button>
+        
+            </form>
+        
           </div>
-    
-          <button class="project-button " mat-raised-button   (click)= "onSubmitOTP()">Verify</button>
-          <button class="project-button " mat-raised-button  (click)= "onSubmitResendOtp()">Resend Otp</button>
-    
-        </form>
-    
+        
+          <div class="card-body px-lg-5 pt-0" *ngIf="signup == 2">
+        
+            <form class="text-center" style="color: #757575;" [formGroup]="otpForm">
+        
+              <mat-form-field class="w-100">
+                <mat-label>Enter OTP</mat-label>
+                <input matInput required  formControlName="otp" type="number">
+              </mat-form-field>
+              <mat-form-field class="w-100">
+                <mat-label>Enter Password</mat-label>
+                <input  (keyup)="checkConfirmPassword()" matInput required  id="myInput" formControlName="password" type="password">
+                <mat-icon onclick="myFunction()" (click)="passvible()" matSuffix *ngIf="visibility" class="cursor-pointer">visibility</mat-icon>
+                <mat-icon onclick="myFunction()" (click)="passvible()" matSuffix *ngIf="!visibility" class="cursor-pointer">visibility_off</mat-icon>
+              </mat-form-field>
+             
+              <mat-form-field class="w-100">
+                <mat-label>Confirm Password</mat-label>
+                <input matInput required  (keyup)="checkConfirmPassword()" id="myInput3" formControlName="confirmPassword" type="password" [class.is-invalid]="otpForm.errors?.misMatch">
+                <mat-icon onclick="myFunction3()" (click)="passviblek()" matSuffix *ngIf="visibilityk" class="cursor-pointer">visibility</mat-icon>
+                <mat-icon onclick="myFunction3()" (click)="passviblek()" matSuffix *ngIf="!visibilityk" class="cursor-pointer">visibility_off</mat-icon>
+                <mat-hint class="text-danger" *ngIf="is_confirm">Confirm Password do not match with Password</mat-hint>
+              </mat-form-field>
+        
+              <div class="d-flex justify-content-around">
+                <!-- <div>
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="materialLoginFormRemember">
+                    <label class="form-check-label" for="materialLoginFormRemember">Remember me</label>
+                  </div>
+                </div> -->
+                <div class="mb-2">
+                  <a  (click)="openXl(content2)">Forgot password?</a>
+                </div>
+              </div>
+        
+              <button class="project-button " mat-raised-button   (click)= "onSubmitOTP()">Verify</button> &nbsp;
+              <button class="project-button " mat-raised-button  (click)= "onSubmitResendOtp()">Resend Otp</button>
+        
+            </form>
+        
+          </div>
+        </div>
+      </div>
       </div>
     </div>
   </div>
-  </div>
+
 </div>
 
   <ng-template #content2 let-modal >

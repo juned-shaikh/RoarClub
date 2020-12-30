@@ -70,10 +70,20 @@ body { margin: 0;  }
 .mat-radio-button.mat-accent .mat-radio-inner-circle, .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
   background-color: #B89D4E;
 }
+.project-button:focus{
+  outline: none;
+}
+.project-button-disable:focus{
+  outline: none;
+}
 .project-button{
   /* background: #B89D4E; */
   /* background: rgb(43, 42, 42); */
   background: #B89D4E;
+  /* background: #c7a462; */
+  border-radius: 5px!important;
+  /* background: #ac6522; */
+  /* background: #c7a462; */
   /* border: 2px solid #B89D4E!important; */
   color: white;
   /* color: #B89D4E; */
@@ -81,12 +91,31 @@ body { margin: 0;  }
   border-radius: 6px;
   font-family: 'Cinzel', serif!important;
 }
+.project-button-2{
+  /* background: #B89D4E; */
+  /* background: rgb(43, 42, 42); */
+  /* background: #B89D4E; */
+  /* background: #c7a462; */
+  /* background: #ac6522; */
+  /* background: #ac6522; */
+  background: white;
+  /* background: #c7a462; */
+  /* background: #202328; */
+  /* border: 2px solid #B89D4E!important; */
+  /* color: white; */
+  color: #c7a462;
+  /* color: #ac6522; */
+  border-radius: 5px!important;
+  font-weight: 600;
+  /* color: #202328; */
+  font-family: 'Cinzel', serif!important;
+}
 .project-button-disable{
   position: relative; left: 10px;
   background: rgb(43, 42, 42);
+  border-radius: 5px!important;
   color: white;
   border: 2px solid darkgrey;
-  border-radius: 6px;
   font-family: 'Cinzel', serif!important;
 }
 
@@ -109,10 +138,10 @@ body { margin: 0;  }
 }
 
 .fa, .fas, .far{
-  color: #B89D4E!important;
+  color: #B89D4E;
 }
 mat-icon{
-  color: #B89D4E!important;
+  color: #B89D4E;
 }
 .buy-now-button{
   background:#B89D4E;
@@ -153,4 +182,40 @@ mat-icon{
 }
 *{
   scroll-behavior: smooth;
+}
+*:focus{
+  outline: none;
+}
+
+.mat-form-field:focus{
+  outline: none;
+  border-bottom: 1px solid #b89d4e!important;
+}
+
+.mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: #b89d4e!important;
+}
+ .mat-form-field-label {
+  /*change color of label*/
+  color: #b89d4e!important;
+}
+.mat-form-field-underline {
+/*change color of underline*/
+background-color: #b89d4e!important;
+} 
+
+.mat-form-field-ripple {
+/*change color of underline when focused*/
+background-color: #b89d4e!important;
+}
+
+::ng-deep .mat-form-field-placeholder{
+
+  color:#b89d4e!important;
+}
+
+::ng-deep .mat-focused .mat-form-field-placeholder{
+
+  color:#b89d4e!important;
 }

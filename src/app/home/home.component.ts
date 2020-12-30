@@ -199,22 +199,33 @@ export class HomeComponent implements OnInit {
   roarclubbannerdata;
   // roarclub = false;
   // mlm = false;
+  
   // serverlink;
   ngOnInit() {
     
-    this.adminservice.ninetoysBanner({
-      comp_num : this.comp_num_new
-      // comp_num:sessionStorage.getItem("comp_num_new"),
-      // user_num:sessionStorage.getItem("user_num"),
-      // access_token:sessionStorage.getItem("access_token"),
-    }).subscribe(data=>{
+    this.adminservice.ninetoysBanner({access_token:this.access_token,user_num:this.user_num,comp_num:0}).subscribe(data=>{
       if(data['status']==1){ 
         this.roarclubbannerdata = data['result']; 
+      
         }  
-    
-    
+           
+        
+  		
+      // else if(data['status']==0){
+      // sessionStorage.clear();
+      //  this.snackbar.open('Slider Is Not Fetch. ','' ,{
+      //           duration: 3000,
+      //           horizontalPosition:'center',
+      //   });      
+     
+      // }
+      else{
+
+      }
   	},
-  
+  	error=>{
+  		
+    	}
     );
 
 

@@ -29,6 +29,7 @@ export class ProfilePageComponent implements OnInit {
   Changepassword:FormGroup;
   updateprofile:FormGroup;
 cust_reg_enable=false;
+wishlist;
 buis_update=false;
   constructor(
     private adminService: RoarclubserviceService,
@@ -39,6 +40,19 @@ buis_update=false;
   ) { }
 
   ngOnInit(): void {
+    this.adminService.fetchWishlist({user_num : this.user_num , access_token: this.access_token,comp_num:sessionStorage.getItem("comp_num_new"),}).subscribe(data => {
+      
+      if (data["status"] == "1") {
+        this.wishlist = data['wishlist'];
+      
+
+      }else{
+
+      }
+    });
+
+
+
     this.updateprofile=this.formbuilder.group({
       name:[''],
    });

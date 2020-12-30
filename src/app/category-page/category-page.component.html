@@ -1,49 +1,59 @@
 
 
 
-    <div class="container-fluid mb-3 bg-light" *ngIf="subcat">
+    <!-- <div class="container-fluid mb-3 bg-light pb-3" *ngIf="subcat">
       <div class="row justify-content-center">
         <div class="col-md-11  " >
           <div class="container-fluid "  >
        
-                <h3 (click)="navigateCategory(subcategory.name, subcategory.category_no)" class="project-heading " style="cursor: pointer;padding: 5px;">{{ subcategory.name }}</h3> 
+                <h3  class="project-heading " ><span (click)="navigateCategory(subcategory.name, subcategory.category_no)" class="cursor-pointer"> {{ subcategory.name }}  {{no_of_products}}</span></h3> 
               
-                        <ul class="breadcrumb p-0 m-0 bg-transparent " style="position: absolute;top: 28px;">
-                          <li class="breadcrumb-item" *ngFor="let sub of subcategory.sub_category" class="project-discription" style="padding: 2px ;"><a style="cursor: pointer;" (click)="navigateCategory(sub.name, sub.category_no) ">{{ sub.name }}</a></li>
+                        <ul class="breadcrumb p-0 m-0 bg-transparent " style="position: absolute;top: 28px;" *ngIf="subcategory.sub_category !=null"> 
+                          <li class="breadcrumb-item" *ngFor="let sub of subcategory.sub_category" class="project-discription" style="padding: 2px ;"><a style="cursor: pointer;" (click)="navigateCategory(sub.name, sub.category_no) ">/ {{ sub.name }}</a></li>
                          
                         </ul>
 
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
-    <div class="container-fluid">
-      <div class="container-fluid">
         <div class="container-fluid">
           <div class="row mb-5">
             <div class="col-md-2 d-none d-lg-block d-xl-block">
               
-              <div class="card project-discription">
-                <div class="card-header">Filter</div>
-                <div class="card-body p-1">
+              <div class="card project-discription card-filter">
+                <!-- <div class="card-header">Filter</div> -->
+                <div class="card-body p-1 card-filter-body">
                   <div class="card border-0 b-3" *ngIf="categoryNav">
-                    <div class="card-header p-2 bg-white" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false">
-                      <p class="m-0 h6 project-heading">Categories ({{categories?.length}})</p>
+                    <div class="card-header p-2 " data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false">
+                      <p class="m-0 h6 project-heading">Categories</p>
                     </div>
-                    <div class="card-body p-0 collapse show" id="collapseExample1">
-                      <ul class="list-group list-group-flush" style="height:200px;overflow:auto;">
-                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center" *ngFor="let category of categories; let index = index"  (click)="
+                    <div class="card-body card-filter-body p-0 collapse show" id="collapseExample1">
+                      <ul class="list-group list-group-flush" style="max-height:200px;overflow:auto;">
+                        <!-- <li class="list-group-item p-2 d-flex justify-content-between align-items-center" *ngFor="let category of categories; let index = index"  (click)="
                         navigateCategory(category.name, category.category_no)
                       ">
-                          <div class=" " >
+                          <div class="cursor-pointer " >
                             <label class="custom-control-label" >  {{
                               category.name.length > 22
                                 ? (category.name | slice: 0:22) + "..."
                                 : category.name
                             }}</label>
                           </div>
-                          <!-- <span class="badge badge-secondary badge-pill">14</span> -->
+                        </li> -->
+
+                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center" 
+                      >
+                          <div class="cursor-pointer " >
+                            <h4  class="project-discription m-0" ><span (click)="navigateCategory(subcategory.name, subcategory.category_no)" class="cursor-pointer"> < {{ subcategory.name }} </span></h4> 
+                            <!-- <ul class="breadcrumb p-0 m-0 bg-transparent " style="position: absolute;top: 28px;" *ngIf="subcategory.sub_category !=null"> 
+                              <li class="breadcrumb-item" *ngFor="let sub of subcategory.sub_category" class="project-discription" style="padding: 2px ;"><a style="cursor: pointer;" (click)="navigateCategory(sub.name, sub.category_no) ">/ {{ sub.name }}</a></li>
+                             
+                            </ul> -->
+                             <h5 *ngFor="let sub of subcategory.sub_category" class="cursor-pointer project-discription m-0" (click)="navigateCategory(sub.name, sub.category_no) ">&nbsp;&nbsp; {{ sub.name }}</h5>
+
+                          </div>
                         </li>
                      
                       
@@ -51,12 +61,12 @@
                     </div>
                   </div>
     
-                  <div class="card border-0 b-3" *ngIf="brandNav">
-                    <div class="card-header p-2 bg-white" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false">
+                  <div class="card border-0 b-3 card-filter" *ngIf="brandNav">
+                    <div class="card-header p-2 " data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false">
                       <p class="m-0 h6 project-heading ">Brand ({{categories.length}})</p>
                     </div>
-                    <div class="card-body p-0 collapse show" id="collapseExample1">
-                      <ul class="list-group list-group-flush" style="height:200px;overflow:auto;">
+                    <div class="card-body p-0 collapse show card-filter-body" id="collapseExample1">
+                      <ul class="list-group list-group-flush" style="max-height:200px;overflow:auto;">
                         <li class="list-group-item p-2 d-flex justify-content-between align-items-center" *ngFor="let categoryi of categories | slice:0:9;">
                           <div class="" (click)="navigateBrand(categoryi.name, categoryi.brand_id)">
                             <label class="custom-control-label" style="cursor: pointer;">   {{ (categoryi.name.length>20)? (categoryi.name | slice:0:20)+'...':(categoryi.name) }}</label>
@@ -68,69 +78,62 @@
                       </ul>
                     </div>
                   </div>
-                  <div class="card border-0 b-3 ">
-                    <div class="card-header p-2 bg-white" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false">
-                      <p class="m-0 h6">Size</p>
+                 
+                
+               
+                  <!-- <div class="card border-0 b-3 card-filter">
+                    <div class="card-header p-2  border-top" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false">
+                      <p class="m-0 h6 project-heading">filter</p>
                     </div>
-                    <div class="card-body p-0 collapse show" id="collapseExample2">
-                      <ul class="list-group list-group-flush" style="height:200px;overflow:auto;">
-                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">XXS</label>
+                    <div class="card-body p-0 collapse show card-filter-body" id="collapseExample2">
+                      <ul class="list-group list-group-flush pl-2" style="max-height:200px;overflow:auto;">
+                        <mat-radio-group aria-label="Modes">
+                          <div class="project-discription mt-3">
+                            <label class="by-font-size ">
+                              <mat-radio-button
+                                (click)="setSorting('new')"
+                                value="1"
+                                >  New
+                              </mat-radio-button>
+                            </label>
                           </div>
-                        </li>
-                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">XS</label>
+                          <div class="">
+                            <label class="by-font-size">
+                              <mat-radio-button
+                                (click)="setSorting('high-to-low')"
+                                value="2"
+                              >
+                                 Price High to Low
+                              </mat-radio-button>
+                            </label>
                           </div>
-                        </li>
-                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">S</label>
+                          <div class="">
+                            <label class="by-font-size">
+                              <mat-radio-button
+                                (click)="setSorting('low-to-high')"
+                                value="3"
+                              >
+                                Price Low to high
+                              </mat-radio-button>
+                            </label>
                           </div>
-                        </li>
-                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">M</label>
-                          </div>
-                        </li>
-                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">L</label>
-                          </div>
-                        </li>
-                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">XL</label>
-                          </div>
-                        </li>
-                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">XXL</label>
-                          </div>
-                        </li>
+                        </mat-radio-group>
+                      
+                       
                       </ul>
                     </div>
-                  </div>
-                  <div class="card border-0 b-3">
-                    <div class="card-header p-2 bg-white" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false">
-                      <p class="m-0 h6">Color</p>
+                  </div> -->
+                  <div class="card border-0 b-3 card-filter">
+                    <div class="card-header p-2 border-top" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false">
+                      <p class="m-0 h6 project-heading">Specification</p>
                     </div>
-                    <div class="card-body p-0 collapse show" id="collapseExample3">
-                      <ul class="list-group list-group-flush" style="height:200px;overflow:auto;">
+                    <div class="card-body p-0 collapse show card-filter-body" style="background: #262931;" id="collapseExample3">
+                      <ul class="list-group list-group-flush" style="height:200px;overflow:auto;background: #262931!important;">
                         <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
                           <div class="custom-control custom-checkbox w-100">
                             <input type="checkbox" class="custom-control-input" id="customCheck1">
                             <label class="custom-control-label" for="customCheck1">
-                              <div class="float-left p-2 mt-1 mr-1" style="background-color:#E52B50"></div>
-                              <span>Amaranth</span>
+                              <span>Sun Folded </span>
                             </label>
                           </div>
                         </li>
@@ -138,8 +141,7 @@
                           <div class="custom-control custom-checkbox w-100">
                             <input type="checkbox" class="custom-control-input" id="customCheck1">
                             <label class="custom-control-label" for="customCheck1">
-                              <div class="float-left p-2 mt-1 mr-1" style="background-color:#FFBF00"></div>
-                              <span>Amber</span>
+                              <span>Orange cap mart</span>
                             </label>
                           </div>
                         </li>
@@ -147,8 +149,16 @@
                           <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" id="customCheck1">
                             <label class="custom-control-label" for="customCheck1">
-                              <div class="float-left p-2 mt-1 mr-1" style="background-color:#007FFF"></div>
-                              <span>Azure</span>
+                              <span>Azure integrity </span>
+                            </label>
+                          </div>
+                        </li>
+                       
+                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">
+                              <span>Reliable fort wise</span>
                             </label>
                           </div>
                         </li>
@@ -156,110 +166,40 @@
                           <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" id="customCheck1">
                             <label class="custom-control-label" for="customCheck1">
-                              <div class="float-left p-2 mt-1 mr-1" style="background-color:#007BA7"></div>
-                              <span>Cerulean</span>
+                              <span>New arranged</span>
                             </label>
                           </div>
                         </li>
-                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">
-                              <div class="float-left p-2 mt-1 mr-1" style="background-color:#B87333"></div>
-                              <span>Copper</span>
-                            </label>
-                          </div>
-                        </li>
-                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">
-                              <div class="float-left p-2 mt-1 mr-1" style="background-color:#DC143C"></div>
-                              <span>Crimson</span>
-                            </label>
-                          </div>
-                        </li>
-                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">
-                              <div class="float-left p-2 mt-1 mr-1" style="background-color:#008000"></div>
-                              <span>Green</span>
-                            </label>
-                          </div>
-                        </li>
-                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">
-                              <div class="float-left p-2 mt-1 mr-1" style="background-color:#808080"></div>
-                              <span>Gray</span>
-                            </label>
-                          </div>
-                        </li>
-                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">
-                              <div class="float-left p-2 mt-1 mr-1" style="background-color:#FFD700"></div>
-                              <span>Gold</span>
-                            </label>
-                          </div>
-                        </li>
-                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">
-                              <div class="float-left p-2 mt-1 mr-1" style="background-color:#D1E231"></div>
-                              <span>Pear</span>
-                            </label>
-                          </div>
-                        </li>
-                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">
-                              <div class="float-left p-2 mt-1 mr-1" style="background-color:#800080"></div>
-                              <span>Purple</span>
-                            </label>
-                          </div>
-                        </li>
-                        <li class="list-group-item p-2 d-flex justify-content-between align-items-center">
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">
-                              <div class="float-left p-2 mt-1 mr-1" style="background-color:#C0C0C0"></div>
-                              <span>Silver</span>
-                            </label>
-                          </div>
-                        </li>
+                      
+                      
+                     
                       </ul>
                     </div>
                   </div>
-                  <!-- <div class="card border-0 b-3">
-                    <div class="card-header p-2 bg-white" data-toggle="collapse" data-target="#collapseExample4" aria-expanded="false">
-                      <p class="m-0 h6">Price</p>
+                  <div class="card border-0 b-3 card-filter">
+                    <div class="card-header p-2 " data-toggle="collapse" data-target="#collapseExample4" aria-expanded="false">
+                      <p class="m-0 h6 project-heading">Price</p>
                     </div>
-                    <div class="card-body p collapse show" id="collapseExample4">
+                    <div class="card-body p collapse show card-filter-body" id="collapseExample4">
                       <div class="form-row">
                         <div class="form-group col-md-6">
                           <label>Min</label>
-                          <input class="form-control" placeholder="$0" type="number">
+                          <input class="form-control" placeholder="0" type="number" >
                         </div>
                         <div class="form-group text-right col-md-6">
                           <label>Max</label>
-                          <input class="form-control" placeholder="$1,0000" type="number">
+                          <input class="form-control" placeholder="1,0000" type="number" >
                         </div>
                       </div>
                     </div>
-                  </div> -->
+                  </div>
                 </div>
-                <div class="card-footer">
+                <!-- <div class="card-footer">
                   <button type="button" class="btn btn-block btn-primary">Filter</button>
-                </div>
+                </div> -->
               </div>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-10">
               <div class="card" style="background: #262931;">
                 <!-- <div class="card-header">
                   <div class="row">
@@ -312,13 +252,27 @@
                     </div>
                   </div>
                 </div> -->
-               
+               <div class="card-header" style="background:#262931; color: white;">
+                <h3  class="project-discription m-0" > <span class=" cursor-pointer  project-discription"  routerLink="/">  Home > </span> 
+                  <span (click)="navigateCategory(subcategory.name, subcategory.category_no)" class="cursor-pointer"> {{ subcategory.name }}  </span>  
+                   
+                  <span *ngFor="let sub of subcategory.sub_category"><a  style="cursor: pointer;" (click)="navigateCategory(sub.name, sub.category_no) "> > {{ sub.name }}</a></span> 
+                  <span *ngIf="no_of_products" class="project-heading"> ( no. of product - {{no_of_products}} )</span><span *ngIf="!no_of_products" class="project-heading"> ( no. of product - 0 )</span> </h3> 
+                  <h3 class="m-0 project-discription"  style="font-weight: 300!important;">
+                    <span id="sortbynext" >Sort by : <span class="cursor-pointer activesort active"  (click)="setSorting('new')"
+                      value="1">New</span>  | Price : <span  (click)="setSorting('low-to-high')" class="cursor-pointer activesort"
+                      value="3">Low to high</span> | <span class="cursor-pointer activesort"  (click)="setSorting('high-to-low')"
+                      value="2">High to low</span></span>
+                  </h3> 
+               </div>
                 <div class="card-body"  *ngIf="products ==null" >
                   <div style="color:white"class="text-center project-discription">No Product</div>
                 </div>
                 <div class="card-body " *ngIf="products !=null" style="background:#262931;">
+                 
+              
           <div class="row">
-            <div class="col-md-4 mb-4 box-card" *ngFor="let nprd of products" >
+            <div class="col-md-3 mb-4 box-card" *ngFor="let nprd of products" >
               <div class="card" style="height: 350px;">
              
                 <div class="box-image">
@@ -371,11 +325,11 @@
                         >&nbsp;
                         <span
                     *ngIf="nprd.product_rate[0].rate < nprd.product.mrp" 
-                    class="font-wieght-bold  for-you text-success"
+                    class=" for-you text-success"
                     >
-                    {{
+                <b>    {{
                       nprd.product_rate[0].discount_percent | number:'1.0-0'
-                    }}% off</span
+                    }}% off </b></span
                   >
                     
                   </div>
@@ -496,9 +450,7 @@
             </div>
           </div>
         </div>
-      </div>
       
-    </div>
     <div class=" pt-4 d-block d-md-none d-lg-none fixed-bottom" >
       <!-- <mat-card> -->
 

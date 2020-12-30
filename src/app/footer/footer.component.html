@@ -1,59 +1,201 @@
 
-<div class="container-fluid dash1 d-none d-lg-block d-xl-block border-top mt-5" id="back">
-    <div class="row mt-3">
-  
-      <div class="col-md-6 mt-6 ml-6">
-        <ul style="color: white;text-decoration: none;list-style: none; font-size: 15px;font-family: Cinzel Semi Bold;">
-         <li><p class="text-white project-discription" style="font-size: 15px;">{{compd?.email}}</p></li> 
-       
-            <li class="text-white project-heading"><p style="font-size: 15px;">{{compd?.contact_no}} (Mon-Fri, excluding Holidays 11am-4pm)</p></li>
-            
-            <li class="text-white project-discription"><p style="font-size: 15px;">  {{compd?.line1}}, {{compd?.line2}}, {{compd?.landmark}}, {{compd?.city}},
-              {{compd?.state}}, {{compd?.country}} -{{compd?.pin_code}}.</p></li>
-            <br> 
-            <li> <p style="font-size: 15px;" class="project-discription">FAQ's&nbsp;&nbsp;&nbsp;&nbsp;   Privacy &nbsp;&nbsp;&nbsp;&nbsp;    PolicyTerms of Use &nbsp;&nbsp;&nbsp;&nbsp; <span class="project-heading text-success cursor-pointer" *ngIf="cust_reg_enable && buis_update==false" routerLink="/member-login">Member Registration</span> </p></li>
-      
-            </ul>
-      
-          </div>
-  
-      <div class="col-md-6 mt-6 ml-6" >
-        <div class="row">
-          <div class="col-md-3">
-            <h6 class="text-white project-heading" id="text" style="color:white;margin-left: 20px;font-size: 15px;">follow us</h6>
-            <a  target="_blank" class="facebook"
-            href="{{ data?.facebook }}"
-            ><img src="./assets/facebook1.png"   width="50px"> </a>
-            
-            <a   href="{{data?.twitter}}" target="_blank" class="twitter"
-            >      <img src="./assets/youtube.png"  width="50px" style="margin-left: 10px;"></a>
-         
-
-        </div>
-          <div class="col-md-3">
-            <h6 class="text-white" id="text" style="color:rgb(59, 21, 21); margin-left: 20px;font-size: 15px;font-family: Cinzel Semi Bold;">Roar Club App</h6>
-              <div class="row">
-                <div class="col-md-1"><img src="./assets/app-store.png"  width="100px"></div>
-                <div class="col-md-1"><img src="./assets/play-store.png"  width="100px" style="margin-left: 80px;"></div>
-            </div>
 
 
-      </div>
-      
-       </div>
-       <div class="row">
-        
-        <div class="col-md-12 mt-6 project-discription text-success" style="margin-top: 10px;"  >Copyright © 2020 RoarClub All rights reserved.</div>
-      </div>
-           </div>
 
-
-         
-       
-
-  
+<!-- <div class="container-fluid border-top mt-4 pt-2 d-none d-xl-block d-lg-block">
+  <div class="row">
+    <div class="col-md-5 mt-6 ml-6">
+      <h6 class="text-white project-heading pl-5" id="text" style="color:white;font-size: 15px;">get in to<span class="border-heading">uch</span></h6>
+      <ul style="color: white;text-decoration: none;list-style: none; font-size: 15px;font-family: Cinzel Semi Bold;">
+       <li><p class="text-white project-discription p-0 m-0" style="font-size: 15px;">{{compd?.email}}</p></li> 
      
+          <li class="text-white project-heading m-0 p-0"><p style="font-size: 13px;" class="m-0">{{compd?.contact_no}} (Mon-Fri, excluding Holidays 11am-4pm)</p></li>
+          
+          <li class="text-white project-discription m-0 p-0"><p style="font-size: 13px;" class="m-0">  {{compd?.line1}}, {{compd?.line2}}, {{compd?.landmark}}, {{compd?.city}},
+            {{compd?.state}}, {{compd?.country}} <span class="project-heading">-{{compd?.pin_code}}.</span></p></li>
+          
+          <li> <p style="font-size: 15px;" class="project-discription text-success">FAQ's&nbsp;&nbsp; | &nbsp;&nbsp;   Privacy &nbsp;&nbsp; | &nbsp;&nbsp;    PolicyTerms of Use &nbsp;&nbsp;  <span class="project-heading text-success cursor-pointer" *ngIf="cust_reg_enable && buis_update==false" routerLink="/member-login">| &nbsp; Member Registration</span> </p></li>
+          </ul>
+    
+        </div>
+
+    <div class="col-md-7 mt-6 pl-6" >
+      <div class="row justify-content-end">
+        <div class="col-md-5 ">
+          <h6 class="text-white project-heading" id="text" style="color:white;margin-left: 20px;font-size: 15px;">follow <span class="border-heading">us</span></h6>
+          <a  target="_blank" class="facebook"
+          href="{{ data?.facebook }}" title="facebook"
+          >
+          <i class="fab fa-facebook-square fa-3x"></i>
+         </a>
+          
+          <a   href="{{data?.twitter}}" target="_blank" class="twitter ml-2" title="twitter"
+          >   
+          <i class="fab fa-twitter-square fa-3x"></i>
+        </a>
+
+          <a   href="{{data?.instagram}}" target="_blank" class="instagram ml-2" title="instagram"
+          >    
+          <i class="fab fa-instagram-square fa-3x"></i>
+        </a>
+       
+
+      </div>
+        <div class="col-md-6 ">
+          <h6 class="text-white project-heading" id="text" style=" margin-left: 20px;font-size: 15px;">Roar Club <span class="border-heading">App</span></h6>
+            <div class="row">
+              <div class="col-md-1"><img src="./assets/app-store.png"  width="100px"></div>
+              <div class="col-md-1"><img src="./assets/play-store.png"  width="100px" style="margin-left: 80px;"></div>
+          </div>
 
 
-  
-  
+    </div>
+   
+    
+     </div>
+    
+   
+         </div>
+  </div>
+  <div class="row mt-2 ">
+    <div class="col-md-4 text-center">
+      <div class="footer-text-for-3" > 
+        <img src="assets/easy.png" height="30" > 
+
+&nbsp;
+      
+       <span class="text-success project-discription">easy and secure payments</span>
+      </div>
+    </div>
+    <div class="col-md-4 text-center">
+      <div class=" footer-text-for-3">
+        <img src="assets/tick.svg" height="30"/>
+        &nbsp;
+        <span class="text-success project-discription">100% genuine products</span>
+      </div>
+    </div>
+    <div class="col-md-4 text-center">
+      <div class=" footer-text-for-3">
+      
+        <img src="assets/deliverd.png" height="30"/>
+        &nbsp;
+        <span class="project-discription text-success">free shipping above rs. across india</span>
+      </div>
+    </div>
+  </div>
+  <hr style="border: .5px solid #B89D4E; margin: 6px;">
+  <div class="row justify-content-center p-0 mt-0" >
+      <p class="text-muted project-heading mb-1">Copyright © 2020 RoarClub All rights reserved.</p>
+  </div>
+
+</div> -->
+
+
+
+
+
+
+<div class="container-fluid border-top mt-4 pt-2 d-none d-xl-block d-lg-block">
+  <div class="row">
+    <div class="col-md-4 mt-6 ">
+      <h6 class="text-white project-heading pl-5" id="text" style="color:white;font-size: 15px;">get in to<span class="border-heading">uch</span></h6>
+      <ul style="color: white;text-decoration: none;list-style: none; font-size: 15px;font-family: Cinzel Semi Bold;">
+       <li><p class="text-white project-discription p-0 m-0" style="font-size: 15px;">Cc@Maschile.in</p></li> 
+     
+          <li class="text-white project-heading m-0 p-0"><p style="font-size: 13px;" class="m-0">Maschile Eretail Private Limited</p></li>
+          
+          <li class="text-white project-discription m-0 p-0"><p style="font-size: 13px;" class="m-0">  R No 7, Samrat Estate, J.N.Road, Mulund-(W), Mumbai -<span class="project-heading">400080.</span>  Maharashtra, India </p></li>
+          
+          <li> <p style="font-size: 15px;" class="project-discription text-success">FAQ's&nbsp;&nbsp; | &nbsp;&nbsp;   Privacy &nbsp;&nbsp; | &nbsp;&nbsp;    PolicyTerms of Use &nbsp;&nbsp;  <span class="project-heading text-success cursor-pointer" *ngIf="cust_reg_enable && buis_update==false" routerLink="/member-login">| &nbsp; Member Registration</span> </p></li>
+          </ul>
+    
+        </div>
+
+    <div class="col-md-8 mt-6 pl-6" >
+      <div class="row justify-content-end">
+        <div class="col-md-4">
+          
+          <div class="row ">
+            <h6 class="text-white project-heading" id="text" style="color:white;margin-left: 20px;font-size: 15px;">We off<span class="border-heading">er</span></h6>
+            <div class="col-md-12 mt-2">
+              <div class="footer-text-for-3" > 
+                <img src="assets/easy.png" height="30" > 
+        
+        &nbsp;
+              
+               <span class="text-success project-discription">easy and secure payments</span>
+              </div>
+            </div>
+            <div class="col-md-12 mt-2">
+              <div class=" footer-text-for-3">
+                <img src="assets/tick.svg" height="30"/>
+                &nbsp;
+                <span class="text-success project-discription">100% genuine products</span>
+              </div>
+            </div>
+            <div class="col-md-12 mt-2">
+              <div class=" footer-text-for-3">
+              
+                <img src="assets/deliverd.png" height="30"/>
+                &nbsp;
+                <span class="project-discription text-success">free shipping above rs. across india</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <div class="col-md-4 ">
+          <h6 class="text-white project-heading" id="text" style="color:white;margin-left: 20px;font-size: 15px;">follow <span class="border-heading">us</span></h6>
+          <a  target="_blank" class="facebook"
+          href="{{ data?.facebook }}" title="facebook"
+          >
+          <i class="fab fa-facebook-square fa-3x"></i>
+         </a>
+          
+          <a   href="{{data?.twitter}}" target="_blank" class="twitter ml-2" title="twitter"
+          >   
+          <i class="fab fa-twitter-square fa-3x"></i>
+        </a>
+
+          <a   href="{{data?.instagram}}" target="_blank" class="instagram ml-2" title="instagram"
+          >    
+          <i class="fab fa-instagram-square fa-3x"></i>
+        </a>
+       
+
+      </div>
+        <div class="col-md-4 ">
+          <h6 class="text-white project-heading" id="text" style=" margin-left: 20px;font-size: 15px;">Roar Club <span class="border-heading">App</span></h6>
+            <div class="row">
+              <div class="col-md-1"><img src="./assets/app-store.png"  width="100px"></div>
+              <div class="col-md-1"><img src="./assets/play-store.png"  width="100px" style="margin-left: 80px;"></div>
+          </div>
+
+
+    </div>
+   
+   
+    
+     </div>
+    
+   
+         </div>
+       
+  </div>
+ 
+  <hr style="border: .5px solid #B89D4E; margin: 6px;">
+  <div class="row justify-content-center p-0 mt-0" >
+      <p class="text-muted project-heading mb-1">Copyright © 2020 RoarClub All rights reserved.</p>
+  </div>
+
+</div>
+
+
+
+
+
+
+         

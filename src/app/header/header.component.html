@@ -213,7 +213,7 @@
      
     
   
-     <img src="assets/main-logo.jpeg" width="120px" height="60px" routerLink="/" style="padding: 10px;">
+     <img src="assets/main-logo.jpeg" width="120px" height="60px" routerLink="/" style="padding: 10px;" class="cursor-pointer">
       
       
      
@@ -224,7 +224,9 @@
     style="font-family: 'Cinzel', serif;color: white;font-size: 16px;"
       >{{
       category.name
-    }}  </a>
+    }}  
+  
+ </a>
         <div class="dropdown-menu megamenu" role="menu" *ngIf="category.sub_category && hidesubcategory">
                    <div class="row justify-content-center">
                  <div class="col-md-10 pl-5" >
@@ -320,8 +322,8 @@
                     searchList.category[0].category_no
                   )
                 "
-                (keyup.enter)="searchFocus = !searchFocus"
-                (keyup)="searchFocus = !searchFocus"
+                
+                (focus)="searchFocus = !searchFocus"
                 placeholder="Search for brand, category, product more..."
                 aria-label="search..."
               />
@@ -343,7 +345,7 @@
                       <i class="fa fa-search  mr-3 ml-3" style="font-size: 12px"></i>
                       <a
                         (click)="
-                          navigateCategory(category.name, category.category_no)
+                          navigateCategory(category.name, category.category_no);hideitem()
                         "
                       >
                         <div style="font-size: 12px">
@@ -357,7 +359,7 @@
                       *ngFor="let brand of searchList.brand | slice: 0:6"
                     >
                       <i class="fa fa-search mr-3 ml-3" style="font-size: 12px"></i>
-                      <a (click)="navigateBrand(brand.name, brand.brand_id)">
+                      <a (click)="navigateBrand(brand.name, brand.brand_id);hideitem()">
                         <div style="font-size: 12px">in {{ brand.name }}</div>
                       </a>
                     </div>
@@ -410,7 +412,7 @@
       *ngIf="is_logged_in"
     >
       <a
-        class="nav-link dropdown-toggle cursor-pointer"
+        class="nav-link dropdown-toggle cursor-pointer mt-0 pt-2"
         id="navbarDropdown"
         role="button"
         data-toggle="dropdown"
